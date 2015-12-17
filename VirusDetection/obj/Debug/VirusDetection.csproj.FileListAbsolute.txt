@@ -1,0 +1,9 @@
+C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\bin\Debug\VirusDetection.exe.config
+C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\bin\Debug\VirusDetection.exe
+C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\bin\Debug\VirusDetection.pdb
+C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\obj\Debug\VirusDetection.csprojResolveAssemblyReference.cache
+C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\obj\Debug\VirusDetection.FrmMain.resources
+C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\obj\Debug\VirusDetection.Properties.Resources.resources
+C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\obj\Debug\VirusDetection.csproj.GenerateResource.Cache
+C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\obj\Debug\VirusDetection.exe
+C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\obj\Debug\VirusDetection.pdb
