@@ -188,7 +188,7 @@ namespace VirusDetection
             GroupData = Group(VirusFragments, 0, numberOfCluster);
             ShowDataGenerationProcess(90, "Data generation process has ended");
 
-            //_convertToMixDetectorData();
+            _convertToMixDetectorData();
         }
 
         private void StopWork()

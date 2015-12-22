@@ -31,8 +31,10 @@ namespace VirusDetection.Utils
             int benignCount = 0;
             int totalCount = 0;
 
-            int randSize = 5;
+            int randSize = benignLen / virusLen;
             bool done = false;
+
+            Random rand = new Random();
 
             while (!done)
             {
@@ -44,29 +46,35 @@ namespace VirusDetection.Utils
 
                     byte[] byteArray = VirusFragments[virusCount];
                     String hexStr = ByteArrayToHex(byteArray);
-                    String[] hex4 = Split(hexStr, 4);
+                    String[] hex4 = Split(hexStr, 2);
                     HexArray2DecArray(hex4, ref mixData[totalCount]);
-                    mixData[totalCount][4] = BENIGN_MARK;
+                    mixData[totalCount][4] = VIRUS_MARK;
 
                     virusCount++;
                     totalCount++;
                 }
 
                 // 2. lay so lan lap random cua sach nt
-                int m = new Random().Next(0, Math.Min(randSize, benignLen - benignCount));
-                for (int i = 0; i < m; i++)
+                //if(benignLen - benignCount > 0)
                 {
-                    mixData[totalCount] = new double[5];
+                    int m = rand.Next(0, Math.Min(randSize, benignLen - benignCount + 1));
 
-                    byte[] byteArray = BenignFragments[benignCount];
-                    String hexStr = ByteArrayToHex(byteArray);
-                    String[] hex4 = Split(hexStr, 4);
-                    HexArray2DecArray(hex4, ref mixData[totalCount]);
-                    mixData[totalCount][4] = BENIGN_MARK;
+                    Console.WriteLine(m);
+                    for (int i = 0; i < m; i++)
+                    {
+                        mixData[totalCount] = new double[5];
 
-                    benignCount++;
-                    totalCount++;
+                        byte[] byteArray = BenignFragments[benignCount];
+                        String hexStr = ByteArrayToHex(byteArray);
+                        String[] hex4 = Split(hexStr, 2);
+                        HexArray2DecArray(hex4, ref mixData[totalCount]);
+                        mixData[totalCount][4] = BENIGN_MARK;
+
+                        benignCount++;
+                        totalCount++;
+                    }
                 }
+                
                 // for vr
                 // for sach
                 done = (totalCount >= totalLen);
@@ -79,8 +87,8 @@ namespace VirusDetection.Utils
         public static void saveMixDetector(double[][] input_, String fileName_)
         {
             StreamWriter file = new StreamWriter(fileName_);
-            int len0 = input_.GetLength(0);
-            int len1 = input_.GetLength(1);
+            int len0 = input_.Length;
+            int len1 = input_[0].Length;
 
             for (int i = 0; i < len0 - 1; i++)
             {
