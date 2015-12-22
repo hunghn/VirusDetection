@@ -137,7 +137,7 @@ namespace VirusDetection
         private void btnSaveDetector_Click(object sender, EventArgs e)
         {
             String savePath = txtDetectorFile.Text;
-            Utils.Utils.saveMixDetector(_mixDetectorData, savePath);x
+            Utils.Utils.saveMixDetector(_mixDetectorData, savePath);
         }
 
         private void btnLoadDetector_Click(object sender, EventArgs e)
