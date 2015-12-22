@@ -107,11 +107,19 @@ namespace VirusDetection
 
         private void btnDetect_Click(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
             {
-                if (fbd.ShowDialog() == DialogResult.OK)
+                string file = openFileDialog1.FileName;
+                try
                 {
-                    txtDetector.Text = fbd.SelectedPath;
+                    txtDetector.Text = File.ReadAllText(file);
+                    
+                }
+                catch (IOException)
+                {
                 }
             }
         }
@@ -502,6 +510,59 @@ namespace VirusDetection
 
         #endregion
 
+
+        private void btnSaveClustering_Click(object sender, EventArgs e)
+        {
+            Stream myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                {
+                    // Code to write the stream goes here.
+                    myStream.Close();
+                }
+            }
+        }
+
+        private void btnClassifier_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    txtClassifier.Text = fbd.SelectedPath;
+                }
+            }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+                string file = openFileDialog1.FileName;
+                try
+                {
+                    txtLoad.Text = File.ReadAllText(file);
+
+                }
+                catch (IOException)
+                {
+                }
+            }
+        }
+
+        private void txtLoad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void initDemo()
         {
