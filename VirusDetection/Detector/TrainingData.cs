@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace VirusDetection.Data_Generation
+namespace VirusDetection.Detector
 {
     [Serializable]
     public class TrainingData:List<byte[]>

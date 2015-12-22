@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace VirusDetection.Data_Generation
+namespace VirusDetection.Detector
 {
     public class Cluster : IComparable
     {

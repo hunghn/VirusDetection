@@ -7,3 +7,16 @@ C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\So
 C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\obj\Debug\VirusDetection.csproj.GenerateResource.Cache
 C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\obj\Debug\VirusDetection.exe
 C:\Users\hungh\OneDrive\Tai lieu hoc tap\Chuyen Nganh SE\Khoa luan tot nghiep\Source code\VirusDetection\VirusDetection\obj\Debug\VirusDetection.pdb
+E:\BT\git\VirusDetection\VirusDetection\obj\Debug\VirusDetection.FormMain.resources
+E:\BT\git\VirusDetection\VirusDetection\obj\Debug\VirusDetection.Properties.Resources.resources
+E:\BT\git\VirusDetection\VirusDetection\obj\Debug\VirusDetection.csproj.GenerateResource.Cache
+E:\BT\git\VirusDetection\VirusDetection\bin\Debug\VirusDetection.exe.config
+E:\BT\git\VirusDetection\VirusDetection\bin\Debug\VirusDetection.exe
+E:\BT\git\VirusDetection\VirusDetection\bin\Debug\VirusDetection.pdb
+E:\BT\git\VirusDetection\VirusDetection\bin\Debug\System.Net.Http.dll
+E:\BT\git\VirusDetection\VirusDetection\bin\Debug\System.Net.Http.xml
+E:\BT\git\VirusDetection\VirusDetection\obj\Debug\VirusDetection.exe
+E:\BT\git\VirusDetection\VirusDetection\obj\Debug\VirusDetection.pdb
+E:\BT\git\VirusDetection\VirusDetection\obj\Debug\VirusDetection.csprojResolveAssemblyReference.cache
+E:\BT\git\VirusDetection\VirusDetection\bin\Debug\AForge.Neuro.dll
+E:\BT\git\VirusDetection\VirusDetection\bin\Debug\AForge.Neuro.xml

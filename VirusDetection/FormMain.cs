@@ -1,16 +1,20 @@
 ﻿using Accord.MachineLearning;
 using Accord.Math;
+using DemoSOM.SOM;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using VirusDetection.Data_Generation;
+using VirusDetection.Detector;
 
 namespace VirusDetection
 {
     enum PROGRESSSTATE { DATAGENERATION, LEARNING, AFFINITYGENERATION, DETECTING };
-    public partial class FrmMain : Form
+    public partial class FormMain : Form
     {
         // Declare variable
         private bool isWorking = false;
@@ -19,8 +23,8 @@ namespace VirusDetection
         private ManualResetEvent stopEvent = null;
         private Thread worker;
 
-        private string VirusDirectory = "";
-        private string BenignDirectory = "";
+        private string VirusDirectory;
+        private string BenignDirectory;
 
         // Data generation
         private int Length = 0;
@@ -35,6 +39,9 @@ namespace VirusDetection
 
         private TrainingData VirusFragments;
         private TrainingData BenignFragments;
+
+        private double[][] _mixDetectorData;
+
         private int[] Label;
         private List<byte[][]> GroupData = new List<byte[][]>();
         private List<Cluster> groups = new List<Cluster>();
@@ -46,20 +53,18 @@ namespace VirusDetection
         DataView dv, dv1;
         private DataSet dataSet = new DataSet();
 
-        private void initDemo()
-        {
-            txtVirusDirection.Text = @"E:\Virus";
-            txtBegin.Text = @"E:\Benign";
-            txtDetector.Text = @"E:\Detector";
+
+        // LK Custom code
+        ClusteringManager _clusteringManager;
 
 
-        }
-        public FrmMain()
+        public FormMain()
         {
             InitializeComponent();
             initDemo();
         }
 
+        #region Form Event
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (isWorking)
@@ -76,7 +81,80 @@ namespace VirusDetection
                 //case PROGRESSSTATE.DETECTING: DetectingStart(); break;
             }
         }
-        
+
+
+        private void btnVirusDetect_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    txtVirusDirection.Text = fbd.SelectedPath;
+                }
+            }
+        }
+
+        private void btnBegin_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    txtBegin.Text = fbd.SelectedPath;
+                }
+            }
+        }
+
+        private void btnDetect_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    txtDetector.Text = fbd.SelectedPath;
+                }
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!worker.IsAlive)
+            {
+                StopWork();
+                isWorking = false;
+                switch (State)
+                {
+                    case PROGRESSSTATE.DATAGENERATION:
+                        PrepareShowingDataGeneration(); break;
+
+                }
+            }
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveDetector_Click(object sender, EventArgs e)
+        {
+            String savePath = txtDetector.Text;
+            savePath += ".txt";
+            Utils.Utils.saveMixDetector(_mixDetectorData, savePath);
+        }
+
+        private void btnLoadDetector_Click(object sender, EventArgs e)
+        {
+            String fileName = txtDetector.Text;
+            fileName += ".txt";
+            _mixDetectorData = Utils.Utils.loadMixDetector(fileName);
+        }
+
+        #endregion
+
+        #region Utils Method
+
+        #region Detecter Method
         private void StartWork(bool stopable)
         {
             // set busy cursor
@@ -107,9 +185,10 @@ namespace VirusDetection
             this.VirusFragments = datageneration.trainingData;
             this.BenignFragments = datageneration.FileFragment;
             ShowDataGenerationProcess(70, "Starting clustering process...");
-            GroupData = Group(VirusFragments, ClusteringSelectionRate, numberOfCluster);
+            GroupData = Group(VirusFragments, 0, numberOfCluster);
             ShowDataGenerationProcess(90, "Data generation process has ended");
 
+            //_convertToMixDetectorData();
         }
 
         private void StopWork()
@@ -220,12 +299,13 @@ namespace VirusDetection
             BenignDirectory = txtBegin.Text;
         }
 
+
         private void ShowDataGenerationProcess(int step, string discripts)
         {
-            this.progressBar2.BeginInvoke((MethodInvoker)delegate () { this.progressBar2.Value = step; this.progressBar2.Refresh(); });
-            this.txtStatusBar.BeginInvoke((MethodInvoker)delegate () { txtStatusBar.Text = discripts; ; this.txtStatusBar.Refresh(); });
+            this.progressBar2.BeginInvoke((MethodInvoker)delegate() { this.progressBar2.Value = step; this.progressBar2.Refresh(); });
+            this.txtStatusBar.BeginInvoke((MethodInvoker)delegate() { txtStatusBar.Text = discripts; ; this.txtStatusBar.Refresh(); });
             TimeSpan elapsed = DateTime.Now.Subtract(startTime);
-            txtTimeBox.BeginInvoke((MethodInvoker)delegate ()
+            txtTimeBox.BeginInvoke((MethodInvoker)delegate()
             {
                 txtTimeBox.Text = "Elapsed time : " + string.Format("{0}:{1}:{2}",
                     elapsed.Hours.ToString("D2"),
@@ -315,7 +395,7 @@ namespace VirusDetection
             for (int i = 0; i < TD.Count; i++)
             {
                 row = NegativeSelectionData.NewRow();
-                row["Virus Data Fragments"] = ConvertByteArrayToString(TD[i]); 
+                row["Virus Data Fragments"] = ConvertByteArrayToString(TD[i]);
                 //row[0] = ConvertByteArrayToString(TD[i]);
                 if (state[i] == 0)
                 {
@@ -373,6 +453,7 @@ namespace VirusDetection
             dtGroupView.DataSource = view;
         }
 
+
         private string ConvertByteArrayToString(byte[] bytes)
         {
             string s = "";
@@ -388,58 +469,53 @@ namespace VirusDetection
             ShowDataGenerationProcess(100, string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", VirusFragments.Count, BenignFragments.Count));
         }
 
-        private void btnVirusDetect_Click(object sender, EventArgs e)
+
+
+        private void _convertToMixDetectorData()
         {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
-            {
-                if (fbd.ShowDialog() == DialogResult.OK)
-                {
-                    txtVirusDirection.Text = fbd.SelectedPath;
-                }
-            }
+            _mixDetectorData = Utils.Utils.correctAndMixDetector(VirusFragments, BenignFragments);
         }
 
-        private void btnBegin_Click(object sender, EventArgs e)
+
+        #endregion
+
+        #region Clustering Method
+
+        public void initClustering()
         {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
-            {
-                if (fbd.ShowDialog() == DialogResult.OK)
-                {
-                    txtBegin.Text = fbd.SelectedPath;
-                }
-            }
+            _clusteringManager = new ClusteringManager(_mixDetectorData, 255, 10, 10);
+        }
+        public void startClustering()
+        {
+            _clusteringManager.trainNetwork();
         }
 
-        private void btnDetect_Click(object sender, EventArgs e)
+        public void saveClusteringOutput(String fileName_)
         {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
-            {
-                if (fbd.ShowDialog() == DialogResult.OK)
-                {
-                    txtDetector.Text = fbd.SelectedPath;
-                }
-            }
+            _clusteringManager.saveNetwork(fileName_);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        public void loadClusteringOutput(String fileName_)
         {
-            if (!worker.IsAlive)
-            {
-                StopWork();
-                isWorking = false;
-                switch (State)
-                {
-                    case PROGRESSSTATE.DATAGENERATION:
-                        PrepareShowingDataGeneration(); break;
-                    
-                }
-            }
+            _clusteringManager.loadNetwork(fileName_);
         }
 
-        private void btnStop_Click(object sender, EventArgs e)
+        #endregion
+
+
+        private void initDemo()
         {
-            
+            txtVirusDirection.Text = @"D:\TestVirus\Virus";
+            txtBegin.Text = @"D:\TestVirus\Benign";
+            txtDetector.Text = @"D:\TestVirus\Detector";
         }
+
+
         
+
+        #endregion
+
+       
+
     }
 }

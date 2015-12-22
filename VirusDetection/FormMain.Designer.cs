@@ -1,6 +1,6 @@
 ﻿namespace VirusDetection
 {
-    partial class FrmMain
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -37,8 +37,9 @@
             this.pbStatus = new System.Windows.Forms.ProgressBar();
             this.panelRight = new System.Windows.Forms.Panel();
             this.grbOutput = new System.Windows.Forms.GroupBox();
+            this.btnLoadDetector = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSaveDetector = new System.Windows.Forms.Button();
             this.grbIO = new System.Windows.Forms.GroupBox();
             this.txtDetector = new System.Windows.Forms.TextBox();
             this.btnDetect = new System.Windows.Forms.Button();
@@ -50,7 +51,7 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
-            this.tabpageData = new System.Windows.Forms.TabPage();
+            this.tabpgBuildDetector = new System.Windows.Forms.TabPage();
             this.dtGroupView = new System.Windows.Forms.DataGridView();
             this.dtNegativeSelection = new System.Windows.Forms.DataGridView();
             this.panelTabRight = new System.Windows.Forms.Panel();
@@ -69,9 +70,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabpgBuildClustering = new System.Windows.Forms.TabPage();
+            this.tabpgBuildFileClassifier = new System.Windows.Forms.TabPage();
+            this.tabPgDetection = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -80,7 +81,7 @@
             this.grbIO.SuspendLayout();
             this.grbActions.SuspendLayout();
             this.tabMain.SuspendLayout();
-            this.tabpageData.SuspendLayout();
+            this.tabpgBuildDetector.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGroupView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNegativeSelection)).BeginInit();
             this.panelTabRight.SuspendLayout();
@@ -158,8 +159,9 @@
             // 
             // grbOutput
             // 
+            this.grbOutput.Controls.Add(this.btnLoadDetector);
             this.grbOutput.Controls.Add(this.button1);
-            this.grbOutput.Controls.Add(this.button2);
+            this.grbOutput.Controls.Add(this.btnSaveDetector);
             this.grbOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grbOutput.Location = new System.Drawing.Point(0, 404);
             this.grbOutput.Name = "grbOutput";
@@ -167,6 +169,16 @@
             this.grbOutput.TabIndex = 2;
             this.grbOutput.TabStop = false;
             this.grbOutput.Text = "Output";
+            // 
+            // btnLoadDetector
+            // 
+            this.btnLoadDetector.Location = new System.Drawing.Point(15, 60);
+            this.btnLoadDetector.Name = "btnLoadDetector";
+            this.btnLoadDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnLoadDetector.TabIndex = 9;
+            this.btnLoadDetector.Text = "Load Detector";
+            this.btnLoadDetector.UseVisualStyleBackColor = true;
+            this.btnLoadDetector.Click += new System.EventHandler(this.btnLoadDetector_Click);
             // 
             // button1
             // 
@@ -177,14 +189,15 @@
             this.button1.Text = "Save Classifier";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnSaveDetector
             // 
-            this.button2.Location = new System.Drawing.Point(15, 28);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(171, 29);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Save Detector";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSaveDetector.Location = new System.Drawing.Point(15, 19);
+            this.btnSaveDetector.Name = "btnSaveDetector";
+            this.btnSaveDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnSaveDetector.TabIndex = 7;
+            this.btnSaveDetector.Text = "Save Detector";
+            this.btnSaveDetector.UseVisualStyleBackColor = true;
+            this.btnSaveDetector.Click += new System.EventHandler(this.btnSaveDetector_Click);
             // 
             // grbIO
             // 
@@ -291,10 +304,10 @@
             // 
             // tabMain
             // 
-            this.tabMain.Controls.Add(this.tabpageData);
-            this.tabMain.Controls.Add(this.tabPage2);
-            this.tabMain.Controls.Add(this.tabPage3);
-            this.tabMain.Controls.Add(this.tabPage4);
+            this.tabMain.Controls.Add(this.tabpgBuildDetector);
+            this.tabMain.Controls.Add(this.tabpgBuildClustering);
+            this.tabMain.Controls.Add(this.tabpgBuildFileClassifier);
+            this.tabMain.Controls.Add(this.tabPgDetection);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(205, 5);
             this.tabMain.Name = "tabMain";
@@ -302,18 +315,18 @@
             this.tabMain.Size = new System.Drawing.Size(752, 564);
             this.tabMain.TabIndex = 3;
             // 
-            // tabpageData
+            // tabpgBuildDetector
             // 
-            this.tabpageData.Controls.Add(this.dtGroupView);
-            this.tabpageData.Controls.Add(this.dtNegativeSelection);
-            this.tabpageData.Controls.Add(this.panelTabRight);
-            this.tabpageData.Location = new System.Drawing.Point(4, 22);
-            this.tabpageData.Name = "tabpageData";
-            this.tabpageData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabpageData.Size = new System.Drawing.Size(744, 538);
-            this.tabpageData.TabIndex = 0;
-            this.tabpageData.Text = "Data Generation";
-            this.tabpageData.UseVisualStyleBackColor = true;
+            this.tabpgBuildDetector.Controls.Add(this.dtGroupView);
+            this.tabpgBuildDetector.Controls.Add(this.dtNegativeSelection);
+            this.tabpgBuildDetector.Controls.Add(this.panelTabRight);
+            this.tabpgBuildDetector.Location = new System.Drawing.Point(4, 22);
+            this.tabpgBuildDetector.Name = "tabpgBuildDetector";
+            this.tabpgBuildDetector.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpgBuildDetector.Size = new System.Drawing.Size(744, 538);
+            this.tabpgBuildDetector.TabIndex = 0;
+            this.tabpgBuildDetector.Text = "Build Detector";
+            this.tabpgBuildDetector.UseVisualStyleBackColor = true;
             // 
             // dtGroupView
             // 
@@ -389,6 +402,8 @@
             // ckbRContiguos
             // 
             this.ckbRContiguos.AutoSize = true;
+            this.ckbRContiguos.Checked = true;
+            this.ckbRContiguos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbRContiguos.Location = new System.Drawing.Point(10, 231);
             this.ckbRContiguos.Name = "ckbRContiguos";
             this.ckbRContiguos.Size = new System.Drawing.Size(129, 17);
@@ -491,41 +506,41 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Length";
             // 
-            // tabPage2
+            // tabpgBuildClustering
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(744, 538);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Detectors Generation";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabpgBuildClustering.Location = new System.Drawing.Point(4, 22);
+            this.tabpgBuildClustering.Name = "tabpgBuildClustering";
+            this.tabpgBuildClustering.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpgBuildClustering.Size = new System.Drawing.Size(744, 538);
+            this.tabpgBuildClustering.TabIndex = 1;
+            this.tabpgBuildClustering.Text = "Build Clustering/Classifier";
+            this.tabpgBuildClustering.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // tabpgBuildFileClassifier
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(744, 538);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Classifier Generation";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabpgBuildFileClassifier.Location = new System.Drawing.Point(4, 22);
+            this.tabpgBuildFileClassifier.Name = "tabpgBuildFileClassifier";
+            this.tabpgBuildFileClassifier.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpgBuildFileClassifier.Size = new System.Drawing.Size(744, 538);
+            this.tabpgBuildFileClassifier.TabIndex = 2;
+            this.tabpgBuildFileClassifier.Text = "Build File Classifier";
+            this.tabpgBuildFileClassifier.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // tabPgDetection
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(744, 538);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Detection";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPgDetection.Location = new System.Drawing.Point(4, 22);
+            this.tabPgDetection.Name = "tabPgDetection";
+            this.tabPgDetection.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPgDetection.Size = new System.Drawing.Size(744, 538);
+            this.tabPgDetection.TabIndex = 3;
+            this.tabPgDetection.Text = "Detection";
+            this.tabPgDetection.UseVisualStyleBackColor = true;
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // FrmMain
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -534,7 +549,7 @@
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelFooter);
-            this.Name = "FrmMain";
+            this.Name = "FormMain";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Virus Detection";
             this.panelFooter.ResumeLayout(false);
@@ -546,7 +561,7 @@
             this.grbIO.PerformLayout();
             this.grbActions.ResumeLayout(false);
             this.tabMain.ResumeLayout(false);
-            this.tabpageData.ResumeLayout(false);
+            this.tabpgBuildDetector.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtGroupView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNegativeSelection)).EndInit();
             this.panelTabRight.ResumeLayout(false);
@@ -562,7 +577,7 @@
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.GroupBox grbOutput;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSaveDetector;
         private System.Windows.Forms.GroupBox grbIO;
         private System.Windows.Forms.TextBox txtDetector;
         private System.Windows.Forms.Button btnDetect;
@@ -574,10 +589,10 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.TabControl tabMain;
-        private System.Windows.Forms.TabPage tabpageData;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabpgBuildDetector;
+        private System.Windows.Forms.TabPage tabpgBuildClustering;
+        private System.Windows.Forms.TabPage tabpgBuildFileClassifier;
+        private System.Windows.Forms.TabPage tabPgDetection;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtStatusBar;
@@ -602,6 +617,7 @@
         private System.Windows.Forms.CheckBox ckbHamming;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridView dtGroupView;
+        private System.Windows.Forms.Button btnLoadDetector;
     }
 }
 
