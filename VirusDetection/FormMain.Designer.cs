@@ -142,6 +142,7 @@
             this.txtTimeBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.txtTimeBox.Location = new System.Drawing.Point(0, 5);
             this.txtTimeBox.Name = "txtTimeBox";
+            this.txtTimeBox.ReadOnly = true;
             this.txtTimeBox.Size = new System.Drawing.Size(195, 20);
             this.txtTimeBox.TabIndex = 0;
             // 
