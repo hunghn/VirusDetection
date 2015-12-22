@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using VirusDetection.Clustering;
 using VirusDetection.Utils;
 
-namespace DemoSOM.SOM
+namespace VirusDetection.Clustering
 {
     class ClusteringManager
     {
@@ -77,12 +77,12 @@ namespace DemoSOM.SOM
 
         public void saveNetwork(String fileName_)
         {
-            Utils.saveLKDistanceNetwork(_network,fileName_);
+            Utils.Utils.saveLKDistanceNetwork(_network,fileName_);
         }
 
         public void loadNetwork(String fileName_)
         {
-            _network = Utils.loadLKDistanceNetwork(fileName_);
+            _network = Utils.Utils.loadLKDistanceNetwork(fileName_);
         }
 
         #region Test Method
