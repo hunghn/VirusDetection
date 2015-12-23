@@ -16,5 +16,13 @@ namespace VirusDetection.Clustering
             for (int i = 0; i < neuronsCount; i++)
                 neurons[i] = new LKDistanceNeuron(inputsCount);
         }
+
+        public void printNeuron()
+        {
+            for (int i = 0; i < neuronsCount; i++)
+            {
+                Console.WriteLine(i + "," + ((LKDistanceNeuron)neurons[i]).VirusDetectedCount + "," + ((LKDistanceNeuron)neurons[i]).BenignDetectedCount);
+            }
+        }
     }
 }

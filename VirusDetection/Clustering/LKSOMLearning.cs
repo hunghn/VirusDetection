@@ -48,17 +48,17 @@ namespace VirusDetection.Clustering
                 mappingDataIndex = input.GetLength(1) - 1;
             int len = input.GetLength(0);
             LKDistanceLayer layer = (LKDistanceLayer)network.Layers[0];
-            LKDistanceNeuron[] neurons = (LKDistanceNeuron[])layer.Neurons;
             for ( int i = 0; i < len; i++ )
 			{
 				network.Compute( input[i] );
 				int w = network.GetWinner( );
+                
                 if (Utils.Utils.checkVirus(input[i][mappingDataIndex]))
-                    neurons[w].detectVirus();
+                    ((LKDistanceNeuron)layer.Neurons[w]).detectVirus();
                 else
-                    neurons[w].detectBenign();
+                    ((LKDistanceNeuron)layer.Neurons[w]).detectBenign();
 			}
         }
-
+        1
     }
 }

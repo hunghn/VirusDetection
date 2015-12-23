@@ -72,6 +72,8 @@
             this.tabpgBuildClustering = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnPrintNeuron = new System.Windows.Forms.Button();
+            this.btnStartClustering = new System.Windows.Forms.Button();
             this.txtClusteringFile = new System.Windows.Forms.TextBox();
             this.btnClustering = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
@@ -79,7 +81,6 @@
             this.tabpgBuildFileClassifier = new System.Windows.Forms.TabPage();
             this.tabPgDetection = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnStartClustering = new System.Windows.Forms.Button();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -524,6 +525,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnPrintNeuron);
             this.groupBox2.Controls.Add(this.btnStartClustering);
             this.groupBox2.Controls.Add(this.txtClusteringFile);
             this.groupBox2.Controls.Add(this.btnClustering);
@@ -536,6 +538,26 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Function";
+            // 
+            // btnPrintNeuron
+            // 
+            this.btnPrintNeuron.Location = new System.Drawing.Point(22, 268);
+            this.btnPrintNeuron.Name = "btnPrintNeuron";
+            this.btnPrintNeuron.Size = new System.Drawing.Size(196, 34);
+            this.btnPrintNeuron.TabIndex = 5;
+            this.btnPrintNeuron.Text = "Print Neuron";
+            this.btnPrintNeuron.UseVisualStyleBackColor = true;
+            this.btnPrintNeuron.Click += new System.EventHandler(this.btnPrintNeuron_Click);
+            // 
+            // btnStartClustering
+            // 
+            this.btnStartClustering.Location = new System.Drawing.Point(22, 212);
+            this.btnStartClustering.Name = "btnStartClustering";
+            this.btnStartClustering.Size = new System.Drawing.Size(196, 34);
+            this.btnStartClustering.TabIndex = 4;
+            this.btnStartClustering.Text = "Start Clustering";
+            this.btnStartClustering.UseVisualStyleBackColor = true;
+            this.btnStartClustering.Click += new System.EventHandler(this.btnStartClustering_Click);
             // 
             // txtClusteringFile
             // 
@@ -597,16 +619,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // btnStartClustering
-            // 
-            this.btnStartClustering.Location = new System.Drawing.Point(22, 212);
-            this.btnStartClustering.Name = "btnStartClustering";
-            this.btnStartClustering.Size = new System.Drawing.Size(196, 34);
-            this.btnStartClustering.TabIndex = 4;
-            this.btnStartClustering.Text = "Start Clustering";
-            this.btnStartClustering.UseVisualStyleBackColor = true;
-            this.btnStartClustering.Click += new System.EventHandler(this.btnStartClustering_Click);
             // 
             // FormMain
             // 
@@ -695,6 +707,7 @@
         private System.Windows.Forms.TextBox txtClusteringFile;
         private System.Windows.Forms.Button btnClustering;
         private System.Windows.Forms.Button btnStartClustering;
+        private System.Windows.Forms.Button btnPrintNeuron;
     }
 }
 

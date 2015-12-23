@@ -40,7 +40,7 @@ namespace VirusDetection
         private TrainingData VirusFragments;
         private TrainingData BenignFragments;
 
-        private double[][] _mixDetectorData;
+        private double[][] _detectorData;
 
         private int[] Label;
         private List<byte[][]> GroupData = new List<byte[][]>();
@@ -137,13 +137,15 @@ namespace VirusDetection
         private void btnSaveDetector_Click(object sender, EventArgs e)
         {
             String savePath = txtDetectorFile.Text;
-            Utils.Utils.saveMixDetector(_mixDetectorData, savePath);
+            Utils.Utils.saveDetector(_detectorData, savePath);
+            MessageBox.Show("Successful!");
         }
 
         private void btnLoadDetector_Click(object sender, EventArgs e)
         {
             String fileName = txtDetectorFile.Text;
-            _mixDetectorData = Utils.Utils.loadMixDetector(fileName);
+            _detectorData = Utils.Utils.loadDetector(fileName);
+            MessageBox.Show("Successful!");
         }
 
         #endregion
@@ -184,7 +186,7 @@ namespace VirusDetection
             GroupData = Group(VirusFragments, 0, numberOfCluster);
             ShowDataGenerationProcess(90, "Data generation process has ended");
 
-            _convertToMixDetectorData();
+            _correctDetectorData();
         }
 
         private void StopWork()
@@ -467,9 +469,9 @@ namespace VirusDetection
 
 
 
-        private void _convertToMixDetectorData()
+        private void _correctDetectorData()
         {
-            _mixDetectorData = Utils.Utils.correctAndMixDetector(VirusFragments, BenignFragments);
+            _detectorData = Utils.Utils.correctDetectorData(VirusFragments);
         }
 
 
@@ -479,7 +481,7 @@ namespace VirusDetection
 
         public void initClustering()
         {
-            _clusteringManager = new ClusteringManager(_mixDetectorData, 255, 10, 10);
+            _clusteringManager = new ClusteringManager(_detectorData, 255, 10, 10);
         }
         public void startClustering()
         {
@@ -515,6 +517,7 @@ namespace VirusDetection
         {
             String fileName = txtClusteringFile.Text;
             _clusteringManager.saveNetwork(fileName);
+            MessageBox.Show("Successful!");
         }
 
         
@@ -522,7 +525,10 @@ namespace VirusDetection
         private void btnLoad_Click(object sender, EventArgs e)
         {
             String fileName = txtClusteringFile.Text;
+            if (_clusteringManager == null)
+                initClustering();
             _clusteringManager.loadNetwork(fileName);
+            MessageBox.Show("Successful!");
         }
 
 
@@ -541,7 +547,15 @@ namespace VirusDetection
 
         private void btnStartClustering_Click(object sender, EventArgs e)
         {
+            if (_clusteringManager == null)
+                initClustering();
             _clusteringManager.trainNetwork();
+            MessageBox.Show("Successful!");
+        }
+
+        private void btnPrintNeuron_Click(object sender, EventArgs e)
+        {
+            _clusteringManager.printlnNeuron();
         }
 
        

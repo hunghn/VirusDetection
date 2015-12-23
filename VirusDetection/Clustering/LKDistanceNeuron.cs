@@ -10,7 +10,19 @@ namespace VirusDetection.Clustering
     class LKDistanceNeuron:DistanceNeuron
     {
         int _virusDetectedCount;
+
+        public int VirusDetectedCount
+        {
+            get { return _virusDetectedCount; }
+            set { _virusDetectedCount = value; }
+        }
         int _benignDetectedCount;
+
+        public int BenignDetectedCount
+        {
+            get { return _benignDetectedCount; }
+            set { _benignDetectedCount = value; }
+        }
         public LKDistanceNeuron(int inputs) : base(inputs) 
         {
             _initializeLK();

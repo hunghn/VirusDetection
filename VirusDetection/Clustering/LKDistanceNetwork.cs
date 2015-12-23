@@ -6,6 +6,7 @@ using System.Text;
 
 namespace VirusDetection.Clustering
 {
+    [Serializable]
     class LKDistanceNetwork : DistanceNetwork
     {
         public LKDistanceNetwork( int inputsCount, int neuronsCount )

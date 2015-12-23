@@ -41,7 +41,7 @@ namespace VirusDetection.Clustering
             _network = new LKDistanceNetwork(1, _networkWidth * _networkHeight);
 
             // create learning algorithm
-            SOMLearning trainer = new SOMLearning(_network, _networkWidth, _networkHeight);
+            LKSOMLearning trainer = new LKSOMLearning(_network, _networkWidth, _networkHeight);
 
             double fixedLearningRate = learningRate / 10;
             double driftingLearningRate = fixedLearningRate * 9;
@@ -71,7 +71,7 @@ namespace VirusDetection.Clustering
                     break;
             }
 
-
+            trainer.mapNeuronLabel(_input, 4);
 
         }
 
@@ -102,6 +102,11 @@ namespace VirusDetection.Clustering
                 Console.Write(item + " ");
             }
             Console.WriteLine("==> " + winner);
+        }
+
+        public void printlnNeuron()
+        {
+            ((LKDistanceLayer)_network.Layers[0]).printNeuron();
         }
 
         public int testData(double[] vector)
