@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="Accord.MachineLearning, Version=3.0.2.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Lucky Boy\Desktop\net40\Accord.MachineLearning.dll</HintPath>
+      <HintPath>..\Lib\Accord.NET\net40\Accord.MachineLearning.dll</HintPath>
     </Reference>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
