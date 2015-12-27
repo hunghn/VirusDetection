@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using VirusDetection.Clustering;
 using VirusDetection.Detector;
 using VirusDetection.FileClassifier;
+using VirusDetection.Utils;
 using VirusDetection.VirusScanner;
 
 namespace VirusDetection
@@ -93,7 +94,7 @@ namespace VirusDetection
             {
                 if (fbd.ShowDialog() == DialogResult.OK)
                 {
-                    txtVirusDirection.Text = fbd.SelectedPath;
+                    txtbVirusFolder.Text = fbd.SelectedPath;
                 }
             }
         }
@@ -104,7 +105,7 @@ namespace VirusDetection
             {
                 if (fbd.ShowDialog() == DialogResult.OK)
                 {
-                    txtBegin.Text = fbd.SelectedPath;
+                    txtbBenignFolder.Text = fbd.SelectedPath;
                 }
             }
         }
@@ -115,7 +116,7 @@ namespace VirusDetection
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
-                txtDetectorFile.Text = openFileDialog1.FileName;
+                txtbDetectorFile.Text = openFileDialog1.FileName;
             }
         }
 
@@ -140,14 +141,14 @@ namespace VirusDetection
 
         private void btnSaveDetector_Click(object sender, EventArgs e)
         {
-            String savePath = txtDetectorFile.Text;
+            String savePath = txtbDetectorFile.Text;
             Utils.Utils.saveDetector(_detectorData, savePath);
             MessageBox.Show("Successful!");
         }
 
         private void btnLoadDetector_Click(object sender, EventArgs e)
         {
-            String fileName = txtDetectorFile.Text;
+            String fileName = txtbDetectorFile.Text;
             _detectorData = Utils.Utils.loadDetector(fileName);
             MessageBox.Show("Successful!");
         }
@@ -298,8 +299,8 @@ namespace VirusDetection
 
         private void GetInputDirectory()
         {
-            VirusDirectory = txtVirusDirection.Text;
-            BenignDirectory = txtBegin.Text;
+            VirusDirectory = txtbVirusFolder.Text;
+            BenignDirectory = txtbBenignFolder.Text;
         }
 
 
@@ -513,14 +514,14 @@ namespace VirusDetection
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
-                txtClusteringFile.Text = openFileDialog1.FileName;
+                txtbClusteringFile.Text = openFileDialog1.FileName;
             }
 
         }
 
         private void btnSaveClustering_Click(object sender, EventArgs e)
         {
-            String fileName = txtClusteringFile.Text;
+            String fileName = txtbClusteringFile.Text;
             _clusteringManager.saveNetwork(fileName);
             MessageBox.Show("Successful!");
         }
@@ -529,7 +530,7 @@ namespace VirusDetection
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            String fileName = txtClusteringFile.Text;
+            String fileName = txtbClusteringFile.Text;
             if (_clusteringManager == null)
                 initClustering();
             _clusteringManager.loadNetwork(fileName);
@@ -539,10 +540,11 @@ namespace VirusDetection
 
         private void initDemo()
         {
-            txtVirusDirection.Text = @"D:\TestVirus\Virus";
-            txtBegin.Text = @"D:\TestVirus\Benign";
-            txtDetectorFile.Text = @"D:\TestVirus\Detector.txt";
-            txtClusteringFile.Text = @"D:\TestVirus\Clustering.txt";
+            txtbVirusFolder.Text = CustomSettings.VIRUS_FOLDER;
+            txtbBenignFolder.Text = CustomSettings.BENIGN_FOLDER;
+            txtbDetectorFile.Text = CustomSettings.DETECTOR_FILE;
+            txtbClusteringFile.Text = CustomSettings.CLUSTERING_FILE;
+            txtbFileClassifierFile.Text = CustomSettings.FILE_CLASSIFIER_FILE;
         }
 
 
@@ -565,34 +567,48 @@ namespace VirusDetection
 
         private void btnBuildFileClassifier_Click(object sender, EventArgs e)
         {
-            _fileClassifierManager = new FileClassifierManager(txtVirusDirection.Text, txtBegin.Text, _clusteringManager.DistanceNetwork);
+            _fileClassifierManager = new FileClassifierManager(txtbVirusFolder.Text, txtbBenignFolder.Text, _clusteringManager.DistanceNetwork);
             _fileClassifierManager.train(500, 0.2);
+            MessageBox.Show("Successful!");
         }
 
         private void btnSaveFileClassifier_Click(object sender, EventArgs e)
         {
-            String fileName = @"D:\TestVirus\FileClassifier.txt";
+            String fileName = txtbFileClassifierFile.Text;
             _fileClassifierManager.saveClassifierNetwork(fileName);
+            MessageBox.Show("Successful!");
         }
 
         private void btnLoadFileClassifier_Click(object sender, EventArgs e)
         {
             if (_fileClassifierManager == null)
-                _fileClassifierManager = new FileClassifierManager(txtVirusDirection.Text, txtBegin.Text, _clusteringManager.DistanceNetwork);
-            String fileName = @"D:\TestVirus\FileClassifier.txt";
+                _fileClassifierManager = new FileClassifierManager(txtbVirusFolder.Text, txtbBenignFolder.Text, _clusteringManager.DistanceNetwork);
+            String fileName = txtbFileClassifierFile.Text;
             _fileClassifierManager.loadClassifierNetwork(fileName);
+            MessageBox.Show("Successful!");
         }
 
         private void btnScanVirus_Click(object sender, EventArgs e)
         {
             _virusScannerManager = new VirusScannerManager(_fileClassifierManager.DistanceNetwork, _fileClassifierManager.ActivationNetwork);
 
-            String[] virusFile = Directory.GetFiles(txtVirusDirection.Text, "*.*", SearchOption.AllDirectories);
+            String[] virusFile = Directory.GetFiles(txtbVirusFolder.Text, "*.*", SearchOption.AllDirectories);
 
             foreach (String file in virusFile)
             {
                 int result = _virusScannerManager.scanFile(file);
                 Console.WriteLine(result);
+            }
+        }
+
+        private void btnFileClassifierFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.RestoreDirectory = true;
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+                txtbFileClassifierFile.Text = openFileDialog1.FileName;
             }
         }
     }

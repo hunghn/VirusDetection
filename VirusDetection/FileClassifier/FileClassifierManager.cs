@@ -101,7 +101,7 @@ namespace VirusDetection.FileClassifier
                 int n = Math.Min(benignLen - benignCount, rand.Next(1, randSize + 1)); // +1 because Math.Min(a,b) means min from a to b-1
                 for (int j = 0; j < n; j++)
                 {
-                    FileClassifierData data = new FileClassifierData(_distanceNetwork, virusFile[j], _formatRange);
+                    FileClassifierData data = new FileClassifierData(_distanceNetwork, benignFile[j], _formatRange);
                     _input[totalCount] = data.getFormatData();
                     _output[totalCount] = new double[] { Utils.Utils.BENIGN_MARK };
                     benignCount++;
@@ -109,6 +109,20 @@ namespace VirusDetection.FileClassifier
                 }
 
                 done = (totalCount >= totalLen);
+            }
+
+            _printInput();
+        }
+
+        private void _printInput()
+        {
+            foreach (double[] item in _input)
+            {
+                foreach (double _item in item)
+            {
+                Console.Write(_item + ",");
+            }
+                Console.WriteLine();
             }
         }
 

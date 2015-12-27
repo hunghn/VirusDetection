@@ -40,11 +40,11 @@
             this.btnLoadDetector = new System.Windows.Forms.Button();
             this.btnSaveDetector = new System.Windows.Forms.Button();
             this.grbIO = new System.Windows.Forms.GroupBox();
-            this.txtDetectorFile = new System.Windows.Forms.TextBox();
+            this.txtbDetectorFile = new System.Windows.Forms.TextBox();
             this.btnDetectorFile = new System.Windows.Forms.Button();
-            this.txtBegin = new System.Windows.Forms.TextBox();
+            this.txtbBenignFolder = new System.Windows.Forms.TextBox();
             this.btnBegin = new System.Windows.Forms.Button();
-            this.txtVirusDirection = new System.Windows.Forms.TextBox();
+            this.txtbVirusFolder = new System.Windows.Forms.TextBox();
             this.btnVirusDetect = new System.Windows.Forms.Button();
             this.grbActions = new System.Windows.Forms.GroupBox();
             this.btnStop = new System.Windows.Forms.Button();
@@ -74,17 +74,19 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnPrintNeuron = new System.Windows.Forms.Button();
             this.btnStartClustering = new System.Windows.Forms.Button();
-            this.txtClusteringFile = new System.Windows.Forms.TextBox();
+            this.txtbClusteringFile = new System.Windows.Forms.TextBox();
             this.btnClustering = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSaveClustering = new System.Windows.Forms.Button();
             this.tabpgBuildFileClassifier = new System.Windows.Forms.TabPage();
-            this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnBuildFileClassifier = new System.Windows.Forms.Button();
-            this.btnSaveFileClassifier = new System.Windows.Forms.Button();
+            this.txtbFileClassifierFile = new System.Windows.Forms.TextBox();
+            this.btnFileClassifierFile = new System.Windows.Forms.Button();
             this.btnLoadFileClassifier = new System.Windows.Forms.Button();
+            this.btnSaveFileClassifier = new System.Windows.Forms.Button();
+            this.btnBuildFileClassifier = new System.Windows.Forms.Button();
+            this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.btnScanVirus = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -207,11 +209,11 @@
             // 
             // grbIO
             // 
-            this.grbIO.Controls.Add(this.txtDetectorFile);
+            this.grbIO.Controls.Add(this.txtbDetectorFile);
             this.grbIO.Controls.Add(this.btnDetectorFile);
-            this.grbIO.Controls.Add(this.txtBegin);
+            this.grbIO.Controls.Add(this.txtbBenignFolder);
             this.grbIO.Controls.Add(this.btnBegin);
-            this.grbIO.Controls.Add(this.txtVirusDirection);
+            this.grbIO.Controls.Add(this.txtbVirusFolder);
             this.grbIO.Controls.Add(this.btnVirusDetect);
             this.grbIO.Dock = System.Windows.Forms.DockStyle.Top;
             this.grbIO.Location = new System.Drawing.Point(0, 167);
@@ -221,12 +223,12 @@
             this.grbIO.TabStop = false;
             this.grbIO.Text = "I/O";
             // 
-            // txtDetectorFile
+            // txtbDetectorFile
             // 
-            this.txtDetectorFile.Location = new System.Drawing.Point(15, 199);
-            this.txtDetectorFile.Name = "txtDetectorFile";
-            this.txtDetectorFile.Size = new System.Drawing.Size(171, 20);
-            this.txtDetectorFile.TabIndex = 7;
+            this.txtbDetectorFile.Location = new System.Drawing.Point(15, 199);
+            this.txtbDetectorFile.Name = "txtbDetectorFile";
+            this.txtbDetectorFile.Size = new System.Drawing.Size(171, 20);
+            this.txtbDetectorFile.TabIndex = 7;
             // 
             // btnDetectorFile
             // 
@@ -238,12 +240,12 @@
             this.btnDetectorFile.UseVisualStyleBackColor = true;
             this.btnDetectorFile.Click += new System.EventHandler(this.btnDetect_Click);
             // 
-            // txtBegin
+            // txtbBenignFolder
             // 
-            this.txtBegin.Location = new System.Drawing.Point(15, 126);
-            this.txtBegin.Name = "txtBegin";
-            this.txtBegin.Size = new System.Drawing.Size(171, 20);
-            this.txtBegin.TabIndex = 5;
+            this.txtbBenignFolder.Location = new System.Drawing.Point(15, 126);
+            this.txtbBenignFolder.Name = "txtbBenignFolder";
+            this.txtbBenignFolder.Size = new System.Drawing.Size(171, 20);
+            this.txtbBenignFolder.TabIndex = 5;
             // 
             // btnBegin
             // 
@@ -255,12 +257,12 @@
             this.btnBegin.UseVisualStyleBackColor = true;
             this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
             // 
-            // txtVirusDirection
+            // txtbVirusFolder
             // 
-            this.txtVirusDirection.Location = new System.Drawing.Point(15, 55);
-            this.txtVirusDirection.Name = "txtVirusDirection";
-            this.txtVirusDirection.Size = new System.Drawing.Size(171, 20);
-            this.txtVirusDirection.TabIndex = 3;
+            this.txtbVirusFolder.Location = new System.Drawing.Point(15, 55);
+            this.txtbVirusFolder.Name = "txtbVirusFolder";
+            this.txtbVirusFolder.Size = new System.Drawing.Size(171, 20);
+            this.txtbVirusFolder.TabIndex = 3;
             // 
             // btnVirusDetect
             // 
@@ -533,7 +535,7 @@
             // 
             this.groupBox2.Controls.Add(this.btnPrintNeuron);
             this.groupBox2.Controls.Add(this.btnStartClustering);
-            this.groupBox2.Controls.Add(this.txtClusteringFile);
+            this.groupBox2.Controls.Add(this.txtbClusteringFile);
             this.groupBox2.Controls.Add(this.btnClustering);
             this.groupBox2.Controls.Add(this.btnLoad);
             this.groupBox2.Controls.Add(this.btnSaveClustering);
@@ -565,12 +567,12 @@
             this.btnStartClustering.UseVisualStyleBackColor = true;
             this.btnStartClustering.Click += new System.EventHandler(this.btnStartClustering_Click);
             // 
-            // txtClusteringFile
+            // txtbClusteringFile
             // 
-            this.txtClusteringFile.Location = new System.Drawing.Point(22, 58);
-            this.txtClusteringFile.Name = "txtClusteringFile";
-            this.txtClusteringFile.Size = new System.Drawing.Size(196, 20);
-            this.txtClusteringFile.TabIndex = 3;
+            this.txtbClusteringFile.Location = new System.Drawing.Point(22, 58);
+            this.txtbClusteringFile.Name = "txtbClusteringFile";
+            this.txtbClusteringFile.Size = new System.Drawing.Size(196, 20);
+            this.txtbClusteringFile.TabIndex = 3;
             // 
             // btnClustering
             // 
@@ -604,6 +606,8 @@
             // 
             // tabpgBuildFileClassifier
             // 
+            this.tabpgBuildFileClassifier.Controls.Add(this.txtbFileClassifierFile);
+            this.tabpgBuildFileClassifier.Controls.Add(this.btnFileClassifierFile);
             this.tabpgBuildFileClassifier.Controls.Add(this.btnLoadFileClassifier);
             this.tabpgBuildFileClassifier.Controls.Add(this.btnSaveFileClassifier);
             this.tabpgBuildFileClassifier.Controls.Add(this.btnBuildFileClassifier);
@@ -614,6 +618,53 @@
             this.tabpgBuildFileClassifier.TabIndex = 2;
             this.tabpgBuildFileClassifier.Text = "Build File Classifier";
             this.tabpgBuildFileClassifier.UseVisualStyleBackColor = true;
+            // 
+            // txtbFileClassifierFile
+            // 
+            this.txtbFileClassifierFile.Location = new System.Drawing.Point(54, 117);
+            this.txtbFileClassifierFile.Name = "txtbFileClassifierFile";
+            this.txtbFileClassifierFile.Size = new System.Drawing.Size(196, 20);
+            this.txtbFileClassifierFile.TabIndex = 5;
+            // 
+            // btnFileClassifierFile
+            // 
+            this.btnFileClassifierFile.Location = new System.Drawing.Point(54, 79);
+            this.btnFileClassifierFile.Name = "btnFileClassifierFile";
+            this.btnFileClassifierFile.Size = new System.Drawing.Size(196, 31);
+            this.btnFileClassifierFile.TabIndex = 4;
+            this.btnFileClassifierFile.Text = "File Classifier File";
+            this.btnFileClassifierFile.UseVisualStyleBackColor = true;
+            this.btnFileClassifierFile.Click += new System.EventHandler(this.btnFileClassifierFile_Click);
+            // 
+            // btnLoadFileClassifier
+            // 
+            this.btnLoadFileClassifier.Location = new System.Drawing.Point(69, 351);
+            this.btnLoadFileClassifier.Name = "btnLoadFileClassifier";
+            this.btnLoadFileClassifier.Size = new System.Drawing.Size(109, 27);
+            this.btnLoadFileClassifier.TabIndex = 2;
+            this.btnLoadFileClassifier.Text = "Load File Classifier";
+            this.btnLoadFileClassifier.UseVisualStyleBackColor = true;
+            this.btnLoadFileClassifier.Click += new System.EventHandler(this.btnLoadFileClassifier_Click);
+            // 
+            // btnSaveFileClassifier
+            // 
+            this.btnSaveFileClassifier.Location = new System.Drawing.Point(69, 280);
+            this.btnSaveFileClassifier.Name = "btnSaveFileClassifier";
+            this.btnSaveFileClassifier.Size = new System.Drawing.Size(109, 27);
+            this.btnSaveFileClassifier.TabIndex = 1;
+            this.btnSaveFileClassifier.Text = "Save File Classifier";
+            this.btnSaveFileClassifier.UseVisualStyleBackColor = true;
+            this.btnSaveFileClassifier.Click += new System.EventHandler(this.btnSaveFileClassifier_Click);
+            // 
+            // btnBuildFileClassifier
+            // 
+            this.btnBuildFileClassifier.Location = new System.Drawing.Point(69, 200);
+            this.btnBuildFileClassifier.Name = "btnBuildFileClassifier";
+            this.btnBuildFileClassifier.Size = new System.Drawing.Size(109, 27);
+            this.btnBuildFileClassifier.TabIndex = 0;
+            this.btnBuildFileClassifier.Text = "Build File Classifier";
+            this.btnBuildFileClassifier.UseVisualStyleBackColor = true;
+            this.btnBuildFileClassifier.Click += new System.EventHandler(this.btnBuildFileClassifier_Click);
             // 
             // tabPgVirusScanner
             // 
@@ -626,40 +677,6 @@
             this.tabPgVirusScanner.Text = "Virus Scanner";
             this.tabPgVirusScanner.UseVisualStyleBackColor = true;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // btnBuildFileClassifier
-            // 
-            this.btnBuildFileClassifier.Location = new System.Drawing.Point(67, 65);
-            this.btnBuildFileClassifier.Name = "btnBuildFileClassifier";
-            this.btnBuildFileClassifier.Size = new System.Drawing.Size(109, 27);
-            this.btnBuildFileClassifier.TabIndex = 0;
-            this.btnBuildFileClassifier.Text = "Build File Classifier";
-            this.btnBuildFileClassifier.UseVisualStyleBackColor = true;
-            this.btnBuildFileClassifier.Click += new System.EventHandler(this.btnBuildFileClassifier_Click);
-            // 
-            // btnSaveFileClassifier
-            // 
-            this.btnSaveFileClassifier.Location = new System.Drawing.Point(67, 145);
-            this.btnSaveFileClassifier.Name = "btnSaveFileClassifier";
-            this.btnSaveFileClassifier.Size = new System.Drawing.Size(109, 27);
-            this.btnSaveFileClassifier.TabIndex = 1;
-            this.btnSaveFileClassifier.Text = "Save File Classifier";
-            this.btnSaveFileClassifier.UseVisualStyleBackColor = true;
-            this.btnSaveFileClassifier.Click += new System.EventHandler(this.btnSaveFileClassifier_Click);
-            // 
-            // btnLoadFileClassifier
-            // 
-            this.btnLoadFileClassifier.Location = new System.Drawing.Point(67, 216);
-            this.btnLoadFileClassifier.Name = "btnLoadFileClassifier";
-            this.btnLoadFileClassifier.Size = new System.Drawing.Size(109, 27);
-            this.btnLoadFileClassifier.TabIndex = 2;
-            this.btnLoadFileClassifier.Text = "Load File Classifier";
-            this.btnLoadFileClassifier.UseVisualStyleBackColor = true;
-            this.btnLoadFileClassifier.Click += new System.EventHandler(this.btnLoadFileClassifier_Click);
-            // 
             // btnScanVirus
             // 
             this.btnScanVirus.Location = new System.Drawing.Point(161, 138);
@@ -669,6 +686,10 @@
             this.btnScanVirus.Text = "Scan Virus";
             this.btnScanVirus.UseVisualStyleBackColor = true;
             this.btnScanVirus.Click += new System.EventHandler(this.btnScanVirus_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormMain
             // 
@@ -701,6 +722,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabpgBuildFileClassifier.ResumeLayout(false);
+            this.tabpgBuildFileClassifier.PerformLayout();
             this.tabPgVirusScanner.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -713,11 +735,11 @@
         private System.Windows.Forms.GroupBox grbOutput;
         private System.Windows.Forms.Button btnSaveDetector;
         private System.Windows.Forms.GroupBox grbIO;
-        private System.Windows.Forms.TextBox txtDetectorFile;
+        private System.Windows.Forms.TextBox txtbDetectorFile;
         private System.Windows.Forms.Button btnDetectorFile;
-        private System.Windows.Forms.TextBox txtBegin;
+        private System.Windows.Forms.TextBox txtbBenignFolder;
         private System.Windows.Forms.Button btnBegin;
-        private System.Windows.Forms.TextBox txtVirusDirection;
+        private System.Windows.Forms.TextBox txtbVirusFolder;
         private System.Windows.Forms.Button btnVirusDetect;
         private System.Windows.Forms.GroupBox grbActions;
         private System.Windows.Forms.Button btnStop;
@@ -756,7 +778,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSaveClustering;
-        private System.Windows.Forms.TextBox txtClusteringFile;
+        private System.Windows.Forms.TextBox txtbClusteringFile;
         private System.Windows.Forms.Button btnClustering;
         private System.Windows.Forms.Button btnStartClustering;
         private System.Windows.Forms.Button btnPrintNeuron;
@@ -764,6 +786,8 @@
         private System.Windows.Forms.Button btnSaveFileClassifier;
         private System.Windows.Forms.Button btnBuildFileClassifier;
         private System.Windows.Forms.Button btnScanVirus;
+        private System.Windows.Forms.TextBox txtbFileClassifierFile;
+        private System.Windows.Forms.Button btnFileClassifierFile;
     }
 }
 
