@@ -59,6 +59,6 @@ namespace VirusDetection.Clustering
                     ((LKDistanceNeuron)layer.Neurons[w]).detectBenign();
 			}
         }
-        1
+        
     }
 }
