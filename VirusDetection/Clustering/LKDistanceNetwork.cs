@@ -15,5 +15,11 @@ namespace VirusDetection.Clustering
             // create layer
             layers[0] = new LKDistanceLayer( neuronsCount, inputsCount );
         }
+
+        public LKDistanceNeuron getWinnerNeuron()
+        {
+            int winner = this.GetWinner();
+            return (LKDistanceNeuron)this.layers[0].Neurons[winner];
+        }
     }
 }

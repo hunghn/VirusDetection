@@ -17,6 +17,12 @@ namespace VirusDetection.Clustering
         float _inputRange;
         LKDistanceNetwork _network;
 
+        internal LKDistanceNetwork DistanceNetwork
+        {
+            get { return _network; }
+            set { _network = value; }
+        }
+
         private int _networkWidth = 2;
         private int _networkHeight = 2;
         private int iterations = 500;
@@ -77,12 +83,12 @@ namespace VirusDetection.Clustering
 
         public void saveNetwork(String fileName_)
         {
-            Utils.Utils.saveLKDistanceNetwork(_network,fileName_);
+            Utils.Utils.saveNetwork(_network,fileName_);
         }
 
         public void loadNetwork(String fileName_)
         {
-            _network = Utils.Utils.loadLKDistanceNetwork(fileName_);
+            _network = (LKDistanceNetwork)Utils.Utils.loadNetwork(fileName_);
         }
 
         #region Test Method

@@ -37,7 +37,6 @@ namespace VirusDetection.Detector
             benignDirectory = _BenignDirectory;
             virusDirectory = _VirusDirectory;
 
-
         }
         private void Readfile(string Path, bool flag)
         {

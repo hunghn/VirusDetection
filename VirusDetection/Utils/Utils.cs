@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AForge.Neuro;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -126,11 +127,16 @@ namespace VirusDetection.Utils
         #endregion
 
         #region Clustering Utils
-        public static void saveLKDistanceNetwork(LKDistanceNetwork network_, String fileName_)
+        public static void saveNetwork(Network network_, String fileName_)
         {
             network_.Save(fileName_);
         }
 
+
+        public static Network loadNetwork(string fileName_)
+        {
+            return Network.Load(fileName_);
+        }
 
         #endregion
 
@@ -152,6 +158,18 @@ namespace VirusDetection.Utils
             throw new Exception();
         }
 
+
+        public static int calcFormatRangeIndex(int[] formatRange_, int number_)
+        {
+            int count = 0;
+            foreach (int range in formatRange_)
+            {
+                if (range > number_)
+                    return count - 1;
+                count ++;
+            }
+            return count - 1;
+        }
         
         
         #region Unused Method
@@ -238,9 +256,5 @@ namespace VirusDetection.Utils
 
         #endregion
 
-        public static LKDistanceNetwork loadLKDistanceNetwork(string fileName_)
-        {
-            return (LKDistanceNetwork)LKDistanceNetwork.Load(fileName_);
-        }
     }
 }

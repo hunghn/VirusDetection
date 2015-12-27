@@ -79,8 +79,12 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSaveClustering = new System.Windows.Forms.Button();
             this.tabpgBuildFileClassifier = new System.Windows.Forms.TabPage();
-            this.tabPgDetection = new System.Windows.Forms.TabPage();
+            this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnBuildFileClassifier = new System.Windows.Forms.Button();
+            this.btnSaveFileClassifier = new System.Windows.Forms.Button();
+            this.btnLoadFileClassifier = new System.Windows.Forms.Button();
+            this.btnScanVirus = new System.Windows.Forms.Button();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -95,6 +99,8 @@
             this.groupBox1.SuspendLayout();
             this.tabpgBuildClustering.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabpgBuildFileClassifier.SuspendLayout();
+            this.tabPgVirusScanner.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelFooter
@@ -304,7 +310,7 @@
             this.tabMain.Controls.Add(this.tabpgBuildDetector);
             this.tabMain.Controls.Add(this.tabpgBuildClustering);
             this.tabMain.Controls.Add(this.tabpgBuildFileClassifier);
-            this.tabMain.Controls.Add(this.tabPgDetection);
+            this.tabMain.Controls.Add(this.tabPgVirusScanner);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(205, 5);
             this.tabMain.Name = "tabMain";
@@ -598,6 +604,9 @@
             // 
             // tabpgBuildFileClassifier
             // 
+            this.tabpgBuildFileClassifier.Controls.Add(this.btnLoadFileClassifier);
+            this.tabpgBuildFileClassifier.Controls.Add(this.btnSaveFileClassifier);
+            this.tabpgBuildFileClassifier.Controls.Add(this.btnBuildFileClassifier);
             this.tabpgBuildFileClassifier.Location = new System.Drawing.Point(4, 22);
             this.tabpgBuildFileClassifier.Name = "tabpgBuildFileClassifier";
             this.tabpgBuildFileClassifier.Padding = new System.Windows.Forms.Padding(3);
@@ -606,19 +615,60 @@
             this.tabpgBuildFileClassifier.Text = "Build File Classifier";
             this.tabpgBuildFileClassifier.UseVisualStyleBackColor = true;
             // 
-            // tabPgDetection
+            // tabPgVirusScanner
             // 
-            this.tabPgDetection.Location = new System.Drawing.Point(4, 22);
-            this.tabPgDetection.Name = "tabPgDetection";
-            this.tabPgDetection.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPgDetection.Size = new System.Drawing.Size(744, 538);
-            this.tabPgDetection.TabIndex = 3;
-            this.tabPgDetection.Text = "Detection";
-            this.tabPgDetection.UseVisualStyleBackColor = true;
+            this.tabPgVirusScanner.Controls.Add(this.btnScanVirus);
+            this.tabPgVirusScanner.Location = new System.Drawing.Point(4, 22);
+            this.tabPgVirusScanner.Name = "tabPgVirusScanner";
+            this.tabPgVirusScanner.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPgVirusScanner.Size = new System.Drawing.Size(744, 538);
+            this.tabPgVirusScanner.TabIndex = 3;
+            this.tabPgVirusScanner.Text = "Virus Scanner";
+            this.tabPgVirusScanner.UseVisualStyleBackColor = true;
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // btnBuildFileClassifier
+            // 
+            this.btnBuildFileClassifier.Location = new System.Drawing.Point(67, 65);
+            this.btnBuildFileClassifier.Name = "btnBuildFileClassifier";
+            this.btnBuildFileClassifier.Size = new System.Drawing.Size(109, 27);
+            this.btnBuildFileClassifier.TabIndex = 0;
+            this.btnBuildFileClassifier.Text = "Build File Classifier";
+            this.btnBuildFileClassifier.UseVisualStyleBackColor = true;
+            this.btnBuildFileClassifier.Click += new System.EventHandler(this.btnBuildFileClassifier_Click);
+            // 
+            // btnSaveFileClassifier
+            // 
+            this.btnSaveFileClassifier.Location = new System.Drawing.Point(67, 145);
+            this.btnSaveFileClassifier.Name = "btnSaveFileClassifier";
+            this.btnSaveFileClassifier.Size = new System.Drawing.Size(109, 27);
+            this.btnSaveFileClassifier.TabIndex = 1;
+            this.btnSaveFileClassifier.Text = "Save File Classifier";
+            this.btnSaveFileClassifier.UseVisualStyleBackColor = true;
+            this.btnSaveFileClassifier.Click += new System.EventHandler(this.btnSaveFileClassifier_Click);
+            // 
+            // btnLoadFileClassifier
+            // 
+            this.btnLoadFileClassifier.Location = new System.Drawing.Point(67, 216);
+            this.btnLoadFileClassifier.Name = "btnLoadFileClassifier";
+            this.btnLoadFileClassifier.Size = new System.Drawing.Size(109, 27);
+            this.btnLoadFileClassifier.TabIndex = 2;
+            this.btnLoadFileClassifier.Text = "Load File Classifier";
+            this.btnLoadFileClassifier.UseVisualStyleBackColor = true;
+            this.btnLoadFileClassifier.Click += new System.EventHandler(this.btnLoadFileClassifier_Click);
+            // 
+            // btnScanVirus
+            // 
+            this.btnScanVirus.Location = new System.Drawing.Point(161, 138);
+            this.btnScanVirus.Name = "btnScanVirus";
+            this.btnScanVirus.Size = new System.Drawing.Size(143, 26);
+            this.btnScanVirus.TabIndex = 0;
+            this.btnScanVirus.Text = "Scan Virus";
+            this.btnScanVirus.UseVisualStyleBackColor = true;
+            this.btnScanVirus.Click += new System.EventHandler(this.btnScanVirus_Click);
             // 
             // FormMain
             // 
@@ -650,6 +700,8 @@
             this.tabpgBuildClustering.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabpgBuildFileClassifier.ResumeLayout(false);
+            this.tabPgVirusScanner.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -674,7 +726,7 @@
         private System.Windows.Forms.TabPage tabpgBuildDetector;
         private System.Windows.Forms.TabPage tabpgBuildClustering;
         private System.Windows.Forms.TabPage tabpgBuildFileClassifier;
-        private System.Windows.Forms.TabPage tabPgDetection;
+        private System.Windows.Forms.TabPage tabPgVirusScanner;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtStatusBar;
@@ -708,6 +760,10 @@
         private System.Windows.Forms.Button btnClustering;
         private System.Windows.Forms.Button btnStartClustering;
         private System.Windows.Forms.Button btnPrintNeuron;
+        private System.Windows.Forms.Button btnLoadFileClassifier;
+        private System.Windows.Forms.Button btnSaveFileClassifier;
+        private System.Windows.Forms.Button btnBuildFileClassifier;
+        private System.Windows.Forms.Button btnScanVirus;
     }
 }
 

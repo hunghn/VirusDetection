@@ -10,6 +10,8 @@ using System.Threading;
 using System.Windows.Forms;
 using VirusDetection.Clustering;
 using VirusDetection.Detector;
+using VirusDetection.FileClassifier;
+using VirusDetection.VirusScanner;
 
 namespace VirusDetection
 {
@@ -56,6 +58,8 @@ namespace VirusDetection
 
         // LK Custom code
         ClusteringManager _clusteringManager;
+        FileClassifierManager _fileClassifierManager;
+        VirusScannerManager _virusScannerManager;
 
 
         public FormMain()
@@ -183,7 +187,7 @@ namespace VirusDetection
             this.VirusFragments = datageneration.trainingData;
             this.BenignFragments = datageneration.FileFragment;
             ShowDataGenerationProcess(70, "Starting clustering process...");
-            GroupData = Group(VirusFragments, 0, numberOfCluster);
+            //GroupData = Group(VirusFragments, 0, numberOfCluster);
             ShowDataGenerationProcess(90, "Data generation process has ended");
 
             _correctDetectorData();
@@ -227,6 +231,7 @@ namespace VirusDetection
                 }
             }
             KMeans kmeans = new KMeans(_numberOfCluster);
+            //KMeans kmeans = new KMeans(40);
             Label = kmeans.Compute(temp);
             List<int> label1 = new List<int>();
             for (int i = 0; i < Label.Length; i++)
@@ -558,7 +563,37 @@ namespace VirusDetection
             _clusteringManager.printlnNeuron();
         }
 
-       
+        private void btnBuildFileClassifier_Click(object sender, EventArgs e)
+        {
+            _fileClassifierManager = new FileClassifierManager(txtVirusDirection.Text, txtBegin.Text, _clusteringManager.DistanceNetwork);
+            _fileClassifierManager.train(500, 0.2);
+        }
 
+        private void btnSaveFileClassifier_Click(object sender, EventArgs e)
+        {
+            String fileName = @"D:\TestVirus\FileClassifier.txt";
+            _fileClassifierManager.saveClassifierNetwork(fileName);
+        }
+
+        private void btnLoadFileClassifier_Click(object sender, EventArgs e)
+        {
+            if (_fileClassifierManager == null)
+                _fileClassifierManager = new FileClassifierManager(txtVirusDirection.Text, txtBegin.Text, _clusteringManager.DistanceNetwork);
+            String fileName = @"D:\TestVirus\FileClassifier.txt";
+            _fileClassifierManager.loadClassifierNetwork(fileName);
+        }
+
+        private void btnScanVirus_Click(object sender, EventArgs e)
+        {
+            _virusScannerManager = new VirusScannerManager(_fileClassifierManager.DistanceNetwork, _fileClassifierManager.ActivationNetwork);
+
+            String[] virusFile = Directory.GetFiles(txtVirusDirection.Text, "*.*", SearchOption.AllDirectories);
+
+            foreach (String file in virusFile)
+            {
+                int result = _virusScannerManager.scanFile(file);
+                Console.WriteLine(result);
+            }
+        }
     }
 }
