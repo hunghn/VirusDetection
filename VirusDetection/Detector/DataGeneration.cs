@@ -136,31 +136,36 @@ namespace VirusDetection.Detector
             Event = new ManualResetEvent(false);
             for (int i = 0; i < VirusFragmentInput.Count; i++)
             {
-                ThreadCallBack(i);
+                ThreadPool.QueueUserWorkItem(ThreadCallBack, i);
             }
+            Event.WaitOne();
         }
         private void ThreadCallBack(Object ob)
         {
-            int index = (int)ob;
-            byte[] binaryArray = VirusFragmentInput[index];
-            if (binaryArray != null && !IsMatchSelf(binaryArray))
+            lock(trainingDataOutput)
             {
-                state[index] = 0;
-                try
+                int index = (int)ob;
+                byte[] binaryArray = VirusFragmentInput[index];
+                if (binaryArray != null && !IsMatchSelf(binaryArray))
                 {
-                    trainingDataOutput.Add(binaryArray);
-                    Utils.Utils.GLOBAL_VIRUS_COUNT++;
-                    Utils.Utils.GUI_SUPPORT.virusFragmentUpdate();
-                }
-                catch 
-                { 
-                }
+                    state[index] = 0;
+                    try
+                    {
+                        trainingDataOutput.Add(binaryArray);
+                        Utils.Utils.GLOBAL_VIRUS_COUNT++;
+                        Utils.Utils.GUI_SUPPORT.virusFragmentUpdate();
+                    }
+                    catch
+                    {
+                    }
 
+                }
+                else
+                {
+                    state[index] = 1;
+                }
             }
-            else
-            { 
-                state[index] = 1; 
-            }
+            
 
             if (Interlocked.Decrement(ref filesRemains) == 0)
             {
