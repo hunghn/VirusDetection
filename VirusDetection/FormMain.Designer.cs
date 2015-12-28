@@ -87,6 +87,8 @@
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.btnScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtbFormatRange = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -606,6 +608,8 @@
             // 
             // tabpgBuildFileClassifier
             // 
+            this.tabpgBuildFileClassifier.Controls.Add(this.label7);
+            this.tabpgBuildFileClassifier.Controls.Add(this.txtbFormatRange);
             this.tabpgBuildFileClassifier.Controls.Add(this.txtbFileClassifierFile);
             this.tabpgBuildFileClassifier.Controls.Add(this.btnFileClassifierFile);
             this.tabpgBuildFileClassifier.Controls.Add(this.btnLoadFileClassifier);
@@ -621,14 +625,14 @@
             // 
             // txtbFileClassifierFile
             // 
-            this.txtbFileClassifierFile.Location = new System.Drawing.Point(54, 117);
+            this.txtbFileClassifierFile.Location = new System.Drawing.Point(54, 74);
             this.txtbFileClassifierFile.Name = "txtbFileClassifierFile";
             this.txtbFileClassifierFile.Size = new System.Drawing.Size(196, 20);
             this.txtbFileClassifierFile.TabIndex = 5;
             // 
             // btnFileClassifierFile
             // 
-            this.btnFileClassifierFile.Location = new System.Drawing.Point(54, 79);
+            this.btnFileClassifierFile.Location = new System.Drawing.Point(54, 36);
             this.btnFileClassifierFile.Name = "btnFileClassifierFile";
             this.btnFileClassifierFile.Size = new System.Drawing.Size(196, 31);
             this.btnFileClassifierFile.TabIndex = 4;
@@ -690,6 +694,22 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // txtbFormatRange
+            // 
+            this.txtbFormatRange.Location = new System.Drawing.Point(60, 145);
+            this.txtbFormatRange.Name = "txtbFormatRange";
+            this.txtbFormatRange.Size = new System.Drawing.Size(196, 20);
+            this.txtbFormatRange.TabIndex = 6;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(57, 115);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(170, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Format Range (Dangerous Range)";
             // 
             // FormMain
             // 
@@ -788,6 +808,8 @@
         private System.Windows.Forms.Button btnScanVirus;
         private System.Windows.Forms.TextBox txtbFileClassifierFile;
         private System.Windows.Forms.Button btnFileClassifierFile;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtbFormatRange;
     }
 }
 

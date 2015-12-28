@@ -31,13 +31,28 @@ namespace VirusDetection.FileClassifier
         double[][] _output;
         String[][] _testInput;
         int[] _formatRange;
-        public FileClassifierManager(String virusFolder_, String benignFolder_, LKDistanceNetwork network_)
+        public FileClassifierManager(String virusFolder_, String benignFolder_, LKDistanceNetwork network_, int[] formatRange_)
         {
             _virusFolder = virusFolder_;
             _benignFolder = benignFolder_;
             _distanceNetwork = network_;
 
-            _formatRange = new int[] { 0, 10, 20, 30,40 };
+            _formatRange = formatRange_;
+        }
+
+        public FileClassifierManager(String virusFolder_, String benignFolder_, LKDistanceNetwork network_, String formatRange_)
+        {
+            _virusFolder = virusFolder_;
+            _benignFolder = benignFolder_;
+            _distanceNetwork = network_;
+
+            _formatRange = _calcFormatRange(formatRange_); ;
+        }
+
+        private int[] _calcFormatRange(string formatRange_)
+        {
+            String[] strFormatRange = formatRange_.Split(new String[]{","}, StringSplitOptions.RemoveEmptyEntries);
+            return strFormatRange.Select(int.Parse).ToArray();
         }
 
         public void train(int numOfIterator_, double errorThresold_)

@@ -567,7 +567,7 @@ namespace VirusDetection
 
         private void btnBuildFileClassifier_Click(object sender, EventArgs e)
         {
-            _fileClassifierManager = new FileClassifierManager(txtbVirusFolder.Text, txtbBenignFolder.Text, _clusteringManager.DistanceNetwork);
+            _fileClassifierManager = new FileClassifierManager(txtbVirusFolder.Text, txtbBenignFolder.Text, _clusteringManager.DistanceNetwork, txtbFormatRange.Text);
             _fileClassifierManager.train(500, 0.2);
             MessageBox.Show("Successful!");
         }
@@ -582,7 +582,7 @@ namespace VirusDetection
         private void btnLoadFileClassifier_Click(object sender, EventArgs e)
         {
             if (_fileClassifierManager == null)
-                _fileClassifierManager = new FileClassifierManager(txtbVirusFolder.Text, txtbBenignFolder.Text, _clusteringManager.DistanceNetwork);
+                _fileClassifierManager = new FileClassifierManager(txtbVirusFolder.Text, txtbBenignFolder.Text, _clusteringManager.DistanceNetwork, txtbFormatRange.Text);
             String fileName = txtbFileClassifierFile.Text;
             _fileClassifierManager.loadClassifierNetwork(fileName);
             MessageBox.Show("Successful!");
