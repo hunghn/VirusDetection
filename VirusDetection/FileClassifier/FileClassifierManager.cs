@@ -29,6 +29,7 @@ namespace VirusDetection.FileClassifier
         }
         double[][] _input;
         double[][] _output;
+        String[][] _testInput;
         int[] _formatRange;
         public FileClassifierManager(String virusFolder_, String benignFolder_, LKDistanceNetwork network_)
         {
@@ -36,7 +37,7 @@ namespace VirusDetection.FileClassifier
             _benignFolder = benignFolder_;
             _distanceNetwork = network_;
 
-            _formatRange = new int[] { 0, 3, 10, 20 };
+            _formatRange = new int[] { 0, 10, 20, 30,40 };
         }
 
         public void train(int numOfIterator_, double errorThresold_)
@@ -44,6 +45,7 @@ namespace VirusDetection.FileClassifier
             // Init training set for ANN
             this.buildTrainingSet();
 
+            return;
             // Create ANN
             _activationNetwork = new ActivationNetwork(new BipolarSigmoidFunction(), _formatRange.Length, 5, 1);
             BackPropagationLearning teacher = new BackPropagationLearning(_activationNetwork);
@@ -74,6 +76,7 @@ namespace VirusDetection.FileClassifier
 
             _input = new double[totalLen][];
             _output = new double[totalLen][];
+            _testInput = new String[totalLen][];
 
             int virusCount = 0;
             int benignCount = 0;
@@ -90,8 +93,11 @@ namespace VirusDetection.FileClassifier
                 int m = Math.Min(virusLen - virusCount,rand.Next(1, randSize + 1)); // +1 because Math.Min(a,b) means min from a to b-1
                 for (int i = 0; i < m; i++)
                 {
-                    FileClassifierData data = new FileClassifierData(_distanceNetwork, virusFile[i], _formatRange);
-                    _input[totalCount] = data.getFormatData();
+                    FileClassifierData data = new FileClassifierData(_distanceNetwork, virusFile[virusCount], _formatRange);
+                    Console.WriteLine("Virus: " + virusFile[virusCount]);
+                    //_input[totalCount] = data.getFormatData();
+                   // _input[totalCount] = data.getFormatDataTest(Utils.Utils.VIRUS_MARK);
+                    _testInput[totalCount] = data.getFormatDataTest(Utils.Utils.VIRUS_MARK, virusFile[virusCount]);
                     _output[totalCount] = new double[] { Utils.Utils.VIRUS_MARK };
                     virusCount++;
                     totalCount++;
@@ -101,8 +107,10 @@ namespace VirusDetection.FileClassifier
                 int n = Math.Min(benignLen - benignCount, rand.Next(1, randSize + 1)); // +1 because Math.Min(a,b) means min from a to b-1
                 for (int j = 0; j < n; j++)
                 {
-                    FileClassifierData data = new FileClassifierData(_distanceNetwork, benignFile[j], _formatRange);
-                    _input[totalCount] = data.getFormatData();
+                    FileClassifierData data = new FileClassifierData(_distanceNetwork, benignFile[benignCount], _formatRange);
+                    Console.WriteLine(benignFile[benignCount]);
+                    //_input[totalCount] = data.getFormatDataTest(Utils.Utils.BENIGN_MARK);
+                    _testInput[totalCount] = data.getFormatDataTest(Utils.Utils.BENIGN_MARK, benignFile[benignCount]);
                     _output[totalCount] = new double[] { Utils.Utils.BENIGN_MARK };
                     benignCount++;
                     totalCount++;
@@ -111,17 +119,30 @@ namespace VirusDetection.FileClassifier
                 done = (totalCount >= totalLen);
             }
 
-            _printInput();
+            _printInput(_testInput);
+           // _printInput(_output);
         }
 
-        private void _printInput()
+        private void _printInput(double[][] input_)
         {
-            foreach (double[] item in _input)
+            foreach (double[] item in input_)
             {
                 foreach (double _item in item)
             {
                 Console.Write(_item + ",");
             }
+                Console.WriteLine();
+            }
+        }
+
+        private void _printInput(String[][] input_)
+        {
+            foreach (String[] item in input_)
+            {
+                foreach (String _item in item)
+                {
+                    Console.Write(_item + ",");
+                }
                 Console.WriteLine();
             }
         }

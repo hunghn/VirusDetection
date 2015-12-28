@@ -101,6 +101,22 @@ namespace VirusDetection.FileClassifier
             return result;
         }
 
+        public String[] getFormatDataTest(double type, String fileName_)
+        {
+            int len = _formatRange.Length;
+            String[] result = new String[len+2];
+            for (int i = 0; i < len; i++)
+            {
+                if (_htFormattedData.ContainsKey(i))
+                    result[i] =    ((int)_htFormattedData[i]).ToString();
+                else
+                    result[i] = "0";
+            }
+            result[len] = type.ToString() ;
+            result[len] = fileName_;
+            return result;
+        }
+
         public double[] getRawData()
         {
             return null;
