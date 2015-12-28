@@ -79,6 +79,8 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSaveClustering = new System.Windows.Forms.Button();
             this.tabpgBuildFileClassifier = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtbFormatRange = new System.Windows.Forms.TextBox();
             this.txtbFileClassifierFile = new System.Windows.Forms.TextBox();
             this.btnFileClassifierFile = new System.Windows.Forms.Button();
             this.btnLoadFileClassifier = new System.Windows.Forms.Button();
@@ -87,8 +89,6 @@
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.btnScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txtbFormatRange = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -424,7 +424,7 @@
             this.txtHamming.Name = "txtHamming";
             this.txtHamming.Size = new System.Drawing.Size(113, 20);
             this.txtHamming.TabIndex = 11;
-            this.txtHamming.Text = "12";
+            this.txtHamming.Text = "8";
             // 
             // label5
             // 
@@ -438,6 +438,8 @@
             // ckbHamming
             // 
             this.ckbHamming.AutoSize = true;
+            this.ckbHamming.Checked = true;
+            this.ckbHamming.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbHamming.Location = new System.Drawing.Point(10, 172);
             this.ckbHamming.Name = "ckbHamming";
             this.ckbHamming.Size = new System.Drawing.Size(115, 17);
@@ -623,6 +625,22 @@
             this.tabpgBuildFileClassifier.Text = "Build File Classifier";
             this.tabpgBuildFileClassifier.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(57, 115);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(170, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Format Range (Dangerous Range)";
+            // 
+            // txtbFormatRange
+            // 
+            this.txtbFormatRange.Location = new System.Drawing.Point(60, 145);
+            this.txtbFormatRange.Name = "txtbFormatRange";
+            this.txtbFormatRange.Size = new System.Drawing.Size(196, 20);
+            this.txtbFormatRange.TabIndex = 6;
+            // 
             // txtbFileClassifierFile
             // 
             this.txtbFileClassifierFile.Location = new System.Drawing.Point(54, 74);
@@ -694,22 +712,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // txtbFormatRange
-            // 
-            this.txtbFormatRange.Location = new System.Drawing.Point(60, 145);
-            this.txtbFormatRange.Name = "txtbFormatRange";
-            this.txtbFormatRange.Size = new System.Drawing.Size(196, 20);
-            this.txtbFormatRange.TabIndex = 6;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(57, 115);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(170, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Format Range (Dangerous Range)";
             // 
             // FormMain
             // 
