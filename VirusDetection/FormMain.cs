@@ -40,7 +40,7 @@ namespace VirusDetection
         private int r = 0;
         private DataGeneration datageneration;
 
-        private TrainingData VirusFragments;
+        private TrainingData _virusFragments;
         private TrainingData BenignFragments;
 
         private double[][] _detectorData;
@@ -67,6 +67,18 @@ namespace VirusDetection
         {
             InitializeComponent();
             initDemo();
+            _lkPatch();
+        }
+
+        private void _lkPatch()
+        {
+            Utils.Utils.GUI_SUPPORT = new GuiSupport(this);
+        }
+
+        private void _patchForProgressBar()
+        {
+            progressBar2.Minimum = 0;
+            progressBar2.Maximum = Utils.Utils.GLOBAL_COUNT_MAX;
         }
 
         #region Form Event
@@ -185,10 +197,9 @@ namespace VirusDetection
         private void Run()
         {
             datageneration.run();
-            this.VirusFragments = datageneration.trainingData;
-            this.BenignFragments = datageneration.FileFragment;
+            this._virusFragments = datageneration.trainingDataOutput;
+            this.BenignFragments = datageneration.FileFragmentInput;
             ShowDataGenerationProcess(70, "Starting clustering process...");
-            //GroupData = Group(VirusFragments, 0, numberOfCluster);
             ShowDataGenerationProcess(90, "Data generation process has ended");
 
             _correctDetectorData();
@@ -306,7 +317,7 @@ namespace VirusDetection
 
         private void ShowDataGenerationProcess(int step, string discripts)
         {
-            this.progressBar2.BeginInvoke((MethodInvoker)delegate() { this.progressBar2.Value = step; this.progressBar2.Refresh(); });
+            //this.progressBar2.BeginInvoke((MethodInvoker)delegate() { this.progressBar2.Value = step; this.progressBar2.Refresh(); });
             this.txtStatusBar.BeginInvoke((MethodInvoker)delegate() { txtStatusBar.Text = discripts; ; this.txtStatusBar.Refresh(); });
             TimeSpan elapsed = DateTime.Now.Subtract(startTime);
             txtTimeBox.BeginInvoke((MethodInvoker)delegate()
@@ -367,7 +378,7 @@ namespace VirusDetection
 
         private void ShowingDataGenerationResults()
         {
-            GetgroupingData(datageneration.VirusFragment, datageneration.state);
+            GetgroupingData(datageneration.VirusFragmentInput, datageneration.state);
             GetgroupShowing();
             //dv = dataSet.Tables[0].DefaultView;
             //dtNegativeSelection.DataSource = dv;
@@ -470,14 +481,14 @@ namespace VirusDetection
             ShowDataGenerationProcess(95, "Preparing results...");
             ShowingDataGenerationResults();
             ShowDataGenerationProcess(100, "Finished!");
-            ShowDataGenerationProcess(100, string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", VirusFragments.Count, BenignFragments.Count));
+            ShowDataGenerationProcess(100, string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", _virusFragments.Count, BenignFragments.Count));
         }
 
 
 
         private void _correctDetectorData()
         {
-            _detectorData = Utils.Utils.correctDetectorData(VirusFragments);
+            _detectorData = Utils.Utils.correctDetectorData(_virusFragments);
         }
 
 
@@ -526,7 +537,7 @@ namespace VirusDetection
             MessageBox.Show("Successful!");
         }
 
-        
+
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
@@ -548,7 +559,7 @@ namespace VirusDetection
         }
 
 
-        
+
 
         #endregion
 
@@ -610,6 +621,29 @@ namespace VirusDetection
             {
                 txtbFileClassifierFile.Text = openFileDialog1.FileName;
             }
+        }
+
+        internal void updateProgressBarCallBack()
+        {
+            if (InvokeRequired)
+            {
+                MethodInvoker method = new MethodInvoker(updateProgressBarCallBack);
+                Invoke(method);
+                return;
+            }
+            progressBar2.Value++;
+        }
+
+        internal void progressBarInitCallBack()
+        {
+            if (InvokeRequired)
+            {
+                MethodInvoker method = new MethodInvoker(progressBarInitCallBack);
+                Invoke(method);
+                return;
+            }
+            progressBar2.Maximum = progressBar2.Value + Utils.Utils.GLOBAL_COUNT_MAX;
+            progressBar2.Step = 1;
         }
     }
 }

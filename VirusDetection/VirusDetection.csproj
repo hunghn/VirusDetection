@@ -89,7 +89,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clustering\LKSOMLearning.cs" />
-    <Compile Include="Utils\ICustomSettings.cs" />
+    <Compile Include="Utils\CustomSettings.cs" />
+    <Compile Include="Utils\GuiSupport.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="VirusScanner\VirusScannerManager.cs" />
     <EmbeddedResource Include="FormMain.resx">

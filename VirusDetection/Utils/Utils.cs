@@ -11,34 +11,53 @@ namespace VirusDetection.Utils
 {
     class Utils
     {
+        // ProgressBar support
+        public static int GLOBAL_COUNT = 0;
+        public static int GLOBAL_COUNT_MAX = 0;
+        public static GuiSupport GUI_SUPPORT;
+
+
+
         public static int VIRUS_MARK = 1; // define virus as 1 and
         public static int BENIGN_MARK = 0;// benign as 0
 
+
         #region Detector Utils
 
-        public static double[][] correctDetectorData(TrainingData VirusFragments)
+        public static double[][] correctDetectorData(TrainingData virusFragments_)
         {
-
-            int virusLen = VirusFragments.Count;
-
-            double[][] detector = new double[virusLen][];
-
-            Random rand = new Random();
-
-            // 1. kiem tra vr con khong, lay so lan lap random cua vr trong gioi han con lai hoac la size
-            for (int i = 0; i < virusLen; i++)
+            // Debug
+            int count = 0;
+            try
             {
-                detector[i] = new double[5];
+                int virusLen = virusFragments_.Count;
 
-                byte[] byteArray = VirusFragments[i];
-                String hexStr = ByteArrayToHex(byteArray);
-                String[] hex4 = Split(hexStr, 2);
-                HexArray2DecArray(hex4, ref detector[i]);
-                detector[i][4] = VIRUS_MARK;
+                double[][] detector = new double[virusLen][];
+
+                Random rand = new Random();
+
+                // 1. kiem tra vr con khong, lay so lan lap random cua vr trong gioi han con lai hoac la size
+                for (int i = 0; i < virusLen; i++)
+                {
+                    count = i;
+                    detector[i] = new double[5];
+
+                    byte[] byteArray = virusFragments_[i];
+                    String hexStr = ByteArrayToHex(byteArray);
+                    String[] hex4 = Split(hexStr, 2);
+                    HexArray2DecArray(hex4, ref detector[i]);
+                    detector[i][4] = VIRUS_MARK;
+                }
+
+
+                return detector;
             }
-
-
-            return detector;
+            catch(Exception ex)
+            {
+                int debug = 1;
+                return null;
+            }
+            
         }
 
         public static void saveDetector(double[][] input_, String fileName_)
@@ -104,14 +123,21 @@ namespace VirusDetection.Utils
 
         private static String ByteArrayToHex(byte[] byteArray)
         {
-            StringBuilder temp = new StringBuilder();
-            foreach (byte x in byteArray)
+            try
             {
-                temp.Append(x);
+                StringBuilder temp = new StringBuilder();
+                foreach (byte x in byteArray)
+                {
+                    temp.Append(x);
+                }
+                String strBinary = temp.ToString();
+                String strHex = Convert.ToInt32(strBinary, 2).ToString("X8");
+                return strHex;
             }
-            String strBinary = temp.ToString();
-            String strHex = Convert.ToInt32(strBinary, 2).ToString("X8");
-            return strHex;
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
         }
 
         private static void HexArray2DecArray(String[] hexArray_, ref double[] decArray_)

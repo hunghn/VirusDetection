@@ -11,9 +11,9 @@ namespace VirusDetection.Detector
     class DataGeneration
     {
         List<string> filenames = new List<string>();
-        public TrainingData FileFragment = new TrainingData();
-        public TrainingData VirusFragment = new TrainingData();
-        public TrainingData trainingData = new TrainingData();
+        public TrainingData FileFragmentInput = new TrainingData();
+        public TrainingData VirusFragmentInput = new TrainingData();
+        public TrainingData trainingDataOutput = new TrainingData();
         public int[] state;
         private int filesRemains = 0;
         private Matching M;
@@ -43,19 +43,22 @@ namespace VirusDetection.Detector
             byte[] bytes = File.ReadAllBytes(Path);
             byte[] temp = new byte[length];
             byte[] binaryArray;
-            for (int i = 0; i < bytes.Length - length; i += stepsize)
+            for (int i = 0; i <= bytes.Length - length; i += stepsize)
             {
                 Array.Copy(bytes, i, temp, 0, length);
                 binaryArray = ConvertBytesIntoBinary(temp);
                 if (flag)
                 {
                     if (binaryArray != null)
-                        FileFragment.Add(binaryArray);
+                        FileFragmentInput.Add(binaryArray);
                 }
                 else
                 {
                     if (binaryArray != null)
-                        VirusFragment.Add(binaryArray);
+                    {
+                        VirusFragmentInput.Add(binaryArray);
+                    }
+                        
                 }
             }
         }
@@ -77,10 +80,6 @@ namespace VirusDetection.Detector
             string[] fileEntries = Directory.GetFiles(directory);
             foreach (string fileName in fileEntries)
                 Readfile(fileName, flag);
-            // Recurse into subdirectories of this directory.
-            string[] subdirectoryEntries = Directory.GetDirectories(directory);
-            foreach (string subdirectory in subdirectoryEntries)
-                ReadDirectory(subdirectory,flag);
         }
         //private void ReadDirectory(string directory, bool flag)
         //{
@@ -111,48 +110,71 @@ namespace VirusDetection.Detector
         {
             ReadDirectory(benignDirectory, true);
             ReadDirectory(virusDirectory, false);
+
+            // Init progressbar before work
+            Utils.Utils.GLOBAL_COUNT_MAX = VirusFragmentInput.Count;
+            Utils.Utils.GUI_SUPPORT.progressBarInit();
+
             NegativeSelection();
         }
+        //private void NegativeSelection()
+        //{
+        //    filesRemains = VirusFragmentInput.Count;
+        //    state = new int[VirusFragmentInput.Count];
+        //    Event = new ManualResetEvent(false);
+        //    for (int i = 0; i < VirusFragmentInput.Count; i++)
+        //    {
+        //        ThreadPool.QueueUserWorkItem(ThreadCallBack, i);
+        //    }
+        //    Event.WaitOne();
+        //}
+
         private void NegativeSelection()
         {
-            filesRemains = VirusFragment.Count;
-            state = new int[VirusFragment.Count];
+            filesRemains = VirusFragmentInput.Count;
+            state = new int[VirusFragmentInput.Count];
             Event = new ManualResetEvent(false);
-            for (int i = 0; i < VirusFragment.Count; i++)
+            for (int i = 0; i < VirusFragmentInput.Count; i++)
             {
-                ThreadPool.QueueUserWorkItem(ThreadCallBack, i);
+                ThreadCallBack(i);
             }
-            Event.WaitOne();
-
         }
         private void ThreadCallBack(Object ob)
         {
             int index = (int)ob;
-            byte[] binaryArray = VirusFragment[index];
+            byte[] binaryArray = VirusFragmentInput[index];
             if (binaryArray != null && !IsMatchSelf(binaryArray))
             {
                 state[index] = 0;
                 try
                 {
-                    trainingData.Add(binaryArray);
+                    trainingDataOutput.Add(binaryArray);
                 }
-                catch { }
+                catch 
+                { 
+                }
 
             }
             else
-            { state[index] = 1; }
+            { 
+                state[index] = 1; 
+            }
+
             if (Interlocked.Decrement(ref filesRemains) == 0)
             {
                 Event.Set();
             }
 
+            // Update progress bar
+            Utils.Utils.GUI_SUPPORT.progressBarUpdate();
+
         }
         private bool IsMatchSelf(byte[] _byte)
         {
 
-            for (int j = 0; j < FileFragment.Count; j++)
+            for (int j = 0; j < FileFragmentInput.Count; j++)
             {
-                if (M.Match(_byte, FileFragment[j]))
+                if (M.Match(_byte, FileFragmentInput[j]))
                     return true;
             }
             return false;
