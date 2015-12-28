@@ -112,7 +112,7 @@ namespace VirusDetection.Detector
             ReadDirectory(virusDirectory, false);
 
             // Init progressbar before work
-            Utils.Utils.GLOBAL_COUNT_MAX = VirusFragmentInput.Count;
+            Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = VirusFragmentInput.Count;
             Utils.Utils.GUI_SUPPORT.progressBarInit();
 
             NegativeSelection();
@@ -149,6 +149,8 @@ namespace VirusDetection.Detector
                 try
                 {
                     trainingDataOutput.Add(binaryArray);
+                    Utils.Utils.GLOBAL_VIRUS_COUNT++;
+                    Utils.Utils.GUI_SUPPORT.virusFragmentUpdate();
                 }
                 catch 
                 { 

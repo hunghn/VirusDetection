@@ -89,6 +89,7 @@
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.btnScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtbVirusFragmentsCount = new System.Windows.Forms.TextBox();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -130,6 +131,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtbVirusFragmentsCount);
             this.panel1.Controls.Add(this.txtStatusBar);
             this.panel1.Controls.Add(this.txtTimeBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -713,6 +715,13 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // txtbVirusFragmentsCount
+            // 
+            this.txtbVirusFragmentsCount.Location = new System.Drawing.Point(843, 8);
+            this.txtbVirusFragmentsCount.Name = "txtbVirusFragmentsCount";
+            this.txtbVirusFragmentsCount.Size = new System.Drawing.Size(96, 20);
+            this.txtbVirusFragmentsCount.TabIndex = 2;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -812,6 +821,7 @@
         private System.Windows.Forms.Button btnFileClassifierFile;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtbFormatRange;
+        private System.Windows.Forms.TextBox txtbVirusFragmentsCount;
     }
 }
 

@@ -78,7 +78,7 @@ namespace VirusDetection
         private void _patchForProgressBar()
         {
             progressBar2.Minimum = 0;
-            progressBar2.Maximum = Utils.Utils.GLOBAL_COUNT_MAX;
+            progressBar2.Maximum = Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX;
         }
 
         #region Form Event
@@ -642,8 +642,19 @@ namespace VirusDetection
                 Invoke(method);
                 return;
             }
-            progressBar2.Maximum = progressBar2.Value + Utils.Utils.GLOBAL_COUNT_MAX;
+            progressBar2.Maximum = progressBar2.Value + Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX;
             progressBar2.Step = 1;
+        }
+
+        internal void virusFragmentsUpdateCallBack()
+        {
+            if (InvokeRequired)
+            {
+                MethodInvoker method = new MethodInvoker(virusFragmentsUpdateCallBack);
+                Invoke(method);
+                return;
+            }
+            txtbVirusFragmentsCount.Text = Utils.Utils.GLOBAL_VIRUS_COUNT.ToString();
         }
     }
 }

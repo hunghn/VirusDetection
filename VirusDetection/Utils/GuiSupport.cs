@@ -22,5 +22,10 @@ namespace VirusDetection.Utils
         {
             _gui.progressBarInitCallBack();
         }
+
+        internal void virusFragmentUpdate()
+        {
+            _gui.virusFragmentsUpdateCallBack();
+        }
     }
 }
