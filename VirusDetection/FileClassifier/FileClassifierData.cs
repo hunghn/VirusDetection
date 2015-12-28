@@ -113,7 +113,7 @@ namespace VirusDetection.FileClassifier
                     result[i] = "0";
             }
             result[len] = type.ToString() ;
-            result[len] = fileName_;
+            result[len+1] = fileName_;
             return result;
         }
 
