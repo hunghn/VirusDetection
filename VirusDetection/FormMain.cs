@@ -82,7 +82,7 @@ namespace VirusDetection
         }
 
         #region Form Event
-        private void btnStart_Click(object sender, EventArgs e)
+        private void btnBuildDetector_Click(object sender, EventArgs e)
         {
             if (isWorking)
                 return;
@@ -201,8 +201,6 @@ namespace VirusDetection
             this.BenignFragments = datageneration.FileFragmentInput;
             ShowDataGenerationProcess(70, "Starting clustering process...");
             ShowDataGenerationProcess(90, "Data generation process has ended");
-
-            _correctDetectorData();
         }
 
         private void StopWork()
@@ -488,11 +486,30 @@ namespace VirusDetection
 
         private void _correctDetectorData()
         {
-            int virusLen = _virusFragments.Count;
-            int benignLen = Math.Min(virusLen*10,BenignFragments.Count);
+
+            int virusLen = 0;
+            int benignLen = 0;
+            
+            if(cbxUseRate.Checked)
+            {
+                virusLen = _virusFragments.Count;
+
+                String strRate = txtbBenignVirusRate.Text;
+                int rate = int.Parse(strRate);
+                benignLen = virusLen * rate;
+            }
+            else
+            {
+                String strVirusLen = txtbVirusSize.Text;
+                virusLen = int.Parse(strVirusLen);
+
+                String strBenignLen = txtbBenignSize.Text;
+                benignLen = int.Parse(strBenignLen);
+            }
+            Math.Min(virusLen * 10, BenignFragments.Count);
+
             _detectorData = Utils.Utils.correctAndMixDetectorUpdate(_virusFragments, virusLen, BenignFragments, benignLen);
         }
-
 
         #endregion
 
@@ -658,6 +675,20 @@ namespace VirusDetection
                 return;
             }
             txtbVirusFragmentsCount.Text = Utils.Utils.GLOBAL_VIRUS_COUNT.ToString();
+        }
+
+        private void cbxUseRate_CheckedChanged(object sender, EventArgs e)
+        {
+            txtbBenignVirusRate.Enabled = !txtbBenignVirusRate.Enabled;
+
+            txtbVirusSize.Enabled = !txtbVirusSize.Enabled;
+            txtbBenignSize.Enabled = !txtbBenignSize.Enabled;
+        }
+
+        private void btnMixDetector_Click(object sender, EventArgs e)
+        {
+            _correctDetectorData();
+            MessageBox.Show("Successful!");
         }
     }
 }

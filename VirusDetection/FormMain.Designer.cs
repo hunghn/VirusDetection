@@ -49,13 +49,21 @@
             this.btnVirusDetect = new System.Windows.Forms.Button();
             this.grbActions = new System.Windows.Forms.GroupBox();
             this.btnStop = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
+            this.btnBuildDetector = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabpgBuildDetector = new System.Windows.Forms.TabPage();
             this.dtGroupView = new System.Windows.Forms.DataGridView();
             this.dtNegativeSelection = new System.Windows.Forms.DataGridView();
             this.panelTabRight = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnMixDetector = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtbBenignSize = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtbVirusSize = new System.Windows.Forms.TextBox();
+            this.cbxUseRate = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtbBenignVirusRate = new System.Windows.Forms.TextBox();
             this.txtContiguos = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ckbRContiguos = new System.Windows.Forms.CheckBox();
@@ -204,7 +212,7 @@
             this.btnLoadDetector.Name = "btnLoadDetector";
             this.btnLoadDetector.Size = new System.Drawing.Size(171, 29);
             this.btnLoadDetector.TabIndex = 9;
-            this.btnLoadDetector.Text = "Load Detector";
+            this.btnLoadDetector.Text = "Load Mix Detector";
             this.btnLoadDetector.UseVisualStyleBackColor = true;
             this.btnLoadDetector.Click += new System.EventHandler(this.btnLoadDetector_Click);
             // 
@@ -214,7 +222,7 @@
             this.btnSaveDetector.Name = "btnSaveDetector";
             this.btnSaveDetector.Size = new System.Drawing.Size(171, 29);
             this.btnSaveDetector.TabIndex = 7;
-            this.btnSaveDetector.Text = "Save Detector";
+            this.btnSaveDetector.Text = "Save Mix Detector";
             this.btnSaveDetector.UseVisualStyleBackColor = true;
             this.btnSaveDetector.Click += new System.EventHandler(this.btnSaveDetector_Click);
             // 
@@ -288,7 +296,7 @@
             // grbActions
             // 
             this.grbActions.Controls.Add(this.btnStop);
-            this.grbActions.Controls.Add(this.btnStart);
+            this.grbActions.Controls.Add(this.btnBuildDetector);
             this.grbActions.Dock = System.Windows.Forms.DockStyle.Top;
             this.grbActions.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.grbActions.Location = new System.Drawing.Point(0, 0);
@@ -308,15 +316,15 @@
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // btnStart
+            // btnBuildDetector
             // 
-            this.btnStart.Location = new System.Drawing.Point(15, 36);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(171, 29);
-            this.btnStart.TabIndex = 0;
-            this.btnStart.Text = "Scan now";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btnBuildDetector.Location = new System.Drawing.Point(15, 36);
+            this.btnBuildDetector.Name = "btnBuildDetector";
+            this.btnBuildDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnBuildDetector.TabIndex = 0;
+            this.btnBuildDetector.Text = "Build Detector";
+            this.btnBuildDetector.UseVisualStyleBackColor = true;
+            this.btnBuildDetector.Click += new System.EventHandler(this.btnBuildDetector_Click);
             // 
             // tabMain
             // 
@@ -376,6 +384,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnMixDetector);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.txtbBenignSize);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txtbVirusSize);
+            this.groupBox1.Controls.Add(this.cbxUseRate);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.txtbBenignVirusRate);
             this.groupBox1.Controls.Add(this.txtContiguos);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.ckbRContiguos);
@@ -397,6 +413,80 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parameter";
+            // 
+            // btnMixDetector
+            // 
+            this.btnMixDetector.Location = new System.Drawing.Point(14, 488);
+            this.btnMixDetector.Name = "btnMixDetector";
+            this.btnMixDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnMixDetector.TabIndex = 22;
+            this.btnMixDetector.Text = "Mix Detector";
+            this.btnMixDetector.UseVisualStyleBackColor = true;
+            this.btnMixDetector.Click += new System.EventHandler(this.btnMixDetector_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 447);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(63, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Benign Size";
+            // 
+            // txtbBenignSize
+            // 
+            this.txtbBenignSize.Enabled = false;
+            this.txtbBenignSize.Location = new System.Drawing.Point(73, 444);
+            this.txtbBenignSize.Name = "txtbBenignSize";
+            this.txtbBenignSize.Size = new System.Drawing.Size(112, 20);
+            this.txtbBenignSize.TabIndex = 20;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 412);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Virus Size";
+            // 
+            // txtbVirusSize
+            // 
+            this.txtbVirusSize.Enabled = false;
+            this.txtbVirusSize.Location = new System.Drawing.Point(73, 409);
+            this.txtbVirusSize.Name = "txtbVirusSize";
+            this.txtbVirusSize.Size = new System.Drawing.Size(112, 20);
+            this.txtbVirusSize.TabIndex = 18;
+            // 
+            // cbxUseRate
+            // 
+            this.cbxUseRate.AutoSize = true;
+            this.cbxUseRate.Checked = true;
+            this.cbxUseRate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxUseRate.Location = new System.Drawing.Point(26, 374);
+            this.cbxUseRate.Name = "cbxUseRate";
+            this.cbxUseRate.Size = new System.Drawing.Size(71, 17);
+            this.cbxUseRate.TabIndex = 17;
+            this.cbxUseRate.Text = "Use Rate";
+            this.cbxUseRate.UseVisualStyleBackColor = true;
+            this.cbxUseRate.CheckedChanged += new System.EventHandler(this.cbxUseRate_CheckedChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 342);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Benign/Vr";
+            // 
+            // txtbBenignVirusRate
+            // 
+            this.txtbBenignVirusRate.Location = new System.Drawing.Point(72, 339);
+            this.txtbBenignVirusRate.Name = "txtbBenignVirusRate";
+            this.txtbBenignVirusRate.Size = new System.Drawing.Size(112, 20);
+            this.txtbBenignVirusRate.TabIndex = 15;
+            this.txtbBenignVirusRate.Text = "10";
             // 
             // txtContiguos
             // 
@@ -774,7 +864,7 @@
         private System.Windows.Forms.Button btnVirusDetect;
         private System.Windows.Forms.GroupBox grbActions;
         private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnBuildDetector;
         private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.TabPage tabpgBuildDetector;
         private System.Windows.Forms.TabPage tabpgBuildClustering;
@@ -822,6 +912,14 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtbFormatRange;
         private System.Windows.Forms.TextBox txtbVirusFragmentsCount;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtbBenignSize;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtbVirusSize;
+        private System.Windows.Forms.CheckBox cbxUseRate;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtbBenignVirusRate;
+        private System.Windows.Forms.Button btnMixDetector;
     }
 }
 
