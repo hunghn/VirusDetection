@@ -517,7 +517,12 @@ namespace VirusDetection
 
         public void initClustering()
         {
-            _clusteringManager = new ClusteringManager(_detectorData, 255, 10, 10);
+            int numNeuronX = int.Parse(txtbNumNeuronX.Text);
+            int numNeuronY = int.Parse(txtbNumNeuronY.Text);
+            int numOfIterator = int.Parse(txtbClusteringNumIterator.Text);
+            double errorThresold = double.Parse(txtbClusteringErrorThresold.Text);
+
+            _clusteringManager = new ClusteringManager(_detectorData, 255, numNeuronX, numNeuronY,numOfIterator,errorThresold);
 
         }
         public void startClustering()
