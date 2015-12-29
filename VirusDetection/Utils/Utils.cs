@@ -67,6 +67,85 @@ namespace VirusDetection.Utils
             
         }
 
+        public static double[][] correctAndMixDetectorUpdate(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
+        {
+
+            int virusLen = Math.Min(VirusFragments.Count, virusLen_);
+            int benignLen = Math.Min(BenignFragments.Count, benignLen_);
+            int totalLen = virusLen + benignLen;
+
+            double[][] result = new double[virusLen + benignLen][];
+            HashSet<double[]> mixData = new HashSet<double[]>();
+
+            int virusCount = 0;
+            int benignCount = 0;
+            int totalCount = 0;
+
+            int randSize = benignLen / virusLen;
+            bool done = false;
+
+            Random rand = new Random();
+
+            while (!done)
+            {
+                // 1. kiem tra vr con khong, lay so lan lap random cua vr trong gioi han con lai hoac la size
+                int n = Math.Min(1, virusLen - virusCount);
+                for (int i = 0; i < n; i++)
+                {
+                    double[] temp = new double[5];
+
+                    byte[] byteArray = VirusFragments[virusCount];
+                    String hexStr = ByteArrayToHex(byteArray);
+                    String[] hex4 = Split(hexStr, 2);
+                    HexArray2DecArray(hex4, ref temp);
+                    temp[4] = VIRUS_MARK;
+
+                    if(mixData.Contains(temp))
+                    {
+                        continue;
+                    }
+
+                    mixData.Add(temp);
+
+                    virusCount++;
+                    totalCount++;
+                }
+
+                // 2. lay so lan lap random cua sach nt
+                //if(benignLen - benignCount > 0)
+                {
+                    int m = rand.Next(0, Math.Min(randSize, benignLen - benignCount + 1));
+
+                    Console.WriteLine(m);
+                    for (int i = 0; i < m; i++)
+                    {
+                        double[] temp = new double[5];
+
+                        byte[] byteArray = BenignFragments[benignCount];
+                        String hexStr = ByteArrayToHex(byteArray);
+                        String[] hex4 = Split(hexStr, 2);
+                        HexArray2DecArray(hex4, ref temp);
+                        temp[4] = BENIGN_MARK;
+
+                        if (mixData.Contains(temp))
+                        {
+                            continue;
+                        }
+
+                        mixData.Add(temp);
+
+                        benignCount++;
+                        totalCount++;
+                    }
+                }
+
+                // for vr
+                // for sach
+                done = (totalCount >= totalLen);
+            }
+            result = mixData.ToArray();
+            return result;
+        }
         public static void saveDetector(double[][] input_, String fileName_)
         {
             StreamWriter file = new StreamWriter(fileName_);
@@ -177,9 +256,6 @@ namespace VirusDetection.Utils
 
         #endregion
 
-        #region xxx Utils
-
-        #endregion
         
         public static bool checkVirus(double property)
         {
@@ -286,6 +362,8 @@ namespace VirusDetection.Utils
 
             return mixData;
         }
+
+
 
         #endregion
 

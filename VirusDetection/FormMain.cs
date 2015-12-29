@@ -488,7 +488,9 @@ namespace VirusDetection
 
         private void _correctDetectorData()
         {
-            _detectorData = Utils.Utils.correctDetectorData(_virusFragments);
+            int virusLen = _virusFragments.Count;
+            int benignLen = Math.Min(virusLen*10,BenignFragments.Count);
+            _detectorData = Utils.Utils.correctAndMixDetectorUpdate(_virusFragments, virusLen, BenignFragments, benignLen);
         }
 
 
