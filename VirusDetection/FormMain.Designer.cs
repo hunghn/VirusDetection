@@ -98,6 +98,14 @@
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.btnScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtbNumNeuronX = new System.Windows.Forms.TextBox();
+            this.txtbNumNeuronY = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtbClusteringNumIterator = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtbClusteringErrorThresold = new System.Windows.Forms.TextBox();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -636,6 +644,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.txtbClusteringErrorThresold);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.txtbClusteringNumIterator);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.txtbNumNeuronY);
+            this.groupBox2.Controls.Add(this.txtbNumNeuronX);
             this.groupBox2.Controls.Add(this.btnPrintNeuron);
             this.groupBox2.Controls.Add(this.btnStartClustering);
             this.groupBox2.Controls.Add(this.txtbClusteringFile);
@@ -652,7 +668,7 @@
             // 
             // btnPrintNeuron
             // 
-            this.btnPrintNeuron.Location = new System.Drawing.Point(22, 268);
+            this.btnPrintNeuron.Location = new System.Drawing.Point(22, 266);
             this.btnPrintNeuron.Name = "btnPrintNeuron";
             this.btnPrintNeuron.Size = new System.Drawing.Size(196, 34);
             this.btnPrintNeuron.TabIndex = 5;
@@ -662,7 +678,7 @@
             // 
             // btnStartClustering
             // 
-            this.btnStartClustering.Location = new System.Drawing.Point(22, 212);
+            this.btnStartClustering.Location = new System.Drawing.Point(22, 226);
             this.btnStartClustering.Name = "btnStartClustering";
             this.btnStartClustering.Size = new System.Drawing.Size(196, 34);
             this.btnStartClustering.TabIndex = 4;
@@ -689,7 +705,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(22, 142);
+            this.btnLoad.Location = new System.Drawing.Point(22, 349);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(196, 36);
             this.btnLoad.TabIndex = 1;
@@ -699,7 +715,7 @@
             // 
             // btnSaveClustering
             // 
-            this.btnSaveClustering.Location = new System.Drawing.Point(22, 94);
+            this.btnSaveClustering.Location = new System.Drawing.Point(22, 306);
             this.btnSaveClustering.Name = "btnSaveClustering";
             this.btnSaveClustering.Size = new System.Drawing.Size(196, 34);
             this.btnSaveClustering.TabIndex = 0;
@@ -812,6 +828,74 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // txtbNumNeuronX
+            // 
+            this.txtbNumNeuronX.Location = new System.Drawing.Point(119, 85);
+            this.txtbNumNeuronX.Name = "txtbNumNeuronX";
+            this.txtbNumNeuronX.Size = new System.Drawing.Size(99, 20);
+            this.txtbNumNeuronX.TabIndex = 6;
+            this.txtbNumNeuronX.Text = "10";
+            // 
+            // txtbNumNeuronY
+            // 
+            this.txtbNumNeuronY.Location = new System.Drawing.Point(119, 110);
+            this.txtbNumNeuronY.Name = "txtbNumNeuronY";
+            this.txtbNumNeuronY.Size = new System.Drawing.Size(99, 20);
+            this.txtbNumNeuronY.TabIndex = 7;
+            this.txtbNumNeuronY.Text = "10";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(30, 88);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Num Neuron X";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(30, 113);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(77, 13);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Num Neuron Y";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(30, 142);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 13);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Num Iterator";
+            // 
+            // txtbClusteringNumIterator
+            // 
+            this.txtbClusteringNumIterator.Location = new System.Drawing.Point(119, 139);
+            this.txtbClusteringNumIterator.Name = "txtbClusteringNumIterator";
+            this.txtbClusteringNumIterator.Size = new System.Drawing.Size(99, 20);
+            this.txtbClusteringNumIterator.TabIndex = 24;
+            this.txtbClusteringNumIterator.Text = "1000";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(30, 169);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(73, 13);
+            this.label14.TabIndex = 27;
+            this.label14.Text = "Error Thresold";
+            // 
+            // txtbClusteringErrorThresold
+            // 
+            this.txtbClusteringErrorThresold.Location = new System.Drawing.Point(119, 166);
+            this.txtbClusteringErrorThresold.Name = "txtbClusteringErrorThresold";
+            this.txtbClusteringErrorThresold.Size = new System.Drawing.Size(99, 20);
+            this.txtbClusteringErrorThresold.TabIndex = 26;
+            this.txtbClusteringErrorThresold.Text = "0.05";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -920,6 +1004,14 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtbBenignVirusRate;
         private System.Windows.Forms.Button btnMixDetector;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtbClusteringErrorThresold;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtbClusteringNumIterator;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtbNumNeuronY;
+        private System.Windows.Forms.TextBox txtbNumNeuronX;
     }
 }
 

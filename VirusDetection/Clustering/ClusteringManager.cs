@@ -28,13 +28,16 @@ namespace VirusDetection.Clustering
         private int iterations = 500;
         private double learningRate = 0.3;
         private double learningRadius = 1;
+        private double _errorThresold;
 
-        public ClusteringManager(double[][] input_, float inputRange_, int networkWidth_, int networkHeight_)
+        public ClusteringManager(double[][] input_, float inputRange_, int networkWidth_, int networkHeight_, int numOfIterator_, double errorThresold_)
         {
             _input = input_;
             _inputRange = inputRange_;
             _networkWidth = networkWidth_;
             _networkHeight = networkHeight_;
+            iterations = numOfIterator_;
+            _errorThresold = errorThresold_;
         }
 
         public void trainNetwork()
@@ -63,8 +66,8 @@ namespace VirusDetection.Clustering
                 trainer.LearningRadius = (double)learningRadius * (iterations - i) / iterations;
 
                 // run training epoch
-                trainer.RunEpoch(_input);
-
+                double error = trainer.RunEpoch(_input);
+                Console.WriteLine("Error: " + error);
                 // update map
                 //UpdateMap(network);
 
@@ -73,7 +76,7 @@ namespace VirusDetection.Clustering
 
 
                 // stop ?
-                if (i >= iterations)
+                if (i >= iterations || error<=_errorThresold)
                     break;
             }
 
