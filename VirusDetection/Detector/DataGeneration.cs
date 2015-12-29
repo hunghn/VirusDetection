@@ -115,6 +115,9 @@ namespace VirusDetection.Detector
             Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = VirusFragmentInput.Count;
             Utils.Utils.GUI_SUPPORT.progressBarInit();
 
+            // Init virus count
+            Utils.Utils.GLOBAL_PROGRESSBAR_COUNT = 0;
+
             NegativeSelection();
         }
         //private void NegativeSelection()
