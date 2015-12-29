@@ -139,7 +139,7 @@ namespace VirusDetection.Utils
 
             return mixData;
         }
-        public static void saveDetector(double[][] input_, String fileName_)
+        public static void saveMixDetector(double[][] input_, String fileName_)
         {
             StreamWriter file = new StreamWriter(fileName_);
             int len0 = input_.Length;
@@ -165,7 +165,7 @@ namespace VirusDetection.Utils
             file.Close();
         }
 
-        public static double[][] loadDetector(String fileName_)
+        public static double[][] loadMixDetector(String fileName_)
         {
             double[][] _input;
             var lines = File.ReadAllLines(fileName_);
@@ -358,5 +358,43 @@ namespace VirusDetection.Utils
 
 
         #endregion
+
+        internal static void saveDetector(TrainingData _virusFragments, string virusSavePath, TrainingData BenignFragments, string benignSavePath)
+        {
+            using (Stream stream = File.Open(virusSavePath, FileMode.Create))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                bformatter.Serialize(stream, _virusFragments);
+            }
+
+            using (Stream stream = File.Open(benignSavePath, FileMode.Create))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                bformatter.Serialize(stream, BenignFragments);
+            }
+
+
+            
+        }
+
+        internal static void loadDetector(ref TrainingData _virusFragments, string virusSavePath, ref  TrainingData BenignFragments, string benignSavePath)
+        {
+            //deserialize
+            using (Stream stream = File.Open(virusSavePath, FileMode.Open))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                _virusFragments = (TrainingData)bformatter.Deserialize(stream);
+            }
+
+            using (Stream stream = File.Open(benignSavePath, FileMode.Open))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                BenignFragments = (TrainingData)bformatter.Deserialize(stream);
+            }
+        }
     }
 }

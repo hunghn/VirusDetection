@@ -40,7 +40,11 @@
             this.grbOutput = new System.Windows.Forms.GroupBox();
             this.btnLoadDetector = new System.Windows.Forms.Button();
             this.btnSaveDetector = new System.Windows.Forms.Button();
+            this.btnLoadMixDetector = new System.Windows.Forms.Button();
+            this.btnSaveMixDetector = new System.Windows.Forms.Button();
             this.grbIO = new System.Windows.Forms.GroupBox();
+            this.txtbMixDetectorFile = new System.Windows.Forms.TextBox();
+            this.btnMixDetectorFile = new System.Windows.Forms.Button();
             this.txtbDetectorFile = new System.Windows.Forms.TextBox();
             this.btnDetectorFile = new System.Windows.Forms.Button();
             this.txtbBenignFolder = new System.Windows.Forms.TextBox();
@@ -81,6 +85,14 @@
             this.tabpgBuildClustering = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtbClusteringErrorThresold = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtbClusteringNumIterator = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtbNumNeuronY = new System.Windows.Forms.TextBox();
+            this.txtbNumNeuronX = new System.Windows.Forms.TextBox();
             this.btnPrintNeuron = new System.Windows.Forms.Button();
             this.btnStartClustering = new System.Windows.Forms.Button();
             this.txtbClusteringFile = new System.Windows.Forms.TextBox();
@@ -98,14 +110,6 @@
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.btnScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txtbNumNeuronX = new System.Windows.Forms.TextBox();
-            this.txtbNumNeuronY = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtbClusteringNumIterator = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtbClusteringErrorThresold = new System.Windows.Forms.TextBox();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -206,21 +210,23 @@
             // 
             this.grbOutput.Controls.Add(this.btnLoadDetector);
             this.grbOutput.Controls.Add(this.btnSaveDetector);
+            this.grbOutput.Controls.Add(this.btnLoadMixDetector);
+            this.grbOutput.Controls.Add(this.btnSaveMixDetector);
             this.grbOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbOutput.Location = new System.Drawing.Point(0, 404);
+            this.grbOutput.Location = new System.Drawing.Point(0, 408);
             this.grbOutput.Name = "grbOutput";
-            this.grbOutput.Size = new System.Drawing.Size(200, 160);
+            this.grbOutput.Size = new System.Drawing.Size(200, 156);
             this.grbOutput.TabIndex = 2;
             this.grbOutput.TabStop = false;
             this.grbOutput.Text = "Output";
             // 
             // btnLoadDetector
             // 
-            this.btnLoadDetector.Location = new System.Drawing.Point(15, 60);
+            this.btnLoadDetector.Location = new System.Drawing.Point(15, 54);
             this.btnLoadDetector.Name = "btnLoadDetector";
             this.btnLoadDetector.Size = new System.Drawing.Size(171, 29);
-            this.btnLoadDetector.TabIndex = 9;
-            this.btnLoadDetector.Text = "Load Mix Detector";
+            this.btnLoadDetector.TabIndex = 11;
+            this.btnLoadDetector.Text = "Load Detector";
             this.btnLoadDetector.UseVisualStyleBackColor = true;
             this.btnLoadDetector.Click += new System.EventHandler(this.btnLoadDetector_Click);
             // 
@@ -229,13 +235,35 @@
             this.btnSaveDetector.Location = new System.Drawing.Point(15, 19);
             this.btnSaveDetector.Name = "btnSaveDetector";
             this.btnSaveDetector.Size = new System.Drawing.Size(171, 29);
-            this.btnSaveDetector.TabIndex = 7;
-            this.btnSaveDetector.Text = "Save Mix Detector";
+            this.btnSaveDetector.TabIndex = 10;
+            this.btnSaveDetector.Text = "Save Detector";
             this.btnSaveDetector.UseVisualStyleBackColor = true;
             this.btnSaveDetector.Click += new System.EventHandler(this.btnSaveDetector_Click);
             // 
+            // btnLoadMixDetector
+            // 
+            this.btnLoadMixDetector.Location = new System.Drawing.Point(15, 124);
+            this.btnLoadMixDetector.Name = "btnLoadMixDetector";
+            this.btnLoadMixDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnLoadMixDetector.TabIndex = 9;
+            this.btnLoadMixDetector.Text = "Load Mix Detector";
+            this.btnLoadMixDetector.UseVisualStyleBackColor = true;
+            this.btnLoadMixDetector.Click += new System.EventHandler(this.btnLoadMixDetector_Click);
+            // 
+            // btnSaveMixDetector
+            // 
+            this.btnSaveMixDetector.Location = new System.Drawing.Point(15, 89);
+            this.btnSaveMixDetector.Name = "btnSaveMixDetector";
+            this.btnSaveMixDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnSaveMixDetector.TabIndex = 7;
+            this.btnSaveMixDetector.Text = "Save Mix Detector";
+            this.btnSaveMixDetector.UseVisualStyleBackColor = true;
+            this.btnSaveMixDetector.Click += new System.EventHandler(this.btnSaveMixDetector_Click);
+            // 
             // grbIO
             // 
+            this.grbIO.Controls.Add(this.txtbMixDetectorFile);
+            this.grbIO.Controls.Add(this.btnMixDetectorFile);
             this.grbIO.Controls.Add(this.txtbDetectorFile);
             this.grbIO.Controls.Add(this.btnDetectorFile);
             this.grbIO.Controls.Add(this.txtbBenignFolder);
@@ -243,23 +271,39 @@
             this.grbIO.Controls.Add(this.txtbVirusFolder);
             this.grbIO.Controls.Add(this.btnVirusDetect);
             this.grbIO.Dock = System.Windows.Forms.DockStyle.Top;
-            this.grbIO.Location = new System.Drawing.Point(0, 167);
+            this.grbIO.Location = new System.Drawing.Point(0, 145);
             this.grbIO.Name = "grbIO";
-            this.grbIO.Size = new System.Drawing.Size(200, 237);
+            this.grbIO.Size = new System.Drawing.Size(200, 263);
             this.grbIO.TabIndex = 1;
             this.grbIO.TabStop = false;
             this.grbIO.Text = "I/O";
             // 
+            // txtbMixDetectorFile
+            // 
+            this.txtbMixDetectorFile.Location = new System.Drawing.Point(15, 232);
+            this.txtbMixDetectorFile.Name = "txtbMixDetectorFile";
+            this.txtbMixDetectorFile.Size = new System.Drawing.Size(171, 20);
+            this.txtbMixDetectorFile.TabIndex = 9;
+            // 
+            // btnMixDetectorFile
+            // 
+            this.btnMixDetectorFile.Location = new System.Drawing.Point(15, 197);
+            this.btnMixDetectorFile.Name = "btnMixDetectorFile";
+            this.btnMixDetectorFile.Size = new System.Drawing.Size(171, 29);
+            this.btnMixDetectorFile.TabIndex = 8;
+            this.btnMixDetectorFile.Text = "Mix Detector File";
+            this.btnMixDetectorFile.UseVisualStyleBackColor = true;
+            // 
             // txtbDetectorFile
             // 
-            this.txtbDetectorFile.Location = new System.Drawing.Point(15, 199);
+            this.txtbDetectorFile.Location = new System.Drawing.Point(15, 175);
             this.txtbDetectorFile.Name = "txtbDetectorFile";
             this.txtbDetectorFile.Size = new System.Drawing.Size(171, 20);
             this.txtbDetectorFile.TabIndex = 7;
             // 
             // btnDetectorFile
             // 
-            this.btnDetectorFile.Location = new System.Drawing.Point(15, 164);
+            this.btnDetectorFile.Location = new System.Drawing.Point(15, 140);
             this.btnDetectorFile.Name = "btnDetectorFile";
             this.btnDetectorFile.Size = new System.Drawing.Size(171, 29);
             this.btnDetectorFile.TabIndex = 6;
@@ -269,14 +313,14 @@
             // 
             // txtbBenignFolder
             // 
-            this.txtbBenignFolder.Location = new System.Drawing.Point(15, 126);
+            this.txtbBenignFolder.Location = new System.Drawing.Point(15, 114);
             this.txtbBenignFolder.Name = "txtbBenignFolder";
             this.txtbBenignFolder.Size = new System.Drawing.Size(171, 20);
             this.txtbBenignFolder.TabIndex = 5;
             // 
             // btnBegin
             // 
-            this.btnBegin.Location = new System.Drawing.Point(15, 91);
+            this.btnBegin.Location = new System.Drawing.Point(15, 79);
             this.btnBegin.Name = "btnBegin";
             this.btnBegin.Size = new System.Drawing.Size(171, 29);
             this.btnBegin.TabIndex = 4;
@@ -286,14 +330,14 @@
             // 
             // txtbVirusFolder
             // 
-            this.txtbVirusFolder.Location = new System.Drawing.Point(15, 55);
+            this.txtbVirusFolder.Location = new System.Drawing.Point(15, 53);
             this.txtbVirusFolder.Name = "txtbVirusFolder";
             this.txtbVirusFolder.Size = new System.Drawing.Size(171, 20);
             this.txtbVirusFolder.TabIndex = 3;
             // 
             // btnVirusDetect
             // 
-            this.btnVirusDetect.Location = new System.Drawing.Point(15, 19);
+            this.btnVirusDetect.Location = new System.Drawing.Point(15, 17);
             this.btnVirusDetect.Name = "btnVirusDetect";
             this.btnVirusDetect.Size = new System.Drawing.Size(171, 29);
             this.btnVirusDetect.TabIndex = 2;
@@ -309,7 +353,7 @@
             this.grbActions.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.grbActions.Location = new System.Drawing.Point(0, 0);
             this.grbActions.Name = "grbActions";
-            this.grbActions.Size = new System.Drawing.Size(200, 167);
+            this.grbActions.Size = new System.Drawing.Size(200, 145);
             this.grbActions.TabIndex = 0;
             this.grbActions.TabStop = false;
             this.grbActions.Text = "Actions";
@@ -666,6 +710,74 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Function";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(30, 169);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(73, 13);
+            this.label14.TabIndex = 27;
+            this.label14.Text = "Error Thresold";
+            // 
+            // txtbClusteringErrorThresold
+            // 
+            this.txtbClusteringErrorThresold.Location = new System.Drawing.Point(119, 166);
+            this.txtbClusteringErrorThresold.Name = "txtbClusteringErrorThresold";
+            this.txtbClusteringErrorThresold.Size = new System.Drawing.Size(99, 20);
+            this.txtbClusteringErrorThresold.TabIndex = 26;
+            this.txtbClusteringErrorThresold.Text = "0.05";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(30, 142);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 13);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Num Iterator";
+            // 
+            // txtbClusteringNumIterator
+            // 
+            this.txtbClusteringNumIterator.Location = new System.Drawing.Point(119, 139);
+            this.txtbClusteringNumIterator.Name = "txtbClusteringNumIterator";
+            this.txtbClusteringNumIterator.Size = new System.Drawing.Size(99, 20);
+            this.txtbClusteringNumIterator.TabIndex = 24;
+            this.txtbClusteringNumIterator.Text = "1000";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(30, 113);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(77, 13);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Num Neuron Y";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(30, 88);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Num Neuron X";
+            // 
+            // txtbNumNeuronY
+            // 
+            this.txtbNumNeuronY.Location = new System.Drawing.Point(119, 110);
+            this.txtbNumNeuronY.Name = "txtbNumNeuronY";
+            this.txtbNumNeuronY.Size = new System.Drawing.Size(99, 20);
+            this.txtbNumNeuronY.TabIndex = 7;
+            this.txtbNumNeuronY.Text = "10";
+            // 
+            // txtbNumNeuronX
+            // 
+            this.txtbNumNeuronX.Location = new System.Drawing.Point(119, 85);
+            this.txtbNumNeuronX.Name = "txtbNumNeuronX";
+            this.txtbNumNeuronX.Size = new System.Drawing.Size(99, 20);
+            this.txtbNumNeuronX.TabIndex = 6;
+            this.txtbNumNeuronX.Text = "10";
+            // 
             // btnPrintNeuron
             // 
             this.btnPrintNeuron.Location = new System.Drawing.Point(22, 266);
@@ -828,74 +940,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // txtbNumNeuronX
-            // 
-            this.txtbNumNeuronX.Location = new System.Drawing.Point(119, 85);
-            this.txtbNumNeuronX.Name = "txtbNumNeuronX";
-            this.txtbNumNeuronX.Size = new System.Drawing.Size(99, 20);
-            this.txtbNumNeuronX.TabIndex = 6;
-            this.txtbNumNeuronX.Text = "10";
-            // 
-            // txtbNumNeuronY
-            // 
-            this.txtbNumNeuronY.Location = new System.Drawing.Point(119, 110);
-            this.txtbNumNeuronY.Name = "txtbNumNeuronY";
-            this.txtbNumNeuronY.Size = new System.Drawing.Size(99, 20);
-            this.txtbNumNeuronY.TabIndex = 7;
-            this.txtbNumNeuronY.Text = "10";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(30, 88);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 13);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Num Neuron X";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(30, 113);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 13);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Num Neuron Y";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(30, 142);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 13);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "Num Iterator";
-            // 
-            // txtbClusteringNumIterator
-            // 
-            this.txtbClusteringNumIterator.Location = new System.Drawing.Point(119, 139);
-            this.txtbClusteringNumIterator.Name = "txtbClusteringNumIterator";
-            this.txtbClusteringNumIterator.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringNumIterator.TabIndex = 24;
-            this.txtbClusteringNumIterator.Text = "1000";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(30, 169);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(73, 13);
-            this.label14.TabIndex = 27;
-            this.label14.Text = "Error Thresold";
-            // 
-            // txtbClusteringErrorThresold
-            // 
-            this.txtbClusteringErrorThresold.Location = new System.Drawing.Point(119, 166);
-            this.txtbClusteringErrorThresold.Name = "txtbClusteringErrorThresold";
-            this.txtbClusteringErrorThresold.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringErrorThresold.TabIndex = 26;
-            this.txtbClusteringErrorThresold.Text = "0.05";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -938,7 +982,7 @@
         private System.Windows.Forms.Panel panelFooter;
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.GroupBox grbOutput;
-        private System.Windows.Forms.Button btnSaveDetector;
+        private System.Windows.Forms.Button btnSaveMixDetector;
         private System.Windows.Forms.GroupBox grbIO;
         private System.Windows.Forms.TextBox txtbDetectorFile;
         private System.Windows.Forms.Button btnDetectorFile;
@@ -978,7 +1022,7 @@
         private System.Windows.Forms.CheckBox ckbHamming;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridView dtGroupView;
-        private System.Windows.Forms.Button btnLoadDetector;
+        private System.Windows.Forms.Button btnLoadMixDetector;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnLoad;
@@ -1012,6 +1056,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtbNumNeuronY;
         private System.Windows.Forms.TextBox txtbNumNeuronX;
+        private System.Windows.Forms.Button btnLoadDetector;
+        private System.Windows.Forms.Button btnSaveDetector;
+        private System.Windows.Forms.TextBox txtbMixDetectorFile;
+        private System.Windows.Forms.Button btnMixDetectorFile;
     }
 }
 

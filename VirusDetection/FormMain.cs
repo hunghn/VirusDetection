@@ -152,17 +152,17 @@ namespace VirusDetection
 
         }
 
-        private void btnSaveDetector_Click(object sender, EventArgs e)
+        private void btnSaveMixDetector_Click(object sender, EventArgs e)
         {
-            String savePath = txtbDetectorFile.Text;
-            Utils.Utils.saveDetector(_detectorData, savePath);
+            String savePath = txtbMixDetectorFile.Text;
+            Utils.Utils.saveMixDetector(_detectorData, savePath);
             MessageBox.Show("Successful!");
         }
 
-        private void btnLoadDetector_Click(object sender, EventArgs e)
+        private void btnLoadMixDetector_Click(object sender, EventArgs e)
         {
-            String fileName = txtbDetectorFile.Text;
-            _detectorData = Utils.Utils.loadDetector(fileName);
+            String fileName = txtbMixDetectorFile.Text;
+            _detectorData = Utils.Utils.loadMixDetector(fileName);
             MessageBox.Show("Successful!");
         }
 
@@ -579,6 +579,7 @@ namespace VirusDetection
             txtbVirusFolder.Text = CustomSettings.VIRUS_FOLDER;
             txtbBenignFolder.Text = CustomSettings.BENIGN_FOLDER;
             txtbDetectorFile.Text = CustomSettings.DETECTOR_FILE;
+            txtbMixDetectorFile.Text = CustomSettings.MIX_DETECTOR_FILE;
             txtbClusteringFile.Text = CustomSettings.CLUSTERING_FILE;
             txtbFileClassifierFile.Text = CustomSettings.FILE_CLASSIFIER_FILE;
         }
@@ -695,5 +696,24 @@ namespace VirusDetection
             _correctDetectorData();
             MessageBox.Show("Successful!");
         }
+
+       
+
+        private void btnSaveDetector_Click(object sender, EventArgs e)
+        {
+            String virusSavePath = txtbDetectorFile.Text+"VR.txt";
+            String benignSavePath = txtbDetectorFile.Text+"BN.txt";
+            Utils.Utils.saveDetector(_virusFragments, virusSavePath,BenignFragments,benignSavePath);
+            MessageBox.Show("Successful!");
+        }
+
+        private void btnLoadDetector_Click(object sender, EventArgs e)
+        {
+            String virusSavePath = txtbDetectorFile.Text + "VR.txt";
+            String benignSavePath = txtbDetectorFile.Text + "BN.txt";
+            Utils.Utils.loadDetector(ref _virusFragments, virusSavePath, ref BenignFragments, benignSavePath);
+            MessageBox.Show("Successful!");
+        }
+
     }
 }
