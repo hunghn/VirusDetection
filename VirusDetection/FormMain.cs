@@ -84,6 +84,7 @@ namespace VirusDetection
         #region Form Event
         private void btnBuildDetector_Click(object sender, EventArgs e)
         {
+            progressBar2.Value = 0;
             if (isWorking)
                 return;
             CheckState();
@@ -301,7 +302,6 @@ namespace VirusDetection
             ShowDataGenerationProcess(20, "Starting Negative Selection process...");
             StartWork(false);
             isWorking = true;
-            //this.Run();
             worker = new Thread(Run);
             worker.Start();
         }
