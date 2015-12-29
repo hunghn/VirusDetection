@@ -27,7 +27,7 @@ namespace VirusDetection.Clustering
         private int _networkHeight = 2;
         private int iterations = 500;
         private double learningRate = 0.3;
-        private int learningRadius = 3;
+        private double learningRadius = 1;
 
         public ClusteringManager(double[][] input_, float inputRange_, int networkWidth_, int networkHeight_)
         {

@@ -499,6 +499,7 @@ namespace VirusDetection
         public void initClustering()
         {
             _clusteringManager = new ClusteringManager(_detectorData, 255, 10, 10);
+
         }
         public void startClustering()
         {

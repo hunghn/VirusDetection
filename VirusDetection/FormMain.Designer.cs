@@ -32,6 +32,7 @@
             this.panelFooter = new System.Windows.Forms.Panel();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtbVirusFragmentsCount = new System.Windows.Forms.TextBox();
             this.txtStatusBar = new System.Windows.Forms.TextBox();
             this.txtTimeBox = new System.Windows.Forms.TextBox();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
@@ -89,7 +90,6 @@
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.btnScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txtbVirusFragmentsCount = new System.Windows.Forms.TextBox();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -140,6 +140,13 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.panel1.Size = new System.Drawing.Size(942, 31);
             this.panel1.TabIndex = 1;
+            // 
+            // txtbVirusFragmentsCount
+            // 
+            this.txtbVirusFragmentsCount.Location = new System.Drawing.Point(843, 8);
+            this.txtbVirusFragmentsCount.Name = "txtbVirusFragmentsCount";
+            this.txtbVirusFragmentsCount.Size = new System.Drawing.Size(96, 20);
+            this.txtbVirusFragmentsCount.TabIndex = 2;
             // 
             // txtStatusBar
             // 
@@ -714,13 +721,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // txtbVirusFragmentsCount
-            // 
-            this.txtbVirusFragmentsCount.Location = new System.Drawing.Point(843, 8);
-            this.txtbVirusFragmentsCount.Name = "txtbVirusFragmentsCount";
-            this.txtbVirusFragmentsCount.Size = new System.Drawing.Size(96, 20);
-            this.txtbVirusFragmentsCount.TabIndex = 2;
             // 
             // FormMain
             // 
