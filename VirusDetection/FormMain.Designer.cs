@@ -110,6 +110,8 @@
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.btnScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtbClusteringInputCount = new System.Windows.Forms.TextBox();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -688,6 +690,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.txtbClusteringInputCount);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.txtbClusteringErrorThresold);
             this.groupBox2.Controls.Add(this.label13);
@@ -713,7 +717,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(30, 169);
+            this.label14.Location = new System.Drawing.Point(30, 196);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(73, 13);
             this.label14.TabIndex = 27;
@@ -721,16 +725,16 @@
             // 
             // txtbClusteringErrorThresold
             // 
-            this.txtbClusteringErrorThresold.Location = new System.Drawing.Point(119, 166);
+            this.txtbClusteringErrorThresold.Location = new System.Drawing.Point(119, 193);
             this.txtbClusteringErrorThresold.Name = "txtbClusteringErrorThresold";
             this.txtbClusteringErrorThresold.Size = new System.Drawing.Size(99, 20);
             this.txtbClusteringErrorThresold.TabIndex = 26;
-            this.txtbClusteringErrorThresold.Text = "0.05";
+            this.txtbClusteringErrorThresold.Text = "0.2";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(30, 142);
+            this.label13.Location = new System.Drawing.Point(30, 169);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 13);
             this.label13.TabIndex = 25;
@@ -738,7 +742,7 @@
             // 
             // txtbClusteringNumIterator
             // 
-            this.txtbClusteringNumIterator.Location = new System.Drawing.Point(119, 139);
+            this.txtbClusteringNumIterator.Location = new System.Drawing.Point(119, 166);
             this.txtbClusteringNumIterator.Name = "txtbClusteringNumIterator";
             this.txtbClusteringNumIterator.Size = new System.Drawing.Size(99, 20);
             this.txtbClusteringNumIterator.TabIndex = 24;
@@ -747,7 +751,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(30, 113);
+            this.label12.Location = new System.Drawing.Point(30, 140);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(77, 13);
             this.label12.TabIndex = 23;
@@ -756,7 +760,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(30, 88);
+            this.label11.Location = new System.Drawing.Point(30, 115);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 13);
             this.label11.TabIndex = 22;
@@ -764,7 +768,7 @@
             // 
             // txtbNumNeuronY
             // 
-            this.txtbNumNeuronY.Location = new System.Drawing.Point(119, 110);
+            this.txtbNumNeuronY.Location = new System.Drawing.Point(119, 137);
             this.txtbNumNeuronY.Name = "txtbNumNeuronY";
             this.txtbNumNeuronY.Size = new System.Drawing.Size(99, 20);
             this.txtbNumNeuronY.TabIndex = 7;
@@ -772,7 +776,7 @@
             // 
             // txtbNumNeuronX
             // 
-            this.txtbNumNeuronX.Location = new System.Drawing.Point(119, 85);
+            this.txtbNumNeuronX.Location = new System.Drawing.Point(119, 112);
             this.txtbNumNeuronX.Name = "txtbNumNeuronX";
             this.txtbNumNeuronX.Size = new System.Drawing.Size(99, 20);
             this.txtbNumNeuronX.TabIndex = 6;
@@ -940,6 +944,23 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(30, 90);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(58, 13);
+            this.label15.TabIndex = 29;
+            this.label15.Text = "inputCount";
+            // 
+            // txtbClusteringInputCount
+            // 
+            this.txtbClusteringInputCount.Location = new System.Drawing.Point(119, 87);
+            this.txtbClusteringInputCount.Name = "txtbClusteringInputCount";
+            this.txtbClusteringInputCount.Size = new System.Drawing.Size(99, 20);
+            this.txtbClusteringInputCount.TabIndex = 28;
+            this.txtbClusteringInputCount.Text = "4";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1060,6 +1081,8 @@
         private System.Windows.Forms.Button btnSaveDetector;
         private System.Windows.Forms.TextBox txtbMixDetectorFile;
         private System.Windows.Forms.Button btnMixDetectorFile;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtbClusteringInputCount;
     }
 }
 

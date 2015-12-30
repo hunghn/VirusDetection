@@ -26,89 +26,89 @@ namespace VirusDetection.Utils
 
         #region Detector Utils
 
-        
-
-        
-        //public static double[][] correctAndMixDetectorUpdate(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
-        //{
-
-        //    int virusLen = Math.Min(VirusFragments.Count, virusLen_);
-        //    int benignLen = Math.Min(BenignFragments.Count, benignLen_);
-        //    int totalLen = virusLen + benignLen;
-
-        //    double[][] mixData = new double[virusLen + benignLen][];
-        //    HashSet<byte[]> virusData = new HashSet<byte[]>();
-        //    HashSet<byte[]> benignData = new HashSet<byte[]>();
-
-        //    int virusCount = 0;
-        //    int benignCount = 0;
-        //    int totalCount = 0;
-
-        //    int randSize = benignLen / virusLen;
-        //    bool done = false;
-
-        //    Random rand = new Random();
-        //    Random benignRand = new Random();
-
-        //    while (!done)
-        //    {
-        //        // 1. kiem tra vr con khong, lay so lan lap random cua vr trong gioi han con lai hoac la size
-        //        int n = Math.Min(1, virusLen - virusCount);
-        //        for (int i = 0; i < n; i++)
-        //        {
-        //            byte[] byteArray = VirusFragments[virusCount];
-                    
-        //            // Prevent data repeat
-        //            if (virusData.Contains(byteArray))
-        //            {
-        //                continue;
-        //            }
-        //            virusData.Add(byteArray);
-
-        //            double[] temp = new double[5];
-        //            String hexStr = ByteArrayToHex(byteArray);
-        //            String[] hex4 = Split(hexStr, 2);
-        //            HexArray2DecArray(hex4, ref temp);
-        //            temp[4] = VIRUS_MARK;
-        //            mixData[totalCount] = temp;
-
-        //            virusCount++;
-        //            totalCount++;
-        //        }
-
-        //        // 2. lay so lan lap random cua sach nt
-        //        int m = Math.Min(benignLen - benignCount, rand.Next(1, randSize + 1)); // +1 because Math.Min(a,b) means min from a to b-1 
-        //        for (int i = 0; i < m; i++)
-        //        {
-        //            int index = benignRand.Next(0, BenignFragments.Count);
-        //            byte[] byteArray = BenignFragments[index];
-
-        //            // Prevent data repeat
-        //            if (benignData.Contains(byteArray))
-        //            {
-        //                continue;
-        //            }
-        //            benignData.Add(byteArray);
-
-        //            double[] temp = new double[5];
-        //            String hexStr = ByteArrayToHex(byteArray);
-        //            String[] hex4 = Split(hexStr, 2);
-        //            HexArray2DecArray(hex4, ref temp);
-        //            temp[4] = BENIGN_MARK;
-        //            mixData[totalCount] = temp;
-
-        //            benignCount++;
-        //            totalCount++;
-        //        }
-
-        //        done = (totalCount >= totalLen);
-        //    }
-
-        //    return mixData;
-        //}
 
 
-        public static double[][] correctDetectorUpdate(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
+
+        public static double[][] correctAndMixDetectorUpdate(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
+        {
+
+            int virusLen = Math.Min(VirusFragments.Count, virusLen_);
+            int benignLen = Math.Min(BenignFragments.Count, benignLen_);
+            int totalLen = virusLen + benignLen;
+
+            double[][] mixData = new double[virusLen + benignLen][];
+            HashSet<byte[]> virusData = new HashSet<byte[]>();
+            HashSet<byte[]> benignData = new HashSet<byte[]>();
+
+            int virusCount = 0;
+            int benignCount = 0;
+            int totalCount = 0;
+
+            int randSize = benignLen / virusLen;
+            bool done = false;
+
+            Random rand = new Random();
+            Random benignRand = new Random();
+
+            while (!done)
+            {
+                // 1. kiem tra vr con khong, lay so lan lap random cua vr trong gioi han con lai hoac la size
+                int n = Math.Min(1, virusLen - virusCount);
+                for (int i = 0; i < n; i++)
+                {
+                    byte[] byteArray = VirusFragments[virusCount];
+
+                    // Prevent data repeat
+                    if (virusData.Contains(byteArray))
+                    {
+                        continue;
+                    }
+                    virusData.Add(byteArray);
+
+                    double[] temp = new double[5];
+                    String hexStr = ByteArrayToHex(byteArray);
+                    String[] hex4 = Split(hexStr, 2);
+                    HexArray2DecArray(hex4, ref temp);
+                    temp[4] = VIRUS_MARK;
+                    mixData[totalCount] = temp;
+
+                    virusCount++;
+                    totalCount++;
+                }
+
+                // 2. lay so lan lap random cua sach nt
+                int m = Math.Min(benignLen - benignCount, rand.Next(1, randSize + 1)); // +1 because Math.Min(a,b) means min from a to b-1 
+                for (int i = 0; i < m; i++)
+                {
+                    int index = benignRand.Next(0, BenignFragments.Count);
+                    byte[] byteArray = BenignFragments[index];
+
+                    // Prevent data repeat
+                    if (benignData.Contains(byteArray))
+                    {
+                        continue;
+                    }
+                    benignData.Add(byteArray);
+
+                    double[] temp = new double[5];
+                    String hexStr = ByteArrayToHex(byteArray);
+                    String[] hex4 = Split(hexStr, 2);
+                    HexArray2DecArray(hex4, ref temp);
+                    temp[4] = BENIGN_MARK;
+                    mixData[totalCount] = temp;
+
+                    benignCount++;
+                    totalCount++;
+                }
+
+                done = (totalCount >= totalLen);
+            }
+
+            return mixData;
+        }
+
+
+        public static double[][] mixDetectorUpdate(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
         {
 
             int virusLen = Math.Min(VirusFragments.Count, virusLen_);

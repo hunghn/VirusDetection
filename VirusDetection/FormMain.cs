@@ -507,8 +507,18 @@ namespace VirusDetection
                 benignLen = int.Parse(strBenignLen);
             }
             Math.Min(virusLen * 10, BenignFragments.Count);
-
-            _detectorData = Utils.Utils.correctDetectorUpdate(_virusFragments, virusLen, BenignFragments, benignLen);
+            
+            // Select algorithm
+            int inputCount = int.Parse(txtbClusteringInputCount.Text);
+            if (inputCount == 4)
+            {
+                _detectorData = Utils.Utils.correctAndMixDetectorUpdate(_virusFragments, virusLen, BenignFragments, benignLen);
+            }
+            else
+            {
+                _detectorData = Utils.Utils.mixDetectorUpdate(_virusFragments, virusLen, BenignFragments, benignLen);
+            }
+            
         }
 
         #endregion
@@ -517,12 +527,14 @@ namespace VirusDetection
 
         public void initClustering()
         {
+            int inputCount = int.Parse(txtbClusteringInputCount.Text);
+            int inputRange = (inputCount == 4 ? 255 : 1);
             int numNeuronX = int.Parse(txtbNumNeuronX.Text);
             int numNeuronY = int.Parse(txtbNumNeuronY.Text);
             int numOfIterator = int.Parse(txtbClusteringNumIterator.Text);
             double errorThresold = double.Parse(txtbClusteringErrorThresold.Text);
 
-            _clusteringManager = new ClusteringManager(_detectorData, 255, numNeuronX, numNeuronY,numOfIterator,errorThresold);
+            _clusteringManager = new ClusteringManager(_detectorData, inputCount, inputRange, numNeuronX, numNeuronY,numOfIterator,errorThresold);
 
         }
         public void startClustering()
@@ -591,8 +603,7 @@ namespace VirusDetection
 
         private void btnStartClustering_Click(object sender, EventArgs e)
         {
-            if (_clusteringManager == null)
-                initClustering();
+            initClustering();
             _clusteringManager.trainNetwork();
             MessageBox.Show("Successful!");
         }

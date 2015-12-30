@@ -30,7 +30,7 @@ namespace VirusDetection.Clustering
         private double learningRadius = 1;
         private double _errorThresold;
 
-        public ClusteringManager(double[][] input_, float inputRange_, int networkWidth_, int networkHeight_, int numOfIterator_, double errorThresold_)
+        public ClusteringManager(double[][] input_,int inputCount, float inputRange_, int networkWidth_, int networkHeight_, int numOfIterator_, double errorThresold_)
         {
             _input = input_;
             _inputRange = inputRange_;
