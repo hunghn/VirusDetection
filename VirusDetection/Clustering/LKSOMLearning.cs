@@ -45,7 +45,7 @@ namespace VirusDetection.Clustering
         public void mapNeuronLabel(double[][] input, int mappingDataIndex=-1)
         {
             if (mappingDataIndex == -1)
-                mappingDataIndex = input.GetLength(1) - 1;
+                mappingDataIndex = input[0].GetLength(0) - 1;
             int len = input.GetLength(0);
             LKDistanceLayer layer = (LKDistanceLayer)network.Layers[0];
             for ( int i = 0; i < len; i++ )

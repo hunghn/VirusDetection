@@ -13,5 +13,6 @@ namespace VirusDetection.Utils
         public static String MIX_DETECTOR_FILE = @"..\..\TestVirus\MixDetector.txt";
         public static String CLUSTERING_FILE  = @"..\..\TestVirus\Clustering.txt";
         public static String FILE_CLASSIFIER_FILE = @"..\..\TestVirus\FileClassifier.txt";
+        public static String TEST_FILE_FOLDER = @"..\..\TestVirus\TestFile";
     }
 }

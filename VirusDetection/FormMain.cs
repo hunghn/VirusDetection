@@ -594,6 +594,7 @@ namespace VirusDetection
             txtbMixDetectorFile.Text = CustomSettings.MIX_DETECTOR_FILE;
             txtbClusteringFile.Text = CustomSettings.CLUSTERING_FILE;
             txtbFileClassifierFile.Text = CustomSettings.FILE_CLASSIFIER_FILE;
+            txtbVirusScannerTestFileFolder.Text = CustomSettings.TEST_FILE_FOLDER;
         }
 
 
@@ -638,15 +639,27 @@ namespace VirusDetection
 
         private void btnScanVirus_Click(object sender, EventArgs e)
         {
-            _virusScannerManager = new VirusScannerManager(_fileClassifierManager.DistanceNetwork, _fileClassifierManager.ActivationNetwork);
+            _virusScannerManager = new VirusScannerManager(_fileClassifierManager.DistanceNetwork, _fileClassifierManager.ActivationNetwork, txtbFormatRange.Text);
+            String testFileFolder = txtbVirusScannerTestFileFolder.Text;
+            String[] virusFile = Directory.GetFiles(testFileFolder, "*.*", SearchOption.AllDirectories);
 
-            String[] virusFile = Directory.GetFiles(txtbVirusFolder.Text, "*.*", SearchOption.AllDirectories);
+            int numOfVirus = 0;
+            int numOfBenign = 0;
 
             foreach (String file in virusFile)
             {
                 int result = _virusScannerManager.scanFile(file);
-                Console.WriteLine(result);
+                if (result == 1)
+                    numOfVirus++;
+                else
+                    numOfBenign++;
+                Console.WriteLine(file+", "+result);
             }
+            txtbNumOfVirus.Text = numOfVirus.ToString();
+            txtbNumOfBenign.Text = numOfBenign.ToString();
+            Console.WriteLine("Virus: " + numOfVirus);
+            Console.WriteLine("Benign: " + numOfBenign);
+
         }
 
         private void btnFileClassifierFile_Click(object sender, EventArgs e)
@@ -724,6 +737,17 @@ namespace VirusDetection
             String benignSavePath = txtbDetectorFile.Text + "BN.txt";
             Utils.Utils.loadDetector(ref _virusFragments, virusSavePath, ref BenignFragments, benignSavePath);
             MessageBox.Show("Successful!");
+        }
+
+        private void btnTestFileFolder_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    txtbVirusScannerTestFileFolder.Text = fbd.SelectedPath;
+                }
+            }
         }
 
     }

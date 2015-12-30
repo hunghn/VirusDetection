@@ -353,6 +353,13 @@ namespace VirusDetection.Utils
 
         #endregion
 
+
+        public static int[] calcFormatRange(string formatRange_)
+        {
+            String[] strFormatRange = formatRange_.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            return strFormatRange.Select(int.Parse).ToArray();
+        }
+
         #region Unused Method
 
         private static int[] HexArray2DecArray(String[] hexArray_)

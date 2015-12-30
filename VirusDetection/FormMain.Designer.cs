@@ -85,6 +85,8 @@
             this.tabpgBuildClustering = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtbClusteringInputCount = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtbClusteringErrorThresold = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -108,10 +110,14 @@
             this.btnSaveFileClassifier = new System.Windows.Forms.Button();
             this.btnBuildFileClassifier = new System.Windows.Forms.Button();
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtbNumOfBenign = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtbNumOfVirus = new System.Windows.Forms.TextBox();
+            this.txtbVirusScannerTestFileFolder = new System.Windows.Forms.TextBox();
+            this.btnTestFileFolder = new System.Windows.Forms.Button();
             this.btnScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtbClusteringInputCount = new System.Windows.Forms.TextBox();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -714,6 +720,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Function";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(30, 90);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(58, 13);
+            this.label15.TabIndex = 29;
+            this.label15.Text = "inputCount";
+            // 
+            // txtbClusteringInputCount
+            // 
+            this.txtbClusteringInputCount.Location = new System.Drawing.Point(119, 87);
+            this.txtbClusteringInputCount.Name = "txtbClusteringInputCount";
+            this.txtbClusteringInputCount.Size = new System.Drawing.Size(99, 20);
+            this.txtbClusteringInputCount.TabIndex = 28;
+            this.txtbClusteringInputCount.Text = "4";
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -921,6 +944,12 @@
             // 
             // tabPgVirusScanner
             // 
+            this.tabPgVirusScanner.Controls.Add(this.label17);
+            this.tabPgVirusScanner.Controls.Add(this.txtbNumOfBenign);
+            this.tabPgVirusScanner.Controls.Add(this.label16);
+            this.tabPgVirusScanner.Controls.Add(this.txtbNumOfVirus);
+            this.tabPgVirusScanner.Controls.Add(this.txtbVirusScannerTestFileFolder);
+            this.tabPgVirusScanner.Controls.Add(this.btnTestFileFolder);
             this.tabPgVirusScanner.Controls.Add(this.btnScanVirus);
             this.tabPgVirusScanner.Location = new System.Drawing.Point(4, 22);
             this.tabPgVirusScanner.Name = "tabPgVirusScanner";
@@ -930,11 +959,60 @@
             this.tabPgVirusScanner.Text = "Virus Scanner";
             this.tabPgVirusScanner.UseVisualStyleBackColor = true;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(285, 262);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(79, 13);
+            this.label17.TabIndex = 33;
+            this.label17.Text = "Num Of Benign";
+            // 
+            // txtbNumOfBenign
+            // 
+            this.txtbNumOfBenign.Location = new System.Drawing.Point(374, 259);
+            this.txtbNumOfBenign.Name = "txtbNumOfBenign";
+            this.txtbNumOfBenign.Size = new System.Drawing.Size(85, 20);
+            this.txtbNumOfBenign.TabIndex = 32;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(83, 263);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(69, 13);
+            this.label16.TabIndex = 31;
+            this.label16.Text = "Num Of Virus";
+            // 
+            // txtbNumOfVirus
+            // 
+            this.txtbNumOfVirus.Location = new System.Drawing.Point(172, 260);
+            this.txtbNumOfVirus.Name = "txtbNumOfVirus";
+            this.txtbNumOfVirus.Size = new System.Drawing.Size(85, 20);
+            this.txtbNumOfVirus.TabIndex = 30;
+            // 
+            // txtbVirusScannerTestFileFolder
+            // 
+            this.txtbVirusScannerTestFileFolder.Location = new System.Drawing.Point(86, 96);
+            this.txtbVirusScannerTestFileFolder.Name = "txtbVirusScannerTestFileFolder";
+            this.txtbVirusScannerTestFileFolder.Size = new System.Drawing.Size(577, 20);
+            this.txtbVirusScannerTestFileFolder.TabIndex = 7;
+            // 
+            // btnTestFileFolder
+            // 
+            this.btnTestFileFolder.Location = new System.Drawing.Point(86, 60);
+            this.btnTestFileFolder.Name = "btnTestFileFolder";
+            this.btnTestFileFolder.Size = new System.Drawing.Size(171, 29);
+            this.btnTestFileFolder.TabIndex = 6;
+            this.btnTestFileFolder.Text = "Test File Folder";
+            this.btnTestFileFolder.UseVisualStyleBackColor = true;
+            this.btnTestFileFolder.Click += new System.EventHandler(this.btnTestFileFolder_Click);
+            // 
             // btnScanVirus
             // 
-            this.btnScanVirus.Location = new System.Drawing.Point(161, 138);
+            this.btnScanVirus.Location = new System.Drawing.Point(86, 152);
             this.btnScanVirus.Name = "btnScanVirus";
-            this.btnScanVirus.Size = new System.Drawing.Size(143, 26);
+            this.btnScanVirus.Size = new System.Drawing.Size(171, 26);
             this.btnScanVirus.TabIndex = 0;
             this.btnScanVirus.Text = "Scan Virus";
             this.btnScanVirus.UseVisualStyleBackColor = true;
@@ -943,23 +1021,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(30, 90);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(58, 13);
-            this.label15.TabIndex = 29;
-            this.label15.Text = "inputCount";
-            // 
-            // txtbClusteringInputCount
-            // 
-            this.txtbClusteringInputCount.Location = new System.Drawing.Point(119, 87);
-            this.txtbClusteringInputCount.Name = "txtbClusteringInputCount";
-            this.txtbClusteringInputCount.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringInputCount.TabIndex = 28;
-            this.txtbClusteringInputCount.Text = "4";
             // 
             // FormMain
             // 
@@ -994,6 +1055,7 @@
             this.tabpgBuildFileClassifier.ResumeLayout(false);
             this.tabpgBuildFileClassifier.PerformLayout();
             this.tabPgVirusScanner.ResumeLayout(false);
+            this.tabPgVirusScanner.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1083,6 +1145,12 @@
         private System.Windows.Forms.Button btnMixDetectorFile;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtbClusteringInputCount;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtbNumOfBenign;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtbNumOfVirus;
+        private System.Windows.Forms.TextBox txtbVirusScannerTestFileFolder;
+        private System.Windows.Forms.Button btnTestFileFolder;
     }
 }
 

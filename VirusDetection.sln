@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSP", "C:\Program Files (x8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neuro (mono)", "C:\Program Files (x86)\AForge.NET\Framework\Sources\Neuro\Neuro (mono).csproj", "{81CCAD97-7643-4995-AB8C-84F731631E78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "C:\Users\Lucky Boy\Desktop\Khoa Luan\Setup-lib\Demo_\Demo\Demo\Demo.csproj", "{D22BD203-DF14-410B-AA84-10DAD7229708}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "..\..\..\Dropbox\UIT\HK9\Khoa Luan\Khoa Luan Reference\Others\Demo_\Demo\Demo\Demo.csproj", "{D22BD203-DF14-410B-AA84-10DAD7229708}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

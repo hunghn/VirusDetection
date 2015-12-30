@@ -82,7 +82,7 @@ namespace VirusDetection.Clustering
                     break;
             }
 
-            trainer.mapNeuronLabel(_input, 4);
+            trainer.mapNeuronLabel(_input);
 
         }
 

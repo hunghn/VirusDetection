@@ -16,6 +16,7 @@ namespace VirusDetection.FileClassifier
         int[] _formatRange;
         String _fileName;
 
+
         LKDistanceNetwork _distanceNetwork;
 
         public FileClassifierData()
@@ -45,7 +46,7 @@ namespace VirusDetection.FileClassifier
             // Doc 4 byte => Kohonen => result
             // + add to raw data
             // + calc for format data
-            int length = 4;// 4byte = 32bit
+            int length = _distanceNetwork.InputsCount;// 4byte = 32bit
             int stepsize = 2;// each step = 2 bit to make data more
             byte[] bytes = File.ReadAllBytes(_fileName);
             for (int i = 0; i < bytes.Length - length; i += stepsize)
@@ -59,16 +60,11 @@ namespace VirusDetection.FileClassifier
         // Compute for 32bit str
         private void _compute(byte[] rawBytes)
         {
-            
-            double[] input = new double[4];
-            for (int i = 0; i < 4; i++)
-            {
-                input[i] = rawBytes[i];
-            }
+            double[] input = rawBytes.Select(Convert.ToDouble).ToArray();
 
             _distanceNetwork.Compute(input);
             LKDistanceNeuron winner = _distanceNetwork.getWinnerNeuron();
-            int rawKey = winner.VirusDetectedCount;
+            int rawKey = (winner.getClusterLable() == 2 ? winner.VirusDetectedCount : 0);
             _hashmapAddKey(_htRawData, rawKey);
             int formattedKey = Utils.Utils.calcFormatRangeIndex(_formatRange, rawKey);
             _hashmapAddKey(_htFormattedData, formattedKey);
@@ -91,7 +87,7 @@ namespace VirusDetection.FileClassifier
         {
             int len = _formatRange.Length;
             double[] result = new double[len];
-            for(int i =0;i<len;i++)
+            for (int i = 0; i < len; i++)
             {
                 if (_htFormattedData.ContainsKey(i))
                     result[i] = (int)_htFormattedData[i];
@@ -104,16 +100,16 @@ namespace VirusDetection.FileClassifier
         public String[] getFormatDataTest(double type, String fileName_)
         {
             int len = _formatRange.Length;
-            String[] result = new String[len+2];
+            String[] result = new String[len + 2];
             for (int i = 0; i < len; i++)
             {
                 if (_htFormattedData.ContainsKey(i))
-                    result[i] =    ((int)_htFormattedData[i]).ToString();
+                    result[i] = ((int)_htFormattedData[i]).ToString();
                 else
                     result[i] = "0";
             }
-            result[len] = type.ToString() ;
-            result[len+1] = fileName_;
+            result[len] = type.ToString();
+            result[len + 1] = fileName_;
             return result;
         }
 
@@ -122,6 +118,6 @@ namespace VirusDetection.FileClassifier
             return null;
         }
 
-        
+
     }
 }

@@ -46,13 +46,7 @@ namespace VirusDetection.FileClassifier
             _benignFolder = benignFolder_;
             _distanceNetwork = network_;
 
-            _formatRange = _calcFormatRange(formatRange_); ;
-        }
-
-        private int[] _calcFormatRange(string formatRange_)
-        {
-            String[] strFormatRange = formatRange_.Split(new String[]{","}, StringSplitOptions.RemoveEmptyEntries);
-            return strFormatRange.Select(int.Parse).ToArray();
+            _formatRange = Utils.Utils.calcFormatRange(formatRange_); ;
         }
 
         public void train(int numOfIterator_, double errorThresold_)
@@ -60,7 +54,6 @@ namespace VirusDetection.FileClassifier
             // Init training set for ANN
             this.buildTrainingSet();
 
-            return;
             // Create ANN
             _activationNetwork = new ActivationNetwork(new BipolarSigmoidFunction(), _formatRange.Length, 5, 1);
             BackPropagationLearning teacher = new BackPropagationLearning(_activationNetwork);
@@ -110,8 +103,8 @@ namespace VirusDetection.FileClassifier
                 {
                     FileClassifierData data = new FileClassifierData(_distanceNetwork, virusFile[virusCount], _formatRange);
                     Console.WriteLine("Virus: " + virusFile[virusCount]);
-                    //_input[totalCount] = data.getFormatData();
-                   // _input[totalCount] = data.getFormatDataTest(Utils.Utils.VIRUS_MARK);
+                    _input[totalCount] = data.getFormatData();
+
                     _testInput[totalCount] = data.getFormatDataTest(Utils.Utils.VIRUS_MARK, virusFile[virusCount]);
                     _output[totalCount] = new double[] { Utils.Utils.VIRUS_MARK };
                     virusCount++;
@@ -124,7 +117,7 @@ namespace VirusDetection.FileClassifier
                 {
                     FileClassifierData data = new FileClassifierData(_distanceNetwork, benignFile[benignCount], _formatRange);
                     Console.WriteLine(benignFile[benignCount]);
-                    //_input[totalCount] = data.getFormatDataTest(Utils.Utils.BENIGN_MARK);
+                    _input[totalCount] = data.getFormatData();
                     _testInput[totalCount] = data.getFormatDataTest(Utils.Utils.BENIGN_MARK, benignFile[benignCount]);
                     _output[totalCount] = new double[] { Utils.Utils.BENIGN_MARK };
                     benignCount++;

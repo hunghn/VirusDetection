@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VirusDetection.Clustering;
+using VirusDetection.FileClassifier;
 
 namespace VirusDetection.VirusScanner
 {
@@ -11,19 +12,28 @@ namespace VirusDetection.VirusScanner
     {
         LKDistanceNetwork _distanceNetwork;
         ActivationNetwork _activationNetwork;
+        int[] _formatRange;
         public VirusScannerManager()
         {
 
         }
 
-        public VirusScannerManager(LKDistanceNetwork distanceNetwork_, ActivationNetwork activationNetwork_)
+        public VirusScannerManager(LKDistanceNetwork distanceNetwork_, ActivationNetwork activationNetwork_, String formatRange_)
         {
             _distanceNetwork = distanceNetwork_;
             _activationNetwork = activationNetwork_;
+            _formatRange = Utils.Utils.calcFormatRange(formatRange_);
         }
 
         public int scanFile(String fileName_)
         {
+
+                FileClassifierData data = new FileClassifierData(_distanceNetwork, fileName_, _formatRange);
+                double[] formatData = data.getFormatData();
+                double[] result = _activationNetwork.Compute(formatData);
+                int thresold = 0;
+                if (result[0] >= thresold)
+                    return 1;
             return 0;
         }
     }
