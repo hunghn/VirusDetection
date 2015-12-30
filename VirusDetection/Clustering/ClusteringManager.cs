@@ -14,7 +14,8 @@ namespace VirusDetection.Clustering
     class ClusteringManager
     {
         double[][] _input;
-        float _inputRange;
+        int _inputCount;
+        float _maxInputRange;
         LKDistanceNetwork _network;
 
         internal LKDistanceNetwork DistanceNetwork
@@ -30,10 +31,11 @@ namespace VirusDetection.Clustering
         private double learningRadius = 1;
         private double _errorThresold;
 
-        public ClusteringManager(double[][] input_,int inputCount, float inputRange_, int networkWidth_, int networkHeight_, int numOfIterator_, double errorThresold_)
+        public ClusteringManager(double[][] input_,int inputCount_, float maxInputRange_, int networkWidth_, int networkHeight_, int numOfIterator_, double errorThresold_)
         {
             _input = input_;
-            _inputRange = inputRange_;
+            _inputCount = inputCount_;
+            _maxInputRange = maxInputRange_;
             _networkWidth = networkWidth_;
             _networkHeight = networkHeight_;
             iterations = numOfIterator_;
@@ -44,10 +46,10 @@ namespace VirusDetection.Clustering
         {
             
             // Set random range
-            Neuron.RandRange = new Range(0, _inputRange);
+            Neuron.RandRange = new Range(0, _maxInputRange);
 
             // Create network
-            _network = new LKDistanceNetwork(1, _networkWidth * _networkHeight);
+            _network = new LKDistanceNetwork(_inputCount, _networkWidth * _networkHeight);
 
             // create learning algorithm
             LKSOMLearning trainer = new LKSOMLearning(_network, _networkWidth, _networkHeight);

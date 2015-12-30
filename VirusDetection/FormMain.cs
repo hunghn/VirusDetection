@@ -528,13 +528,13 @@ namespace VirusDetection
         public void initClustering()
         {
             int inputCount = int.Parse(txtbClusteringInputCount.Text);
-            int inputRange = (inputCount == 4 ? 255 : 1);
+            int maxInputRange = (inputCount == 4 ? 255 : 1);
             int numNeuronX = int.Parse(txtbNumNeuronX.Text);
             int numNeuronY = int.Parse(txtbNumNeuronY.Text);
             int numOfIterator = int.Parse(txtbClusteringNumIterator.Text);
             double errorThresold = double.Parse(txtbClusteringErrorThresold.Text);
 
-            _clusteringManager = new ClusteringManager(_detectorData, inputCount, inputRange, numNeuronX, numNeuronY,numOfIterator,errorThresold);
+            _clusteringManager = new ClusteringManager(_detectorData, inputCount, maxInputRange, numNeuronX, numNeuronY,numOfIterator,errorThresold);
 
         }
         public void startClustering()
