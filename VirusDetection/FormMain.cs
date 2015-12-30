@@ -508,7 +508,7 @@ namespace VirusDetection
             }
             Math.Min(virusLen * 10, BenignFragments.Count);
 
-            _detectorData = Utils.Utils.correctAndMixDetectorUpdate(_virusFragments, virusLen, BenignFragments, benignLen);
+            _detectorData = Utils.Utils.correctDetectorUpdate(_virusFragments, virusLen, BenignFragments, benignLen);
         }
 
         #endregion
