@@ -24,7 +24,6 @@ namespace VirusDetection.FileClassifier
             _initialize();
         }
 
-
         public FileClassifierData(LKDistanceNetwork distanceNetwork_, String fileName_, int[] formatRange_)
         {
             _distanceNetwork = distanceNetwork_;

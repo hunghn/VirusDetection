@@ -41,7 +41,8 @@ namespace VirusDetection.Clustering
         }
         public int getClusterLable()
         {
-           return (_virusDetectedCount > 0 ? 1 : 0)*2|(_benignDetectedCount > 0 ? 1 : 0); 
+           int label = (_virusDetectedCount > 0 ? 1 : 0)*2|(_benignDetectedCount > 0 ? 1 : 0);
+           return label;
         }
 
         public void resetLabel()

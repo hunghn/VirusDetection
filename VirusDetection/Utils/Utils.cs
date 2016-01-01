@@ -26,9 +26,6 @@ namespace VirusDetection.Utils
 
         #region Detector Utils
 
-
-
-
         public static double[][] correctAndMixDetectorUpdate(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
         {
 
@@ -44,7 +41,7 @@ namespace VirusDetection.Utils
             int benignCount = 0;
             int totalCount = 0;
 
-            int randSize = benignLen / virusLen;
+            int randSize = benignLen / (virusLen > 0 ? virusLen : 1);
             bool done = false;
 
             Random rand = new Random();
@@ -123,7 +120,7 @@ namespace VirusDetection.Utils
             int benignCount = 0;
             int totalCount = 0;
 
-            int randSize = benignLen / virusLen;
+            int randSize = benignLen / (virusLen > 0 ? virusLen : 1);
             bool done = false;
 
             Random rand = new Random();
@@ -350,9 +347,7 @@ namespace VirusDetection.Utils
             return count - 1;
         }
 
-
         #endregion
-
 
         public static int[] calcFormatRange(string formatRange_)
         {
@@ -390,7 +385,7 @@ namespace VirusDetection.Utils
         //    int benignCount = 0;
         //    int totalCount = 0;
 
-        //    int randSize = benignLen / virusLen;
+        //    int randSize = benignLen / (virusLen > 0 ? virusLen : 1);
         //    bool done = false;
 
         //    Random rand = new Random();
@@ -482,6 +477,22 @@ namespace VirusDetection.Utils
 
         #endregion
 
-        
+
+
+        internal static int[] calcNumOfDetector(double[][] detectorData_)
+        {
+            int numVirus = 0;
+            int numBenign = 0;
+            int detectorTypeIndex = detectorData_[0].Length - 1;
+            foreach (double[] vector in detectorData_)
+            {
+                if(checkVirus(vector[detectorTypeIndex]))
+                {
+                    numVirus++;
+                }
+            }
+            numBenign = detectorData_.Length - numVirus;
+            return new int[] { numVirus, numBenign };
+        }
     }
 }

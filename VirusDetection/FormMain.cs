@@ -41,7 +41,7 @@ namespace VirusDetection
         private DataGeneration datageneration;
 
         private TrainingData _virusFragments;
-        private TrainingData BenignFragments;
+        private TrainingData _benignFragments;
 
         private double[][] _detectorData;
 
@@ -70,17 +70,7 @@ namespace VirusDetection
             _lkPatch();
         }
 
-        private void _lkPatch()
-        {
-            Utils.Utils.GUI_SUPPORT = new GuiSupport(this);
-        }
-
-        private void _patchForProgressBar()
-        {
-            progressBar2.Minimum = 0;
-            progressBar2.Maximum = Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX;
-        }
-
+        
         #region Form Event
         private void btnBuildDetector_Click(object sender, EventArgs e)
         {
@@ -163,8 +153,171 @@ namespace VirusDetection
         {
             String fileName = txtbMixDetectorFile.Text;
             _detectorData = Utils.Utils.loadMixDetector(fileName);
+            _calcNumOfDetector();
             MessageBox.Show("Successful!");
         }
+
+        private void _calcNumOfDetector()
+        {
+            int[] detectorCount = Utils.Utils.calcNumOfDetector(_detectorData);
+            txtbClusteringTotalVirus.Text = detectorCount[0].ToString();
+            txtbClusteringTotalBenign.Text = detectorCount[1].ToString();
+        }
+
+        private void btnStartClustering_Click(object sender, EventArgs e)
+        {
+            _initClustering();
+            _clusteringManager.trainDistanceNetwork();
+            MessageBox.Show("Successful!");
+        }
+
+        private void btnPrintNeuron_Click(object sender, EventArgs e)
+        {
+            _clusteringManager.printlnNeuron();
+        }
+
+        private void btnBuildFileClassifier_Click(object sender, EventArgs e)
+        {
+            int numOfHiddenNeuron = int.Parse(txtbClassifierNumHiddenNeuron.Text);
+            int numOfIterator = int.Parse(txtbClassifierNumIterator.Text);
+            double errorThresold = double.Parse(txtbClassifierErrorThresold.Text);
+
+            String virusFolder = txtbVirusFolder.Text;
+            String benignFolder = txtbBenignFolder.Text;
+            String formatRange = txtbFormatRange.Text;
+
+            _fileClassifierManager = new FileClassifierManager(
+                numOfHiddenNeuron,
+                numOfIterator,
+                errorThresold,
+                virusFolder,
+                benignFolder,
+                _clusteringManager.DistanceNetwork,
+                formatRange
+                );
+
+            _fileClassifierManager.trainActiveNetwork();
+            MessageBox.Show("Successful!");
+        }
+
+        private void btnSaveFileClassifier_Click(object sender, EventArgs e)
+        {
+            String fileName = txtbFileClassifierFile.Text;
+            _fileClassifierManager.saveActiveNetwork(fileName);
+            MessageBox.Show("Successful!");
+        }
+
+        private void btnLoadFileClassifier_Click(object sender, EventArgs e)
+        {
+            if (_fileClassifierManager == null)
+            {
+                int numOfHiddenNeuron = int.Parse(txtbClassifierNumHiddenNeuron.Text);
+                int numOfIterator = int.Parse(txtbClassifierNumIterator.Text);
+                int errorThresold = int.Parse(txtbClassifierErrorThresold.Text);
+                String virusFolder = txtbVirusFolder.Text;
+                String benignFolder = txtbBenignFolder.Text;
+                String formatRange = txtbFormatRange.Text;
+
+                _fileClassifierManager = new FileClassifierManager(
+                    numOfHiddenNeuron,
+                    numOfIterator,
+                    errorThresold,
+                    virusFolder,
+                    benignFolder,
+                    _clusteringManager.DistanceNetwork,
+                    formatRange
+                    );
+            }
+
+            String fileName = txtbFileClassifierFile.Text;
+            _fileClassifierManager.loadActiveNetwork(fileName);
+            MessageBox.Show("Successful!");
+        }
+
+        private void btnScanVirus_Click(object sender, EventArgs e)
+        {
+            _virusScannerManager = new VirusScannerManager(
+                _fileClassifierManager.DistanceNetwork,
+                _fileClassifierManager.ActivationNetwork,
+                txtbFormatRange.Text
+                );
+
+            String testFileFolder = txtbVirusScannerTestFileFolder.Text;
+            String[] testFile = Directory.GetFiles(testFileFolder, "*.*", SearchOption.AllDirectories);
+
+            int numOfVirus = 0;
+            int numOfBenign = 0;
+
+            foreach (String file in testFile)
+            {
+                int result = _virusScannerManager.scanFile(file);
+                if (result == 1)
+                    numOfVirus++;
+                else
+                    numOfBenign++;
+                Console.WriteLine(file + ", " + result);
+            }
+
+            txtbNumOfVirus.Text = numOfVirus.ToString();
+            txtbNumOfBenign.Text = numOfBenign.ToString();
+            Console.WriteLine("Virus: " + numOfVirus);
+            Console.WriteLine("Benign: " + numOfBenign);
+
+        }
+
+        private void btnFileClassifierFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.RestoreDirectory = true;
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+                txtbFileClassifierFile.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void cbxUseRate_CheckedChanged(object sender, EventArgs e)
+        {
+            txtbBenignVirusRate.ReadOnly = !txtbBenignVirusRate.ReadOnly;
+
+            txtbVirusSize.ReadOnly = !txtbVirusSize.ReadOnly;
+            txtbBenignSize.ReadOnly = !txtbBenignSize.ReadOnly;
+        }
+
+        private void btnMixDetector_Click(object sender, EventArgs e)
+        {
+            _correctDetectorData();
+            _calcNumOfDetector();
+            MessageBox.Show("Successful!");
+        }
+
+        private void btnSaveDetector_Click(object sender, EventArgs e)
+        {
+            String virusSavePath = txtbDetectorFile.Text + "VR.txt";
+            String benignSavePath = txtbDetectorFile.Text + "BN.txt";
+            Utils.Utils.saveDetector(_virusFragments, virusSavePath, _benignFragments, benignSavePath);
+            MessageBox.Show("Successful!");
+        }
+
+        private void btnLoadDetector_Click(object sender, EventArgs e)
+        {
+            String virusSavePath = txtbDetectorFile.Text + "VR.txt";
+            String benignSavePath = txtbDetectorFile.Text + "BN.txt";
+            Utils.Utils.loadDetector(ref _virusFragments, virusSavePath, ref _benignFragments, benignSavePath);
+            MessageBox.Show("Successful!");
+        }
+
+        private void btnTestFileFolder_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    txtbVirusScannerTestFileFolder.Text = fbd.SelectedPath;
+                }
+            }
+        }
+
 
         #endregion
 
@@ -199,7 +352,7 @@ namespace VirusDetection
         {
             datageneration.run();
             this._virusFragments = datageneration.trainingDataOutput;
-            this.BenignFragments = datageneration.FileFragmentInput;
+            this._benignFragments = datageneration.FileFragmentInput;
             ShowDataGenerationProcess(70, "Starting clustering process...");
             ShowDataGenerationProcess(90, "Data generation process has ended");
         }
@@ -479,7 +632,7 @@ namespace VirusDetection
             ShowDataGenerationProcess(95, "Preparing results...");
             ShowingDataGenerationResults();
             ShowDataGenerationProcess(100, "Finished!");
-            ShowDataGenerationProcess(100, string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", _virusFragments.Count, BenignFragments.Count));
+            ShowDataGenerationProcess(100, string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", _virusFragments.Count, _benignFragments.Count));
         }
 
 
@@ -489,8 +642,8 @@ namespace VirusDetection
 
             int virusLen = 0;
             int benignLen = 0;
-            
-            if(cbxUseRate.Checked)
+
+            if (cbxUseRate.Checked)
             {
                 virusLen = _virusFragments.Count;
 
@@ -506,55 +659,66 @@ namespace VirusDetection
                 String strBenignLen = txtbBenignSize.Text;
                 benignLen = int.Parse(strBenignLen);
             }
-            Math.Min(virusLen * 10, BenignFragments.Count);
-            
+
             // Select algorithm
-            int inputCount = int.Parse(txtbClusteringInputCount.Text);
+            int inputCount = int.Parse(txtbClusteringNumInputNeuron.Text);
             if (inputCount == 4)
             {
-                _detectorData = Utils.Utils.correctAndMixDetectorUpdate(_virusFragments, virusLen, BenignFragments, benignLen);
+                _detectorData = Utils.Utils.correctAndMixDetectorUpdate(_virusFragments, virusLen, _benignFragments, benignLen);
             }
             else
             {
-                _detectorData = Utils.Utils.mixDetectorUpdate(_virusFragments, virusLen, BenignFragments, benignLen);
+                _detectorData = Utils.Utils.mixDetectorUpdate(_virusFragments, virusLen, _benignFragments, benignLen);
             }
-            
+
         }
 
         #endregion
 
         #region Clustering Method
 
-        public void initClustering()
+        private void _initClustering()
         {
-            int inputCount = int.Parse(txtbClusteringInputCount.Text);
+            int inputCount = int.Parse(txtbClusteringNumInputNeuron.Text);
             int maxInputRange = (inputCount == 4 ? 255 : 1);
             int numNeuronX = int.Parse(txtbNumNeuronX.Text);
             int numNeuronY = int.Parse(txtbNumNeuronY.Text);
+            double learningRate = double.Parse(txtbClusteringLearningRate.Text);
+            double learningRadius = double.Parse(txtbClusteringLearningRadius.Text);
             int numOfIterator = int.Parse(txtbClusteringNumIterator.Text);
             double errorThresold = double.Parse(txtbClusteringErrorThresold.Text);
 
-            _clusteringManager = new ClusteringManager(_detectorData, inputCount, maxInputRange, numNeuronX, numNeuronY,numOfIterator,errorThresold);
-
+            _clusteringManager = new ClusteringManager(
+                inputCount,
+                numNeuronX,
+                numNeuronY,
+                learningRate,
+                learningRadius,
+                numOfIterator,
+                errorThresold,
+                _detectorData,
+                maxInputRange
+                );
         }
+
         public void startClustering()
         {
-            _clusteringManager.trainNetwork();
+            _clusteringManager.trainDistanceNetwork();
         }
 
         public void saveClusteringOutput(String fileName_)
         {
-            _clusteringManager.saveNetwork(fileName_);
+            _clusteringManager.saveDistanceNetwork(fileName_);
         }
 
         public void loadClusteringOutput(String fileName_)
         {
-            _clusteringManager.loadNetwork(fileName_);
+            _clusteringManager.loadDistanceNetwork(fileName_);
         }
 
         #endregion
 
-        private void btnClassifier_Click(object sender, EventArgs e)
+        private void btnClusteringFile_Click(object sender, EventArgs e)
         {
 
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -570,7 +734,7 @@ namespace VirusDetection
         private void btnSaveClustering_Click(object sender, EventArgs e)
         {
             String fileName = txtbClusteringFile.Text;
-            _clusteringManager.saveNetwork(fileName);
+            _clusteringManager.saveDistanceNetwork(fileName);
             MessageBox.Show("Successful!");
         }
 
@@ -579,9 +743,15 @@ namespace VirusDetection
         private void btnLoad_Click(object sender, EventArgs e)
         {
             String fileName = txtbClusteringFile.Text;
+
             if (_clusteringManager == null)
-                initClustering();
-            _clusteringManager.loadNetwork(fileName);
+                _clusteringManager = new ClusteringManager();
+
+            _clusteringManager.loadDistanceNetwork(fileName);
+            txtbClusteringNumInputNeuron.Text = _clusteringManager.NumInputNeuron.ToString();
+            txtbClusteringNumOutputNeuron.Text = _clusteringManager.NumOutputNeron.ToString();
+            
+            
             MessageBox.Show("Successful!");
         }
 
@@ -602,75 +772,17 @@ namespace VirusDetection
 
         #endregion
 
-        private void btnStartClustering_Click(object sender, EventArgs e)
+        #region Gui Support Method
+
+        private void _lkPatch()
         {
-            initClustering();
-            _clusteringManager.trainNetwork();
-            MessageBox.Show("Successful!");
+            Utils.Utils.GUI_SUPPORT = new GuiSupport(this);
         }
 
-        private void btnPrintNeuron_Click(object sender, EventArgs e)
+        private void _patchForProgressBar()
         {
-            _clusteringManager.printlnNeuron();
-        }
-
-        private void btnBuildFileClassifier_Click(object sender, EventArgs e)
-        {
-            _fileClassifierManager = new FileClassifierManager(txtbVirusFolder.Text, txtbBenignFolder.Text, _clusteringManager.DistanceNetwork, txtbFormatRange.Text);
-            _fileClassifierManager.train(500, 0.2);
-            MessageBox.Show("Successful!");
-        }
-
-        private void btnSaveFileClassifier_Click(object sender, EventArgs e)
-        {
-            String fileName = txtbFileClassifierFile.Text;
-            _fileClassifierManager.saveClassifierNetwork(fileName);
-            MessageBox.Show("Successful!");
-        }
-
-        private void btnLoadFileClassifier_Click(object sender, EventArgs e)
-        {
-            if (_fileClassifierManager == null)
-                _fileClassifierManager = new FileClassifierManager(txtbVirusFolder.Text, txtbBenignFolder.Text, _clusteringManager.DistanceNetwork, txtbFormatRange.Text);
-            String fileName = txtbFileClassifierFile.Text;
-            _fileClassifierManager.loadClassifierNetwork(fileName);
-            MessageBox.Show("Successful!");
-        }
-
-        private void btnScanVirus_Click(object sender, EventArgs e)
-        {
-            _virusScannerManager = new VirusScannerManager(_fileClassifierManager.DistanceNetwork, _fileClassifierManager.ActivationNetwork, txtbFormatRange.Text);
-            String testFileFolder = txtbVirusScannerTestFileFolder.Text;
-            String[] virusFile = Directory.GetFiles(testFileFolder, "*.*", SearchOption.AllDirectories);
-
-            int numOfVirus = 0;
-            int numOfBenign = 0;
-
-            foreach (String file in virusFile)
-            {
-                int result = _virusScannerManager.scanFile(file);
-                if (result == 1)
-                    numOfVirus++;
-                else
-                    numOfBenign++;
-                Console.WriteLine(file+", "+result);
-            }
-            txtbNumOfVirus.Text = numOfVirus.ToString();
-            txtbNumOfBenign.Text = numOfBenign.ToString();
-            Console.WriteLine("Virus: " + numOfVirus);
-            Console.WriteLine("Benign: " + numOfBenign);
-
-        }
-
-        private void btnFileClassifierFile_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.RestoreDirectory = true;
-            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
-            if (result == DialogResult.OK) // Test result.
-            {
-                txtbFileClassifierFile.Text = openFileDialog1.FileName;
-            }
+            progressBar2.Minimum = 0;
+            progressBar2.Maximum = Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX;
         }
 
         internal void updateProgressBarCallBack()
@@ -706,49 +818,36 @@ namespace VirusDetection
             }
             txtbVirusFragmentsCount.Text = Utils.Utils.GLOBAL_VIRUS_COUNT.ToString();
         }
+        #endregion
 
-        private void cbxUseRate_CheckedChanged(object sender, EventArgs e)
+        private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtbBenignVirusRate.Enabled = !txtbBenignVirusRate.Enabled;
-
-            txtbVirusSize.Enabled = !txtbVirusSize.Enabled;
-            txtbBenignSize.Enabled = !txtbBenignSize.Enabled;
-        }
-
-        private void btnMixDetector_Click(object sender, EventArgs e)
-        {
-            _correctDetectorData();
-            MessageBox.Show("Successful!");
-        }
-
-       
-
-        private void btnSaveDetector_Click(object sender, EventArgs e)
-        {
-            String virusSavePath = txtbDetectorFile.Text+"VR.txt";
-            String benignSavePath = txtbDetectorFile.Text+"BN.txt";
-            Utils.Utils.saveDetector(_virusFragments, virusSavePath,BenignFragments,benignSavePath);
-            MessageBox.Show("Successful!");
-        }
-
-        private void btnLoadDetector_Click(object sender, EventArgs e)
-        {
-            String virusSavePath = txtbDetectorFile.Text + "VR.txt";
-            String benignSavePath = txtbDetectorFile.Text + "BN.txt";
-            Utils.Utils.loadDetector(ref _virusFragments, virusSavePath, ref BenignFragments, benignSavePath);
-            MessageBox.Show("Successful!");
-        }
-
-        private void btnTestFileFolder_Click(object sender, EventArgs e)
-        {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            int tabIndex = tabMain.SelectedIndex;
+            if(tabIndex == 1) // Tab Clustering
             {
-                if (fbd.ShowDialog() == DialogResult.OK)
-                {
-                    txtbVirusScannerTestFileFolder.Text = fbd.SelectedPath;
-                }
+                _initTabClustering();
             }
         }
+
+        private void _initTabClustering()
+        {
+            //if(_virusFragments!= null)
+            //{
+            //        txtbClusteringTotalVirus.Text = _virusFragments.Count.ToString();
+            //        txtbClusteringTotalBenign.Text = _benignFragments.Count.ToString();
+            //}
+        }
+
+        private void btnMixDetectorFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+                txtbMixDetectorFile.Text = openFileDialog1.FileName;
+            }
+        }
+
 
     }
 }
