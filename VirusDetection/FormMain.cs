@@ -214,6 +214,7 @@ namespace VirusDetection
             if (_fileClassifierManager == null)
             {
                 int numOfHiddenNeuron = int.Parse(txtbClassifierNumHiddenNeuron.Text);
+                int numOfOutputNeuron = int.Parse(txtbClassifierNumOutputNeuron.Text);
                 int numOfIterator = int.Parse(txtbClassifierNumIterator.Text);
                 int errorThresold = int.Parse(txtbClassifierErrorThresold.Text);
                 String virusFolder = txtbVirusFolder.Text;
@@ -222,6 +223,7 @@ namespace VirusDetection
 
                 _fileClassifierManager = new FileClassifierManager(
                     numOfHiddenNeuron,
+                    numOfOutputNeuron,
                     numOfIterator,
                     errorThresold,
                     virusFolder,
