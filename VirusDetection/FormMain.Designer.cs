@@ -79,9 +79,13 @@
             this.txtbClusteringTotalBenign = new System.Windows.Forms.TextBox();
             this.txtbClusteringTotalVirus = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.btnLoadMixDetector = new System.Windows.Forms.Button();
+            this.txtbClusteringLearningRadius = new System.Windows.Forms.TextBox();
             this.btnSaveMixDetector = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.txtbClusteringLearningRate = new System.Windows.Forms.TextBox();
             this.txtbClusteringNumOutputNeuron = new System.Windows.Forms.TextBox();
             this.btnClustering = new System.Windows.Forms.Button();
             this.btnMixDetector = new System.Windows.Forms.Button();
@@ -133,10 +137,6 @@
             this.btnTestFileFolder = new System.Windows.Forms.Button();
             this.btnScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtbClusteringLearningRadius = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txtbClusteringLearningRate = new System.Windows.Forms.TextBox();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -694,6 +694,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Function";
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(47, 294);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(84, 13);
+            this.label27.TabIndex = 36;
+            this.label27.Text = "Learning Radius";
+            // 
             // btnLoadMixDetector
             // 
             this.btnLoadMixDetector.Location = new System.Drawing.Point(178, 136);
@@ -703,6 +712,14 @@
             this.btnLoadMixDetector.Text = "Load Mix Detector";
             this.btnLoadMixDetector.UseVisualStyleBackColor = true;
             this.btnLoadMixDetector.Click += new System.EventHandler(this.btnLoadMixDetector_Click);
+            // 
+            // txtbClusteringLearningRadius
+            // 
+            this.txtbClusteringLearningRadius.Location = new System.Drawing.Point(157, 287);
+            this.txtbClusteringLearningRadius.Name = "txtbClusteringLearningRadius";
+            this.txtbClusteringLearningRadius.Size = new System.Drawing.Size(99, 20);
+            this.txtbClusteringLearningRadius.TabIndex = 35;
+            this.txtbClusteringLearningRadius.Text = "4";
             // 
             // btnSaveMixDetector
             // 
@@ -714,6 +731,15 @@
             this.btnSaveMixDetector.UseVisualStyleBackColor = true;
             this.btnSaveMixDetector.Click += new System.EventHandler(this.btnSaveMixDetector_Click);
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(47, 270);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(74, 13);
+            this.label28.TabIndex = 34;
+            this.label28.Text = "Learning Rate";
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -722,6 +748,14 @@
             this.label23.Size = new System.Drawing.Size(102, 13);
             this.label23.TabIndex = 32;
             this.label23.Text = "Num Output Neuron";
+            // 
+            // txtbClusteringLearningRate
+            // 
+            this.txtbClusteringLearningRate.Location = new System.Drawing.Point(157, 263);
+            this.txtbClusteringLearningRate.Name = "txtbClusteringLearningRate";
+            this.txtbClusteringLearningRate.Size = new System.Drawing.Size(99, 20);
+            this.txtbClusteringLearningRate.TabIndex = 33;
+            this.txtbClusteringLearningRate.Text = "0.3";
             // 
             // txtbClusteringNumOutputNeuron
             // 
@@ -997,7 +1031,7 @@
             this.txtbClassifierNumOutputNeuron.Name = "txtbClassifierNumOutputNeuron";
             this.txtbClassifierNumOutputNeuron.Size = new System.Drawing.Size(99, 20);
             this.txtbClassifierNumOutputNeuron.TabIndex = 38;
-            this.txtbClassifierNumOutputNeuron.Text = "10";
+            this.txtbClassifierNumOutputNeuron.Text = "1";
             // 
             // label19
             // 
@@ -1048,7 +1082,7 @@
             this.txtbClassifierNumHiddenNeuron.Name = "txtbClassifierNumHiddenNeuron";
             this.txtbClassifierNumHiddenNeuron.Size = new System.Drawing.Size(99, 20);
             this.txtbClassifierNumHiddenNeuron.TabIndex = 30;
-            this.txtbClassifierNumHiddenNeuron.Text = "10";
+            this.txtbClassifierNumHiddenNeuron.Text = "5";
             // 
             // label7
             // 
@@ -1193,40 +1227,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(47, 294);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(84, 13);
-            this.label27.TabIndex = 36;
-            this.label27.Text = "Learning Radius";
-            // 
-            // txtbClusteringLearningRadius
-            // 
-            this.txtbClusteringLearningRadius.Location = new System.Drawing.Point(157, 287);
-            this.txtbClusteringLearningRadius.Name = "txtbClusteringLearningRadius";
-            this.txtbClusteringLearningRadius.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringLearningRadius.TabIndex = 35;
-            this.txtbClusteringLearningRadius.Text = "4";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(47, 270);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(74, 13);
-            this.label28.TabIndex = 34;
-            this.label28.Text = "Learning Rate";
-            // 
-            // txtbClusteringLearningRate
-            // 
-            this.txtbClusteringLearningRate.Location = new System.Drawing.Point(157, 263);
-            this.txtbClusteringLearningRate.Name = "txtbClusteringLearningRate";
-            this.txtbClusteringLearningRate.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringLearningRate.TabIndex = 33;
-            this.txtbClusteringLearningRate.Text = "0.3";
             // 
             // FormMain
             // 

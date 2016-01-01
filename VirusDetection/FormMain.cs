@@ -179,6 +179,7 @@ namespace VirusDetection
         private void btnBuildFileClassifier_Click(object sender, EventArgs e)
         {
             int numOfHiddenNeuron = int.Parse(txtbClassifierNumHiddenNeuron.Text);
+            int numOfOutputNeuron = int.Parse(txtbClassifierNumOutputNeuron.Text);
             int numOfIterator = int.Parse(txtbClassifierNumIterator.Text);
             double errorThresold = double.Parse(txtbClassifierErrorThresold.Text);
 
@@ -188,6 +189,7 @@ namespace VirusDetection
 
             _fileClassifierManager = new FileClassifierManager(
                 numOfHiddenNeuron,
+                numOfOutputNeuron,
                 numOfIterator,
                 errorThresold,
                 virusFolder,

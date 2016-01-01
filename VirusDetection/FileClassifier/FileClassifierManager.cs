@@ -11,9 +11,20 @@ namespace VirusDetection.FileClassifier
 {
     class FileClassifierManager
     {
+
+        private int _numOfHiddenNeuron;
+        private int _numOfOutputNeuron;
+        private int _numOfIterator;
+        private double _errorThresold;
+
         String _virusFolder;
         String _benignFolder;
         LKDistanceNetwork _distanceNetwork;
+
+        double[][] _input;
+        double[][] _output;
+        String[][] _testInput;
+        int[] _formatRange;        
 
         internal LKDistanceNetwork DistanceNetwork
         {
@@ -27,20 +38,15 @@ namespace VirusDetection.FileClassifier
             get { return _activationNetwork; }
             set { _activationNetwork = value; }
         }
-        double[][] _input;
-        double[][] _output;
-        String[][] _testInput;
-        int[] _formatRange;
-        private int _numOfHiddenNeuron;
-        private int _numOfIterator;
-        private double _errorThresold;
+       
 
-        public FileClassifierManager(int numOfHiddenNeuron_, int numOfIterator_, double errorThresold_, String virusFolder_, String benignFolder_, LKDistanceNetwork network_, String formatRange_)
+        public FileClassifierManager(int numOfHiddenNeuron_, int numOfOutputNeuron_,  int numOfIterator_, double errorThresold_, String virusFolder_, String benignFolder_, LKDistanceNetwork network_, String formatRange_)
         {
             // TODO: Complete member initialization
-            this._numOfHiddenNeuron = numOfHiddenNeuron_;
-            this._numOfIterator = numOfIterator_;
-            this._errorThresold = errorThresold_;
+            _numOfHiddenNeuron = numOfHiddenNeuron_;
+            _numOfOutputNeuron = numOfOutputNeuron_;
+            _numOfIterator = numOfIterator_;
+            _errorThresold = errorThresold_;
 
             _virusFolder = virusFolder_;
             _benignFolder = benignFolder_;
@@ -125,7 +131,7 @@ namespace VirusDetection.FileClassifier
             this.buildTrainingSet();
 
             // Create ANN
-            _activationNetwork = new ActivationNetwork(new BipolarSigmoidFunction(), _formatRange.Length, 5, 1);
+            _activationNetwork = new ActivationNetwork(new BipolarSigmoidFunction(), _formatRange.Length, _numOfHiddenNeuron, _numOfOutputNeuron);
             BackPropagationLearning teacher = new BackPropagationLearning(_activationNetwork);
 
             // Train ANN
