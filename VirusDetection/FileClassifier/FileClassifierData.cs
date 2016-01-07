@@ -15,6 +15,7 @@ namespace VirusDetection.FileClassifier
         Hashtable _htFormattedData;
         int[] _formatRange;
         String _fileName;
+        int _totalCount; // total str in file
 
 
         LKDistanceNetwork _distanceNetwork;
@@ -37,21 +38,38 @@ namespace VirusDetection.FileClassifier
         {
             _htRawData = new Hashtable();
             _htFormattedData = new Hashtable();
+            _totalCount = 0;
         }
 
         private void _compute()
+        {
+            int numOfInput = _distanceNetwork.InputsCount;
+            if (numOfInput == 4)
+                _computeBase10();
+            else
+                _computeBase2();
+        }
+
+        private void _computeBase2()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void _computeBase10()
         {
             // Lay day byte
             // Doc 4 byte => Kohonen => result
             // + add to raw data
             // + calc for format data
-            int length = _distanceNetwork.InputsCount;// 4byte = 32bit
+            int length = 4;// 4 = 4 byte = 32bit
             int stepsize = 2;// each step = 2 bit to make data more
             byte[] bytes = File.ReadAllBytes(_fileName);
             for (int i = 0; i < bytes.Length - length; i += stepsize)
             {
                 byte[] rawBytes = new byte[length];
                 Array.Copy(bytes, i, rawBytes, 0, length);
+
+                //rawBytes = Utils.Utils.ConvertToBase(rawBytes, currentBase, convertBase);
                 _compute(rawBytes);
             }
         }
@@ -67,6 +85,7 @@ namespace VirusDetection.FileClassifier
             _hashmapAddKey(_htRawData, rawKey);
             int formattedKey = Utils.Utils.calcFormatRangeIndex(_formatRange, rawKey);
             _hashmapAddKey(_htFormattedData, formattedKey);
+
         }
 
         private void _hashmapAddKey(Hashtable _hashmap, int key)
@@ -83,6 +102,20 @@ namespace VirusDetection.FileClassifier
         }
 
         public double[] getFormatData()
+        {
+            int len = _formatRange.Length;
+            double[] result = new double[len];
+            for (int i = 0; i < len; i++)
+            {
+                if (_htFormattedData.ContainsKey(i))
+                    result[i] = (int)_htFormattedData[i];
+                else
+                    result[i] = 0;
+            }
+            return result;
+        }
+
+        public double[] getRateFormatData()
         {
             int len = _formatRange.Length;
             double[] result = new double[len];

@@ -13,19 +13,19 @@ namespace VirusDetection.Utils
             _gui = gui_;
         }
 
-        public void progressBarUpdate()
+        public void updateProgressBar()
         {
             _gui.updateProgressBarCallBack();
         }
 
-        internal void progressBarInit()
+        internal void initProgressBar()
         {
-            _gui.progressBarInitCallBack();
+            _gui.initProgressBarCallBack();
         }
 
-        internal void virusFragmentUpdate()
+        internal void updateVirusFragment()
         {
-            _gui.virusFragmentsUpdateCallBack();
+            _gui.updateVirusFragmentCallBack();
         }
     }
 }

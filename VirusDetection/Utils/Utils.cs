@@ -26,6 +26,34 @@ namespace VirusDetection.Utils
 
         #region Detector Utils
 
+        public static byte[] ConvertBytesIntoBinary(byte[] _bytes)
+        {
+            return _bytes.SelectMany(GetBits).ToArray();
+        }
+
+        public static byte[] Test_ConvertBytesIntoBinary(byte[] _bytes)
+        {
+            return _bytes.SelectMany(Test_GetBits).ToArray();
+        }
+        public static IEnumerable<byte> GetBits(byte b)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                if ((b & 0x80) != 0) yield return (byte)1; else yield return (byte)0;
+                b *= 2;
+            }
+        }
+        public static IEnumerable<byte> Test_GetBits(byte b)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                if ((b & 0x80) != 0) yield return (byte)1; else yield return (byte)0;
+                b *= 2;
+            }
+        }
+
+
+        // Make detector from binary to decimal
         public static double[][] correctAndMixDetectorUpdate(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
         {
 
@@ -244,12 +272,21 @@ namespace VirusDetection.Utils
         {
             try
             {
-                StringBuilder temp = new StringBuilder();
-                foreach (byte x in byteArray)
-                {
-                    temp.Append(x);
-                }
-                String strBinary = temp.ToString();
+                String strBinary = String.Join("", byteArray);
+                String strHex = Convert.ToUInt32(strBinary, 2).ToString("X8");
+                return strHex;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
+        }
+
+        public static String Test_ByteArrayToHex(byte[] byteArray)
+        {
+            try
+            {
+                String strBinary = String.Join("", byteArray);
                 String strHex = Convert.ToInt32(strBinary, 2).ToString("X8");
                 return strHex;
             }
@@ -305,6 +342,10 @@ namespace VirusDetection.Utils
                 BenignFragments = (TrainingData)bformatter.Deserialize(stream);
             }
         }
+
+
+
+
 
         #endregion
 

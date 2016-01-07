@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelFooter = new System.Windows.Forms.Panel();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtbVirusFragmentsCount = new System.Windows.Forms.TextBox();
             this.txtStatusBar = new System.Windows.Forms.TextBox();
@@ -159,7 +159,7 @@
             // panelFooter
             // 
             this.panelFooter.BackColor = System.Drawing.SystemColors.Control;
-            this.panelFooter.Controls.Add(this.progressBar2);
+            this.panelFooter.Controls.Add(this.progressBar);
             this.panelFooter.Controls.Add(this.panel1);
             this.panelFooter.Controls.Add(this.pbStatus);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -169,13 +169,13 @@
             this.panelFooter.Size = new System.Drawing.Size(952, 84);
             this.panelFooter.TabIndex = 1;
             // 
-            // progressBar2
+            // progressBar
             // 
-            this.progressBar2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.progressBar2.Location = new System.Drawing.Point(5, 59);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(942, 23);
-            this.progressBar2.TabIndex = 2;
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.progressBar.Location = new System.Drawing.Point(5, 59);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(942, 23);
+            this.progressBar.TabIndex = 2;
             // 
             // panel1
             // 
@@ -1288,7 +1288,7 @@
         private System.Windows.Forms.TabPage tabpgClustering;
         private System.Windows.Forms.TabPage tabpgFileClassifier;
         private System.Windows.Forms.TabPage tabPgVirusScanner;
-        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtStatusBar;
         private System.Windows.Forms.TextBox txtTimeBox;

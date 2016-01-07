@@ -23,8 +23,8 @@ namespace VirusDetection.Detector
         public string BenignDirectory { get { return benignDirectory; } set { benignDirectory = value; } }
         private string outputFile = "";
         public string OutputFile { get { return outputFile; } set { outputFile = value; } }
-        private int length = 8;
-        private int stepsize = 4;// 1 byte= 8 bit       
+        private int length;
+        private int stepsize;// 1 byte= 8 bit       
         public int Length { get { return length; } set { length = value; stepsize = value / 2; } }
         public int Stepsize { get { return stepsize; } }
         private ManualResetEvent Event;
@@ -46,7 +46,7 @@ namespace VirusDetection.Detector
             for (int i = 0; i <= bytes.Length - length; i += stepsize)
             {
                 Array.Copy(bytes, i, temp, 0, length);
-                binaryArray = ConvertBytesIntoBinary(temp);
+                binaryArray = Utils.Utils.ConvertBytesIntoBinary(temp);
                 if (flag)
                 {
                     if (binaryArray != null)
@@ -81,6 +81,7 @@ namespace VirusDetection.Detector
             foreach (string fileName in fileEntries)
                 Readfile(fileName, flag);
         }
+
         //private void ReadDirectory(string directory, bool flag)
         //{
         //    filenames.Clear();
@@ -93,18 +94,7 @@ namespace VirusDetection.Detector
         //        Readfile(file, flag);
         //    }
         //}
-        private byte[] ConvertBytesIntoBinary(byte[] _bytes)
-        {
-            return _bytes.SelectMany(GetBits).ToArray();
-        }
-        private IEnumerable<byte> GetBits(byte b)
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                if ((b & 0x80) != 0) yield return (byte)1; else yield return (byte)0;
-                b *= 2;
-            }
-        }
+
 
         public void run()
         {
@@ -113,13 +103,15 @@ namespace VirusDetection.Detector
 
             // Init progressbar before work
             Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = VirusFragmentInput.Count;
-            Utils.Utils.GUI_SUPPORT.progressBarInit();
+            Utils.Utils.GUI_SUPPORT.initProgressBar();
 
             // Init virus count
             Utils.Utils.GLOBAL_PROGRESSBAR_COUNT = 0;
 
             NegativeSelection();
         }
+
+
         //private void NegativeSelection()
         //{
         //    filesRemains = VirusFragmentInput.Count;
@@ -156,7 +148,7 @@ namespace VirusDetection.Detector
                     {
                         trainingDataOutput.Add(binaryArray);
                         Utils.Utils.GLOBAL_VIRUS_COUNT++;
-                        Utils.Utils.GUI_SUPPORT.virusFragmentUpdate();
+                        Utils.Utils.GUI_SUPPORT.updateVirusFragment();
                     }
                     catch
                     {
@@ -176,7 +168,7 @@ namespace VirusDetection.Detector
             }
 
             // Update progress bar
-            Utils.Utils.GUI_SUPPORT.progressBarUpdate();
+            Utils.Utils.GUI_SUPPORT.updateProgressBar();
 
         }
         private bool IsMatchSelf(byte[] _byte)
@@ -189,26 +181,26 @@ namespace VirusDetection.Detector
             }
             return false;
         }
-        private void RemoveEquals(TrainingData TD)
-        {
-            for (int i = 0; i < TD.Count - 1; i++)
-                for (int j = i + 1; j < TD.Count; j++)
-                {
-                    if (Equals(TD[i], TD[j]))
-                    {
-                        TD.RemoveAt(j);
-                        j--;
-                    }
-                }
-        }
-        private bool Equals(byte[] a, byte[] b)
-        {
-            if (a.Length != b.Length)
-                return false;
-            for (int i = 0; i < a.Length; i++)
-                if (a[i] != b[i])
-                    return false;
-            return true;
-        }
+        //private void RemoveEquals(TrainingData TD)
+        //{
+        //    for (int i = 0; i < TD.Count - 1; i++)
+        //        for (int j = i + 1; j < TD.Count; j++)
+        //        {
+        //            if (Equals(TD[i], TD[j]))
+        //            {
+        //                TD.RemoveAt(j);
+        //                j--;
+        //            }
+        //        }
+        //}
+        //private bool Equals(byte[] a, byte[] b)
+        //{
+        //    if (a.Length != b.Length)
+        //        return false;
+        //    for (int i = 0; i < a.Length; i++)
+        //        if (a[i] != b[i])
+        //            return false;
+        //    return true;
+        //}
     }
 }

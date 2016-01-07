@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -74,7 +75,7 @@ namespace VirusDetection
         #region Form Event
         private void btnBuildDetector_Click(object sender, EventArgs e)
         {
-            progressBar2.Value = 0;
+            progressBar.Value = 0;
             if (isWorking)
                 return;
             CheckState();
@@ -334,7 +335,7 @@ namespace VirusDetection
             this.Cursor = Cursors.WaitCursor;
             //
             btnStop.Enabled = stopable;
-            progressBar2.Value = 0;
+            progressBar.Value = 0;
             pbStatus.Value = 0;
             if (stopable)
             {
@@ -778,6 +779,7 @@ namespace VirusDetection
 
         #region Gui Support Method
 
+        // Add patch for gui to show the program is working
         private void _lkPatch()
         {
             Utils.Utils.GUI_SUPPORT = new GuiSupport(this);
@@ -785,8 +787,8 @@ namespace VirusDetection
 
         private void _patchForProgressBar()
         {
-            progressBar2.Minimum = 0;
-            progressBar2.Maximum = Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX;
+            progressBar.Minimum = 0;
+            progressBar.Maximum = Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX;
         }
 
         internal void updateProgressBarCallBack()
@@ -797,26 +799,26 @@ namespace VirusDetection
                 Invoke(method);
                 return;
             }
-            progressBar2.Value++;
+            progressBar.Value++;
         }
 
-        internal void progressBarInitCallBack()
+        internal void initProgressBarCallBack()
         {
             if (InvokeRequired)
             {
-                MethodInvoker method = new MethodInvoker(progressBarInitCallBack);
+                MethodInvoker method = new MethodInvoker(initProgressBarCallBack);
                 Invoke(method);
                 return;
             }
-            progressBar2.Maximum = progressBar2.Value + Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX;
-            progressBar2.Step = 1;
+            progressBar.Maximum = progressBar.Value + Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX;
+            progressBar.Step = 1;
         }
 
-        internal void virusFragmentsUpdateCallBack()
+        internal void updateVirusFragmentCallBack()
         {
             if (InvokeRequired)
             {
-                MethodInvoker method = new MethodInvoker(virusFragmentsUpdateCallBack);
+                MethodInvoker method = new MethodInvoker(updateVirusFragmentCallBack);
                 Invoke(method);
                 return;
             }
@@ -829,17 +831,8 @@ namespace VirusDetection
             int tabIndex = tabMain.SelectedIndex;
             if(tabIndex == 1) // Tab Clustering
             {
-                _initTabClustering();
+                
             }
-        }
-
-        private void _initTabClustering()
-        {
-            //if(_virusFragments!= null)
-            //{
-            //        txtbClusteringTotalVirus.Text = _virusFragments.Count.ToString();
-            //        txtbClusteringTotalBenign.Text = _benignFragments.Count.ToString();
-            //}
         }
 
         private void btnMixDetectorFile_Click(object sender, EventArgs e)
