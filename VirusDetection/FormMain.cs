@@ -174,7 +174,7 @@ namespace VirusDetection
 
         private void btnPrintNeuron_Click(object sender, EventArgs e)
         {
-            _clusteringManager.printlnNeuron();
+            _clusteringManager.Test_PrintlnNeuron();
         }
 
         private void btnBuildFileClassifier_Click(object sender, EventArgs e)
@@ -669,11 +669,11 @@ namespace VirusDetection
             int inputCount = int.Parse(txtbClusteringNumInputNeuron.Text);
             if (inputCount == 4)
             {
-                _detectorData = Utils.Utils.correctAndMixDetectorUpdate(_virusFragments, virusLen, _benignFragments, benignLen);
+                _detectorData = Utils.Utils.mixDetectorBase10(_virusFragments, virusLen, _benignFragments, benignLen);
             }
             else
             {
-                _detectorData = Utils.Utils.mixDetectorUpdate(_virusFragments, virusLen, _benignFragments, benignLen);
+                _detectorData = Utils.Utils.mixDetectorBase2(_virusFragments, virusLen, _benignFragments, benignLen);
             }
 
         }

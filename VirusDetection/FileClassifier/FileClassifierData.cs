@@ -43,20 +43,6 @@ namespace VirusDetection.FileClassifier
 
         private void _compute()
         {
-            int numOfInput = _distanceNetwork.InputsCount;
-            if (numOfInput == 4)
-                _computeBase10();
-            else
-                _computeBase2();
-        }
-
-        private void _computeBase2()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void _computeBase10()
-        {
             // Lay day byte
             // Doc 4 byte => Kohonen => result
             // + add to raw data
@@ -69,10 +55,12 @@ namespace VirusDetection.FileClassifier
                 byte[] rawBytes = new byte[length];
                 Array.Copy(bytes, i, rawBytes, 0, length);
 
-                //rawBytes = Utils.Utils.ConvertToBase(rawBytes, currentBase, convertBase);
+                if (_distanceNetwork.InputsCount == 4)
+                    rawBytes = Utils.Utils.ConvertBytesIntoBinary(rawBytes);
                 _compute(rawBytes);
             }
         }
+
 
         // Compute for 32bit str
         private void _compute(byte[] rawBytes)

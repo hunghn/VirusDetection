@@ -52,9 +52,16 @@ namespace VirusDetection.Utils
             }
         }
 
+        private static double[] binaryArrayToDecArray(byte[] binaryArray)
+        {
+            String strBinary = String.Join("", binaryArray);
+            String[] binary8 = Split(strBinary, 8);
+            double[] result = binary8.Select(x => (double)Convert.ToUInt32(x, 2)).ToArray();
+            return result;
+        }
 
-        // Make detector from binary to decimal
-        public static double[][] correctAndMixDetectorUpdate(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
+        // Mix detector, convert binary to decimal, 4 elements
+        public static double[][] mixDetectorBase10(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
         {
 
             int virusLen = Math.Min(VirusFragments.Count, virusLen_);
@@ -81,20 +88,18 @@ namespace VirusDetection.Utils
                 int n = Math.Min(1, virusLen - virusCount);
                 for (int i = 0; i < n; i++)
                 {
-                    byte[] byteArray = VirusFragments[virusCount];
+                    byte[] binaryArray = VirusFragments[virusCount];
 
                     // Prevent data repeat
-                    if (virusData.Contains(byteArray))
+                    if (virusData.Contains(binaryArray))
                     {
                         continue;
                     }
-                    virusData.Add(byteArray);
+                    virusData.Add(binaryArray);
 
-                    double[] temp = new double[5];
-                    String hexStr = ByteArrayToHex(byteArray);
-                    String[] hex4 = Split(hexStr, 2);
-                    HexArray2DecArray(hex4, ref temp);
-                    temp[4] = VIRUS_MARK;
+                    double[] temp = binaryArrayToDecArray(binaryArray);
+                    Array.Resize<double>(ref temp, temp.Length + 1);
+                    temp[temp.Length - 1] = VIRUS_MARK;
                     mixData[totalCount] = temp;
 
                     virusCount++;
@@ -106,20 +111,18 @@ namespace VirusDetection.Utils
                 for (int i = 0; i < m; i++)
                 {
                     int index = benignRand.Next(0, BenignFragments.Count);
-                    byte[] byteArray = BenignFragments[index];
+                    byte[] binaryArray = BenignFragments[index];
 
                     // Prevent data repeat
-                    if (benignData.Contains(byteArray))
+                    if (benignData.Contains(binaryArray))
                     {
                         continue;
                     }
-                    benignData.Add(byteArray);
+                    benignData.Add(binaryArray);
 
-                    double[] temp = new double[5];
-                    String hexStr = ByteArrayToHex(byteArray);
-                    String[] hex4 = Split(hexStr, 2);
-                    HexArray2DecArray(hex4, ref temp);
-                    temp[4] = BENIGN_MARK;
+                    double[] temp = binaryArrayToDecArray(binaryArray); 
+                    Array.Resize<double>(ref temp, temp.Length + 1);
+                    temp[temp.Length - 1] = BENIGN_MARK;
                     mixData[totalCount] = temp;
 
                     benignCount++;
@@ -133,7 +136,8 @@ namespace VirusDetection.Utils
         }
 
 
-        public static double[][] mixDetectorUpdate(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
+        // Mix detector, out input in binary, 32 elements
+        public static double[][] mixDetectorBase2(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
         {
 
             int virusLen = Math.Min(VirusFragments.Count, virusLen_);
@@ -160,17 +164,17 @@ namespace VirusDetection.Utils
                 int n = Math.Min(1, virusLen - virusCount);
                 for (int i = 0; i < n; i++)
                 {
-                    byte[] byteArray = VirusFragments[virusCount];
+                    byte[] binaryArray = VirusFragments[virusCount];
 
                     // Prevent data repeat
-                    if (virusData.Contains(byteArray))
+                    if (virusData.Contains(binaryArray))
                     {
                         continue;
                     }
-                    virusData.Add(byteArray);
+                    virusData.Add(binaryArray);
 
-                    Array.Resize<byte>(ref byteArray, byteArray.Length+1);
-                    double[] temp = byteArray.Select(Convert.ToDouble).ToArray();
+                    Array.Resize<byte>(ref binaryArray, binaryArray.Length+1);
+                    double[] temp = binaryArray.Select(Convert.ToDouble).ToArray();
                     temp[temp.Length-1] = VIRUS_MARK;
                     mixData[totalCount] = temp;
 
@@ -183,17 +187,17 @@ namespace VirusDetection.Utils
                 for (int i = 0; i < m; i++)
                 {
                     int index = benignRand.Next(0, BenignFragments.Count);
-                    byte[] byteArray = BenignFragments[index];
+                    byte[] binaryArray = BenignFragments[index];
 
                     // Prevent data repeat
-                    if (benignData.Contains(byteArray))
+                    if (benignData.Contains(binaryArray))
                     {
                         continue;
                     }
-                    benignData.Add(byteArray);
+                    benignData.Add(binaryArray);
 
-                    Array.Resize<byte>(ref byteArray, byteArray.Length + 1);
-                    double[] temp = byteArray.Select(Convert.ToDouble).ToArray();
+                    Array.Resize<byte>(ref binaryArray, binaryArray.Length + 1);
+                    double[] temp = binaryArray.Select(Convert.ToDouble).ToArray();
                     temp[temp.Length - 1] = BENIGN_MARK;
                     mixData[totalCount] = temp;
 
@@ -268,19 +272,6 @@ namespace VirusDetection.Utils
             return result;
         }
 
-        private static String ByteArrayToHex(byte[] byteArray)
-        {
-            try
-            {
-                String strBinary = String.Join("", byteArray);
-                String strHex = Convert.ToUInt32(strBinary, 2).ToString("X8");
-                return strHex;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception();
-            }
-        }
 
         public static String Test_ByteArrayToHex(byte[] byteArray)
         {
@@ -295,15 +286,7 @@ namespace VirusDetection.Utils
                 throw new Exception();
             }
         }
-
-        private static void HexArray2DecArray(String[] hexArray_, ref double[] decArray_)
-        {
-            int len = hexArray_.Length;
-            for (int i = 0; i < len; i++)
-            {
-                decArray_[i] = Convert.ToInt32(hexArray_[i], 16);
-            }
-        }
+        
 
         internal static void saveDetector(TrainingData _virusFragments, string virusSavePath, TrainingData BenignFragments, string benignSavePath)
         {
@@ -342,8 +325,6 @@ namespace VirusDetection.Utils
                 BenignFragments = (TrainingData)bformatter.Deserialize(stream);
             }
         }
-
-
 
 
 
@@ -396,130 +377,6 @@ namespace VirusDetection.Utils
             return strFormatRange.Select(int.Parse).ToArray();
         }
 
-        #region Unused Method
-
-        private static int[] HexArray2DecArray(String[] hexArray_)
-        {
-            int len = hexArray_.Length;
-            int[] result = new int[len];
-            for (int i = 0; i < len; i++)
-            {
-                result[i] = Convert.ToInt32(hexArray_[i], 16);
-            }
-            return result;
-        }
-
-        //public static double[][] correctAndMixDetector(TrainingData VirusFragments, TrainingData BenignFragments)
-        //{
-        //    return correctAndMixDetector(VirusFragments, VirusFragments.Count, BenignFragments, BenignFragments.Count);
-        //}
-        //public static double[][] correctAndMixDetector(TrainingData VirusFragments, int virusLen_, TrainingData BenignFragments, int benignLen_)
-        //{
-
-        //    int virusLen = Math.Min(VirusFragments.Count, virusLen_);
-        //    int benignLen = Math.Min(BenignFragments.Count, benignLen_);
-        //    int totalLen = virusLen + benignLen;
-
-        //    double[][] mixData = new double[virusLen + benignLen][];
-
-        //    int virusCount = 0;
-        //    int benignCount = 0;
-        //    int totalCount = 0;
-
-        //    int randSize = benignLen / (virusLen > 0 ? virusLen : 1);
-        //    bool done = false;
-
-        //    Random rand = new Random();
-
-        //    while (!done)
-        //    {
-        //        // 1. kiem tra vr con khong, lay so lan lap random cua vr trong gioi han con lai hoac la size
-        //        int n = Math.Min(1, virusLen - virusCount);
-        //        for (int i = 0; i < n; i++)
-        //        {
-        //            mixData[totalCount] = new double[5];
-
-        //            byte[] byteArray = VirusFragments[virusCount];
-        //            String hexStr = ByteArrayToHex(byteArray);
-        //            String[] hex4 = Split(hexStr, 2);
-        //            HexArray2DecArray(hex4, ref mixData[totalCount]);
-        //            mixData[totalCount][4] = VIRUS_MARK;
-
-        //            virusCount++;
-        //            totalCount++;
-        //        }
-
-        //        // 2. lay so lan lap random cua sach nt
-        //        //if(benignLen - benignCount > 0)
-        //        {
-        //            int m = rand.Next(0, Math.Min(randSize, benignLen - benignCount + 1));
-
-        //            Console.WriteLine(m);
-        //            for (int i = 0; i < m; i++)
-        //            {
-        //                mixData[totalCount] = new double[5];
-
-        //                byte[] byteArray = BenignFragments[benignCount];
-        //                String hexStr = ByteArrayToHex(byteArray);
-        //                String[] hex4 = Split(hexStr, 2);
-        //                HexArray2DecArray(hex4, ref mixData[totalCount]);
-        //                mixData[totalCount][4] = BENIGN_MARK;
-
-        //                benignCount++;
-        //                totalCount++;
-        //            }
-        //        }
-
-        //        // for vr
-        //        // for sach
-        //        done = (totalCount >= totalLen);
-        //    }
-
-        //    return mixData;
-        //}
-
-        public static double[][] correctDetector(TrainingData virusFragments_)
-        {
-            // Debug
-            int count = 0;
-            try
-            {
-                int virusLen = virusFragments_.Count;
-
-                double[][] detector = new double[virusLen][];
-
-                Random rand = new Random();
-
-                // 1. kiem tra vr con khong, lay so lan lap random cua vr trong gioi han con lai hoac la size
-                for (int i = 0; i < virusLen; i++)
-                {
-                    count = i;
-                    detector[i] = new double[5];
-
-                    byte[] byteArray = virusFragments_[i];
-                    String hexStr = ByteArrayToHex(byteArray);
-                    String[] hex4 = Split(hexStr, 2);
-                    HexArray2DecArray(hex4, ref detector[i]);
-                    detector[i][4] = VIRUS_MARK;
-                }
-
-
-                return detector;
-            }
-            catch (Exception ex)
-            {
-                int debug = 1;
-                return null;
-            }
-
-        }
-
-
-
-        #endregion
-
-
-
         internal static int[] calcNumOfDetector(double[][] detectorData_)
         {
             int numVirus = 0;
@@ -527,7 +384,7 @@ namespace VirusDetection.Utils
             int detectorTypeIndex = detectorData_[0].Length - 1;
             foreach (double[] vector in detectorData_)
             {
-                if(checkVirus(vector[detectorTypeIndex]))
+                if (checkVirus(vector[detectorTypeIndex]))
                 {
                     numVirus++;
                 }
@@ -535,5 +392,49 @@ namespace VirusDetection.Utils
             numBenign = detectorData_.Length - numVirus;
             return new int[] { numVirus, numBenign };
         }
+
+
+        #region Unused Method
+
+        //private static int[] HexArray2DecArray(String[] hexArray_)
+        //{
+        //    int len = hexArray_.Length;
+        //    int[] result = new int[len];
+        //    for (int i = 0; i < len; i++)
+        //    {
+        //        result[i] = Convert.ToInt32(hexArray_[i], 16);
+        //    }
+        //    return result;
+        //}
+
+        //private static String ByteArrayToHex(byte[] byteArray)
+        //{
+        //    try
+        //    {
+        //        String strBinary = String.Join("", byteArray);
+        //        String strHex = Convert.ToUInt32(strBinary, 2).ToString("X8");
+        //        return strHex;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception();
+        //    }
+        //}
+        //private static void HexArray2DecArray(String[] hexArray_, ref double[] decArray_)
+        //{
+        //    int len = hexArray_.Length;
+        //    for (int i = 0; i < len; i++)
+        //    {
+        //        decArray_[i] = Convert.ToInt32(hexArray_[i], 16);
+        //    }
+        //}
+
+
+        
+
+
+        #endregion
+
+
     }
 }

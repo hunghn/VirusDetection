@@ -133,16 +133,16 @@ namespace VirusDetection.Clustering
         }
 
         #region Test Method
-        public void testData(double[][] testDB)
+        public void Test_Data(double[][] testDB)
         {
             foreach (double[] items in testDB)
             {
-                int winner = testData(items);
-                _println(items, winner);
+                int winner = Test_Data(items);
+                Test_Println(items, winner);
             }
         }
 
-        private void _println(double[] items, int winner)
+        private void Test_Println(double[] items, int winner)
         {
             foreach (double item in items)
             {
@@ -151,12 +151,12 @@ namespace VirusDetection.Clustering
             Console.WriteLine("==> " + winner);
         }
 
-        public void printlnNeuron()
+        public void Test_PrintlnNeuron()
         {
             ((LKDistanceLayer)_network.Layers[0]).printNeuron();
         }
 
-        public int testData(double[] vector)
+        public int Test_Data(double[] vector)
         {
             _network.Compute(vector);
             int winner = _network.GetWinner();
