@@ -55,7 +55,7 @@ namespace VirusDetection.FileClassifier
                 byte[] rawBytes = new byte[length];
                 Array.Copy(bytes, i, rawBytes, 0, length);
 
-                if (_distanceNetwork.InputsCount == 4)
+                if (_distanceNetwork.InputsCount == 32)
                     rawBytes = Utils.Utils.ConvertBytesIntoBinary(rawBytes);
                 _compute(rawBytes);
             }
