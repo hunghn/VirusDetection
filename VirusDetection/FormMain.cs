@@ -190,8 +190,8 @@ namespace VirusDetection
             int numOfIterator = int.Parse(txtbCFNumIterator.Text);
             double errorThresold = double.Parse(txtbCFErrorThresold.Text);
 
-            String virusFolder = txtbVirusFolder.Text;
-            String benignFolder = txtbBenignFolder.Text;
+            String virusFolder = txtbFCVirusFolder.Text;
+            String benignFolder = txtbFCBenignFolder.Text;
             String formatRange = txtbCFFormatRange.Text;
 
             _fileClassifierManager = new FileClassifierManager(
