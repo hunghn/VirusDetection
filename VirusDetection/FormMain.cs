@@ -76,7 +76,10 @@ namespace VirusDetection
         #region Form Event
         private void btnBuildDetector_Click(object sender, EventArgs e)
         {
+            // Reset value
             progressBar.Value = 0;
+            txtbVirusFragmentsCount.Text = "0";
+
             if (isWorking)
                 return;
             CheckState();
