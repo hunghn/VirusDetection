@@ -436,5 +436,19 @@ namespace VirusDetection.Utils
         #endregion
 
 
+
+        internal static double calcDangerousRate(double[] input_)
+        {
+            int len = input_.Length;
+            double total = 0;
+            for(int i =0;i<len;i++)
+            {
+                total += input_[i] * i;
+            }
+            double count = len * (len - 1) / 2;
+            double result = total / count;
+            result = Math.Round(result, 4);
+            return result;
+        }
     }
 }

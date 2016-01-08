@@ -23,6 +23,7 @@ namespace VirusDetection.FileClassifier
 
         double[][] _input;
         double[][] _output;
+        double[][] _graphMap;
         String[][] _testInput;
         int[] _formatRange;        
 
@@ -72,6 +73,9 @@ namespace VirusDetection.FileClassifier
             _input = new double[totalLen][];
             _output = new double[totalLen][];
 
+            // Init for draw graph
+            _graphMap = new double[totalLen][];
+
 
             _testInput = new String[totalLen][];
 
@@ -97,6 +101,11 @@ namespace VirusDetection.FileClassifier
 
                     _testInput[totalCount] = data.Test_GetRateFormatData(Utils.Utils.VIRUS_MARK, virusFile[virusCount]);
                     _output[totalCount] = new double[] { Utils.Utils.VIRUS_MARK };
+
+                    // Calc graph map value
+                    _graphMap[totalCount] = new double[2];
+                    _graphMap[totalCount][0] = Utils.Utils.calcDangerousRate(_input[totalCount]);
+                    _graphMap[totalCount][1] = Utils.Utils.VIRUS_MARK;
                     
                    
                     virusCount++;
@@ -111,8 +120,13 @@ namespace VirusDetection.FileClassifier
                     _input[totalCount] = data.getRateFormatData();
                     _testInput[totalCount] = data.Test_GetRateFormatData(Utils.Utils.BENIGN_MARK, benignFile[benignCount]);
                     _output[totalCount] = new double[] { Utils.Utils.BENIGN_MARK };
-                    
-                    
+
+                    // Calc graph map value
+                    _graphMap[totalCount] = new double[2];
+                    _graphMap[totalCount][0] = Utils.Utils.calcDangerousRate(_input[totalCount]);
+                    _graphMap[totalCount][1] = Utils.Utils.BENIGN_MARK;
+
+
                     benignCount++;
                     totalCount++;
                 }
@@ -121,7 +135,7 @@ namespace VirusDetection.FileClassifier
             }
 
             Test_PrintInput(_testInput);
-            // _printInput(_output);
+            Test_PrintInput(_graphMap);
         }
 
         public void trainActiveNetwork()
