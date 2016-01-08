@@ -261,12 +261,11 @@ namespace VirusDetection
 
             foreach (String file in testFile)
             {
-                double result = _virusScannerManager.scanFile(file);
-                if (result == 1)
+                Boolean result = _virusScannerManager.scanFile(file);
+                if (result)
                     numOfVirus++;
                 else
                     numOfBenign++;
-                Console.WriteLine(file + ", " + result);
             }
 
             txtbFCNumVirus.Text = numOfVirus.ToString();

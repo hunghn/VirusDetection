@@ -92,9 +92,10 @@ namespace VirusDetection.FileClassifier
                 for (int i = 0; i < m; i++)
                 {
                     FileClassifierData data = new FileClassifierData(_distanceNetwork, virusFile[virusCount], _formatRange);
-                    _input[totalCount] = data.getFormatData();
+                    //_input[totalCount] = data.getFormatData();
+                    _input[totalCount] = data.getRateFormatData();
 
-                    _testInput[totalCount] = data.getFormatDataTest(Utils.Utils.VIRUS_MARK, virusFile[virusCount]);
+                    _testInput[totalCount] = data.Test_GetRateFormatData(Utils.Utils.VIRUS_MARK, virusFile[virusCount]);
                     _output[totalCount] = new double[] { Utils.Utils.VIRUS_MARK };
                     
                    
@@ -107,8 +108,8 @@ namespace VirusDetection.FileClassifier
                 for (int j = 0; j < n; j++)
                 {
                     FileClassifierData data = new FileClassifierData(_distanceNetwork, benignFile[benignCount], _formatRange);
-                    _input[totalCount] = data.getFormatData();
-                    _testInput[totalCount] = data.getFormatDataTest(Utils.Utils.BENIGN_MARK, benignFile[benignCount]);
+                    _input[totalCount] = data.getRateFormatData();
+                    _testInput[totalCount] = data.Test_GetRateFormatData(Utils.Utils.BENIGN_MARK, benignFile[benignCount]);
                     _output[totalCount] = new double[] { Utils.Utils.BENIGN_MARK };
                     
                     

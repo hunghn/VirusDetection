@@ -24,6 +24,7 @@ namespace VirusDetection
         private static void _test()
         {
             //Test_ByteArrayToHex();
+            
         }
 
         private static void _testByteToBit()

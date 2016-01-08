@@ -25,13 +25,19 @@ namespace VirusDetection.VirusScanner
             _formatRange = Utils.Utils.calcFormatRange(formatRange_);
         }
 
-        public double scanFile(String fileName_)
+        public Boolean scanFile(String fileName_)
         {
-
             FileClassifierData data = new FileClassifierData(_distanceNetwork, fileName_, _formatRange);
             double[] formatData = data.getFormatData();
-            double[] result = _activationNetwork.Compute(formatData);
-            return result[0];
+            double[] output = _activationNetwork.Compute(formatData);
+            double result = output[0];
+            result = Math.Round(result, 4);
+
+            // Test
+            Console.WriteLine(fileName_ + ", " + result);
+
+            double thresold = 0.5; // Thresold = 0.5 with BipolarSigmoidFunction and virus mark as 1, benign mark as -1
+            return (result > thresold);
         }
     }
 }

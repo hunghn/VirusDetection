@@ -22,7 +22,7 @@ namespace VirusDetection.Utils
         public static GuiSupport GUI_SUPPORT;
 
         public static int VIRUS_MARK = 1; // define virus as 1 and
-        public static int BENIGN_MARK = 0;// benign as 0
+        public static int BENIGN_MARK = -1;// benign as -1
 
         #region Detector Utils
 

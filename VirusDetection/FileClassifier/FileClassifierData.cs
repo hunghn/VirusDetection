@@ -58,6 +58,7 @@ namespace VirusDetection.FileClassifier
                 if (_distanceNetwork.InputsCount == 32)
                     rawBytes = Utils.Utils.ConvertBytesIntoBinary(rawBytes);
                 _compute(rawBytes);
+                _totalCount++;
             }
         }
 
@@ -110,14 +111,17 @@ namespace VirusDetection.FileClassifier
             for (int i = 0; i < len; i++)
             {
                 if (_htFormattedData.ContainsKey(i))
-                    result[i] = (int)_htFormattedData[i];
+                {
+                    double value = (double)(int)_htFormattedData[i]/_totalCount;
+                    result[i] = Math.Round(value, 4);
+                }
                 else
                     result[i] = 0;
             }
             return result;
         }
 
-        public String[] getFormatDataTest(double type, String fileName_)
+        public String[] Test_GetFormatData(double type, String fileName_)
         {
             int len = _formatRange.Length;
             String[] result = new String[len + 2];
@@ -125,6 +129,25 @@ namespace VirusDetection.FileClassifier
             {
                 if (_htFormattedData.ContainsKey(i))
                     result[i] = ((int)_htFormattedData[i]).ToString();
+                else
+                    result[i] = "0";
+            }
+            result[len] = type.ToString();
+            result[len + 1] = fileName_;
+            return result;
+        }
+
+        public String[] Test_GetRateFormatData(double type, String fileName_)
+        {
+            int len = _formatRange.Length;
+            String[] result = new String[len + 2];
+            for (int i = 0; i < len; i++)
+            {
+                if (_htFormattedData.ContainsKey(i))
+                {
+                    double value = (double)(int)_htFormattedData[i] / _totalCount;
+                    result[i] = Math.Round(value, 4).ToString();
+                }
                 else
                     result[i] = "0";
             }
