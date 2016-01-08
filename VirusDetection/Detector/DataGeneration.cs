@@ -77,7 +77,7 @@ namespace VirusDetection.Detector
         private void ReadDirectory(string directory, bool flag)
         {
             // Process the list of files found in the directory.
-            string[] fileEntries = Directory.GetFiles(directory);
+            string[] fileEntries = Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories);
             foreach (string fileName in fileEntries)
                 Readfile(fileName, flag);
         }
