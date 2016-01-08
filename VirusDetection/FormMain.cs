@@ -217,7 +217,7 @@ namespace VirusDetection
                 int numOfHiddenNeuron = int.Parse(txtbClassifierNumHiddenNeuron.Text);
                 int numOfOutputNeuron = int.Parse(txtbClassifierNumOutputNeuron.Text);
                 int numOfIterator = int.Parse(txtbClassifierNumIterator.Text);
-                int errorThresold = int.Parse(txtbClassifierErrorThresold.Text);
+                double errorThresold = double.Parse(txtbClassifierErrorThresold.Text);
                 String virusFolder = txtbVirusFolder.Text;
                 String benignFolder = txtbBenignFolder.Text;
                 String formatRange = txtbFormatRange.Text;
@@ -255,7 +255,7 @@ namespace VirusDetection
 
             foreach (String file in testFile)
             {
-                int result = _virusScannerManager.scanFile(file);
+                double result = _virusScannerManager.scanFile(file);
                 if (result == 1)
                     numOfVirus++;
                 else

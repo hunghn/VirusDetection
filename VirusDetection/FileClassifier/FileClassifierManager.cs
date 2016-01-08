@@ -92,7 +92,6 @@ namespace VirusDetection.FileClassifier
                 for (int i = 0; i < m; i++)
                 {
                     FileClassifierData data = new FileClassifierData(_distanceNetwork, virusFile[virusCount], _formatRange);
-                    Console.WriteLine("Virus: " + virusFile[virusCount]);
                     _input[totalCount] = data.getFormatData();
 
                     _testInput[totalCount] = data.getFormatDataTest(Utils.Utils.VIRUS_MARK, virusFile[virusCount]);
@@ -108,7 +107,6 @@ namespace VirusDetection.FileClassifier
                 for (int j = 0; j < n; j++)
                 {
                     FileClassifierData data = new FileClassifierData(_distanceNetwork, benignFile[benignCount], _formatRange);
-                    Console.WriteLine(benignFile[benignCount]);
                     _input[totalCount] = data.getFormatData();
                     _testInput[totalCount] = data.getFormatDataTest(Utils.Utils.BENIGN_MARK, benignFile[benignCount]);
                     _output[totalCount] = new double[] { Utils.Utils.BENIGN_MARK };
@@ -121,7 +119,7 @@ namespace VirusDetection.FileClassifier
                 done = (totalCount >= totalLen);
             }
 
-            _printInput(_testInput);
+            Test_PrintInput(_testInput);
             // _printInput(_output);
         }
 
@@ -141,6 +139,7 @@ namespace VirusDetection.FileClassifier
             while(!done)
             {
                 error = teacher.RunEpoch(_input, _output);
+                Console.WriteLine("Error: " + error + "; [" + count + "/ " + _numOfIterator + "]");
                 count++;
                 done = (count >= _numOfIterator || error <= _errorThresold);
             };
@@ -156,7 +155,7 @@ namespace VirusDetection.FileClassifier
             _activationNetwork = (ActivationNetwork)Utils.Utils.loadNetwork(fileName_);
         }
 
-        private void _printInput(double[][] input_)
+        private void Test_PrintInput(double[][] input_)
         {
             foreach (double[] item in input_)
             {
@@ -168,7 +167,7 @@ namespace VirusDetection.FileClassifier
             }
         }
 
-        private void _printInput(String[][] input_)
+        private void Test_PrintInput(String[][] input_)
         {
             foreach (String[] item in input_)
             {

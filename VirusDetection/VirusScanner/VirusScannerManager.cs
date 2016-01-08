@@ -25,16 +25,13 @@ namespace VirusDetection.VirusScanner
             _formatRange = Utils.Utils.calcFormatRange(formatRange_);
         }
 
-        public int scanFile(String fileName_)
+        public double scanFile(String fileName_)
         {
 
-                FileClassifierData data = new FileClassifierData(_distanceNetwork, fileName_, _formatRange);
-                double[] formatData = data.getFormatData();
-                double[] result = _activationNetwork.Compute(formatData);
-                int thresold = 0;
-                if (result[0] >= thresold)
-                    return 1;
-            return 0;
+            FileClassifierData data = new FileClassifierData(_distanceNetwork, fileName_, _formatRange);
+            double[] formatData = data.getFormatData();
+            double[] result = _activationNetwork.Compute(formatData);
+            return result[0];
         }
     }
 }
