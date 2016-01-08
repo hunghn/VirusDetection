@@ -50,8 +50,8 @@
             this.grbActions = new System.Windows.Forms.GroupBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnBuildDetector = new System.Windows.Forms.Button();
-            this.txtbMixDetectorFile = new System.Windows.Forms.TextBox();
-            this.btnMixDetectorFile = new System.Windows.Forms.Button();
+            this.txtbCMixDetectorFile = new System.Windows.Forms.TextBox();
+            this.btnCMixDetectorFile = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabpgDetector = new System.Windows.Forms.TabPage();
             this.dtGroupView = new System.Windows.Forms.DataGridView();
@@ -74,68 +74,77 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabpgClustering = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label32 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.txtbClusteringTotalBenign = new System.Windows.Forms.TextBox();
-            this.txtbClusteringTotalVirus = new System.Windows.Forms.TextBox();
+            this.txtbCTotalBenign = new System.Windows.Forms.TextBox();
+            this.txtbCTotalVirus = new System.Windows.Forms.TextBox();
+            this.btnCClusteringFile = new System.Windows.Forms.Button();
+            this.btnCSave = new System.Windows.Forms.Button();
+            this.btnCLoad = new System.Windows.Forms.Button();
+            this.txtbCClusteringFile = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label31 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.btnLoadMixDetector = new System.Windows.Forms.Button();
-            this.txtbClusteringLearningRadius = new System.Windows.Forms.TextBox();
-            this.btnSaveMixDetector = new System.Windows.Forms.Button();
+            this.btnCLoadMixDetector = new System.Windows.Forms.Button();
+            this.txtbCLearningRadius = new System.Windows.Forms.TextBox();
+            this.btnCSaveMixDetector = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.txtbClusteringLearningRate = new System.Windows.Forms.TextBox();
-            this.txtbClusteringNumOutputNeuron = new System.Windows.Forms.TextBox();
-            this.btnClustering = new System.Windows.Forms.Button();
-            this.btnMixDetector = new System.Windows.Forms.Button();
-            this.txtbClusteringFile = new System.Windows.Forms.TextBox();
+            this.txtbCLearningRate = new System.Windows.Forms.TextBox();
+            this.txtbCNumOutputNeuron = new System.Windows.Forms.TextBox();
+            this.btnCMixDetector = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtbBenignSize = new System.Windows.Forms.TextBox();
-            this.txtbClusteringNumInputNeuron = new System.Windows.Forms.TextBox();
+            this.txtbCBenignSize = new System.Windows.Forms.TextBox();
+            this.txtbCNumInputNeuron = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtbVirusSize = new System.Windows.Forms.TextBox();
-            this.txtbClusteringErrorThresold = new System.Windows.Forms.TextBox();
-            this.cbxUseRate = new System.Windows.Forms.CheckBox();
+            this.txtbCVirusSize = new System.Windows.Forms.TextBox();
+            this.txtbCErrorThresold = new System.Windows.Forms.TextBox();
+            this.cbCUseRate = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtbClusteringNumIterator = new System.Windows.Forms.TextBox();
-            this.txtbBenignVirusRate = new System.Windows.Forms.TextBox();
+            this.txtbCNumIterator = new System.Windows.Forms.TextBox();
+            this.txtbCBenignVirusRate = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtbNumNeuronY = new System.Windows.Forms.TextBox();
-            this.txtbNumNeuronX = new System.Windows.Forms.TextBox();
-            this.btnPrintNeuron = new System.Windows.Forms.Button();
-            this.btnStartClustering = new System.Windows.Forms.Button();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.btnSaveClustering = new System.Windows.Forms.Button();
+            this.txtbCNumNeuronY = new System.Windows.Forms.TextBox();
+            this.txtbCNumNeuronX = new System.Windows.Forms.TextBox();
+            this.btnCPrintNeuron = new System.Windows.Forms.Button();
+            this.btnCStartClustering = new System.Windows.Forms.Button();
             this.tabpgFileClassifier = new System.Windows.Forms.TabPage();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtbFCBenignFolder = new System.Windows.Forms.TextBox();
+            this.btnFCBenignFolder = new System.Windows.Forms.Button();
+            this.txtbFCVirusFolder = new System.Windows.Forms.TextBox();
+            this.btnFCVirusFolder = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.txtbClassifierNumOutputNeuron = new System.Windows.Forms.TextBox();
+            this.txtbCFNumOutputNeuron = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.txtbClassifierErrorThresold = new System.Windows.Forms.TextBox();
+            this.txtbCFErrorThresold = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.txtbClassifierNumIterator = new System.Windows.Forms.TextBox();
+            this.txtbCFNumIterator = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.txtbClassifierNumHiddenNeuron = new System.Windows.Forms.TextBox();
+            this.txtbFCNumHiddenNeuron = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtbFormatRange = new System.Windows.Forms.TextBox();
-            this.txtbFileClassifierFile = new System.Windows.Forms.TextBox();
-            this.btnFileClassifierFile = new System.Windows.Forms.Button();
-            this.btnFileClassifierLoad = new System.Windows.Forms.Button();
-            this.btnFileClassifierSave = new System.Windows.Forms.Button();
-            this.btnStartFileClassifier = new System.Windows.Forms.Button();
+            this.txtbCFFormatRange = new System.Windows.Forms.TextBox();
+            this.txtbFCFileClassifierFile = new System.Windows.Forms.TextBox();
+            this.btnFCFileClassifierFile = new System.Windows.Forms.Button();
+            this.btnFCLoad = new System.Windows.Forms.Button();
+            this.btnFCSave = new System.Windows.Forms.Button();
+            this.btnFCStartFileClassifier = new System.Windows.Forms.Button();
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtbNumOfBenign = new System.Windows.Forms.TextBox();
+            this.txtbFCNumBenign = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.txtbNumOfVirus = new System.Windows.Forms.TextBox();
-            this.txtbVirusScannerTestFileFolder = new System.Windows.Forms.TextBox();
-            this.btnTestFileFolder = new System.Windows.Forms.Button();
-            this.btnScanVirus = new System.Windows.Forms.Button();
+            this.txtbFCNumVirus = new System.Windows.Forms.TextBox();
+            this.txtbVSTestFileFolder = new System.Windows.Forms.TextBox();
+            this.btnFCTestFileFolder = new System.Windows.Forms.Button();
+            this.btnFCScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -368,22 +377,22 @@
             this.btnBuildDetector.UseVisualStyleBackColor = true;
             this.btnBuildDetector.Click += new System.EventHandler(this.btnBuildDetector_Click);
             // 
-            // txtbMixDetectorFile
+            // txtbCMixDetectorFile
             // 
-            this.txtbMixDetectorFile.Location = new System.Drawing.Point(18, 108);
-            this.txtbMixDetectorFile.Name = "txtbMixDetectorFile";
-            this.txtbMixDetectorFile.Size = new System.Drawing.Size(171, 20);
-            this.txtbMixDetectorFile.TabIndex = 9;
+            this.txtbCMixDetectorFile.Location = new System.Drawing.Point(153, 149);
+            this.txtbCMixDetectorFile.Name = "txtbCMixDetectorFile";
+            this.txtbCMixDetectorFile.Size = new System.Drawing.Size(207, 20);
+            this.txtbCMixDetectorFile.TabIndex = 9;
             // 
-            // btnMixDetectorFile
+            // btnCMixDetectorFile
             // 
-            this.btnMixDetectorFile.Location = new System.Drawing.Point(195, 108);
-            this.btnMixDetectorFile.Name = "btnMixDetectorFile";
-            this.btnMixDetectorFile.Size = new System.Drawing.Size(115, 21);
-            this.btnMixDetectorFile.TabIndex = 8;
-            this.btnMixDetectorFile.Text = "Mix Detector File";
-            this.btnMixDetectorFile.UseVisualStyleBackColor = true;
-            this.btnMixDetectorFile.Click += new System.EventHandler(this.btnMixDetectorFile_Click);
+            this.btnCMixDetectorFile.Location = new System.Drawing.Point(366, 149);
+            this.btnCMixDetectorFile.Name = "btnCMixDetectorFile";
+            this.btnCMixDetectorFile.Size = new System.Drawing.Size(32, 21);
+            this.btnCMixDetectorFile.TabIndex = 8;
+            this.btnCMixDetectorFile.Text = "...";
+            this.btnCMixDetectorFile.UseVisualStyleBackColor = true;
+            this.btnCMixDetectorFile.Click += new System.EventHandler(this.btnCMixDetectorFile_Click);
             // 
             // tabMain
             // 
@@ -606,20 +615,34 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label32);
             this.panel2.Controls.Add(this.label26);
             this.panel2.Controls.Add(this.label25);
-            this.panel2.Controls.Add(this.txtbClusteringTotalBenign);
-            this.panel2.Controls.Add(this.txtbClusteringTotalVirus);
+            this.panel2.Controls.Add(this.txtbCTotalBenign);
+            this.panel2.Controls.Add(this.txtbCTotalVirus);
+            this.panel2.Controls.Add(this.btnCClusteringFile);
+            this.panel2.Controls.Add(this.btnCSave);
+            this.panel2.Controls.Add(this.btnCLoad);
+            this.panel2.Controls.Add(this.txtbCClusteringFile);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(358, 3);
+            this.panel2.Location = new System.Drawing.Point(413, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(383, 467);
+            this.panel2.Size = new System.Drawing.Size(328, 467);
             this.panel2.TabIndex = 1;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(20, 399);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(72, 13);
+            this.label32.TabIndex = 30;
+            this.label32.Text = "Clustering File";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(36, 195);
+            this.label26.Location = new System.Drawing.Point(46, 155);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(57, 13);
             this.label26.TabIndex = 29;
@@ -628,113 +651,156 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(36, 220);
+            this.label25.Location = new System.Drawing.Point(46, 180);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(67, 13);
             this.label25.TabIndex = 28;
             this.label25.Text = "Total Benign";
             // 
-            // txtbClusteringTotalBenign
+            // txtbCTotalBenign
             // 
-            this.txtbClusteringTotalBenign.Location = new System.Drawing.Point(114, 217);
-            this.txtbClusteringTotalBenign.Name = "txtbClusteringTotalBenign";
-            this.txtbClusteringTotalBenign.ReadOnly = true;
-            this.txtbClusteringTotalBenign.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringTotalBenign.TabIndex = 9;
+            this.txtbCTotalBenign.Location = new System.Drawing.Point(124, 177);
+            this.txtbCTotalBenign.Name = "txtbCTotalBenign";
+            this.txtbCTotalBenign.ReadOnly = true;
+            this.txtbCTotalBenign.Size = new System.Drawing.Size(99, 20);
+            this.txtbCTotalBenign.TabIndex = 9;
             // 
-            // txtbClusteringTotalVirus
+            // txtbCTotalVirus
             // 
-            this.txtbClusteringTotalVirus.Location = new System.Drawing.Point(114, 192);
-            this.txtbClusteringTotalVirus.Name = "txtbClusteringTotalVirus";
-            this.txtbClusteringTotalVirus.ReadOnly = true;
-            this.txtbClusteringTotalVirus.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringTotalVirus.TabIndex = 8;
+            this.txtbCTotalVirus.Location = new System.Drawing.Point(124, 152);
+            this.txtbCTotalVirus.Name = "txtbCTotalVirus";
+            this.txtbCTotalVirus.ReadOnly = true;
+            this.txtbCTotalVirus.Size = new System.Drawing.Size(99, 20);
+            this.txtbCTotalVirus.TabIndex = 8;
+            // 
+            // btnCClusteringFile
+            // 
+            this.btnCClusteringFile.Location = new System.Drawing.Point(275, 394);
+            this.btnCClusteringFile.Name = "btnCClusteringFile";
+            this.btnCClusteringFile.Size = new System.Drawing.Size(32, 22);
+            this.btnCClusteringFile.TabIndex = 2;
+            this.btnCClusteringFile.Text = "...";
+            this.btnCClusteringFile.UseVisualStyleBackColor = true;
+            this.btnCClusteringFile.Click += new System.EventHandler(this.btnCClusteringFile_Click);
+            // 
+            // btnCSave
+            // 
+            this.btnCSave.Location = new System.Drawing.Point(64, 426);
+            this.btnCSave.Name = "btnCSave";
+            this.btnCSave.Size = new System.Drawing.Size(99, 22);
+            this.btnCSave.TabIndex = 0;
+            this.btnCSave.Text = "Save";
+            this.btnCSave.UseVisualStyleBackColor = true;
+            this.btnCSave.Click += new System.EventHandler(this.btnCSave_Click);
+            // 
+            // btnCLoad
+            // 
+            this.btnCLoad.Location = new System.Drawing.Point(170, 426);
+            this.btnCLoad.Name = "btnCLoad";
+            this.btnCLoad.Size = new System.Drawing.Size(99, 22);
+            this.btnCLoad.TabIndex = 1;
+            this.btnCLoad.Text = "Load";
+            this.btnCLoad.UseVisualStyleBackColor = true;
+            this.btnCLoad.Click += new System.EventHandler(this.btnCLoad_Click);
+            // 
+            // txtbCClusteringFile
+            // 
+            this.txtbCClusteringFile.Location = new System.Drawing.Point(101, 396);
+            this.txtbCClusteringFile.Name = "txtbCClusteringFile";
+            this.txtbCClusteringFile.Size = new System.Drawing.Size(168, 20);
+            this.txtbCClusteringFile.TabIndex = 3;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label31);
             this.groupBox2.Controls.Add(this.label27);
-            this.groupBox2.Controls.Add(this.btnLoadMixDetector);
-            this.groupBox2.Controls.Add(this.txtbClusteringLearningRadius);
-            this.groupBox2.Controls.Add(this.btnSaveMixDetector);
+            this.groupBox2.Controls.Add(this.btnCLoadMixDetector);
+            this.groupBox2.Controls.Add(this.txtbCLearningRadius);
+            this.groupBox2.Controls.Add(this.btnCSaveMixDetector);
             this.groupBox2.Controls.Add(this.label28);
             this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Controls.Add(this.txtbMixDetectorFile);
-            this.groupBox2.Controls.Add(this.txtbClusteringLearningRate);
-            this.groupBox2.Controls.Add(this.txtbClusteringNumOutputNeuron);
-            this.groupBox2.Controls.Add(this.btnMixDetectorFile);
-            this.groupBox2.Controls.Add(this.btnClustering);
-            this.groupBox2.Controls.Add(this.btnMixDetector);
-            this.groupBox2.Controls.Add(this.txtbClusteringFile);
+            this.groupBox2.Controls.Add(this.txtbCMixDetectorFile);
+            this.groupBox2.Controls.Add(this.txtbCLearningRate);
+            this.groupBox2.Controls.Add(this.txtbCNumOutputNeuron);
+            this.groupBox2.Controls.Add(this.btnCMixDetectorFile);
+            this.groupBox2.Controls.Add(this.btnCMixDetector);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.txtbBenignSize);
-            this.groupBox2.Controls.Add(this.txtbClusteringNumInputNeuron);
+            this.groupBox2.Controls.Add(this.txtbCBenignSize);
+            this.groupBox2.Controls.Add(this.txtbCNumInputNeuron);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.txtbVirusSize);
-            this.groupBox2.Controls.Add(this.txtbClusteringErrorThresold);
-            this.groupBox2.Controls.Add(this.cbxUseRate);
+            this.groupBox2.Controls.Add(this.txtbCVirusSize);
+            this.groupBox2.Controls.Add(this.txtbCErrorThresold);
+            this.groupBox2.Controls.Add(this.cbCUseRate);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.txtbClusteringNumIterator);
-            this.groupBox2.Controls.Add(this.txtbBenignVirusRate);
+            this.groupBox2.Controls.Add(this.txtbCNumIterator);
+            this.groupBox2.Controls.Add(this.txtbCBenignVirusRate);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.txtbNumNeuronY);
-            this.groupBox2.Controls.Add(this.txtbNumNeuronX);
-            this.groupBox2.Controls.Add(this.btnPrintNeuron);
-            this.groupBox2.Controls.Add(this.btnStartClustering);
-            this.groupBox2.Controls.Add(this.btnLoad);
-            this.groupBox2.Controls.Add(this.btnSaveClustering);
+            this.groupBox2.Controls.Add(this.txtbCNumNeuronY);
+            this.groupBox2.Controls.Add(this.txtbCNumNeuronX);
+            this.groupBox2.Controls.Add(this.btnCPrintNeuron);
+            this.groupBox2.Controls.Add(this.btnCStartClustering);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(355, 467);
+            this.groupBox2.Size = new System.Drawing.Size(410, 467);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Function";
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(25, 153);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(86, 13);
+            this.label31.TabIndex = 37;
+            this.label31.Text = "Mix Detector File";
+            // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(47, 294);
+            this.label27.Location = new System.Drawing.Point(25, 354);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(84, 13);
             this.label27.TabIndex = 36;
             this.label27.Text = "Learning Radius";
             // 
-            // btnLoadMixDetector
+            // btnCLoadMixDetector
             // 
-            this.btnLoadMixDetector.Location = new System.Drawing.Point(178, 136);
-            this.btnLoadMixDetector.Name = "btnLoadMixDetector";
-            this.btnLoadMixDetector.Size = new System.Drawing.Size(104, 22);
-            this.btnLoadMixDetector.TabIndex = 11;
-            this.btnLoadMixDetector.Text = "Load Mix Detector";
-            this.btnLoadMixDetector.UseVisualStyleBackColor = true;
-            this.btnLoadMixDetector.Click += new System.EventHandler(this.btnLoadMixDetector_Click);
+            this.btnCLoadMixDetector.Location = new System.Drawing.Point(217, 180);
+            this.btnCLoadMixDetector.Name = "btnCLoadMixDetector";
+            this.btnCLoadMixDetector.Size = new System.Drawing.Size(104, 22);
+            this.btnCLoadMixDetector.TabIndex = 11;
+            this.btnCLoadMixDetector.Text = "Load Mix Detector";
+            this.btnCLoadMixDetector.UseVisualStyleBackColor = true;
+            this.btnCLoadMixDetector.Click += new System.EventHandler(this.btnCLoadMixDetector_Click);
             // 
-            // txtbClusteringLearningRadius
+            // txtbCLearningRadius
             // 
-            this.txtbClusteringLearningRadius.Location = new System.Drawing.Point(157, 287);
-            this.txtbClusteringLearningRadius.Name = "txtbClusteringLearningRadius";
-            this.txtbClusteringLearningRadius.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringLearningRadius.TabIndex = 35;
-            this.txtbClusteringLearningRadius.Text = "4";
+            this.txtbCLearningRadius.Location = new System.Drawing.Point(135, 347);
+            this.txtbCLearningRadius.Name = "txtbCLearningRadius";
+            this.txtbCLearningRadius.Size = new System.Drawing.Size(99, 20);
+            this.txtbCLearningRadius.TabIndex = 35;
+            this.txtbCLearningRadius.Text = "4";
             // 
-            // btnSaveMixDetector
+            // btnCSaveMixDetector
             // 
-            this.btnSaveMixDetector.Location = new System.Drawing.Point(59, 136);
-            this.btnSaveMixDetector.Name = "btnSaveMixDetector";
-            this.btnSaveMixDetector.Size = new System.Drawing.Size(113, 23);
-            this.btnSaveMixDetector.TabIndex = 10;
-            this.btnSaveMixDetector.Text = "Save Mix Detector";
-            this.btnSaveMixDetector.UseVisualStyleBackColor = true;
-            this.btnSaveMixDetector.Click += new System.EventHandler(this.btnSaveMixDetector_Click);
+            this.btnCSaveMixDetector.Location = new System.Drawing.Point(98, 180);
+            this.btnCSaveMixDetector.Name = "btnCSaveMixDetector";
+            this.btnCSaveMixDetector.Size = new System.Drawing.Size(113, 23);
+            this.btnCSaveMixDetector.TabIndex = 10;
+            this.btnCSaveMixDetector.Text = "Save Mix Detector";
+            this.btnCSaveMixDetector.UseVisualStyleBackColor = true;
+            this.btnCSaveMixDetector.Click += new System.EventHandler(this.btnCSaveMixDetector_Click);
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(47, 270);
+            this.label28.Location = new System.Drawing.Point(25, 330);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(74, 13);
             this.label28.TabIndex = 34;
@@ -743,59 +809,42 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(47, 193);
+            this.label23.Location = new System.Drawing.Point(25, 253);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(102, 13);
             this.label23.TabIndex = 32;
             this.label23.Text = "Num Output Neuron";
             // 
-            // txtbClusteringLearningRate
+            // txtbCLearningRate
             // 
-            this.txtbClusteringLearningRate.Location = new System.Drawing.Point(157, 263);
-            this.txtbClusteringLearningRate.Name = "txtbClusteringLearningRate";
-            this.txtbClusteringLearningRate.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringLearningRate.TabIndex = 33;
-            this.txtbClusteringLearningRate.Text = "0.3";
+            this.txtbCLearningRate.Location = new System.Drawing.Point(135, 323);
+            this.txtbCLearningRate.Name = "txtbCLearningRate";
+            this.txtbCLearningRate.Size = new System.Drawing.Size(99, 20);
+            this.txtbCLearningRate.TabIndex = 33;
+            this.txtbCLearningRate.Text = "0.3";
             // 
-            // txtbClusteringNumOutputNeuron
+            // txtbCNumOutputNeuron
             // 
-            this.txtbClusteringNumOutputNeuron.Location = new System.Drawing.Point(157, 190);
-            this.txtbClusteringNumOutputNeuron.Name = "txtbClusteringNumOutputNeuron";
-            this.txtbClusteringNumOutputNeuron.ReadOnly = true;
-            this.txtbClusteringNumOutputNeuron.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringNumOutputNeuron.TabIndex = 31;
+            this.txtbCNumOutputNeuron.Location = new System.Drawing.Point(135, 250);
+            this.txtbCNumOutputNeuron.Name = "txtbCNumOutputNeuron";
+            this.txtbCNumOutputNeuron.ReadOnly = true;
+            this.txtbCNumOutputNeuron.Size = new System.Drawing.Size(99, 20);
+            this.txtbCNumOutputNeuron.TabIndex = 31;
             // 
-            // btnClustering
+            // btnCMixDetector
             // 
-            this.btnClustering.Location = new System.Drawing.Point(179, 402);
-            this.btnClustering.Name = "btnClustering";
-            this.btnClustering.Size = new System.Drawing.Size(92, 22);
-            this.btnClustering.TabIndex = 2;
-            this.btnClustering.Text = "Clustering File";
-            this.btnClustering.UseVisualStyleBackColor = true;
-            this.btnClustering.Click += new System.EventHandler(this.btnClusteringFile_Click);
-            // 
-            // btnMixDetector
-            // 
-            this.btnMixDetector.Location = new System.Drawing.Point(235, 62);
-            this.btnMixDetector.Name = "btnMixDetector";
-            this.btnMixDetector.Size = new System.Drawing.Size(92, 23);
-            this.btnMixDetector.TabIndex = 30;
-            this.btnMixDetector.Text = "Mix Detector";
-            this.btnMixDetector.UseVisualStyleBackColor = true;
-            this.btnMixDetector.Click += new System.EventHandler(this.btnMixDetector_Click);
-            // 
-            // txtbClusteringFile
-            // 
-            this.txtbClusteringFile.Location = new System.Drawing.Point(53, 403);
-            this.txtbClusteringFile.Name = "txtbClusteringFile";
-            this.txtbClusteringFile.Size = new System.Drawing.Size(120, 20);
-            this.txtbClusteringFile.TabIndex = 3;
+            this.btnCMixDetector.Location = new System.Drawing.Point(98, 104);
+            this.btnCMixDetector.Name = "btnCMixDetector";
+            this.btnCMixDetector.Size = new System.Drawing.Size(92, 23);
+            this.btnCMixDetector.TabIndex = 30;
+            this.btnCMixDetector.Text = "Mix Detector";
+            this.btnCMixDetector.UseVisualStyleBackColor = true;
+            this.btnCMixDetector.Click += new System.EventHandler(this.btnCMixDetector_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(28, 79);
+            this.label10.Location = new System.Drawing.Point(25, 75);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(63, 13);
             this.label10.TabIndex = 29;
@@ -804,32 +853,32 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(47, 169);
+            this.label15.Location = new System.Drawing.Point(25, 229);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(94, 13);
             this.label15.TabIndex = 29;
             this.label15.Text = "Num Input Neuron";
             // 
-            // txtbBenignSize
+            // txtbCBenignSize
             // 
-            this.txtbBenignSize.Location = new System.Drawing.Point(94, 76);
-            this.txtbBenignSize.Name = "txtbBenignSize";
-            this.txtbBenignSize.ReadOnly = true;
-            this.txtbBenignSize.Size = new System.Drawing.Size(112, 20);
-            this.txtbBenignSize.TabIndex = 28;
+            this.txtbCBenignSize.Location = new System.Drawing.Point(153, 72);
+            this.txtbCBenignSize.Name = "txtbCBenignSize";
+            this.txtbCBenignSize.ReadOnly = true;
+            this.txtbCBenignSize.Size = new System.Drawing.Size(112, 20);
+            this.txtbCBenignSize.TabIndex = 28;
             // 
-            // txtbClusteringNumInputNeuron
+            // txtbCNumInputNeuron
             // 
-            this.txtbClusteringNumInputNeuron.Location = new System.Drawing.Point(157, 166);
-            this.txtbClusteringNumInputNeuron.Name = "txtbClusteringNumInputNeuron";
-            this.txtbClusteringNumInputNeuron.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringNumInputNeuron.TabIndex = 28;
-            this.txtbClusteringNumInputNeuron.Text = "4";
+            this.txtbCNumInputNeuron.Location = new System.Drawing.Point(135, 226);
+            this.txtbCNumInputNeuron.Name = "txtbCNumInputNeuron";
+            this.txtbCNumInputNeuron.Size = new System.Drawing.Size(99, 20);
+            this.txtbCNumInputNeuron.TabIndex = 28;
+            this.txtbCNumInputNeuron.Text = "4";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(28, 50);
+            this.label9.Location = new System.Drawing.Point(25, 49);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 27;
@@ -838,45 +887,45 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(47, 343);
+            this.label14.Location = new System.Drawing.Point(25, 403);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(73, 13);
             this.label14.TabIndex = 27;
             this.label14.Text = "Error Thresold";
             // 
-            // txtbVirusSize
+            // txtbCVirusSize
             // 
-            this.txtbVirusSize.Location = new System.Drawing.Point(94, 47);
-            this.txtbVirusSize.Name = "txtbVirusSize";
-            this.txtbVirusSize.ReadOnly = true;
-            this.txtbVirusSize.Size = new System.Drawing.Size(112, 20);
-            this.txtbVirusSize.TabIndex = 26;
+            this.txtbCVirusSize.Location = new System.Drawing.Point(153, 46);
+            this.txtbCVirusSize.Name = "txtbCVirusSize";
+            this.txtbCVirusSize.ReadOnly = true;
+            this.txtbCVirusSize.Size = new System.Drawing.Size(112, 20);
+            this.txtbCVirusSize.TabIndex = 26;
             // 
-            // txtbClusteringErrorThresold
+            // txtbCErrorThresold
             // 
-            this.txtbClusteringErrorThresold.Location = new System.Drawing.Point(157, 336);
-            this.txtbClusteringErrorThresold.Name = "txtbClusteringErrorThresold";
-            this.txtbClusteringErrorThresold.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringErrorThresold.TabIndex = 26;
-            this.txtbClusteringErrorThresold.Text = "0.2";
+            this.txtbCErrorThresold.Location = new System.Drawing.Point(135, 396);
+            this.txtbCErrorThresold.Name = "txtbCErrorThresold";
+            this.txtbCErrorThresold.Size = new System.Drawing.Size(99, 20);
+            this.txtbCErrorThresold.TabIndex = 26;
+            this.txtbCErrorThresold.Text = "0.2";
             // 
-            // cbxUseRate
+            // cbCUseRate
             // 
-            this.cbxUseRate.AutoSize = true;
-            this.cbxUseRate.Checked = true;
-            this.cbxUseRate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxUseRate.Location = new System.Drawing.Point(25, 23);
-            this.cbxUseRate.Name = "cbxUseRate";
-            this.cbxUseRate.Size = new System.Drawing.Size(71, 17);
-            this.cbxUseRate.TabIndex = 25;
-            this.cbxUseRate.Text = "Use Rate";
-            this.cbxUseRate.UseVisualStyleBackColor = true;
-            this.cbxUseRate.CheckedChanged += new System.EventHandler(this.cbxUseRate_CheckedChanged);
+            this.cbCUseRate.AutoSize = true;
+            this.cbCUseRate.Checked = true;
+            this.cbCUseRate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbCUseRate.Location = new System.Drawing.Point(28, 23);
+            this.cbCUseRate.Name = "cbCUseRate";
+            this.cbCUseRate.Size = new System.Drawing.Size(71, 17);
+            this.cbCUseRate.TabIndex = 25;
+            this.cbCUseRate.Text = "Use Rate";
+            this.cbCUseRate.UseVisualStyleBackColor = true;
+            this.cbCUseRate.CheckedChanged += new System.EventHandler(this.cbxUseRate_CheckedChanged);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(47, 319);
+            this.label13.Location = new System.Drawing.Point(25, 379);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 13);
             this.label13.TabIndex = 25;
@@ -885,32 +934,32 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(110, 23);
+            this.label8.Location = new System.Drawing.Point(113, 23);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.Size = new System.Drawing.Size(68, 13);
             this.label8.TabIndex = 24;
-            this.label8.Text = "Benign/Vr";
+            this.label8.Text = "Benign/Virus";
             // 
-            // txtbClusteringNumIterator
+            // txtbCNumIterator
             // 
-            this.txtbClusteringNumIterator.Location = new System.Drawing.Point(157, 312);
-            this.txtbClusteringNumIterator.Name = "txtbClusteringNumIterator";
-            this.txtbClusteringNumIterator.Size = new System.Drawing.Size(99, 20);
-            this.txtbClusteringNumIterator.TabIndex = 24;
-            this.txtbClusteringNumIterator.Text = "1000";
+            this.txtbCNumIterator.Location = new System.Drawing.Point(135, 372);
+            this.txtbCNumIterator.Name = "txtbCNumIterator";
+            this.txtbCNumIterator.Size = new System.Drawing.Size(99, 20);
+            this.txtbCNumIterator.TabIndex = 24;
+            this.txtbCNumIterator.Text = "1000";
             // 
-            // txtbBenignVirusRate
+            // txtbCBenignVirusRate
             // 
-            this.txtbBenignVirusRate.Location = new System.Drawing.Point(178, 20);
-            this.txtbBenignVirusRate.Name = "txtbBenignVirusRate";
-            this.txtbBenignVirusRate.Size = new System.Drawing.Size(62, 20);
-            this.txtbBenignVirusRate.TabIndex = 23;
-            this.txtbBenignVirusRate.Text = "10";
+            this.txtbCBenignVirusRate.Location = new System.Drawing.Point(187, 19);
+            this.txtbCBenignVirusRate.Name = "txtbCBenignVirusRate";
+            this.txtbCBenignVirusRate.Size = new System.Drawing.Size(62, 20);
+            this.txtbCBenignVirusRate.TabIndex = 23;
+            this.txtbCBenignVirusRate.Text = "2";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(47, 246);
+            this.label12.Location = new System.Drawing.Point(25, 306);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(77, 13);
             this.label12.TabIndex = 23;
@@ -919,86 +968,72 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(47, 221);
+            this.label11.Location = new System.Drawing.Point(25, 281);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 13);
             this.label11.TabIndex = 22;
             this.label11.Text = "Num Neuron X";
             // 
-            // txtbNumNeuronY
+            // txtbCNumNeuronY
             // 
-            this.txtbNumNeuronY.Location = new System.Drawing.Point(157, 239);
-            this.txtbNumNeuronY.Name = "txtbNumNeuronY";
-            this.txtbNumNeuronY.Size = new System.Drawing.Size(99, 20);
-            this.txtbNumNeuronY.TabIndex = 7;
-            this.txtbNumNeuronY.Text = "10";
+            this.txtbCNumNeuronY.Location = new System.Drawing.Point(135, 299);
+            this.txtbCNumNeuronY.Name = "txtbCNumNeuronY";
+            this.txtbCNumNeuronY.Size = new System.Drawing.Size(99, 20);
+            this.txtbCNumNeuronY.TabIndex = 7;
+            this.txtbCNumNeuronY.Text = "10";
             // 
-            // txtbNumNeuronX
+            // txtbCNumNeuronX
             // 
-            this.txtbNumNeuronX.Location = new System.Drawing.Point(157, 214);
-            this.txtbNumNeuronX.Name = "txtbNumNeuronX";
-            this.txtbNumNeuronX.Size = new System.Drawing.Size(99, 20);
-            this.txtbNumNeuronX.TabIndex = 6;
-            this.txtbNumNeuronX.Text = "10";
+            this.txtbCNumNeuronX.Location = new System.Drawing.Point(135, 274);
+            this.txtbCNumNeuronX.Name = "txtbCNumNeuronX";
+            this.txtbCNumNeuronX.Size = new System.Drawing.Size(99, 20);
+            this.txtbCNumNeuronX.TabIndex = 6;
+            this.txtbCNumNeuronX.Text = "10";
             // 
-            // btnPrintNeuron
+            // btnCPrintNeuron
             // 
-            this.btnPrintNeuron.Location = new System.Drawing.Point(165, 365);
-            this.btnPrintNeuron.Name = "btnPrintNeuron";
-            this.btnPrintNeuron.Size = new System.Drawing.Size(99, 23);
-            this.btnPrintNeuron.TabIndex = 5;
-            this.btnPrintNeuron.Text = "Print Neuron";
-            this.btnPrintNeuron.UseVisualStyleBackColor = true;
-            this.btnPrintNeuron.Click += new System.EventHandler(this.btnPrintNeuron_Click);
+            this.btnCPrintNeuron.Location = new System.Drawing.Point(187, 426);
+            this.btnCPrintNeuron.Name = "btnCPrintNeuron";
+            this.btnCPrintNeuron.Size = new System.Drawing.Size(99, 23);
+            this.btnCPrintNeuron.TabIndex = 5;
+            this.btnCPrintNeuron.Text = "Print Neuron";
+            this.btnCPrintNeuron.UseVisualStyleBackColor = true;
+            this.btnCPrintNeuron.Click += new System.EventHandler(this.btnCPrintNeuron_Click);
             // 
-            // btnStartClustering
+            // btnCStartClustering
             // 
-            this.btnStartClustering.Location = new System.Drawing.Point(60, 365);
-            this.btnStartClustering.Name = "btnStartClustering";
-            this.btnStartClustering.Size = new System.Drawing.Size(99, 23);
-            this.btnStartClustering.TabIndex = 4;
-            this.btnStartClustering.Text = "Start Clustering";
-            this.btnStartClustering.UseVisualStyleBackColor = true;
-            this.btnStartClustering.Click += new System.EventHandler(this.btnStartClustering_Click);
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Location = new System.Drawing.Point(165, 430);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(99, 22);
-            this.btnLoad.TabIndex = 1;
-            this.btnLoad.Text = "Load";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // btnSaveClustering
-            // 
-            this.btnSaveClustering.Location = new System.Drawing.Point(59, 430);
-            this.btnSaveClustering.Name = "btnSaveClustering";
-            this.btnSaveClustering.Size = new System.Drawing.Size(99, 22);
-            this.btnSaveClustering.TabIndex = 0;
-            this.btnSaveClustering.Text = "Save";
-            this.btnSaveClustering.UseVisualStyleBackColor = true;
-            this.btnSaveClustering.Click += new System.EventHandler(this.btnSaveClustering_Click);
+            this.btnCStartClustering.Location = new System.Drawing.Point(82, 426);
+            this.btnCStartClustering.Name = "btnCStartClustering";
+            this.btnCStartClustering.Size = new System.Drawing.Size(99, 23);
+            this.btnCStartClustering.TabIndex = 4;
+            this.btnCStartClustering.Text = "Start Clustering";
+            this.btnCStartClustering.UseVisualStyleBackColor = true;
+            this.btnCStartClustering.Click += new System.EventHandler(this.btnCStartClustering_Click);
             // 
             // tabpgFileClassifier
             // 
+            this.tabpgFileClassifier.Controls.Add(this.label29);
+            this.tabpgFileClassifier.Controls.Add(this.label18);
+            this.tabpgFileClassifier.Controls.Add(this.txtbFCBenignFolder);
+            this.tabpgFileClassifier.Controls.Add(this.btnFCBenignFolder);
+            this.tabpgFileClassifier.Controls.Add(this.txtbFCVirusFolder);
+            this.tabpgFileClassifier.Controls.Add(this.btnFCVirusFolder);
             this.tabpgFileClassifier.Controls.Add(this.label24);
             this.tabpgFileClassifier.Controls.Add(this.label22);
-            this.tabpgFileClassifier.Controls.Add(this.txtbClassifierNumOutputNeuron);
+            this.tabpgFileClassifier.Controls.Add(this.txtbCFNumOutputNeuron);
             this.tabpgFileClassifier.Controls.Add(this.label19);
-            this.tabpgFileClassifier.Controls.Add(this.txtbClassifierErrorThresold);
+            this.tabpgFileClassifier.Controls.Add(this.txtbCFErrorThresold);
             this.tabpgFileClassifier.Controls.Add(this.label20);
-            this.tabpgFileClassifier.Controls.Add(this.txtbClassifierNumIterator);
+            this.tabpgFileClassifier.Controls.Add(this.txtbCFNumIterator);
             this.tabpgFileClassifier.Controls.Add(this.label21);
-            this.tabpgFileClassifier.Controls.Add(this.txtbClassifierNumHiddenNeuron);
+            this.tabpgFileClassifier.Controls.Add(this.txtbFCNumHiddenNeuron);
             this.tabpgFileClassifier.Controls.Add(this.label7);
-            this.tabpgFileClassifier.Controls.Add(this.txtbFormatRange);
-            this.tabpgFileClassifier.Controls.Add(this.txtbFileClassifierFile);
-            this.tabpgFileClassifier.Controls.Add(this.btnFileClassifierFile);
-            this.tabpgFileClassifier.Controls.Add(this.btnFileClassifierLoad);
-            this.tabpgFileClassifier.Controls.Add(this.btnFileClassifierSave);
-            this.tabpgFileClassifier.Controls.Add(this.btnStartFileClassifier);
+            this.tabpgFileClassifier.Controls.Add(this.txtbCFFormatRange);
+            this.tabpgFileClassifier.Controls.Add(this.txtbFCFileClassifierFile);
+            this.tabpgFileClassifier.Controls.Add(this.btnFCFileClassifierFile);
+            this.tabpgFileClassifier.Controls.Add(this.btnFCLoad);
+            this.tabpgFileClassifier.Controls.Add(this.btnFCSave);
+            this.tabpgFileClassifier.Controls.Add(this.btnFCStartFileClassifier);
             this.tabpgFileClassifier.Location = new System.Drawing.Point(4, 22);
             this.tabpgFileClassifier.Name = "tabpgFileClassifier";
             this.tabpgFileClassifier.Padding = new System.Windows.Forms.Padding(3);
@@ -1007,10 +1042,62 @@
             this.tabpgFileClassifier.Text = "File Classifier";
             this.tabpgFileClassifier.UseVisualStyleBackColor = true;
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(42, 53);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(72, 13);
+            this.label29.TabIndex = 46;
+            this.label29.Text = "Benign Folder";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(42, 28);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(62, 13);
+            this.label18.TabIndex = 45;
+            this.label18.Text = "Virus Folder";
+            // 
+            // txtbFCBenignFolder
+            // 
+            this.txtbFCBenignFolder.Location = new System.Drawing.Point(151, 50);
+            this.txtbFCBenignFolder.Name = "txtbFCBenignFolder";
+            this.txtbFCBenignFolder.Size = new System.Drawing.Size(171, 20);
+            this.txtbFCBenignFolder.TabIndex = 44;
+            // 
+            // btnFCBenignFolder
+            // 
+            this.btnFCBenignFolder.Location = new System.Drawing.Point(328, 50);
+            this.btnFCBenignFolder.Name = "btnFCBenignFolder";
+            this.btnFCBenignFolder.Size = new System.Drawing.Size(34, 20);
+            this.btnFCBenignFolder.TabIndex = 43;
+            this.btnFCBenignFolder.Text = "...";
+            this.btnFCBenignFolder.UseVisualStyleBackColor = true;
+            this.btnFCBenignFolder.Click += new System.EventHandler(this.btnFCBenignFolder_Click);
+            // 
+            // txtbFCVirusFolder
+            // 
+            this.txtbFCVirusFolder.Location = new System.Drawing.Point(151, 24);
+            this.txtbFCVirusFolder.Name = "txtbFCVirusFolder";
+            this.txtbFCVirusFolder.Size = new System.Drawing.Size(171, 20);
+            this.txtbFCVirusFolder.TabIndex = 42;
+            // 
+            // btnFCVirusFolder
+            // 
+            this.btnFCVirusFolder.Location = new System.Drawing.Point(328, 24);
+            this.btnFCVirusFolder.Name = "btnFCVirusFolder";
+            this.btnFCVirusFolder.Size = new System.Drawing.Size(34, 20);
+            this.btnFCVirusFolder.TabIndex = 41;
+            this.btnFCVirusFolder.Text = "...";
+            this.btnFCVirusFolder.UseVisualStyleBackColor = true;
+            this.btnFCVirusFolder.Click += new System.EventHandler(this.btnFCVirusFolder_Click);
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(52, 287);
+            this.label24.Location = new System.Drawing.Point(43, 322);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(86, 13);
             this.label24.TabIndex = 40;
@@ -1019,144 +1106,145 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(50, 55);
+            this.label22.Location = new System.Drawing.Point(43, 106);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(102, 13);
             this.label22.TabIndex = 39;
             this.label22.Text = "Num Output Neuron";
             // 
-            // txtbClassifierNumOutputNeuron
+            // txtbCFNumOutputNeuron
             // 
-            this.txtbClassifierNumOutputNeuron.Location = new System.Drawing.Point(158, 52);
-            this.txtbClassifierNumOutputNeuron.Name = "txtbClassifierNumOutputNeuron";
-            this.txtbClassifierNumOutputNeuron.Size = new System.Drawing.Size(99, 20);
-            this.txtbClassifierNumOutputNeuron.TabIndex = 38;
-            this.txtbClassifierNumOutputNeuron.Text = "1";
+            this.txtbCFNumOutputNeuron.Location = new System.Drawing.Point(151, 103);
+            this.txtbCFNumOutputNeuron.Name = "txtbCFNumOutputNeuron";
+            this.txtbCFNumOutputNeuron.Size = new System.Drawing.Size(111, 20);
+            this.txtbCFNumOutputNeuron.TabIndex = 38;
+            this.txtbCFNumOutputNeuron.Text = "1";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(50, 111);
+            this.label19.Location = new System.Drawing.Point(43, 162);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(73, 13);
             this.label19.TabIndex = 35;
             this.label19.Text = "Error Thresold";
             // 
-            // txtbClassifierErrorThresold
+            // txtbCFErrorThresold
             // 
-            this.txtbClassifierErrorThresold.Location = new System.Drawing.Point(158, 108);
-            this.txtbClassifierErrorThresold.Name = "txtbClassifierErrorThresold";
-            this.txtbClassifierErrorThresold.Size = new System.Drawing.Size(99, 20);
-            this.txtbClassifierErrorThresold.TabIndex = 34;
-            this.txtbClassifierErrorThresold.Text = "0.2";
+            this.txtbCFErrorThresold.Location = new System.Drawing.Point(151, 159);
+            this.txtbCFErrorThresold.Name = "txtbCFErrorThresold";
+            this.txtbCFErrorThresold.Size = new System.Drawing.Size(111, 20);
+            this.txtbCFErrorThresold.TabIndex = 34;
+            this.txtbCFErrorThresold.Text = "0.2";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(50, 84);
+            this.label20.Location = new System.Drawing.Point(43, 135);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(65, 13);
             this.label20.TabIndex = 33;
             this.label20.Text = "Num Iterator";
             // 
-            // txtbClassifierNumIterator
+            // txtbCFNumIterator
             // 
-            this.txtbClassifierNumIterator.Location = new System.Drawing.Point(158, 81);
-            this.txtbClassifierNumIterator.Name = "txtbClassifierNumIterator";
-            this.txtbClassifierNumIterator.Size = new System.Drawing.Size(99, 20);
-            this.txtbClassifierNumIterator.TabIndex = 32;
-            this.txtbClassifierNumIterator.Text = "1000";
+            this.txtbCFNumIterator.Location = new System.Drawing.Point(151, 132);
+            this.txtbCFNumIterator.Name = "txtbCFNumIterator";
+            this.txtbCFNumIterator.Size = new System.Drawing.Size(111, 20);
+            this.txtbCFNumIterator.TabIndex = 32;
+            this.txtbCFNumIterator.Text = "1000";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(50, 30);
+            this.label21.Location = new System.Drawing.Point(43, 81);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(104, 13);
             this.label21.TabIndex = 31;
             this.label21.Text = "Num Hidden Neuron";
             // 
-            // txtbClassifierNumHiddenNeuron
+            // txtbFCNumHiddenNeuron
             // 
-            this.txtbClassifierNumHiddenNeuron.Location = new System.Drawing.Point(158, 27);
-            this.txtbClassifierNumHiddenNeuron.Name = "txtbClassifierNumHiddenNeuron";
-            this.txtbClassifierNumHiddenNeuron.Size = new System.Drawing.Size(99, 20);
-            this.txtbClassifierNumHiddenNeuron.TabIndex = 30;
-            this.txtbClassifierNumHiddenNeuron.Text = "5";
+            this.txtbFCNumHiddenNeuron.Location = new System.Drawing.Point(151, 78);
+            this.txtbFCNumHiddenNeuron.Name = "txtbFCNumHiddenNeuron";
+            this.txtbFCNumHiddenNeuron.Size = new System.Drawing.Size(111, 20);
+            this.txtbFCNumHiddenNeuron.TabIndex = 30;
+            this.txtbFCNumHiddenNeuron.Text = "5";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(52, 146);
+            this.label7.Location = new System.Drawing.Point(43, 191);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(170, 13);
+            this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 7;
-            this.label7.Text = "Format Range (Dangerous Range)";
+            this.label7.Text = "Format Range";
             // 
-            // txtbFormatRange
+            // txtbCFFormatRange
             // 
-            this.txtbFormatRange.Location = new System.Drawing.Point(55, 164);
-            this.txtbFormatRange.Name = "txtbFormatRange";
-            this.txtbFormatRange.Size = new System.Drawing.Size(110, 20);
-            this.txtbFormatRange.TabIndex = 6;
-            this.txtbFormatRange.Text = "0,3,5,7,10";
+            this.txtbCFFormatRange.Location = new System.Drawing.Point(151, 188);
+            this.txtbCFFormatRange.Name = "txtbCFFormatRange";
+            this.txtbCFFormatRange.Size = new System.Drawing.Size(111, 20);
+            this.txtbCFFormatRange.TabIndex = 6;
+            this.txtbCFFormatRange.Text = "0,3,5,7,10";
             // 
-            // txtbFileClassifierFile
+            // txtbFCFileClassifierFile
             // 
-            this.txtbFileClassifierFile.Location = new System.Drawing.Point(26, 312);
-            this.txtbFileClassifierFile.Name = "txtbFileClassifierFile";
-            this.txtbFileClassifierFile.Size = new System.Drawing.Size(177, 20);
-            this.txtbFileClassifierFile.TabIndex = 5;
+            this.txtbFCFileClassifierFile.Location = new System.Drawing.Point(151, 318);
+            this.txtbFCFileClassifierFile.Name = "txtbFCFileClassifierFile";
+            this.txtbFCFileClassifierFile.Size = new System.Drawing.Size(177, 20);
+            this.txtbFCFileClassifierFile.TabIndex = 5;
             // 
-            // btnFileClassifierFile
+            // btnFCFileClassifierFile
             // 
-            this.btnFileClassifierFile.Location = new System.Drawing.Point(209, 312);
-            this.btnFileClassifierFile.Name = "btnFileClassifierFile";
-            this.btnFileClassifierFile.Size = new System.Drawing.Size(30, 21);
-            this.btnFileClassifierFile.TabIndex = 4;
-            this.btnFileClassifierFile.Text = "...";
-            this.btnFileClassifierFile.UseVisualStyleBackColor = true;
-            this.btnFileClassifierFile.Click += new System.EventHandler(this.btnFileClassifierFile_Click);
+            this.btnFCFileClassifierFile.Location = new System.Drawing.Point(343, 318);
+            this.btnFCFileClassifierFile.Name = "btnFCFileClassifierFile";
+            this.btnFCFileClassifierFile.Size = new System.Drawing.Size(36, 21);
+            this.btnFCFileClassifierFile.TabIndex = 4;
+            this.btnFCFileClassifierFile.Text = "...";
+            this.btnFCFileClassifierFile.UseVisualStyleBackColor = true;
+            this.btnFCFileClassifierFile.Click += new System.EventHandler(this.btnFileClassifierFile_Click);
             // 
-            // btnFileClassifierLoad
+            // btnFCLoad
             // 
-            this.btnFileClassifierLoad.Location = new System.Drawing.Point(142, 351);
-            this.btnFileClassifierLoad.Name = "btnFileClassifierLoad";
-            this.btnFileClassifierLoad.Size = new System.Drawing.Size(78, 27);
-            this.btnFileClassifierLoad.TabIndex = 2;
-            this.btnFileClassifierLoad.Text = "Load";
-            this.btnFileClassifierLoad.UseVisualStyleBackColor = true;
-            this.btnFileClassifierLoad.Click += new System.EventHandler(this.btnLoadFileClassifier_Click);
+            this.btnFCLoad.Location = new System.Drawing.Point(174, 359);
+            this.btnFCLoad.Name = "btnFCLoad";
+            this.btnFCLoad.Size = new System.Drawing.Size(78, 27);
+            this.btnFCLoad.TabIndex = 2;
+            this.btnFCLoad.Text = "Load";
+            this.btnFCLoad.UseVisualStyleBackColor = true;
+            this.btnFCLoad.Click += new System.EventHandler(this.btnLoadFileClassifier_Click);
             // 
-            // btnFileClassifierSave
+            // btnFCSave
             // 
-            this.btnFileClassifierSave.Location = new System.Drawing.Point(39, 351);
-            this.btnFileClassifierSave.Name = "btnFileClassifierSave";
-            this.btnFileClassifierSave.Size = new System.Drawing.Size(76, 27);
-            this.btnFileClassifierSave.TabIndex = 1;
-            this.btnFileClassifierSave.Text = "Save";
-            this.btnFileClassifierSave.UseVisualStyleBackColor = true;
-            this.btnFileClassifierSave.Click += new System.EventHandler(this.btnSaveFileClassifier_Click);
+            this.btnFCSave.Location = new System.Drawing.Point(71, 359);
+            this.btnFCSave.Name = "btnFCSave";
+            this.btnFCSave.Size = new System.Drawing.Size(76, 27);
+            this.btnFCSave.TabIndex = 1;
+            this.btnFCSave.Text = "Save";
+            this.btnFCSave.UseVisualStyleBackColor = true;
+            this.btnFCSave.Click += new System.EventHandler(this.btnSaveFileClassifier_Click);
             // 
-            // btnStartFileClassifier
+            // btnFCStartFileClassifier
             // 
-            this.btnStartFileClassifier.Location = new System.Drawing.Point(109, 230);
-            this.btnStartFileClassifier.Name = "btnStartFileClassifier";
-            this.btnStartFileClassifier.Size = new System.Drawing.Size(111, 27);
-            this.btnStartFileClassifier.TabIndex = 0;
-            this.btnStartFileClassifier.Text = "Start File Classifier";
-            this.btnStartFileClassifier.UseVisualStyleBackColor = true;
-            this.btnStartFileClassifier.Click += new System.EventHandler(this.btnBuildFileClassifier_Click);
+            this.btnFCStartFileClassifier.Location = new System.Drawing.Point(114, 237);
+            this.btnFCStartFileClassifier.Name = "btnFCStartFileClassifier";
+            this.btnFCStartFileClassifier.Size = new System.Drawing.Size(111, 27);
+            this.btnFCStartFileClassifier.TabIndex = 0;
+            this.btnFCStartFileClassifier.Text = "Start File Classifier";
+            this.btnFCStartFileClassifier.UseVisualStyleBackColor = true;
+            this.btnFCStartFileClassifier.Click += new System.EventHandler(this.btnBuildFileClassifier_Click);
             // 
             // tabPgVirusScanner
             // 
+            this.tabPgVirusScanner.Controls.Add(this.label30);
             this.tabPgVirusScanner.Controls.Add(this.label17);
-            this.tabPgVirusScanner.Controls.Add(this.txtbNumOfBenign);
+            this.tabPgVirusScanner.Controls.Add(this.txtbFCNumBenign);
             this.tabPgVirusScanner.Controls.Add(this.label16);
-            this.tabPgVirusScanner.Controls.Add(this.txtbNumOfVirus);
-            this.tabPgVirusScanner.Controls.Add(this.txtbVirusScannerTestFileFolder);
-            this.tabPgVirusScanner.Controls.Add(this.btnTestFileFolder);
-            this.tabPgVirusScanner.Controls.Add(this.btnScanVirus);
+            this.tabPgVirusScanner.Controls.Add(this.txtbFCNumVirus);
+            this.tabPgVirusScanner.Controls.Add(this.txtbVSTestFileFolder);
+            this.tabPgVirusScanner.Controls.Add(this.btnFCTestFileFolder);
+            this.tabPgVirusScanner.Controls.Add(this.btnFCScanVirus);
             this.tabPgVirusScanner.Location = new System.Drawing.Point(4, 22);
             this.tabPgVirusScanner.Name = "tabPgVirusScanner";
             this.tabPgVirusScanner.Padding = new System.Windows.Forms.Padding(3);
@@ -1165,64 +1253,75 @@
             this.tabPgVirusScanner.Text = "Virus Scanner";
             this.tabPgVirusScanner.UseVisualStyleBackColor = true;
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(52, 79);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(79, 13);
+            this.label30.TabIndex = 34;
+            this.label30.Text = "Test File Folder";
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(285, 262);
+            this.label17.Location = new System.Drawing.Point(52, 279);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(79, 13);
+            this.label17.Size = new System.Drawing.Size(65, 13);
             this.label17.TabIndex = 33;
-            this.label17.Text = "Num Of Benign";
+            this.label17.Text = "Num Benign";
             // 
-            // txtbNumOfBenign
+            // txtbFCNumBenign
             // 
-            this.txtbNumOfBenign.Location = new System.Drawing.Point(374, 259);
-            this.txtbNumOfBenign.Name = "txtbNumOfBenign";
-            this.txtbNumOfBenign.Size = new System.Drawing.Size(85, 20);
-            this.txtbNumOfBenign.TabIndex = 32;
+            this.txtbFCNumBenign.Location = new System.Drawing.Point(141, 276);
+            this.txtbFCNumBenign.Name = "txtbFCNumBenign";
+            this.txtbFCNumBenign.ReadOnly = true;
+            this.txtbFCNumBenign.Size = new System.Drawing.Size(85, 20);
+            this.txtbFCNumBenign.TabIndex = 32;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(83, 263);
+            this.label16.Location = new System.Drawing.Point(52, 253);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(69, 13);
+            this.label16.Size = new System.Drawing.Size(55, 13);
             this.label16.TabIndex = 31;
-            this.label16.Text = "Num Of Virus";
+            this.label16.Text = "Num Virus";
             // 
-            // txtbNumOfVirus
+            // txtbFCNumVirus
             // 
-            this.txtbNumOfVirus.Location = new System.Drawing.Point(172, 260);
-            this.txtbNumOfVirus.Name = "txtbNumOfVirus";
-            this.txtbNumOfVirus.Size = new System.Drawing.Size(85, 20);
-            this.txtbNumOfVirus.TabIndex = 30;
+            this.txtbFCNumVirus.Location = new System.Drawing.Point(141, 250);
+            this.txtbFCNumVirus.Name = "txtbFCNumVirus";
+            this.txtbFCNumVirus.ReadOnly = true;
+            this.txtbFCNumVirus.Size = new System.Drawing.Size(85, 20);
+            this.txtbFCNumVirus.TabIndex = 30;
             // 
-            // txtbVirusScannerTestFileFolder
+            // txtbVSTestFileFolder
             // 
-            this.txtbVirusScannerTestFileFolder.Location = new System.Drawing.Point(86, 96);
-            this.txtbVirusScannerTestFileFolder.Name = "txtbVirusScannerTestFileFolder";
-            this.txtbVirusScannerTestFileFolder.Size = new System.Drawing.Size(577, 20);
-            this.txtbVirusScannerTestFileFolder.TabIndex = 7;
+            this.txtbVSTestFileFolder.Location = new System.Drawing.Point(151, 76);
+            this.txtbVSTestFileFolder.Name = "txtbVSTestFileFolder";
+            this.txtbVSTestFileFolder.Size = new System.Drawing.Size(199, 20);
+            this.txtbVSTestFileFolder.TabIndex = 7;
             // 
-            // btnTestFileFolder
+            // btnFCTestFileFolder
             // 
-            this.btnTestFileFolder.Location = new System.Drawing.Point(86, 60);
-            this.btnTestFileFolder.Name = "btnTestFileFolder";
-            this.btnTestFileFolder.Size = new System.Drawing.Size(171, 29);
-            this.btnTestFileFolder.TabIndex = 6;
-            this.btnTestFileFolder.Text = "Test File Folder";
-            this.btnTestFileFolder.UseVisualStyleBackColor = true;
-            this.btnTestFileFolder.Click += new System.EventHandler(this.btnTestFileFolder_Click);
+            this.btnFCTestFileFolder.Location = new System.Drawing.Point(356, 75);
+            this.btnFCTestFileFolder.Name = "btnFCTestFileFolder";
+            this.btnFCTestFileFolder.Size = new System.Drawing.Size(45, 22);
+            this.btnFCTestFileFolder.TabIndex = 6;
+            this.btnFCTestFileFolder.Text = "...";
+            this.btnFCTestFileFolder.UseVisualStyleBackColor = true;
+            this.btnFCTestFileFolder.Click += new System.EventHandler(this.btnTestFileFolder_Click);
             // 
-            // btnScanVirus
+            // btnFCScanVirus
             // 
-            this.btnScanVirus.Location = new System.Drawing.Point(86, 152);
-            this.btnScanVirus.Name = "btnScanVirus";
-            this.btnScanVirus.Size = new System.Drawing.Size(171, 26);
-            this.btnScanVirus.TabIndex = 0;
-            this.btnScanVirus.Text = "Scan Virus";
-            this.btnScanVirus.UseVisualStyleBackColor = true;
-            this.btnScanVirus.Click += new System.EventHandler(this.btnScanVirus_Click);
+            this.btnFCScanVirus.Location = new System.Drawing.Point(108, 140);
+            this.btnFCScanVirus.Name = "btnFCScanVirus";
+            this.btnFCScanVirus.Size = new System.Drawing.Size(96, 26);
+            this.btnFCScanVirus.TabIndex = 0;
+            this.btnFCScanVirus.Text = "Scan Virus";
+            this.btnFCScanVirus.UseVisualStyleBackColor = true;
+            this.btnFCScanVirus.Click += new System.EventHandler(this.btnScanVirus_Click);
             // 
             // timer1
             // 
@@ -1314,70 +1413,79 @@
         private System.Windows.Forms.DataGridView dtGroupView;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.Button btnSaveClustering;
-        private System.Windows.Forms.TextBox txtbClusteringFile;
-        private System.Windows.Forms.Button btnClustering;
-        private System.Windows.Forms.Button btnStartClustering;
-        private System.Windows.Forms.Button btnPrintNeuron;
-        private System.Windows.Forms.Button btnFileClassifierLoad;
-        private System.Windows.Forms.Button btnFileClassifierSave;
-        private System.Windows.Forms.Button btnStartFileClassifier;
-        private System.Windows.Forms.Button btnScanVirus;
-        private System.Windows.Forms.TextBox txtbFileClassifierFile;
-        private System.Windows.Forms.Button btnFileClassifierFile;
+        private System.Windows.Forms.Button btnCLoad;
+        private System.Windows.Forms.Button btnCSave;
+        private System.Windows.Forms.TextBox txtbCClusteringFile;
+        private System.Windows.Forms.Button btnCClusteringFile;
+        private System.Windows.Forms.Button btnCStartClustering;
+        private System.Windows.Forms.Button btnCPrintNeuron;
+        private System.Windows.Forms.Button btnFCLoad;
+        private System.Windows.Forms.Button btnFCSave;
+        private System.Windows.Forms.Button btnFCStartFileClassifier;
+        private System.Windows.Forms.Button btnFCScanVirus;
+        private System.Windows.Forms.TextBox txtbFCFileClassifierFile;
+        private System.Windows.Forms.Button btnFCFileClassifierFile;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtbFormatRange;
+        private System.Windows.Forms.TextBox txtbCFFormatRange;
         private System.Windows.Forms.TextBox txtbVirusFragmentsCount;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtbClusteringErrorThresold;
+        private System.Windows.Forms.TextBox txtbCErrorThresold;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtbClusteringNumIterator;
+        private System.Windows.Forms.TextBox txtbCNumIterator;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtbNumNeuronY;
-        private System.Windows.Forms.TextBox txtbNumNeuronX;
+        private System.Windows.Forms.TextBox txtbCNumNeuronY;
+        private System.Windows.Forms.TextBox txtbCNumNeuronX;
         private System.Windows.Forms.Button btnLoadDetector;
         private System.Windows.Forms.Button btnSaveDetector;
-        private System.Windows.Forms.TextBox txtbMixDetectorFile;
-        private System.Windows.Forms.Button btnMixDetectorFile;
+        private System.Windows.Forms.TextBox txtbCMixDetectorFile;
+        private System.Windows.Forms.Button btnCMixDetectorFile;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtbClusteringNumInputNeuron;
+        private System.Windows.Forms.TextBox txtbCNumInputNeuron;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtbNumOfBenign;
+        private System.Windows.Forms.TextBox txtbFCNumBenign;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtbNumOfVirus;
-        private System.Windows.Forms.TextBox txtbVirusScannerTestFileFolder;
-        private System.Windows.Forms.Button btnTestFileFolder;
+        private System.Windows.Forms.TextBox txtbFCNumVirus;
+        private System.Windows.Forms.TextBox txtbVSTestFileFolder;
+        private System.Windows.Forms.Button btnFCTestFileFolder;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox txtbClassifierNumOutputNeuron;
+        private System.Windows.Forms.TextBox txtbCFNumOutputNeuron;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txtbClassifierErrorThresold;
+        private System.Windows.Forms.TextBox txtbCFErrorThresold;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtbClassifierNumIterator;
+        private System.Windows.Forms.TextBox txtbCFNumIterator;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txtbClassifierNumHiddenNeuron;
-        private System.Windows.Forms.Button btnMixDetector;
+        private System.Windows.Forms.TextBox txtbFCNumHiddenNeuron;
+        private System.Windows.Forms.Button btnCMixDetector;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtbBenignSize;
+        private System.Windows.Forms.TextBox txtbCBenignSize;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtbVirusSize;
-        private System.Windows.Forms.CheckBox cbxUseRate;
+        private System.Windows.Forms.TextBox txtbCVirusSize;
+        private System.Windows.Forms.CheckBox cbCUseRate;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtbBenignVirusRate;
+        private System.Windows.Forms.TextBox txtbCBenignVirusRate;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtbClusteringNumOutputNeuron;
+        private System.Windows.Forms.TextBox txtbCNumOutputNeuron;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Button btnLoadMixDetector;
-        private System.Windows.Forms.Button btnSaveMixDetector;
+        private System.Windows.Forms.Button btnCLoadMixDetector;
+        private System.Windows.Forms.Button btnCSaveMixDetector;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox txtbClusteringTotalBenign;
-        private System.Windows.Forms.TextBox txtbClusteringTotalVirus;
+        private System.Windows.Forms.TextBox txtbCTotalBenign;
+        private System.Windows.Forms.TextBox txtbCTotalVirus;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox txtbClusteringLearningRadius;
+        private System.Windows.Forms.TextBox txtbCLearningRadius;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox txtbClusteringLearningRate;
+        private System.Windows.Forms.TextBox txtbCLearningRate;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtbFCBenignFolder;
+        private System.Windows.Forms.Button btnFCBenignFolder;
+        private System.Windows.Forms.TextBox txtbFCVirusFolder;
+        private System.Windows.Forms.Button btnFCVirusFolder;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label31;
     }
 }
 

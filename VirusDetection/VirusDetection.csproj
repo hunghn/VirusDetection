@@ -75,6 +75,8 @@
     <Compile Include="FileClassifier\BipolarSigmoidFunction.cs" />
     <Compile Include="FileClassifier\FileClassifierData.cs" />
     <Compile Include="FileClassifier\FileClassifierManager.cs" />
+    <Compile Include="FormCustomize\FolderSelectDialog.cs" />
+    <Compile Include="FormCustomize\Reflector.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
