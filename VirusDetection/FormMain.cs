@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using VirusDetection.Clustering;
 using VirusDetection.Detector;
 using VirusDetection.FileClassifier;
@@ -183,6 +184,37 @@ namespace VirusDetection
             _clusteringManager.Test_PrintlnNeuron();
         }
 
+        //hunghn
+        public double GetIndexOfArray(double Element, double[][] Array)
+        {
+            for (int i = 0; i < Array.Length; i++)
+            {
+                if (Element == Array[i][1])
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public void LoadStyleChart()
+        {
+            chart1.Series.Clear();
+
+            chart1.Series.Add("Benign");
+            chart1.Series["Benign"].ChartType = SeriesChartType.Point;
+            chart1.Series.Add("Virus");
+            chart1.Series["Virus"].ChartType = SeriesChartType.Point;
+            chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
+            chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 0;
+            for (int i = 0; i < _fileClassifierManager._graphMap.Length; i++)
+            {
+                if(_fileClassifierManager._graphMap[i][1] == 1)
+                    chart1.Series["Virus"].Points.AddXY(i,_fileClassifierManager._graphMap[i][0]);
+                else if (_fileClassifierManager._graphMap[i][1] == -1)
+                    chart1.Series["Benign"].Points.AddXY(i,_fileClassifierManager._graphMap[i][0]);
+            }
+        }
         private void btnBuildFileClassifier_Click(object sender, EventArgs e)
         {
             int numOfHiddenNeuron = int.Parse(txtbFCNumHiddenNeuron.Text);
@@ -204,7 +236,8 @@ namespace VirusDetection
                 _clusteringManager.DistanceNetwork,
                 formatRange
                 );
-
+            _fileClassifierManager.buildTrainingSet();
+            LoadStyleChart();
             _fileClassifierManager.trainActiveNetwork();
             MessageBox.Show("Successful!");
         }

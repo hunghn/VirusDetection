@@ -23,7 +23,7 @@ namespace VirusDetection.FileClassifier
 
         double[][] _input;
         double[][] _output;
-        double[][] _graphMap;
+        public double[][] _graphMap;
         String[][] _testInput;
         int[] _formatRange;        
 
@@ -57,7 +57,7 @@ namespace VirusDetection.FileClassifier
 
         }
 
-        private void buildTrainingSet()
+        public void buildTrainingSet()
         {
             // Read virus folder and benign folder
             // extract to all 32bit string
@@ -141,8 +141,8 @@ namespace VirusDetection.FileClassifier
         public void trainActiveNetwork()
         {
             // Init training set for ANN
-            this.buildTrainingSet();
-
+            //this.buildTrainingSet();
+            
             // Create ANN
             _activationNetwork = new ActivationNetwork(new BipolarSigmoidFunction(), _formatRange.Length, _numOfHiddenNeuron, _numOfOutputNeuron);
             BackPropagationLearning teacher = new BackPropagationLearning(_activationNetwork);
