@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelFooter = new System.Windows.Forms.Panel();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,7 +44,6 @@
             this.txtStatusBar = new System.Windows.Forms.TextBox();
             this.txtTimeBox = new System.Windows.Forms.TextBox();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
-            this.panelRight = new System.Windows.Forms.Panel();
             this.grbOutput = new System.Windows.Forms.GroupBox();
             this.btnLoadDetector = new System.Windows.Forms.Button();
             this.btnSaveDetector = new System.Windows.Forms.Button();
@@ -55,7 +54,6 @@
             this.btnBegin = new System.Windows.Forms.Button();
             this.txtbVirusFolder = new System.Windows.Forms.TextBox();
             this.btnVirusDetect = new System.Windows.Forms.Button();
-            this.grbActions = new System.Windows.Forms.GroupBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnBuildDetector = new System.Windows.Forms.Button();
             this.txtbCMixDetectorFile = new System.Windows.Forms.TextBox();
@@ -150,16 +148,16 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.dgvVirus = new System.Windows.Forms.DataGridView();
             this.dangerLevel = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panelRight.SuspendLayout();
             this.grbOutput.SuspendLayout();
             this.grbIO.SuspendLayout();
-            this.grbActions.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabpgDetector.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtNegativeSelection)).BeginInit();
@@ -248,17 +246,6 @@
             this.pbStatus.Size = new System.Drawing.Size(942, 23);
             this.pbStatus.TabIndex = 0;
             // 
-            // panelRight
-            // 
-            this.panelRight.BackColor = System.Drawing.SystemColors.Control;
-            this.panelRight.Controls.Add(this.panel6);
-            this.panelRight.Controls.Add(this.grbActions);
-            this.panelRight.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelRight.Location = new System.Drawing.Point(5, 5);
-            this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(200, 567);
-            this.panelRight.TabIndex = 2;
-            // 
             // grbOutput
             // 
             this.grbOutput.Controls.Add(this.btnLoadDetector);
@@ -273,7 +260,7 @@
             // 
             // btnLoadDetector
             // 
-            this.btnLoadDetector.Location = new System.Drawing.Point(99, 21);
+            this.btnLoadDetector.Location = new System.Drawing.Point(94, 19);
             this.btnLoadDetector.Name = "btnLoadDetector";
             this.btnLoadDetector.Size = new System.Drawing.Size(95, 29);
             this.btnLoadDetector.TabIndex = 11;
@@ -293,6 +280,11 @@
             // 
             // grbIO
             // 
+            this.grbIO.Controls.Add(this.btnStop);
+            this.grbIO.Controls.Add(this.label25);
+            this.grbIO.Controls.Add(this.btnBuildDetector);
+            this.grbIO.Controls.Add(this.label23);
+            this.grbIO.Controls.Add(this.label3);
             this.grbIO.Controls.Add(this.txtbDetectorFile);
             this.grbIO.Controls.Add(this.btnDetectorFile);
             this.grbIO.Controls.Add(this.txtbBenignFolder);
@@ -309,73 +301,60 @@
             // 
             // txtbDetectorFile
             // 
-            this.txtbDetectorFile.Location = new System.Drawing.Point(15, 175);
+            this.txtbDetectorFile.Location = new System.Drawing.Point(18, 175);
             this.txtbDetectorFile.Name = "txtbDetectorFile";
-            this.txtbDetectorFile.Size = new System.Drawing.Size(171, 20);
+            this.txtbDetectorFile.Size = new System.Drawing.Size(127, 20);
             this.txtbDetectorFile.TabIndex = 7;
             // 
             // btnDetectorFile
             // 
-            this.btnDetectorFile.Location = new System.Drawing.Point(15, 140);
+            this.btnDetectorFile.Location = new System.Drawing.Point(155, 175);
             this.btnDetectorFile.Name = "btnDetectorFile";
-            this.btnDetectorFile.Size = new System.Drawing.Size(171, 29);
+            this.btnDetectorFile.Size = new System.Drawing.Size(31, 20);
             this.btnDetectorFile.TabIndex = 6;
-            this.btnDetectorFile.Text = "Detector File";
+            this.btnDetectorFile.Text = "...";
             this.btnDetectorFile.UseVisualStyleBackColor = true;
             this.btnDetectorFile.Click += new System.EventHandler(this.btnDetect_Click);
             // 
             // txtbBenignFolder
             // 
-            this.txtbBenignFolder.Location = new System.Drawing.Point(15, 114);
+            this.txtbBenignFolder.Location = new System.Drawing.Point(18, 71);
             this.txtbBenignFolder.Name = "txtbBenignFolder";
-            this.txtbBenignFolder.Size = new System.Drawing.Size(171, 20);
+            this.txtbBenignFolder.Size = new System.Drawing.Size(127, 20);
             this.txtbBenignFolder.TabIndex = 5;
             // 
             // btnBegin
             // 
-            this.btnBegin.Location = new System.Drawing.Point(15, 79);
+            this.btnBegin.Location = new System.Drawing.Point(155, 71);
             this.btnBegin.Name = "btnBegin";
-            this.btnBegin.Size = new System.Drawing.Size(171, 29);
+            this.btnBegin.Size = new System.Drawing.Size(31, 20);
             this.btnBegin.TabIndex = 4;
-            this.btnBegin.Text = "Begin Directory";
+            this.btnBegin.Text = "...";
             this.btnBegin.UseVisualStyleBackColor = true;
             this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
             // 
             // txtbVirusFolder
             // 
-            this.txtbVirusFolder.Location = new System.Drawing.Point(15, 53);
+            this.txtbVirusFolder.Location = new System.Drawing.Point(18, 32);
             this.txtbVirusFolder.Name = "txtbVirusFolder";
-            this.txtbVirusFolder.Size = new System.Drawing.Size(171, 20);
+            this.txtbVirusFolder.Size = new System.Drawing.Size(127, 20);
             this.txtbVirusFolder.TabIndex = 3;
             // 
             // btnVirusDetect
             // 
-            this.btnVirusDetect.Location = new System.Drawing.Point(15, 17);
+            this.btnVirusDetect.Location = new System.Drawing.Point(155, 31);
             this.btnVirusDetect.Name = "btnVirusDetect";
-            this.btnVirusDetect.Size = new System.Drawing.Size(171, 29);
+            this.btnVirusDetect.Size = new System.Drawing.Size(31, 20);
             this.btnVirusDetect.TabIndex = 2;
-            this.btnVirusDetect.Text = "Virus Directory";
+            this.btnVirusDetect.Text = "...";
             this.btnVirusDetect.UseVisualStyleBackColor = true;
             this.btnVirusDetect.Click += new System.EventHandler(this.btnVirusDetect_Click);
             // 
-            // grbActions
-            // 
-            this.grbActions.Controls.Add(this.btnStop);
-            this.grbActions.Controls.Add(this.btnBuildDetector);
-            this.grbActions.Dock = System.Windows.Forms.DockStyle.Top;
-            this.grbActions.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.grbActions.Location = new System.Drawing.Point(0, 0);
-            this.grbActions.Name = "grbActions";
-            this.grbActions.Size = new System.Drawing.Size(200, 145);
-            this.grbActions.TabIndex = 0;
-            this.grbActions.TabStop = false;
-            this.grbActions.Text = "Actions";
-            // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(15, 101);
+            this.btnStop.Location = new System.Drawing.Point(18, 132);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(171, 29);
+            this.btnStop.Size = new System.Drawing.Size(171, 24);
             this.btnStop.TabIndex = 1;
             this.btnStop.Text = "Stop scan";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -383,9 +362,9 @@
             // 
             // btnBuildDetector
             // 
-            this.btnBuildDetector.Location = new System.Drawing.Point(15, 36);
+            this.btnBuildDetector.Location = new System.Drawing.Point(18, 97);
             this.btnBuildDetector.Name = "btnBuildDetector";
-            this.btnBuildDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnBuildDetector.Size = new System.Drawing.Size(171, 23);
             this.btnBuildDetector.TabIndex = 0;
             this.btnBuildDetector.Text = "Build Detector";
             this.btnBuildDetector.UseVisualStyleBackColor = true;
@@ -415,10 +394,10 @@
             this.tabMain.Controls.Add(this.tabpgFileClassifier);
             this.tabMain.Controls.Add(this.tabPgVirusScanner);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMain.Location = new System.Drawing.Point(205, 5);
+            this.tabMain.Location = new System.Drawing.Point(5, 5);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(752, 567);
+            this.tabMain.Size = new System.Drawing.Size(952, 567);
             this.tabMain.TabIndex = 3;
             this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
             // 
@@ -429,7 +408,7 @@
             this.tabpgDetector.Location = new System.Drawing.Point(4, 22);
             this.tabpgDetector.Name = "tabpgDetector";
             this.tabpgDetector.Padding = new System.Windows.Forms.Padding(3);
-            this.tabpgDetector.Size = new System.Drawing.Size(744, 541);
+            this.tabpgDetector.Size = new System.Drawing.Size(944, 541);
             this.tabpgDetector.TabIndex = 0;
             this.tabpgDetector.Text = "Detector";
             this.tabpgDetector.UseVisualStyleBackColor = true;
@@ -441,7 +420,7 @@
             this.dtNegativeSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtNegativeSelection.Location = new System.Drawing.Point(203, 3);
             this.dtNegativeSelection.Name = "dtNegativeSelection";
-            this.dtNegativeSelection.Size = new System.Drawing.Size(538, 535);
+            this.dtNegativeSelection.Size = new System.Drawing.Size(738, 535);
             this.dtNegativeSelection.TabIndex = 3;
             // 
             // panelTabRight
@@ -594,7 +573,7 @@
             this.tabpgClustering.Location = new System.Drawing.Point(4, 22);
             this.tabpgClustering.Name = "tabpgClustering";
             this.tabpgClustering.Padding = new System.Windows.Forms.Padding(3);
-            this.tabpgClustering.Size = new System.Drawing.Size(744, 541);
+            this.tabpgClustering.Size = new System.Drawing.Size(944, 541);
             this.tabpgClustering.TabIndex = 1;
             this.tabpgClustering.Text = "Clustering";
             this.tabpgClustering.UseVisualStyleBackColor = true;
@@ -605,7 +584,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(244, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(497, 535);
+            this.panel2.Size = new System.Drawing.Size(697, 535);
             this.panel2.TabIndex = 1;
             // 
             // label32
@@ -934,23 +913,23 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend7.Name = "Legend1";
+            this.chart1.Legends.Add(legend7);
             this.chart1.Location = new System.Drawing.Point(216, 3);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Legend = "Legend1";
-            series3.Name = "Benign";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Legend = "Legend1";
-            series4.Name = "Virus";
-            this.chart1.Series.Add(series3);
-            this.chart1.Series.Add(series4);
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series13.Legend = "Legend1";
+            series13.Name = "Benign";
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series14.Legend = "Legend1";
+            series14.Name = "Virus";
+            this.chart1.Series.Add(series13);
+            this.chart1.Series.Add(series14);
             this.chart1.Size = new System.Drawing.Size(525, 535);
             this.chart1.TabIndex = 48;
             this.chart1.Text = "chart1";
@@ -1186,7 +1165,7 @@
             this.tabPgVirusScanner.Location = new System.Drawing.Point(4, 22);
             this.tabPgVirusScanner.Name = "tabPgVirusScanner";
             this.tabPgVirusScanner.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPgVirusScanner.Size = new System.Drawing.Size(744, 541);
+            this.tabPgVirusScanner.Size = new System.Drawing.Size(944, 541);
             this.tabPgVirusScanner.TabIndex = 3;
             this.tabPgVirusScanner.Text = "Virus Scanner";
             this.tabPgVirusScanner.UseVisualStyleBackColor = true;
@@ -1317,14 +1296,6 @@
             this.panel5.Size = new System.Drawing.Size(241, 58);
             this.panel5.TabIndex = 1;
             // 
-            // panel6
-            // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 145);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(200, 422);
-            this.panel6.TabIndex = 1;
-            // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.Control;
@@ -1344,33 +1315,61 @@
             // 
             // dgvVirus
             // 
+            this.dgvVirus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVirus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVirus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvVirus.Location = new System.Drawing.Point(203, 3);
             this.dgvVirus.Name = "dgvVirus";
-            this.dgvVirus.Size = new System.Drawing.Size(538, 535);
+            this.dgvVirus.Size = new System.Drawing.Size(738, 535);
             this.dgvVirus.TabIndex = 36;
             // 
             // dangerLevel
             // 
-            chartArea1.Name = "ChartArea1";
-            this.dangerLevel.ChartAreas.Add(chartArea1);
+            chartArea8.Name = "ChartArea1";
+            this.dangerLevel.ChartAreas.Add(chartArea8);
             this.dangerLevel.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.dangerLevel.Legends.Add(legend1);
+            legend8.Name = "Legend1";
+            this.dangerLevel.Legends.Add(legend8);
             this.dangerLevel.Location = new System.Drawing.Point(0, 0);
             this.dangerLevel.Name = "dangerLevel";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Benign";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Virus";
-            this.dangerLevel.Series.Add(series1);
-            this.dangerLevel.Series.Add(series2);
-            this.dangerLevel.Size = new System.Drawing.Size(497, 535);
+            series15.ChartArea = "ChartArea1";
+            series15.Legend = "Legend1";
+            series15.Name = "Benign";
+            series16.ChartArea = "ChartArea1";
+            series16.Legend = "Legend1";
+            series16.Name = "Virus";
+            this.dangerLevel.Series.Add(series15);
+            this.dangerLevel.Series.Add(series16);
+            this.dangerLevel.Size = new System.Drawing.Size(697, 535);
             this.dangerLevel.TabIndex = 0;
             this.dangerLevel.Text = "chart2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Virus Directory";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(17, 55);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(85, 13);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "Benign Directory";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(17, 159);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(93, 13);
+            this.label25.TabIndex = 10;
+            this.label25.Text = "Detector Directory";
             // 
             // FormMain
             // 
@@ -1379,7 +1378,6 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(962, 661);
             this.Controls.Add(this.tabMain);
-            this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelFooter);
             this.Name = "FormMain";
             this.Padding = new System.Windows.Forms.Padding(5);
@@ -1387,11 +1385,9 @@
             this.panelFooter.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelRight.ResumeLayout(false);
             this.grbOutput.ResumeLayout(false);
             this.grbIO.ResumeLayout(false);
             this.grbIO.PerformLayout();
-            this.grbActions.ResumeLayout(false);
             this.tabMain.ResumeLayout(false);
             this.tabpgDetector.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtNegativeSelection)).EndInit();
@@ -1423,7 +1419,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelFooter;
-        private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.GroupBox grbOutput;
         private System.Windows.Forms.GroupBox grbIO;
         private System.Windows.Forms.TextBox txtbDetectorFile;
@@ -1432,7 +1427,6 @@
         private System.Windows.Forms.Button btnBegin;
         private System.Windows.Forms.TextBox txtbVirusFolder;
         private System.Windows.Forms.Button btnVirusDetect;
-        private System.Windows.Forms.GroupBox grbActions;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnBuildDetector;
         private System.Windows.Forms.TabControl tabMain;
@@ -1535,10 +1529,12 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.DataGridView dgvVirus;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.DataVisualization.Charting.Chart dangerLevel;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label3;
     }
 }
 

@@ -212,9 +212,9 @@ namespace VirusDetection
             for (int i = 0; i < _fileClassifierManager._graphMap.Length; i++)
             {
                 if(_fileClassifierManager._graphMap[i][1] == Utils.Utils.BENIGN_MARK)
-                    chart1.Series["Virus"].Points.AddXY(i,_fileClassifierManager._graphMap[i][0]);
-                else if (_fileClassifierManager._graphMap[i][1] == Utils.Utils.VIRUS_MARK)
                     chart1.Series["Benign"].Points.AddXY(i,_fileClassifierManager._graphMap[i][0]);
+                else if (_fileClassifierManager._graphMap[i][1] == Utils.Utils.VIRUS_MARK)
+                    chart1.Series["Virus"].Points.AddXY(i,_fileClassifierManager._graphMap[i][0]);
             }
         }
 
@@ -228,13 +228,19 @@ namespace VirusDetection
             dangerLevel.Series["Virus"].ChartType = SeriesChartType.Point;
             dangerLevel.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
             dangerLevel.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 0;
+            //dangerLevel.ChartAreas[0].Position.Y = 100;
+            ////dangerLevel.ChartAreas[0].Position.Height = 60;
+            //dangerLevel.ChartAreas[0].AxisX.Maximum = 500;
+            //dangerLevel.ChartAreas[0].AxisX.Minimum = 0;
+            //dangerLevel.ChartAreas[0].AxisY.Maximum = 500;
+            //dangerLevel.ChartAreas[0].AxisY.Minimum = 0;
             double[][] cluster = _clusteringManager.DangerLevel();
             for (int i = 0; i < cluster.Length; i++)
             {
                 if (cluster[i][1] == Utils.Utils.BENIGN_MARK)
-                    dangerLevel.Series["Virus"].Points.AddXY(i, cluster[i][0]);
-                else if (cluster[i][1] == Utils.Utils.VIRUS_MARK)
                     dangerLevel.Series["Benign"].Points.AddXY(i, cluster[i][0]);
+                else if (cluster[i][1] == Utils.Utils.VIRUS_MARK)
+                    dangerLevel.Series["Virus"].Points.AddXY(i, cluster[i][0]);
             }
         }
         private void btnBuildFileClassifier_Click(object sender, EventArgs e)
@@ -314,19 +320,52 @@ namespace VirusDetection
             int numOfVirus = 0;
             int numOfBenign = 0;
 
+            DataColumn column;
+            DataRow row;
+            DataView view;
+            DataTable virusList = new DataTable();
+            virusList.Columns.Clear();
+
+            // Create new DataColumn, set DataType, ColumnName and add to DataTable.    
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "File";
+            virusList.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Status";
+            virusList.Columns.Add(column);
+            virusList.Rows.Clear();
+
             foreach (String file in testFile)
             {
                 Boolean result = _virusScannerManager.scanFile(file);
                 if (result)
+                {
+                    row = virusList.NewRow();
+                    row["File"] = file.ToString();
+                    row["Status"] = "Virus";
+                    virusList.Rows.Add(row);
                     numOfVirus++;
+                }
                 else
+                {
+                    row = virusList.NewRow();
+                    row["File"] = file.ToString();
+                    row["Status"] = "Benign";
+                    virusList.Rows.Add(row);
                     numOfBenign++;
+                }
             }
 
             txtbFCNumVirus.Text = numOfVirus.ToString();
             txtbFCNumBenign.Text = numOfBenign.ToString();
             Console.WriteLine("Virus: " + numOfVirus);
             Console.WriteLine("Benign: " + numOfBenign);
+            view = new DataView(virusList);
+            dgvVirus.DataSource = view;
 
         }
 
@@ -369,7 +408,9 @@ namespace VirusDetection
             String virusSavePath = txtbDetectorFile.Text + "VR.txt";
             String benignSavePath = txtbDetectorFile.Text + "BN.txt";
             Utils.Utils.loadDetector(ref _virusFragments, virusSavePath, ref _benignFragments, benignSavePath);
+            ShowingData();
             MessageBox.Show("Successful!");
+            btnLoadDetector.Enabled = false;
         }
 
         private void btnTestFileFolder_Click(object sender, EventArgs e)
@@ -644,6 +685,47 @@ namespace VirusDetection
             dtNegativeSelection.DataSource = view;
         }
 
+        private void ShowingData()
+        {
+            DataColumn column;
+            DataRow row;
+            DataView view;
+            NegativeSelectionData.Columns.Clear();
+
+            // Create new DataColumn, set DataType, ColumnName and add to DataTable.    
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "Virus Data Fragments";
+            NegativeSelectionData.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Status";
+            NegativeSelectionData.Columns.Add(column);
+            NegativeSelectionData.Rows.Clear();
+            for (int i = 0; i < _virusFragments.Count; i++)
+            {
+                row = NegativeSelectionData.NewRow();
+                row["Virus Data Fragments"] = ConvertByteArrayToString(_virusFragments[i]);
+                row["Status"] = "Passed";
+                NegativeSelectionData.Rows.Add(row);
+
+            }
+            for (int i = 0; i < _benignFragments.Count; i++)
+            {
+                row = NegativeSelectionData.NewRow();
+                row["Virus Data Fragments"] = ConvertByteArrayToString(_benignFragments[i]);
+                row["Status"] = "Fail";
+                NegativeSelectionData.Rows.Add(row);
+
+            }
+            view = new DataView(NegativeSelectionData);
+
+            // Set a DataGrid control's DataSource to the DataView.
+            dtNegativeSelection.DataSource = view;
+          
+        }
         private void GetgroupShowing()
         {
             // Declare DataColumn and DataRow variables.
