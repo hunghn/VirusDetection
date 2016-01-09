@@ -168,15 +168,17 @@ namespace VirusDetection
         private void _calcNumOfDetector()
         {
             int[] detectorCount = Utils.Utils.calcNumOfDetector(_detectorData);
-            txtbCTotalVirus.Text = detectorCount[0].ToString();
-            txtbCTotalBenign.Text = detectorCount[1].ToString();
+            txtbCVirusSize.Text = detectorCount[0].ToString();
+            txtbCBenignSize.Text = detectorCount[1].ToString();
         }
 
         private void btnCStartClustering_Click(object sender, EventArgs e)
         {
             _initClustering();
             _clusteringManager.trainDistanceNetwork();
+            LoadDangerLevel();
             MessageBox.Show("Successful!");
+
         }
 
         private void btnCPrintNeuron_Click(object sender, EventArgs e)
@@ -209,10 +211,30 @@ namespace VirusDetection
             chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 0;
             for (int i = 0; i < _fileClassifierManager._graphMap.Length; i++)
             {
-                if(_fileClassifierManager._graphMap[i][1] == 1)
+                if(_fileClassifierManager._graphMap[i][1] == Utils.Utils.BENIGN_MARK)
                     chart1.Series["Virus"].Points.AddXY(i,_fileClassifierManager._graphMap[i][0]);
-                else if (_fileClassifierManager._graphMap[i][1] == -1)
+                else if (_fileClassifierManager._graphMap[i][1] == Utils.Utils.VIRUS_MARK)
                     chart1.Series["Benign"].Points.AddXY(i,_fileClassifierManager._graphMap[i][0]);
+            }
+        }
+
+        private void LoadDangerLevel()
+        {
+            dangerLevel.Series.Clear();
+
+            dangerLevel.Series.Add("Benign");
+            dangerLevel.Series["Benign"].ChartType = SeriesChartType.Point;
+            dangerLevel.Series.Add("Virus");
+            dangerLevel.Series["Virus"].ChartType = SeriesChartType.Point;
+            dangerLevel.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
+            dangerLevel.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 0;
+            double[][] cluster = _clusteringManager.DangerLevel();
+            for (int i = 0; i < cluster.Length; i++)
+            {
+                if (cluster[i][1] == Utils.Utils.BENIGN_MARK)
+                    dangerLevel.Series["Virus"].Points.AddXY(i, cluster[i][0]);
+                else if (cluster[i][1] == Utils.Utils.VIRUS_MARK)
+                    dangerLevel.Series["Benign"].Points.AddXY(i, cluster[i][0]);
             }
         }
         private void btnBuildFileClassifier_Click(object sender, EventArgs e)
@@ -540,11 +562,11 @@ namespace VirusDetection
                     stepsize = Length / 2;
             }
             catch { stepsize = stepsize / 2; }
-            try
-            {
-                numberOfCluster = Math.Max(2, Math.Min(50, int.Parse(txtNumberofCluster.Text)));
-            }
-            catch { Length = 4; }
+            //try
+            //{
+            //    numberOfCluster = Math.Max(2, Math.Min(50, int.Parse(txtNumberofCluster.Text)));
+            //}
+            //catch { Length = 4; }
             try
             {
                 ClusteringSelectionRate = Math.Max(0.1, Math.Min(1.0, double.Parse(txtSelectionRate.Text)));
@@ -660,7 +682,7 @@ namespace VirusDetection
             view = new DataView(groupshowingDataTable);
 
             // Set a DataGrid control's DataSource to the DataView.
-            dtGroupView.DataSource = view;
+          //  dtGroupView.DataSource = view;
         }
 
 
@@ -793,7 +815,7 @@ namespace VirusDetection
 
             _clusteringManager.loadDistanceNetwork(fileName);
             txtbCNumInputNeuron.Text = _clusteringManager.NumInputNeuron.ToString();
-            txtbCNumOutputNeuron.Text = _clusteringManager.NumOutputNeron.ToString();
+           // txtbCNumOutputNeuron.Text = _clusteringManager.NumOutputNeron.ToString();
             
             
             MessageBox.Show("Successful!");
