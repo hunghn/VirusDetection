@@ -266,7 +266,7 @@ namespace VirusDetection
                 );
             _fileClassifierManager.buildTrainingSet();
             LoadStyleChart();
-            _fileClassifierManager.trainActiveNetwork();
+            _fileClassifierManager.trainActiveNetwork1();
             MessageBox.Show("Successful!");
         }
 

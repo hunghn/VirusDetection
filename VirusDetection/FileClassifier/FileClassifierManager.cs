@@ -1,4 +1,5 @@
-﻿using AForge.Neuro;
+﻿using AForge;
+using AForge.Neuro;
 using AForge.Neuro.Learning;
 using System;
 using System.Collections.Generic;
@@ -142,6 +143,9 @@ namespace VirusDetection.FileClassifier
         {
             // Init training set for ANN
             //this.buildTrainingSet();
+
+            // Set random range
+            Neuron.RandRange = new Range(0.0f, 1.0f);
             
             // Create ANN
             _activationNetwork = new ActivationNetwork(new BipolarSigmoidFunction(), _formatRange.Length, _numOfHiddenNeuron, _numOfOutputNeuron);
@@ -154,6 +158,31 @@ namespace VirusDetection.FileClassifier
             while(!done)
             {
                 error = teacher.RunEpoch(_input, _output);
+                Console.WriteLine("Error: " + error + "; [" + count + "/ " + _numOfIterator + "]");
+                count++;
+                done = (count >= _numOfIterator || error <= _errorThresold);
+            };
+        }
+
+        public void trainActiveNetwork1()
+        {
+            // Setting for trainActivenetwork1
+            int numOfInputNeuron = 1;
+
+            // Set random range
+            Neuron.RandRange = new Range(0.0f, 1.0f);
+
+            // Create ANN
+            _activationNetwork = new LKActivationNetwork(new BipolarSigmoidFunction(), numOfInputNeuron, _numOfHiddenNeuron, _numOfOutputNeuron);
+            BackPropagationLearning teacher = new BackPropagationLearning(_activationNetwork);
+
+            // Train ANN
+            double error = 0;
+            bool done = false;
+            int count = 0;
+            while (!done)
+            {
+                error = teacher.RunEpoch(_graphMap, _output);
                 Console.WriteLine("Error: " + error + "; [" + count + "/ " + _numOfIterator + "]");
                 count++;
                 done = (count >= _numOfIterator || error <= _errorThresold);

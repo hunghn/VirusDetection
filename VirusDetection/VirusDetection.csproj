@@ -73,6 +73,9 @@
     <Compile Include="Detector\MaxHammingDistance.cs" />
     <Compile Include="Detector\RContiguous.cs" />
     <Compile Include="Detector\TrainingData.cs" />
+    <Compile Include="FileClassifier\ActivationLayer.cs" />
+    <Compile Include="FileClassifier\ActivationNetwork.cs" />
+    <Compile Include="FileClassifier\ActivationNeuron.cs" />
     <Compile Include="FileClassifier\BipolarSigmoidFunction.cs" />
     <Compile Include="FileClassifier\FileClassifierData.cs" />
     <Compile Include="FileClassifier\FileClassifierManager.cs" />
