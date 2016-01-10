@@ -26,7 +26,7 @@ namespace VirusDetection.Clustering
         double[][] _input;
         float _maxInputRange;
 
-
+        
 
         public int NumInputNeuron
         {
@@ -116,8 +116,33 @@ namespace VirusDetection.Clustering
                     break;
             }
 
+
             trainer.mapNeuronLabel(_input);
 
+        }
+
+        
+
+        //hunghn
+        public double[][] DangerLevel()
+        {
+            int inputLen = _input.Length;
+            double[][] dangerLevel = new double[inputLen][];
+
+            for (int i = 0; i < inputLen; i++)
+            {
+                double[] inputI = _input[i];
+                int inputILen = inputI.Length;
+
+                _network.Compute(_input[i]);
+                LKDistanceNeuron noronWin = _network.getWinnerNeuron();
+
+                dangerLevel[i] = new double[2];
+                dangerLevel[i][0] = (noronWin.BenignDetectedCount > 0 ? 0 : noronWin.VirusDetectedCount);
+                dangerLevel[i][1] = inputI[inputILen-1];
+
+            }
+            return dangerLevel;
         }
 
         public void saveDistanceNetwork(String fileName_)

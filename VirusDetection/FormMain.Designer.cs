@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelFooter = new System.Windows.Forms.Panel();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -40,7 +44,6 @@
             this.txtStatusBar = new System.Windows.Forms.TextBox();
             this.txtTimeBox = new System.Windows.Forms.TextBox();
             this.pbStatus = new System.Windows.Forms.ProgressBar();
-            this.panelRight = new System.Windows.Forms.Panel();
             this.grbOutput = new System.Windows.Forms.GroupBox();
             this.btnLoadDetector = new System.Windows.Forms.Button();
             this.btnSaveDetector = new System.Windows.Forms.Button();
@@ -51,14 +54,12 @@
             this.btnBegin = new System.Windows.Forms.Button();
             this.txtbVirusFolder = new System.Windows.Forms.TextBox();
             this.btnVirusDetect = new System.Windows.Forms.Button();
-            this.grbActions = new System.Windows.Forms.GroupBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnBuildDetector = new System.Windows.Forms.Button();
             this.txtbCMixDetectorFile = new System.Windows.Forms.TextBox();
             this.btnCMixDetectorFile = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabpgDetector = new System.Windows.Forms.TabPage();
-            this.dtGroupView = new System.Windows.Forms.DataGridView();
             this.dtNegativeSelection = new System.Windows.Forms.DataGridView();
             this.panelTabRight = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -70,8 +71,6 @@
             this.ckbHamming = new System.Windows.Forms.CheckBox();
             this.txtSelectionRate = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtNumberofCluster = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtStepSize = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
@@ -79,24 +78,18 @@
             this.tabpgClustering = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.txtbCTotalBenign = new System.Windows.Forms.TextBox();
-            this.txtbCTotalVirus = new System.Windows.Forms.TextBox();
             this.btnCClusteringFile = new System.Windows.Forms.Button();
             this.btnCSave = new System.Windows.Forms.Button();
             this.btnCLoad = new System.Windows.Forms.Button();
             this.txtbCClusteringFile = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grbPreprocess = new System.Windows.Forms.GroupBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.btnCLoadMixDetector = new System.Windows.Forms.Button();
             this.txtbCLearningRadius = new System.Windows.Forms.TextBox();
             this.btnCSaveMixDetector = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.txtbCLearningRate = new System.Windows.Forms.TextBox();
-            this.txtbCNumOutputNeuron = new System.Windows.Forms.TextBox();
             this.btnCMixDetector = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -152,25 +145,37 @@
             this.btnFCTestFileFolder = new System.Windows.Forms.Button();
             this.btnFCScanVirus = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.dgvVirus = new System.Windows.Forms.DataGridView();
+            this.dangerLevel = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panelRight.SuspendLayout();
             this.grbOutput.SuspendLayout();
             this.grbIO.SuspendLayout();
-            this.grbActions.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabpgDetector.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGroupView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNegativeSelection)).BeginInit();
             this.panelTabRight.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabpgClustering.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.grbPreprocess.SuspendLayout();
             this.tabpgFileClassifier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel3.SuspendLayout();
             this.tabPgVirusScanner.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVirus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dangerLevel)).BeginInit();
             this.SuspendLayout();
             // 
             // panelFooter
@@ -180,7 +185,7 @@
             this.panelFooter.Controls.Add(this.panel1);
             this.panelFooter.Controls.Add(this.pbStatus);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooter.Location = new System.Drawing.Point(5, 504);
+            this.panelFooter.Location = new System.Drawing.Point(5, 572);
             this.panelFooter.Name = "panelFooter";
             this.panelFooter.Padding = new System.Windows.Forms.Padding(5);
             this.panelFooter.Size = new System.Drawing.Size(952, 84);
@@ -241,35 +246,23 @@
             this.pbStatus.Size = new System.Drawing.Size(942, 23);
             this.pbStatus.TabIndex = 0;
             // 
-            // panelRight
-            // 
-            this.panelRight.BackColor = System.Drawing.SystemColors.Control;
-            this.panelRight.Controls.Add(this.grbOutput);
-            this.panelRight.Controls.Add(this.grbIO);
-            this.panelRight.Controls.Add(this.grbActions);
-            this.panelRight.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelRight.Location = new System.Drawing.Point(5, 5);
-            this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(200, 499);
-            this.panelRight.TabIndex = 2;
-            // 
             // grbOutput
             // 
             this.grbOutput.Controls.Add(this.btnLoadDetector);
             this.grbOutput.Controls.Add(this.btnSaveDetector);
-            this.grbOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbOutput.Location = new System.Drawing.Point(0, 408);
+            this.grbOutput.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.grbOutput.Location = new System.Drawing.Point(0, 469);
             this.grbOutput.Name = "grbOutput";
-            this.grbOutput.Size = new System.Drawing.Size(200, 91);
+            this.grbOutput.Size = new System.Drawing.Size(200, 66);
             this.grbOutput.TabIndex = 2;
             this.grbOutput.TabStop = false;
             this.grbOutput.Text = "Output";
             // 
             // btnLoadDetector
             // 
-            this.btnLoadDetector.Location = new System.Drawing.Point(15, 54);
+            this.btnLoadDetector.Location = new System.Drawing.Point(94, 19);
             this.btnLoadDetector.Name = "btnLoadDetector";
-            this.btnLoadDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnLoadDetector.Size = new System.Drawing.Size(95, 29);
             this.btnLoadDetector.TabIndex = 11;
             this.btnLoadDetector.Text = "Load Detector";
             this.btnLoadDetector.UseVisualStyleBackColor = true;
@@ -277,9 +270,9 @@
             // 
             // btnSaveDetector
             // 
-            this.btnSaveDetector.Location = new System.Drawing.Point(15, 19);
+            this.btnSaveDetector.Location = new System.Drawing.Point(6, 20);
             this.btnSaveDetector.Name = "btnSaveDetector";
-            this.btnSaveDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnSaveDetector.Size = new System.Drawing.Size(86, 29);
             this.btnSaveDetector.TabIndex = 10;
             this.btnSaveDetector.Text = "Save Detector";
             this.btnSaveDetector.UseVisualStyleBackColor = true;
@@ -287,6 +280,11 @@
             // 
             // grbIO
             // 
+            this.grbIO.Controls.Add(this.btnStop);
+            this.grbIO.Controls.Add(this.label25);
+            this.grbIO.Controls.Add(this.btnBuildDetector);
+            this.grbIO.Controls.Add(this.label23);
+            this.grbIO.Controls.Add(this.label3);
             this.grbIO.Controls.Add(this.txtbDetectorFile);
             this.grbIO.Controls.Add(this.btnDetectorFile);
             this.grbIO.Controls.Add(this.txtbBenignFolder);
@@ -294,82 +292,69 @@
             this.grbIO.Controls.Add(this.txtbVirusFolder);
             this.grbIO.Controls.Add(this.btnVirusDetect);
             this.grbIO.Dock = System.Windows.Forms.DockStyle.Top;
-            this.grbIO.Location = new System.Drawing.Point(0, 145);
+            this.grbIO.Location = new System.Drawing.Point(0, 0);
             this.grbIO.Name = "grbIO";
-            this.grbIO.Size = new System.Drawing.Size(200, 263);
+            this.grbIO.Size = new System.Drawing.Size(200, 203);
             this.grbIO.TabIndex = 1;
             this.grbIO.TabStop = false;
             this.grbIO.Text = "I/O";
             // 
             // txtbDetectorFile
             // 
-            this.txtbDetectorFile.Location = new System.Drawing.Point(15, 175);
+            this.txtbDetectorFile.Location = new System.Drawing.Point(18, 175);
             this.txtbDetectorFile.Name = "txtbDetectorFile";
-            this.txtbDetectorFile.Size = new System.Drawing.Size(171, 20);
+            this.txtbDetectorFile.Size = new System.Drawing.Size(127, 20);
             this.txtbDetectorFile.TabIndex = 7;
             // 
             // btnDetectorFile
             // 
-            this.btnDetectorFile.Location = new System.Drawing.Point(15, 140);
+            this.btnDetectorFile.Location = new System.Drawing.Point(155, 175);
             this.btnDetectorFile.Name = "btnDetectorFile";
-            this.btnDetectorFile.Size = new System.Drawing.Size(171, 29);
+            this.btnDetectorFile.Size = new System.Drawing.Size(31, 20);
             this.btnDetectorFile.TabIndex = 6;
-            this.btnDetectorFile.Text = "Detector File";
+            this.btnDetectorFile.Text = "...";
             this.btnDetectorFile.UseVisualStyleBackColor = true;
             this.btnDetectorFile.Click += new System.EventHandler(this.btnDetect_Click);
             // 
             // txtbBenignFolder
             // 
-            this.txtbBenignFolder.Location = new System.Drawing.Point(15, 114);
+            this.txtbBenignFolder.Location = new System.Drawing.Point(18, 71);
             this.txtbBenignFolder.Name = "txtbBenignFolder";
-            this.txtbBenignFolder.Size = new System.Drawing.Size(171, 20);
+            this.txtbBenignFolder.Size = new System.Drawing.Size(127, 20);
             this.txtbBenignFolder.TabIndex = 5;
             // 
             // btnBegin
             // 
-            this.btnBegin.Location = new System.Drawing.Point(15, 79);
+            this.btnBegin.Location = new System.Drawing.Point(155, 71);
             this.btnBegin.Name = "btnBegin";
-            this.btnBegin.Size = new System.Drawing.Size(171, 29);
+            this.btnBegin.Size = new System.Drawing.Size(31, 20);
             this.btnBegin.TabIndex = 4;
-            this.btnBegin.Text = "Begin Directory";
+            this.btnBegin.Text = "...";
             this.btnBegin.UseVisualStyleBackColor = true;
             this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
             // 
             // txtbVirusFolder
             // 
-            this.txtbVirusFolder.Location = new System.Drawing.Point(15, 53);
+            this.txtbVirusFolder.Location = new System.Drawing.Point(18, 32);
             this.txtbVirusFolder.Name = "txtbVirusFolder";
-            this.txtbVirusFolder.Size = new System.Drawing.Size(171, 20);
+            this.txtbVirusFolder.Size = new System.Drawing.Size(127, 20);
             this.txtbVirusFolder.TabIndex = 3;
             // 
             // btnVirusDetect
             // 
-            this.btnVirusDetect.Location = new System.Drawing.Point(15, 17);
+            this.btnVirusDetect.Location = new System.Drawing.Point(155, 31);
             this.btnVirusDetect.Name = "btnVirusDetect";
-            this.btnVirusDetect.Size = new System.Drawing.Size(171, 29);
+            this.btnVirusDetect.Size = new System.Drawing.Size(31, 20);
             this.btnVirusDetect.TabIndex = 2;
-            this.btnVirusDetect.Text = "Virus Directory";
+            this.btnVirusDetect.Text = "...";
             this.btnVirusDetect.UseVisualStyleBackColor = true;
             this.btnVirusDetect.Click += new System.EventHandler(this.btnVirusDetect_Click);
             // 
-            // grbActions
-            // 
-            this.grbActions.Controls.Add(this.btnStop);
-            this.grbActions.Controls.Add(this.btnBuildDetector);
-            this.grbActions.Dock = System.Windows.Forms.DockStyle.Top;
-            this.grbActions.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.grbActions.Location = new System.Drawing.Point(0, 0);
-            this.grbActions.Name = "grbActions";
-            this.grbActions.Size = new System.Drawing.Size(200, 145);
-            this.grbActions.TabIndex = 0;
-            this.grbActions.TabStop = false;
-            this.grbActions.Text = "Actions";
-            // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(15, 101);
+            this.btnStop.Location = new System.Drawing.Point(18, 132);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(171, 29);
+            this.btnStop.Size = new System.Drawing.Size(171, 24);
             this.btnStop.TabIndex = 1;
             this.btnStop.Text = "Stop scan";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -377,9 +362,9 @@
             // 
             // btnBuildDetector
             // 
-            this.btnBuildDetector.Location = new System.Drawing.Point(15, 36);
+            this.btnBuildDetector.Location = new System.Drawing.Point(18, 97);
             this.btnBuildDetector.Name = "btnBuildDetector";
-            this.btnBuildDetector.Size = new System.Drawing.Size(171, 29);
+            this.btnBuildDetector.Size = new System.Drawing.Size(171, 23);
             this.btnBuildDetector.TabIndex = 0;
             this.btnBuildDetector.Text = "Build Detector";
             this.btnBuildDetector.UseVisualStyleBackColor = true;
@@ -387,16 +372,16 @@
             // 
             // txtbCMixDetectorFile
             // 
-            this.txtbCMixDetectorFile.Location = new System.Drawing.Point(153, 149);
+            this.txtbCMixDetectorFile.Location = new System.Drawing.Point(98, 130);
             this.txtbCMixDetectorFile.Name = "txtbCMixDetectorFile";
-            this.txtbCMixDetectorFile.Size = new System.Drawing.Size(207, 20);
+            this.txtbCMixDetectorFile.Size = new System.Drawing.Size(111, 20);
             this.txtbCMixDetectorFile.TabIndex = 9;
             // 
             // btnCMixDetectorFile
             // 
-            this.btnCMixDetectorFile.Location = new System.Drawing.Point(366, 149);
+            this.btnCMixDetectorFile.Location = new System.Drawing.Point(215, 129);
             this.btnCMixDetectorFile.Name = "btnCMixDetectorFile";
-            this.btnCMixDetectorFile.Size = new System.Drawing.Size(32, 21);
+            this.btnCMixDetectorFile.Size = new System.Drawing.Size(19, 21);
             this.btnCMixDetectorFile.TabIndex = 8;
             this.btnCMixDetectorFile.Text = "...";
             this.btnCMixDetectorFile.UseVisualStyleBackColor = true;
@@ -409,54 +394,45 @@
             this.tabMain.Controls.Add(this.tabpgFileClassifier);
             this.tabMain.Controls.Add(this.tabPgVirusScanner);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMain.Location = new System.Drawing.Point(205, 5);
+            this.tabMain.Location = new System.Drawing.Point(5, 5);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(752, 499);
+            this.tabMain.Size = new System.Drawing.Size(952, 567);
             this.tabMain.TabIndex = 3;
             this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
             // 
             // tabpgDetector
             // 
-            this.tabpgDetector.Controls.Add(this.dtGroupView);
             this.tabpgDetector.Controls.Add(this.dtNegativeSelection);
             this.tabpgDetector.Controls.Add(this.panelTabRight);
             this.tabpgDetector.Location = new System.Drawing.Point(4, 22);
             this.tabpgDetector.Name = "tabpgDetector";
             this.tabpgDetector.Padding = new System.Windows.Forms.Padding(3);
-            this.tabpgDetector.Size = new System.Drawing.Size(744, 473);
+            this.tabpgDetector.Size = new System.Drawing.Size(944, 541);
             this.tabpgDetector.TabIndex = 0;
             this.tabpgDetector.Text = "Detector";
             this.tabpgDetector.UseVisualStyleBackColor = true;
-            // 
-            // dtGroupView
-            // 
-            this.dtGroupView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtGroupView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGroupView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtGroupView.Location = new System.Drawing.Point(203, 279);
-            this.dtGroupView.Name = "dtGroupView";
-            this.dtGroupView.Size = new System.Drawing.Size(538, 191);
-            this.dtGroupView.TabIndex = 4;
             // 
             // dtNegativeSelection
             // 
             this.dtNegativeSelection.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtNegativeSelection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtNegativeSelection.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dtNegativeSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtNegativeSelection.Location = new System.Drawing.Point(203, 3);
             this.dtNegativeSelection.Name = "dtNegativeSelection";
-            this.dtNegativeSelection.Size = new System.Drawing.Size(538, 276);
+            this.dtNegativeSelection.Size = new System.Drawing.Size(738, 535);
             this.dtNegativeSelection.TabIndex = 3;
             // 
             // panelTabRight
             // 
             this.panelTabRight.BackColor = System.Drawing.SystemColors.Control;
+            this.panelTabRight.Controls.Add(this.grbOutput);
             this.panelTabRight.Controls.Add(this.groupBox1);
+            this.panelTabRight.Controls.Add(this.grbIO);
             this.panelTabRight.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelTabRight.Location = new System.Drawing.Point(3, 3);
             this.panelTabRight.Name = "panelTabRight";
-            this.panelTabRight.Size = new System.Drawing.Size(200, 467);
+            this.panelTabRight.Size = new System.Drawing.Size(200, 535);
             this.panelTabRight.TabIndex = 2;
             // 
             // groupBox1
@@ -469,23 +445,21 @@
             this.groupBox1.Controls.Add(this.ckbHamming);
             this.groupBox1.Controls.Add(this.txtSelectionRate);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtNumberofCluster);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtStepSize);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtLength);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Location = new System.Drawing.Point(0, 203);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 467);
+            this.groupBox1.Size = new System.Drawing.Size(200, 332);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parameter";
             // 
             // txtContiguos
             // 
-            this.txtContiguos.Location = new System.Drawing.Point(72, 256);
+            this.txtContiguos.Location = new System.Drawing.Point(72, 205);
             this.txtContiguos.Name = "txtContiguos";
             this.txtContiguos.Size = new System.Drawing.Size(113, 20);
             this.txtContiguos.TabIndex = 14;
@@ -494,7 +468,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 259);
+            this.label6.Location = new System.Drawing.Point(34, 208);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(10, 13);
             this.label6.TabIndex = 13;
@@ -505,7 +479,7 @@
             this.ckbRContiguos.AutoSize = true;
             this.ckbRContiguos.Checked = true;
             this.ckbRContiguos.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbRContiguos.Location = new System.Drawing.Point(10, 231);
+            this.ckbRContiguos.Location = new System.Drawing.Point(10, 180);
             this.ckbRContiguos.Name = "ckbRContiguos";
             this.ckbRContiguos.Size = new System.Drawing.Size(129, 17);
             this.ckbRContiguos.TabIndex = 12;
@@ -514,7 +488,7 @@
             // 
             // txtHamming
             // 
-            this.txtHamming.Location = new System.Drawing.Point(72, 197);
+            this.txtHamming.Location = new System.Drawing.Point(72, 146);
             this.txtHamming.Name = "txtHamming";
             this.txtHamming.Size = new System.Drawing.Size(113, 20);
             this.txtHamming.TabIndex = 11;
@@ -523,7 +497,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 200);
+            this.label5.Location = new System.Drawing.Point(34, 149);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(13, 13);
             this.label5.TabIndex = 10;
@@ -534,7 +508,7 @@
             this.ckbHamming.AutoSize = true;
             this.ckbHamming.Checked = true;
             this.ckbHamming.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbHamming.Location = new System.Drawing.Point(10, 172);
+            this.ckbHamming.Location = new System.Drawing.Point(10, 121);
             this.ckbHamming.Name = "ckbHamming";
             this.ckbHamming.Size = new System.Drawing.Size(115, 17);
             this.ckbHamming.TabIndex = 9;
@@ -543,7 +517,7 @@
             // 
             // txtSelectionRate
             // 
-            this.txtSelectionRate.Location = new System.Drawing.Point(72, 142);
+            this.txtSelectionRate.Location = new System.Drawing.Point(72, 91);
             this.txtSelectionRate.Name = "txtSelectionRate";
             this.txtSelectionRate.Size = new System.Drawing.Size(113, 20);
             this.txtSelectionRate.TabIndex = 7;
@@ -552,28 +526,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 126);
+            this.label4.Location = new System.Drawing.Point(7, 75);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Selection Rate";
-            // 
-            // txtNumberofCluster
-            // 
-            this.txtNumberofCluster.Location = new System.Drawing.Point(72, 100);
-            this.txtNumberofCluster.Name = "txtNumberofCluster";
-            this.txtNumberofCluster.Size = new System.Drawing.Size(113, 20);
-            this.txtNumberofCluster.TabIndex = 5;
-            this.txtNumberofCluster.Text = "50";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 84);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Number of cluster";
             // 
             // txtStepSize
             // 
@@ -612,80 +569,38 @@
             // tabpgClustering
             // 
             this.tabpgClustering.Controls.Add(this.panel2);
-            this.tabpgClustering.Controls.Add(this.groupBox2);
+            this.tabpgClustering.Controls.Add(this.panel4);
             this.tabpgClustering.Location = new System.Drawing.Point(4, 22);
             this.tabpgClustering.Name = "tabpgClustering";
             this.tabpgClustering.Padding = new System.Windows.Forms.Padding(3);
-            this.tabpgClustering.Size = new System.Drawing.Size(744, 473);
+            this.tabpgClustering.Size = new System.Drawing.Size(944, 541);
             this.tabpgClustering.TabIndex = 1;
             this.tabpgClustering.Text = "Clustering";
             this.tabpgClustering.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label32);
-            this.panel2.Controls.Add(this.label26);
-            this.panel2.Controls.Add(this.label25);
-            this.panel2.Controls.Add(this.txtbCTotalBenign);
-            this.panel2.Controls.Add(this.txtbCTotalVirus);
-            this.panel2.Controls.Add(this.btnCClusteringFile);
-            this.panel2.Controls.Add(this.btnCSave);
-            this.panel2.Controls.Add(this.btnCLoad);
-            this.panel2.Controls.Add(this.txtbCClusteringFile);
+            this.panel2.Controls.Add(this.dangerLevel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(413, 3);
+            this.panel2.Location = new System.Drawing.Point(244, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(328, 467);
+            this.panel2.Size = new System.Drawing.Size(697, 535);
             this.panel2.TabIndex = 1;
             // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(20, 399);
+            this.label32.Location = new System.Drawing.Point(3, 5);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(72, 13);
             this.label32.TabIndex = 30;
             this.label32.Text = "Clustering File";
             // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(46, 155);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(57, 13);
-            this.label26.TabIndex = 29;
-            this.label26.Text = "Total Virus";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(46, 180);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(67, 13);
-            this.label25.TabIndex = 28;
-            this.label25.Text = "Total Benign";
-            // 
-            // txtbCTotalBenign
-            // 
-            this.txtbCTotalBenign.Location = new System.Drawing.Point(124, 177);
-            this.txtbCTotalBenign.Name = "txtbCTotalBenign";
-            this.txtbCTotalBenign.ReadOnly = true;
-            this.txtbCTotalBenign.Size = new System.Drawing.Size(99, 20);
-            this.txtbCTotalBenign.TabIndex = 9;
-            // 
-            // txtbCTotalVirus
-            // 
-            this.txtbCTotalVirus.Location = new System.Drawing.Point(124, 152);
-            this.txtbCTotalVirus.Name = "txtbCTotalVirus";
-            this.txtbCTotalVirus.ReadOnly = true;
-            this.txtbCTotalVirus.Size = new System.Drawing.Size(99, 20);
-            this.txtbCTotalVirus.TabIndex = 8;
-            // 
             // btnCClusteringFile
             // 
-            this.btnCClusteringFile.Location = new System.Drawing.Point(275, 394);
+            this.btnCClusteringFile.Location = new System.Drawing.Point(212, 2);
             this.btnCClusteringFile.Name = "btnCClusteringFile";
-            this.btnCClusteringFile.Size = new System.Drawing.Size(32, 22);
+            this.btnCClusteringFile.Size = new System.Drawing.Size(23, 22);
             this.btnCClusteringFile.TabIndex = 2;
             this.btnCClusteringFile.Text = "...";
             this.btnCClusteringFile.UseVisualStyleBackColor = true;
@@ -693,7 +608,7 @@
             // 
             // btnCSave
             // 
-            this.btnCSave.Location = new System.Drawing.Point(64, 426);
+            this.btnCSave.Location = new System.Drawing.Point(6, 28);
             this.btnCSave.Name = "btnCSave";
             this.btnCSave.Size = new System.Drawing.Size(99, 22);
             this.btnCSave.TabIndex = 0;
@@ -703,7 +618,7 @@
             // 
             // btnCLoad
             // 
-            this.btnCLoad.Location = new System.Drawing.Point(170, 426);
+            this.btnCLoad.Location = new System.Drawing.Point(136, 28);
             this.btnCLoad.Name = "btnCLoad";
             this.btnCLoad.Size = new System.Drawing.Size(99, 22);
             this.btnCLoad.TabIndex = 1;
@@ -713,56 +628,39 @@
             // 
             // txtbCClusteringFile
             // 
-            this.txtbCClusteringFile.Location = new System.Drawing.Point(101, 396);
+            this.txtbCClusteringFile.Location = new System.Drawing.Point(84, 3);
             this.txtbCClusteringFile.Name = "txtbCClusteringFile";
-            this.txtbCClusteringFile.Size = new System.Drawing.Size(168, 20);
+            this.txtbCClusteringFile.Size = new System.Drawing.Size(126, 20);
             this.txtbCClusteringFile.TabIndex = 3;
             // 
-            // groupBox2
+            // grbPreprocess
             // 
-            this.groupBox2.Controls.Add(this.label31);
-            this.groupBox2.Controls.Add(this.label27);
-            this.groupBox2.Controls.Add(this.btnCLoadMixDetector);
-            this.groupBox2.Controls.Add(this.txtbCLearningRadius);
-            this.groupBox2.Controls.Add(this.btnCSaveMixDetector);
-            this.groupBox2.Controls.Add(this.label28);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Controls.Add(this.txtbCMixDetectorFile);
-            this.groupBox2.Controls.Add(this.txtbCLearningRate);
-            this.groupBox2.Controls.Add(this.txtbCNumOutputNeuron);
-            this.groupBox2.Controls.Add(this.btnCMixDetectorFile);
-            this.groupBox2.Controls.Add(this.btnCMixDetector);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.txtbCBenignSize);
-            this.groupBox2.Controls.Add(this.txtbCNumInputNeuron);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.txtbCVirusSize);
-            this.groupBox2.Controls.Add(this.txtbCErrorThresold);
-            this.groupBox2.Controls.Add(this.cbCUseRate);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.txtbCNumIterator);
-            this.groupBox2.Controls.Add(this.txtbCBenignVirusRate);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.txtbCNumNeuronY);
-            this.groupBox2.Controls.Add(this.txtbCNumNeuronX);
-            this.groupBox2.Controls.Add(this.btnCPrintNeuron);
-            this.groupBox2.Controls.Add(this.btnCStartClustering);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(410, 467);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Function";
+            this.grbPreprocess.BackColor = System.Drawing.SystemColors.Control;
+            this.grbPreprocess.Controls.Add(this.btnCLoadMixDetector);
+            this.grbPreprocess.Controls.Add(this.label31);
+            this.grbPreprocess.Controls.Add(this.txtbCMixDetectorFile);
+            this.grbPreprocess.Controls.Add(this.btnCMixDetectorFile);
+            this.grbPreprocess.Controls.Add(this.btnCMixDetector);
+            this.grbPreprocess.Controls.Add(this.label10);
+            this.grbPreprocess.Controls.Add(this.txtbCBenignSize);
+            this.grbPreprocess.Controls.Add(this.label9);
+            this.grbPreprocess.Controls.Add(this.txtbCVirusSize);
+            this.grbPreprocess.Controls.Add(this.btnCSaveMixDetector);
+            this.grbPreprocess.Controls.Add(this.cbCUseRate);
+            this.grbPreprocess.Controls.Add(this.label8);
+            this.grbPreprocess.Controls.Add(this.txtbCBenignVirusRate);
+            this.grbPreprocess.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grbPreprocess.Location = new System.Drawing.Point(0, 0);
+            this.grbPreprocess.Name = "grbPreprocess";
+            this.grbPreprocess.Size = new System.Drawing.Size(241, 183);
+            this.grbPreprocess.TabIndex = 0;
+            this.grbPreprocess.TabStop = false;
+            this.grbPreprocess.Text = "Pre-Process";
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(25, 153);
+            this.label31.Location = new System.Drawing.Point(6, 133);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(86, 13);
             this.label31.TabIndex = 37;
@@ -771,7 +669,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(25, 354);
+            this.label27.Location = new System.Drawing.Point(7, 120);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(84, 13);
             this.label27.TabIndex = 36;
@@ -779,9 +677,9 @@
             // 
             // btnCLoadMixDetector
             // 
-            this.btnCLoadMixDetector.Location = new System.Drawing.Point(217, 180);
+            this.btnCLoadMixDetector.Location = new System.Drawing.Point(115, 155);
             this.btnCLoadMixDetector.Name = "btnCLoadMixDetector";
-            this.btnCLoadMixDetector.Size = new System.Drawing.Size(104, 22);
+            this.btnCLoadMixDetector.Size = new System.Drawing.Size(119, 22);
             this.btnCLoadMixDetector.TabIndex = 11;
             this.btnCLoadMixDetector.Text = "Load Mix Detector";
             this.btnCLoadMixDetector.UseVisualStyleBackColor = true;
@@ -789,17 +687,17 @@
             // 
             // txtbCLearningRadius
             // 
-            this.txtbCLearningRadius.Location = new System.Drawing.Point(135, 347);
+            this.txtbCLearningRadius.Location = new System.Drawing.Point(116, 117);
             this.txtbCLearningRadius.Name = "txtbCLearningRadius";
-            this.txtbCLearningRadius.Size = new System.Drawing.Size(99, 20);
+            this.txtbCLearningRadius.Size = new System.Drawing.Size(119, 20);
             this.txtbCLearningRadius.TabIndex = 35;
             this.txtbCLearningRadius.Text = "4";
             // 
             // btnCSaveMixDetector
             // 
-            this.btnCSaveMixDetector.Location = new System.Drawing.Point(98, 180);
+            this.btnCSaveMixDetector.Location = new System.Drawing.Point(6, 155);
             this.btnCSaveMixDetector.Name = "btnCSaveMixDetector";
-            this.btnCSaveMixDetector.Size = new System.Drawing.Size(113, 23);
+            this.btnCSaveMixDetector.Size = new System.Drawing.Size(103, 22);
             this.btnCSaveMixDetector.TabIndex = 10;
             this.btnCSaveMixDetector.Text = "Save Mix Detector";
             this.btnCSaveMixDetector.UseVisualStyleBackColor = true;
@@ -808,40 +706,23 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(25, 330);
+            this.label28.Location = new System.Drawing.Point(7, 94);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(74, 13);
             this.label28.TabIndex = 34;
             this.label28.Text = "Learning Rate";
             // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(25, 253);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(102, 13);
-            this.label23.TabIndex = 32;
-            this.label23.Text = "Num Output Neuron";
-            // 
             // txtbCLearningRate
             // 
-            this.txtbCLearningRate.Location = new System.Drawing.Point(135, 323);
+            this.txtbCLearningRate.Location = new System.Drawing.Point(116, 91);
             this.txtbCLearningRate.Name = "txtbCLearningRate";
-            this.txtbCLearningRate.Size = new System.Drawing.Size(99, 20);
+            this.txtbCLearningRate.Size = new System.Drawing.Size(119, 20);
             this.txtbCLearningRate.TabIndex = 33;
             this.txtbCLearningRate.Text = "0.3";
             // 
-            // txtbCNumOutputNeuron
-            // 
-            this.txtbCNumOutputNeuron.Location = new System.Drawing.Point(135, 250);
-            this.txtbCNumOutputNeuron.Name = "txtbCNumOutputNeuron";
-            this.txtbCNumOutputNeuron.ReadOnly = true;
-            this.txtbCNumOutputNeuron.Size = new System.Drawing.Size(99, 20);
-            this.txtbCNumOutputNeuron.TabIndex = 31;
-            // 
             // btnCMixDetector
             // 
-            this.btnCMixDetector.Location = new System.Drawing.Point(98, 104);
+            this.btnCMixDetector.Location = new System.Drawing.Point(142, 97);
             this.btnCMixDetector.Name = "btnCMixDetector";
             this.btnCMixDetector.Size = new System.Drawing.Size(92, 23);
             this.btnCMixDetector.TabIndex = 30;
@@ -852,7 +733,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 75);
+            this.label10.Location = new System.Drawing.Point(3, 75);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(63, 13);
             this.label10.TabIndex = 29;
@@ -861,7 +742,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(25, 229);
+            this.label15.Location = new System.Drawing.Point(7, 16);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(94, 13);
             this.label15.TabIndex = 29;
@@ -869,24 +750,24 @@
             // 
             // txtbCBenignSize
             // 
-            this.txtbCBenignSize.Location = new System.Drawing.Point(153, 72);
+            this.txtbCBenignSize.Location = new System.Drawing.Point(83, 72);
             this.txtbCBenignSize.Name = "txtbCBenignSize";
             this.txtbCBenignSize.ReadOnly = true;
-            this.txtbCBenignSize.Size = new System.Drawing.Size(112, 20);
+            this.txtbCBenignSize.Size = new System.Drawing.Size(151, 20);
             this.txtbCBenignSize.TabIndex = 28;
             // 
             // txtbCNumInputNeuron
             // 
-            this.txtbCNumInputNeuron.Location = new System.Drawing.Point(135, 226);
+            this.txtbCNumInputNeuron.Location = new System.Drawing.Point(116, 13);
             this.txtbCNumInputNeuron.Name = "txtbCNumInputNeuron";
-            this.txtbCNumInputNeuron.Size = new System.Drawing.Size(99, 20);
+            this.txtbCNumInputNeuron.Size = new System.Drawing.Size(119, 20);
             this.txtbCNumInputNeuron.TabIndex = 28;
             this.txtbCNumInputNeuron.Text = "4";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 49);
+            this.label9.Location = new System.Drawing.Point(3, 46);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 27;
@@ -895,7 +776,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(25, 403);
+            this.label14.Location = new System.Drawing.Point(4, 174);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(73, 13);
             this.label14.TabIndex = 27;
@@ -903,17 +784,17 @@
             // 
             // txtbCVirusSize
             // 
-            this.txtbCVirusSize.Location = new System.Drawing.Point(153, 46);
+            this.txtbCVirusSize.Location = new System.Drawing.Point(83, 41);
             this.txtbCVirusSize.Name = "txtbCVirusSize";
             this.txtbCVirusSize.ReadOnly = true;
-            this.txtbCVirusSize.Size = new System.Drawing.Size(112, 20);
+            this.txtbCVirusSize.Size = new System.Drawing.Size(151, 20);
             this.txtbCVirusSize.TabIndex = 26;
             // 
             // txtbCErrorThresold
             // 
-            this.txtbCErrorThresold.Location = new System.Drawing.Point(135, 396);
+            this.txtbCErrorThresold.Location = new System.Drawing.Point(116, 171);
             this.txtbCErrorThresold.Name = "txtbCErrorThresold";
-            this.txtbCErrorThresold.Size = new System.Drawing.Size(99, 20);
+            this.txtbCErrorThresold.Size = new System.Drawing.Size(119, 20);
             this.txtbCErrorThresold.TabIndex = 26;
             this.txtbCErrorThresold.Text = "0.2";
             // 
@@ -922,7 +803,7 @@
             this.cbCUseRate.AutoSize = true;
             this.cbCUseRate.Checked = true;
             this.cbCUseRate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbCUseRate.Location = new System.Drawing.Point(28, 23);
+            this.cbCUseRate.Location = new System.Drawing.Point(3, 18);
             this.cbCUseRate.Name = "cbCUseRate";
             this.cbCUseRate.Size = new System.Drawing.Size(71, 17);
             this.cbCUseRate.TabIndex = 25;
@@ -933,7 +814,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(25, 379);
+            this.label13.Location = new System.Drawing.Point(7, 145);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 13);
             this.label13.TabIndex = 25;
@@ -942,7 +823,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(113, 23);
+            this.label8.Location = new System.Drawing.Point(80, 19);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 13);
             this.label8.TabIndex = 24;
@@ -950,24 +831,24 @@
             // 
             // txtbCNumIterator
             // 
-            this.txtbCNumIterator.Location = new System.Drawing.Point(135, 372);
+            this.txtbCNumIterator.Location = new System.Drawing.Point(116, 143);
             this.txtbCNumIterator.Name = "txtbCNumIterator";
-            this.txtbCNumIterator.Size = new System.Drawing.Size(99, 20);
+            this.txtbCNumIterator.Size = new System.Drawing.Size(119, 20);
             this.txtbCNumIterator.TabIndex = 24;
             this.txtbCNumIterator.Text = "1000";
             // 
             // txtbCBenignVirusRate
             // 
-            this.txtbCBenignVirusRate.Location = new System.Drawing.Point(187, 19);
+            this.txtbCBenignVirusRate.Location = new System.Drawing.Point(185, 16);
             this.txtbCBenignVirusRate.Name = "txtbCBenignVirusRate";
-            this.txtbCBenignVirusRate.Size = new System.Drawing.Size(62, 20);
+            this.txtbCBenignVirusRate.Size = new System.Drawing.Size(49, 20);
             this.txtbCBenignVirusRate.TabIndex = 23;
             this.txtbCBenignVirusRate.Text = "2";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(25, 306);
+            this.label12.Location = new System.Drawing.Point(7, 70);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(77, 13);
             this.label12.TabIndex = 23;
@@ -976,7 +857,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 281);
+            this.label11.Location = new System.Drawing.Point(7, 42);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 13);
             this.label11.TabIndex = 22;
@@ -984,25 +865,25 @@
             // 
             // txtbCNumNeuronY
             // 
-            this.txtbCNumNeuronY.Location = new System.Drawing.Point(135, 299);
+            this.txtbCNumNeuronY.Location = new System.Drawing.Point(116, 65);
             this.txtbCNumNeuronY.Name = "txtbCNumNeuronY";
-            this.txtbCNumNeuronY.Size = new System.Drawing.Size(99, 20);
+            this.txtbCNumNeuronY.Size = new System.Drawing.Size(119, 20);
             this.txtbCNumNeuronY.TabIndex = 7;
             this.txtbCNumNeuronY.Text = "10";
             // 
             // txtbCNumNeuronX
             // 
-            this.txtbCNumNeuronX.Location = new System.Drawing.Point(135, 274);
+            this.txtbCNumNeuronX.Location = new System.Drawing.Point(116, 39);
             this.txtbCNumNeuronX.Name = "txtbCNumNeuronX";
-            this.txtbCNumNeuronX.Size = new System.Drawing.Size(99, 20);
+            this.txtbCNumNeuronX.Size = new System.Drawing.Size(119, 20);
             this.txtbCNumNeuronX.TabIndex = 6;
             this.txtbCNumNeuronX.Text = "10";
             // 
             // btnCPrintNeuron
             // 
-            this.btnCPrintNeuron.Location = new System.Drawing.Point(187, 426);
+            this.btnCPrintNeuron.Location = new System.Drawing.Point(116, 197);
             this.btnCPrintNeuron.Name = "btnCPrintNeuron";
-            this.btnCPrintNeuron.Size = new System.Drawing.Size(99, 23);
+            this.btnCPrintNeuron.Size = new System.Drawing.Size(119, 23);
             this.btnCPrintNeuron.TabIndex = 5;
             this.btnCPrintNeuron.Text = "Print Neuron";
             this.btnCPrintNeuron.UseVisualStyleBackColor = true;
@@ -1010,7 +891,7 @@
             // 
             // btnCStartClustering
             // 
-            this.btnCStartClustering.Location = new System.Drawing.Point(82, 426);
+            this.btnCStartClustering.Location = new System.Drawing.Point(7, 197);
             this.btnCStartClustering.Name = "btnCStartClustering";
             this.btnCStartClustering.Size = new System.Drawing.Size(99, 23);
             this.btnCStartClustering.TabIndex = 4;
@@ -1025,31 +906,31 @@
             this.tabpgFileClassifier.Location = new System.Drawing.Point(4, 22);
             this.tabpgFileClassifier.Name = "tabpgFileClassifier";
             this.tabpgFileClassifier.Padding = new System.Windows.Forms.Padding(3);
-            this.tabpgFileClassifier.Size = new System.Drawing.Size(744, 473);
+            this.tabpgFileClassifier.Size = new System.Drawing.Size(744, 541);
             this.tabpgFileClassifier.TabIndex = 2;
             this.tabpgFileClassifier.Text = "File Classifier";
             this.tabpgFileClassifier.UseVisualStyleBackColor = true;
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend7.Name = "Legend1";
+            this.chart1.Legends.Add(legend7);
             this.chart1.Location = new System.Drawing.Point(216, 3);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "Benign";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Legend = "Legend1";
-            series2.Name = "Virus";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(525, 467);
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series13.Legend = "Legend1";
+            series13.Name = "Benign";
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series14.Legend = "Legend1";
+            series14.Name = "Virus";
+            this.chart1.Series.Add(series13);
+            this.chart1.Series.Add(series14);
+            this.chart1.Size = new System.Drawing.Size(525, 535);
             this.chart1.TabIndex = 48;
             this.chart1.Text = "chart1";
             // 
@@ -1081,7 +962,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(213, 467);
+            this.panel3.Size = new System.Drawing.Size(213, 535);
             this.panel3.TabIndex = 47;
             // 
             // label18
@@ -1279,18 +1160,12 @@
             // 
             // tabPgVirusScanner
             // 
-            this.tabPgVirusScanner.Controls.Add(this.label30);
-            this.tabPgVirusScanner.Controls.Add(this.label17);
-            this.tabPgVirusScanner.Controls.Add(this.txtbFCNumBenign);
-            this.tabPgVirusScanner.Controls.Add(this.label16);
-            this.tabPgVirusScanner.Controls.Add(this.txtbFCNumVirus);
-            this.tabPgVirusScanner.Controls.Add(this.txtbVSTestFileFolder);
-            this.tabPgVirusScanner.Controls.Add(this.btnFCTestFileFolder);
-            this.tabPgVirusScanner.Controls.Add(this.btnFCScanVirus);
+            this.tabPgVirusScanner.Controls.Add(this.dgvVirus);
+            this.tabPgVirusScanner.Controls.Add(this.panel7);
             this.tabPgVirusScanner.Location = new System.Drawing.Point(4, 22);
             this.tabPgVirusScanner.Name = "tabPgVirusScanner";
             this.tabPgVirusScanner.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPgVirusScanner.Size = new System.Drawing.Size(744, 473);
+            this.tabPgVirusScanner.Size = new System.Drawing.Size(944, 541);
             this.tabPgVirusScanner.TabIndex = 3;
             this.tabPgVirusScanner.Text = "Virus Scanner";
             this.tabPgVirusScanner.UseVisualStyleBackColor = true;
@@ -1298,7 +1173,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(52, 79);
+            this.label30.Location = new System.Drawing.Point(15, 19);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(79, 13);
             this.label30.TabIndex = 34;
@@ -1307,7 +1182,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(52, 279);
+            this.label17.Location = new System.Drawing.Point(15, 139);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 13);
             this.label17.TabIndex = 33;
@@ -1315,16 +1190,16 @@
             // 
             // txtbFCNumBenign
             // 
-            this.txtbFCNumBenign.Location = new System.Drawing.Point(141, 276);
+            this.txtbFCNumBenign.Location = new System.Drawing.Point(93, 136);
             this.txtbFCNumBenign.Name = "txtbFCNumBenign";
             this.txtbFCNumBenign.ReadOnly = true;
-            this.txtbFCNumBenign.Size = new System.Drawing.Size(85, 20);
+            this.txtbFCNumBenign.Size = new System.Drawing.Size(99, 20);
             this.txtbFCNumBenign.TabIndex = 32;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(52, 253);
+            this.label16.Location = new System.Drawing.Point(15, 113);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(55, 13);
             this.label16.TabIndex = 31;
@@ -1332,24 +1207,24 @@
             // 
             // txtbFCNumVirus
             // 
-            this.txtbFCNumVirus.Location = new System.Drawing.Point(141, 250);
+            this.txtbFCNumVirus.Location = new System.Drawing.Point(93, 110);
             this.txtbFCNumVirus.Name = "txtbFCNumVirus";
             this.txtbFCNumVirus.ReadOnly = true;
-            this.txtbFCNumVirus.Size = new System.Drawing.Size(85, 20);
+            this.txtbFCNumVirus.Size = new System.Drawing.Size(99, 20);
             this.txtbFCNumVirus.TabIndex = 30;
             // 
             // txtbVSTestFileFolder
             // 
-            this.txtbVSTestFileFolder.Location = new System.Drawing.Point(151, 76);
+            this.txtbVSTestFileFolder.Location = new System.Drawing.Point(18, 43);
             this.txtbVSTestFileFolder.Name = "txtbVSTestFileFolder";
-            this.txtbVSTestFileFolder.Size = new System.Drawing.Size(199, 20);
+            this.txtbVSTestFileFolder.Size = new System.Drawing.Size(140, 20);
             this.txtbVSTestFileFolder.TabIndex = 7;
             // 
             // btnFCTestFileFolder
             // 
-            this.btnFCTestFileFolder.Location = new System.Drawing.Point(356, 75);
+            this.btnFCTestFileFolder.Location = new System.Drawing.Point(164, 43);
             this.btnFCTestFileFolder.Name = "btnFCTestFileFolder";
-            this.btnFCTestFileFolder.Size = new System.Drawing.Size(45, 22);
+            this.btnFCTestFileFolder.Size = new System.Drawing.Size(28, 22);
             this.btnFCTestFileFolder.TabIndex = 6;
             this.btnFCTestFileFolder.Text = "...";
             this.btnFCTestFileFolder.UseVisualStyleBackColor = true;
@@ -1357,7 +1232,7 @@
             // 
             // btnFCScanVirus
             // 
-            this.btnFCScanVirus.Location = new System.Drawing.Point(108, 140);
+            this.btnFCScanVirus.Location = new System.Drawing.Point(51, 69);
             this.btnFCScanVirus.Name = "btnFCScanVirus";
             this.btnFCScanVirus.Size = new System.Drawing.Size(96, 26);
             this.btnFCScanVirus.TabIndex = 0;
@@ -1369,14 +1244,140 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.groupBox2);
+            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Controls.Add(this.grbPreprocess);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(241, 535);
+            this.panel4.TabIndex = 2;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox2.Controls.Add(this.label27);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.txtbCNumInputNeuron);
+            this.groupBox2.Controls.Add(this.txtbCErrorThresold);
+            this.groupBox2.Controls.Add(this.txtbCLearningRadius);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.txtbCNumIterator);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label28);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.txtbCNumNeuronY);
+            this.groupBox2.Controls.Add(this.btnCStartClustering);
+            this.groupBox2.Controls.Add(this.txtbCNumNeuronX);
+            this.groupBox2.Controls.Add(this.btnCPrintNeuron);
+            this.groupBox2.Controls.Add(this.txtbCLearningRate);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 183);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(241, 294);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Clustering";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.Control;
+            this.panel5.Controls.Add(this.label32);
+            this.panel5.Controls.Add(this.btnCLoad);
+            this.panel5.Controls.Add(this.btnCSave);
+            this.panel5.Controls.Add(this.txtbCClusteringFile);
+            this.panel5.Controls.Add(this.btnCClusteringFile);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 477);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(241, 58);
+            this.panel5.TabIndex = 1;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.Control;
+            this.panel7.Controls.Add(this.label30);
+            this.panel7.Controls.Add(this.label17);
+            this.panel7.Controls.Add(this.txtbVSTestFileFolder);
+            this.panel7.Controls.Add(this.txtbFCNumBenign);
+            this.panel7.Controls.Add(this.btnFCTestFileFolder);
+            this.panel7.Controls.Add(this.label16);
+            this.panel7.Controls.Add(this.btnFCScanVirus);
+            this.panel7.Controls.Add(this.txtbFCNumVirus);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(3, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(200, 535);
+            this.panel7.TabIndex = 35;
+            // 
+            // dgvVirus
+            // 
+            this.dgvVirus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVirus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVirus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvVirus.Location = new System.Drawing.Point(203, 3);
+            this.dgvVirus.Name = "dgvVirus";
+            this.dgvVirus.Size = new System.Drawing.Size(738, 535);
+            this.dgvVirus.TabIndex = 36;
+            // 
+            // dangerLevel
+            // 
+            chartArea8.Name = "ChartArea1";
+            this.dangerLevel.ChartAreas.Add(chartArea8);
+            this.dangerLevel.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend8.Name = "Legend1";
+            this.dangerLevel.Legends.Add(legend8);
+            this.dangerLevel.Location = new System.Drawing.Point(0, 0);
+            this.dangerLevel.Name = "dangerLevel";
+            series15.ChartArea = "ChartArea1";
+            series15.Legend = "Legend1";
+            series15.Name = "Benign";
+            series16.ChartArea = "ChartArea1";
+            series16.Legend = "Legend1";
+            series16.Name = "Virus";
+            this.dangerLevel.Series.Add(series15);
+            this.dangerLevel.Series.Add(series16);
+            this.dangerLevel.Size = new System.Drawing.Size(697, 535);
+            this.dangerLevel.TabIndex = 0;
+            this.dangerLevel.Text = "chart2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Virus Directory";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(17, 55);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(85, 13);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "Benign Directory";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(17, 159);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(93, 13);
+            this.label25.TabIndex = 10;
+            this.label25.Text = "Detector Directory";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(962, 593);
+            this.ClientSize = new System.Drawing.Size(962, 661);
             this.Controls.Add(this.tabMain);
-            this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelFooter);
             this.Name = "FormMain";
             this.Padding = new System.Windows.Forms.Padding(5);
@@ -1384,29 +1385,33 @@
             this.panelFooter.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelRight.ResumeLayout(false);
             this.grbOutput.ResumeLayout(false);
             this.grbIO.ResumeLayout(false);
             this.grbIO.PerformLayout();
-            this.grbActions.ResumeLayout(false);
             this.tabMain.ResumeLayout(false);
             this.tabpgDetector.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtGroupView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNegativeSelection)).EndInit();
             this.panelTabRight.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabpgClustering.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grbPreprocess.ResumeLayout(false);
+            this.grbPreprocess.PerformLayout();
             this.tabpgFileClassifier.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.tabPgVirusScanner.ResumeLayout(false);
-            this.tabPgVirusScanner.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVirus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dangerLevel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1414,7 +1419,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelFooter;
-        private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.GroupBox grbOutput;
         private System.Windows.Forms.GroupBox grbIO;
         private System.Windows.Forms.TextBox txtbDetectorFile;
@@ -1423,7 +1427,6 @@
         private System.Windows.Forms.Button btnBegin;
         private System.Windows.Forms.TextBox txtbVirusFolder;
         private System.Windows.Forms.Button btnVirusDetect;
-        private System.Windows.Forms.GroupBox grbActions;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnBuildDetector;
         private System.Windows.Forms.TabControl tabMain;
@@ -1441,8 +1444,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtSelectionRate;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtNumberofCluster;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtStepSize;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtLength;
@@ -1454,9 +1455,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox ckbHamming;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.DataGridView dtGroupView;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grbPreprocess;
         private System.Windows.Forms.Button btnCLoad;
         private System.Windows.Forms.Button btnCSave;
         private System.Windows.Forms.TextBox txtbCClusteringFile;
@@ -1508,15 +1508,9 @@
         private System.Windows.Forms.CheckBox cbCUseRate;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtbCBenignVirusRate;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtbCNumOutputNeuron;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btnCLoadMixDetector;
         private System.Windows.Forms.Button btnCSaveMixDetector;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox txtbCTotalBenign;
-        private System.Windows.Forms.TextBox txtbCTotalVirus;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox txtbCLearningRadius;
         private System.Windows.Forms.Label label28;
@@ -1532,6 +1526,15 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.DataGridView dgvVirus;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.DataVisualization.Charting.Chart dangerLevel;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label3;
     }
 }
 
