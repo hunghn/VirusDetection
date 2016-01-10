@@ -393,7 +393,19 @@ namespace VirusDetection.Utils
             return new int[] { numVirus, numBenign };
         }
 
-
+        internal static double calcDangerousRate(double[] input_)
+        {
+            int len = input_.Length;
+            double total = 0;
+            for (int i = 0; i < len; i++)
+            {
+                total += input_[i] * i;
+            }
+            double count = len * (len - 1) / 2;
+            double result = total / count;
+            result = Math.Round(result, 4);
+            return result;
+        }
         #region Unused Method
 
         //private static int[] HexArray2DecArray(String[] hexArray_)
@@ -436,19 +448,43 @@ namespace VirusDetection.Utils
         #endregion
 
 
-
-        internal static double calcDangerousRate(double[] input_)
+        // Copy data
+        public static void CopyFile(String fileName_, int thresoldIndex_, double thresoldMin_,double thresoldMax_, String copyToFolder_)
         {
-            int len = input_.Length;
-            double total = 0;
-            for(int i =0;i<len;i++)
+            // Check folder exist first
+            if (!Directory.Exists(copyToFolder_))
             {
-                total += input_[i] * i;
+                Directory.CreateDirectory(copyToFolder_);
             }
-            double count = len * (len - 1) / 2;
-            double result = total / count;
-            result = Math.Round(result, 4);
-            return result;
+
+            List<String> selectedFile = new List<string>();
+            var lines = File.ReadAllLines(fileName_);
+            var len = lines.Length;
+            foreach (var line in lines)
+            {
+                String[] raw = line.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                double fileThresoldValue = double.Parse(raw[thresoldIndex_]);
+                if(fileThresoldValue>=thresoldMin_&&fileThresoldValue<=thresoldMax_)
+                {
+                    String sourceFile = raw[0];
+                    String desFolder = copyToFolder_;
+                    _copyFileToFolder(sourceFile, desFolder);
+                }
+                
+            }
+        }
+
+        private static void _copyFileToFolder(string sourceFile, string desFolder)
+        {
+            // Check file exist
+            if (!File.Exists(sourceFile))
+                return;
+
+            string destFile = System.IO.Path.Combine(desFolder, sourceFile);
+            
+            // To copy a file to another location and 
+            // overwrite the destination file if it already exists.
+            System.IO.File.Copy(sourceFile, destFile, true);
         }
     }
 }
