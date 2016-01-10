@@ -28,7 +28,7 @@ namespace VirusDetection.VirusScanner
         public Boolean scanFile(String fileName_)
         {
             FileClassifierData data = new FileClassifierData(_distanceNetwork, fileName_, _formatRange);
-            double[] formatData = data.getFormatData();
+            double[] formatData = data.getRateFormatData();
             double[] output = _activationNetwork.Compute(formatData);
             double result = output[0];
             result = Math.Round(result, 4);
