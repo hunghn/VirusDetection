@@ -147,7 +147,8 @@ namespace VirusDetection
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-
+            worker.Abort();
+            isWorking = false;
         }
 
         private void btnCSaveMixDetector_Click(object sender, EventArgs e)
@@ -174,16 +175,23 @@ namespace VirusDetection
 
         private void btnCStartClustering_Click(object sender, EventArgs e)
         {
+            isWorking = true;
+            worker = new Thread(_startClustering);
+            worker.Start();
+        }
+
+        private void _startClustering()
+        {
             _initClustering();
             _clusteringManager.trainDistanceNetwork();
             LoadDangerLevel();
+            _clusteringManager.Test_PrintlnNeuron();
             MessageBox.Show("Successful!");
-
         }
 
-        private void btnCPrintNeuron_Click(object sender, EventArgs e)
+        private void btnCStop_Click(object sender, EventArgs e)
         {
-            _clusteringManager.Test_PrintlnNeuron();
+            _clusteringManager.stopTrainDistanceNetwork();
         }
 
         //hunghn
@@ -220,8 +228,18 @@ namespace VirusDetection
 
         private void LoadDangerLevel()
         {
-            dangerLevel.Series.Clear();
+            if (InvokeRequired)
+            {
+                MethodInvoker method = new MethodInvoker(LoadDangerLevel);
+                Invoke(method);
+                return;
+            }
+            _loadDangerLevel();
+        }
 
+        private void _loadDangerLevel()
+        {
+            dangerLevel.Series.Clear();
             dangerLevel.Series.Add("Benign");
             dangerLevel.Series["Benign"].ChartType = SeriesChartType.Point;
             dangerLevel.Series.Add("Virus");
@@ -244,6 +262,12 @@ namespace VirusDetection
             }
         }
         private void btnBuildFileClassifier_Click(object sender, EventArgs e)
+        {
+            worker = new Thread(_startFileClassifier);
+            worker.Start();
+        }
+
+        private void _startFileClassifier()
         {
             _fileClassifierManager.trainActiveNetwork();
             MessageBox.Show("Successful!");
@@ -415,7 +439,7 @@ namespace VirusDetection
             // set busy cursor
             this.Cursor = Cursors.WaitCursor;
             //
-            btnStop.Enabled = stopable;
+            //btnStop.Enabled = stopable;
             progressBar.Value = 0;
             pbStatus.Value = 0;
             if (stopable)
@@ -437,8 +461,10 @@ namespace VirusDetection
         private void Run()
         {
             datageneration.run();
+            
             this._virusFragments = datageneration.trainingDataOutput;
             this._benignFragments = datageneration.FileFragmentInput;
+
             ShowDataGenerationProcess(70, "Starting clustering process...");
             ShowDataGenerationProcess(90, "Data generation process has ended");
         }
@@ -759,6 +785,14 @@ namespace VirusDetection
             ShowDataGenerationProcess(95, "Preparing results...");
             ShowingDataGenerationResults();
             ShowDataGenerationProcess(100, "Finished!");
+
+            // Test
+            if (this._virusFragments == null)
+                this._virusFragments = new TrainingData();
+            if (this._benignFragments == null)
+                this._benignFragments = new TrainingData();
+
+
             ShowDataGenerationProcess(100, string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", _virusFragments.Count, _benignFragments.Count));
         }
 
@@ -1019,6 +1053,11 @@ namespace VirusDetection
                 );
             _fileClassifierManager.buildTrainingSet();
             LoadStyleChart();
+        }
+
+        private void btnFCStop_Click(object sender, EventArgs e)
+        {
+            _fileClassifierManager.stopTrainActiveNetwork();
         }
 
 

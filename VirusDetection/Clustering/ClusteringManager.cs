@@ -26,7 +26,7 @@ namespace VirusDetection.Clustering
         double[][] _input;
         float _maxInputRange;
 
-        
+        bool _done;
 
         public int NumInputNeuron
         {
@@ -60,6 +60,8 @@ namespace VirusDetection.Clustering
             _networkHeight = 0;
             _numOfIterator = 0;
             _errorThresold = 0;
+
+            _initialize();
         }
 
         public ClusteringManager(int inputCount_, int networkWidth_, int networkHeight_, double learningRate_, double learningRadius_, int numOfIterator_, double errorThresold_, double[][] input_, float maxInputRange_)
@@ -74,6 +76,13 @@ namespace VirusDetection.Clustering
 
             _input = input_;
             _maxInputRange = maxInputRange_;
+
+            _initialize();
+        }
+
+        private void _initialize()
+        {
+            _done = false;
         }
 
         public void trainDistanceNetwork()
@@ -92,10 +101,8 @@ namespace VirusDetection.Clustering
             double driftingLearningRate = fixedLearningRate * 9;
 
             
-
-            bool done = false;
             int count = 0;// iterations
-            while (!done)
+            while (!_done)
             {
                 trainer.LearningRate = driftingLearningRate * (_numOfIterator - count) / _numOfIterator + fixedLearningRate;
                 trainer.LearningRadius = (double)_learningRadius * (_numOfIterator - count) / _numOfIterator;
@@ -185,7 +192,12 @@ namespace VirusDetection.Clustering
         }
         #endregion
 
-        
-        
+
+
+
+        internal void stopTrainDistanceNetwork()
+        {
+            _done = true;
+        }
     }
 }

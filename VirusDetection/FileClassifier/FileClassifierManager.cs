@@ -26,7 +26,9 @@ namespace VirusDetection.FileClassifier
         double[][] _output;
         public double[][] _graphMap;
         String[][] _testInput;
-        int[] _formatRange;        
+        int[] _formatRange;
+
+        bool _done;
 
         internal LKDistanceNetwork DistanceNetwork
         {
@@ -56,6 +58,12 @@ namespace VirusDetection.FileClassifier
 
             _formatRange = Utils.Utils.calcFormatRange(formatRange_);
 
+            _initialize();
+        }
+
+        private void _initialize()
+        {
+            _done = false;
         }
 
         public void buildTrainingSet()
@@ -178,14 +186,14 @@ namespace VirusDetection.FileClassifier
 
             // Train ANN
             double error = 0;
-            bool done = false;
             int count = 0;
-            while (!done)
+            while (!_done)
             {
                 error = teacher.RunEpoch(_graphMap, _output);
                 Console.WriteLine("Error: " + error + "; [" + count + "/ " + _numOfIterator + "]");
                 count++;
-                done = (count >= _numOfIterator || error <= _errorThresold);
+                if (count >= _numOfIterator || error <= _errorThresold)
+                    break;
             };
         }
 
@@ -223,5 +231,10 @@ namespace VirusDetection.FileClassifier
             }
         }
 
+
+        internal void stopTrainActiveNetwork()
+        {
+            _done = true;
+        }
     }
 }

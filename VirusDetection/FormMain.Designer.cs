@@ -97,7 +97,7 @@
             this.txtbCNumNeuronY = new System.Windows.Forms.TextBox();
             this.btnCStartClustering = new System.Windows.Forms.Button();
             this.txtbCNumNeuronX = new System.Windows.Forms.TextBox();
-            this.btnCPrintNeuron = new System.Windows.Forms.Button();
+            this.btnCStop = new System.Windows.Forms.Button();
             this.txtbCLearningRate = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
@@ -120,6 +120,7 @@
             this.tabpgFileClassifier = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnFCPreprocesser = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.btnFCLoad = new System.Windows.Forms.Button();
             this.btnFCFileClassifierFile = new System.Windows.Forms.Button();
@@ -154,7 +155,7 @@
             this.btnFCScanVirus = new System.Windows.Forms.Button();
             this.txtbFCNumVirus = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnFCPreprocesser = new System.Windows.Forms.Button();
+            this.btnFCStop = new System.Windows.Forms.Button();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbOutput.SuspendLayout();
@@ -664,7 +665,7 @@
             this.groupBox2.Controls.Add(this.txtbCNumNeuronY);
             this.groupBox2.Controls.Add(this.btnCStartClustering);
             this.groupBox2.Controls.Add(this.txtbCNumNeuronX);
-            this.groupBox2.Controls.Add(this.btnCPrintNeuron);
+            this.groupBox2.Controls.Add(this.btnCStop);
             this.groupBox2.Controls.Add(this.txtbCLearningRate);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 183);
@@ -795,15 +796,15 @@
             this.txtbCNumNeuronX.TabIndex = 6;
             this.txtbCNumNeuronX.Text = "10";
             // 
-            // btnCPrintNeuron
+            // btnCStop
             // 
-            this.btnCPrintNeuron.Location = new System.Drawing.Point(116, 197);
-            this.btnCPrintNeuron.Name = "btnCPrintNeuron";
-            this.btnCPrintNeuron.Size = new System.Drawing.Size(119, 23);
-            this.btnCPrintNeuron.TabIndex = 5;
-            this.btnCPrintNeuron.Text = "Print Neuron";
-            this.btnCPrintNeuron.UseVisualStyleBackColor = true;
-            this.btnCPrintNeuron.Click += new System.EventHandler(this.btnCPrintNeuron_Click);
+            this.btnCStop.Location = new System.Drawing.Point(116, 197);
+            this.btnCStop.Name = "btnCStop";
+            this.btnCStop.Size = new System.Drawing.Size(119, 23);
+            this.btnCStop.TabIndex = 5;
+            this.btnCStop.Text = "Stop";
+            this.btnCStop.UseVisualStyleBackColor = true;
+            this.btnCStop.Click += new System.EventHandler(this.btnCStop_Click);
             // 
             // txtbCLearningRate
             // 
@@ -1038,6 +1039,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
+            this.panel3.Controls.Add(this.btnFCStop);
             this.panel3.Controls.Add(this.btnFCPreprocesser);
             this.panel3.Controls.Add(this.label18);
             this.panel3.Controls.Add(this.btnFCLoad);
@@ -1066,6 +1068,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(213, 535);
             this.panel3.TabIndex = 47;
+            // 
+            // btnFCPreprocesser
+            // 
+            this.btnFCPreprocesser.Location = new System.Drawing.Point(33, 133);
+            this.btnFCPreprocesser.Name = "btnFCPreprocesser";
+            this.btnFCPreprocesser.Size = new System.Drawing.Size(111, 27);
+            this.btnFCPreprocesser.TabIndex = 47;
+            this.btnFCPreprocesser.Text = "Preprocesser";
+            this.btnFCPreprocesser.UseVisualStyleBackColor = true;
+            this.btnFCPreprocesser.Click += new System.EventHandler(this.btnFCPreprocesser_Click);
             // 
             // label18
             // 
@@ -1168,7 +1180,7 @@
             // 
             // btnFCStartFileClassifier
             // 
-            this.btnFCStartFileClassifier.Location = new System.Drawing.Point(42, 377);
+            this.btnFCStartFileClassifier.Location = new System.Drawing.Point(6, 377);
             this.btnFCStartFileClassifier.Name = "btnFCStartFileClassifier";
             this.btnFCStartFileClassifier.Size = new System.Drawing.Size(111, 27);
             this.btnFCStartFileClassifier.TabIndex = 0;
@@ -1373,15 +1385,15 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnFCPreprocesser
+            // btnFCStop
             // 
-            this.btnFCPreprocesser.Location = new System.Drawing.Point(33, 133);
-            this.btnFCPreprocesser.Name = "btnFCPreprocesser";
-            this.btnFCPreprocesser.Size = new System.Drawing.Size(111, 27);
-            this.btnFCPreprocesser.TabIndex = 47;
-            this.btnFCPreprocesser.Text = "Preprocesser";
-            this.btnFCPreprocesser.UseVisualStyleBackColor = true;
-            this.btnFCPreprocesser.Click += new System.EventHandler(this.btnFCPreprocesser_Click);
+            this.btnFCStop.Location = new System.Drawing.Point(123, 377);
+            this.btnFCStop.Name = "btnFCStop";
+            this.btnFCStop.Size = new System.Drawing.Size(78, 27);
+            this.btnFCStop.TabIndex = 48;
+            this.btnFCStop.Text = "Stop";
+            this.btnFCStop.UseVisualStyleBackColor = true;
+            this.btnFCStop.Click += new System.EventHandler(this.btnFCStop_Click);
             // 
             // FormMain
             // 
@@ -1474,7 +1486,7 @@
         private System.Windows.Forms.TextBox txtbCClusteringFile;
         private System.Windows.Forms.Button btnCClusteringFile;
         private System.Windows.Forms.Button btnCStartClustering;
-        private System.Windows.Forms.Button btnCPrintNeuron;
+        private System.Windows.Forms.Button btnCStop;
         private System.Windows.Forms.Button btnFCLoad;
         private System.Windows.Forms.Button btnFCSave;
         private System.Windows.Forms.Button btnFCStartFileClassifier;
@@ -1548,6 +1560,7 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnFCPreprocesser;
+        private System.Windows.Forms.Button btnFCStop;
     }
 }
 
