@@ -479,7 +479,7 @@ namespace VirusDetection.Utils
             // Check file exist
             if (!File.Exists(sourceFile))
                 return;
-
+            
             string destFile = System.IO.Path.Combine(desFolder, sourceFile);
             
             // To copy a file to another location and 

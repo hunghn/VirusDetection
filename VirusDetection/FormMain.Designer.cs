@@ -154,6 +154,7 @@
             this.btnFCScanVirus = new System.Windows.Forms.Button();
             this.txtbFCNumVirus = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnFCPreprocesser = new System.Windows.Forms.Button();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbOutput.SuspendLayout();
@@ -1037,6 +1038,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
+            this.panel3.Controls.Add(this.btnFCPreprocesser);
             this.panel3.Controls.Add(this.label18);
             this.panel3.Controls.Add(this.btnFCLoad);
             this.panel3.Controls.Add(this.btnFCFileClassifierFile);
@@ -1076,7 +1078,7 @@
             // 
             // btnFCLoad
             // 
-            this.btnFCLoad.Location = new System.Drawing.Point(121, 404);
+            this.btnFCLoad.Location = new System.Drawing.Point(119, 493);
             this.btnFCLoad.Name = "btnFCLoad";
             this.btnFCLoad.Size = new System.Drawing.Size(78, 27);
             this.btnFCLoad.TabIndex = 2;
@@ -1086,7 +1088,7 @@
             // 
             // btnFCFileClassifierFile
             // 
-            this.btnFCFileClassifierFile.Location = new System.Drawing.Point(163, 362);
+            this.btnFCFileClassifierFile.Location = new System.Drawing.Point(161, 451);
             this.btnFCFileClassifierFile.Name = "btnFCFileClassifierFile";
             this.btnFCFileClassifierFile.Size = new System.Drawing.Size(36, 21);
             this.btnFCFileClassifierFile.TabIndex = 4;
@@ -1096,7 +1098,7 @@
             // 
             // btnFCSave
             // 
-            this.btnFCSave.Location = new System.Drawing.Point(8, 404);
+            this.btnFCSave.Location = new System.Drawing.Point(6, 493);
             this.btnFCSave.Name = "btnFCSave";
             this.btnFCSave.Size = new System.Drawing.Size(76, 27);
             this.btnFCSave.TabIndex = 1;
@@ -1106,7 +1108,7 @@
             // 
             // txtbFCFileClassifierFile
             // 
-            this.txtbFCFileClassifierFile.Location = new System.Drawing.Point(8, 363);
+            this.txtbFCFileClassifierFile.Location = new System.Drawing.Point(6, 452);
             this.txtbFCFileClassifierFile.Name = "txtbFCFileClassifierFile";
             this.txtbFCFileClassifierFile.Size = new System.Drawing.Size(138, 20);
             this.txtbFCFileClassifierFile.TabIndex = 5;
@@ -1114,7 +1116,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(5, 331);
+            this.label24.Location = new System.Drawing.Point(3, 420);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(86, 13);
             this.label24.TabIndex = 40;
@@ -1132,7 +1134,7 @@
             // 
             // txtbCFFormatRange
             // 
-            this.txtbCFFormatRange.Location = new System.Drawing.Point(59, 246);
+            this.txtbCFFormatRange.Location = new System.Drawing.Point(57, 335);
             this.txtbCFFormatRange.Name = "txtbCFFormatRange";
             this.txtbCFFormatRange.Size = new System.Drawing.Size(140, 20);
             this.txtbCFFormatRange.TabIndex = 6;
@@ -1141,7 +1143,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 225);
+            this.label7.Location = new System.Drawing.Point(3, 314);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 7;
@@ -1149,7 +1151,7 @@
             // 
             // txtbCFErrorThresold
             // 
-            this.txtbCFErrorThresold.Location = new System.Drawing.Point(138, 195);
+            this.txtbCFErrorThresold.Location = new System.Drawing.Point(136, 284);
             this.txtbCFErrorThresold.Name = "txtbCFErrorThresold";
             this.txtbCFErrorThresold.Size = new System.Drawing.Size(61, 20);
             this.txtbCFErrorThresold.TabIndex = 34;
@@ -1158,7 +1160,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(5, 198);
+            this.label19.Location = new System.Drawing.Point(3, 287);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(73, 13);
             this.label19.TabIndex = 35;
@@ -1166,7 +1168,7 @@
             // 
             // btnFCStartFileClassifier
             // 
-            this.btnFCStartFileClassifier.Location = new System.Drawing.Point(44, 288);
+            this.btnFCStartFileClassifier.Location = new System.Drawing.Point(42, 377);
             this.btnFCStartFileClassifier.Name = "btnFCStartFileClassifier";
             this.btnFCStartFileClassifier.Size = new System.Drawing.Size(111, 27);
             this.btnFCStartFileClassifier.TabIndex = 0;
@@ -1176,7 +1178,7 @@
             // 
             // txtbCFNumOutputNeuron
             // 
-            this.txtbCFNumOutputNeuron.Location = new System.Drawing.Point(138, 143);
+            this.txtbCFNumOutputNeuron.Location = new System.Drawing.Point(136, 232);
             this.txtbCFNumOutputNeuron.Name = "txtbCFNumOutputNeuron";
             this.txtbCFNumOutputNeuron.Size = new System.Drawing.Size(61, 20);
             this.txtbCFNumOutputNeuron.TabIndex = 38;
@@ -1185,7 +1187,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(5, 146);
+            this.label22.Location = new System.Drawing.Point(3, 235);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(102, 13);
             this.label22.TabIndex = 39;
@@ -1193,7 +1195,7 @@
             // 
             // txtbCFNumIterator
             // 
-            this.txtbCFNumIterator.Location = new System.Drawing.Point(138, 169);
+            this.txtbCFNumIterator.Location = new System.Drawing.Point(136, 258);
             this.txtbCFNumIterator.Name = "txtbCFNumIterator";
             this.txtbCFNumIterator.Size = new System.Drawing.Size(61, 20);
             this.txtbCFNumIterator.TabIndex = 32;
@@ -1202,7 +1204,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(5, 167);
+            this.label20.Location = new System.Drawing.Point(3, 256);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(65, 13);
             this.label20.TabIndex = 33;
@@ -1244,7 +1246,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(3, 120);
+            this.label21.Location = new System.Drawing.Point(1, 209);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(104, 13);
             this.label21.TabIndex = 31;
@@ -1252,7 +1254,7 @@
             // 
             // txtbFCNumHiddenNeuron
             // 
-            this.txtbFCNumHiddenNeuron.Location = new System.Drawing.Point(138, 117);
+            this.txtbFCNumHiddenNeuron.Location = new System.Drawing.Point(136, 206);
             this.txtbFCNumHiddenNeuron.Name = "txtbFCNumHiddenNeuron";
             this.txtbFCNumHiddenNeuron.Size = new System.Drawing.Size(61, 20);
             this.txtbFCNumHiddenNeuron.TabIndex = 30;
@@ -1370,6 +1372,16 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // btnFCPreprocesser
+            // 
+            this.btnFCPreprocesser.Location = new System.Drawing.Point(33, 133);
+            this.btnFCPreprocesser.Name = "btnFCPreprocesser";
+            this.btnFCPreprocesser.Size = new System.Drawing.Size(111, 27);
+            this.btnFCPreprocesser.TabIndex = 47;
+            this.btnFCPreprocesser.Text = "Preprocesser";
+            this.btnFCPreprocesser.UseVisualStyleBackColor = true;
+            this.btnFCPreprocesser.Click += new System.EventHandler(this.btnFCPreprocesser_Click);
             // 
             // FormMain
             // 
@@ -1535,6 +1547,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnFCPreprocesser;
     }
 }
 

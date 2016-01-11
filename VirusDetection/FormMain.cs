@@ -245,27 +245,6 @@ namespace VirusDetection
         }
         private void btnBuildFileClassifier_Click(object sender, EventArgs e)
         {
-            int numOfHiddenNeuron = int.Parse(txtbFCNumHiddenNeuron.Text);
-            int numOfOutputNeuron = int.Parse(txtbCFNumOutputNeuron.Text);
-            int numOfIterator = int.Parse(txtbCFNumIterator.Text);
-            double errorThresold = double.Parse(txtbCFErrorThresold.Text);
-
-            String virusFolder = txtbFCVirusFolder.Text;
-            String benignFolder = txtbFCBenignFolder.Text;
-            String formatRange = txtbCFFormatRange.Text;
-
-            _fileClassifierManager = new FileClassifierManager(
-                numOfHiddenNeuron,
-                numOfOutputNeuron,
-                numOfIterator,
-                errorThresold,
-                virusFolder,
-                benignFolder,
-                _clusteringManager.DistanceNetwork,
-                formatRange
-                );
-            _fileClassifierManager.buildTrainingSet();
-            LoadStyleChart();
             _fileClassifierManager.trainActiveNetwork();
             MessageBox.Show("Successful!");
         }
@@ -1015,6 +994,31 @@ namespace VirusDetection
                 txtbFCBenignFolder.Text = folderSelectDialog.FileName;
             }
             
+        }
+
+        private void btnFCPreprocesser_Click(object sender, EventArgs e)
+        {
+            int numOfHiddenNeuron = int.Parse(txtbFCNumHiddenNeuron.Text);
+            int numOfOutputNeuron = int.Parse(txtbCFNumOutputNeuron.Text);
+            int numOfIterator = int.Parse(txtbCFNumIterator.Text);
+            double errorThresold = double.Parse(txtbCFErrorThresold.Text);
+
+            String virusFolder = txtbFCVirusFolder.Text;
+            String benignFolder = txtbFCBenignFolder.Text;
+            String formatRange = txtbCFFormatRange.Text;
+
+            _fileClassifierManager = new FileClassifierManager(
+                numOfHiddenNeuron,
+                numOfOutputNeuron,
+                numOfIterator,
+                errorThresold,
+                virusFolder,
+                benignFolder,
+                _clusteringManager.DistanceNetwork,
+                formatRange
+                );
+            _fileClassifierManager.buildTrainingSet();
+            LoadStyleChart();
         }
 
 
