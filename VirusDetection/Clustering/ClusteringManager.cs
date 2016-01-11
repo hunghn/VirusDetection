@@ -91,28 +91,24 @@ namespace VirusDetection.Clustering
             double fixedLearningRate = _learningRate / 10;
             double driftingLearningRate = fixedLearningRate * 9;
 
-            // iterations
-            int i = 0;
+            
 
             bool done = false;
-            // loop
+            int count = 0;// iterations
             while (!done)
             {
-                trainer.LearningRate = driftingLearningRate * (_numOfIterator - i) / _numOfIterator + fixedLearningRate;
-                trainer.LearningRadius = (double)_learningRadius * (_numOfIterator - i) / _numOfIterator;
+                trainer.LearningRate = driftingLearningRate * (_numOfIterator - count) / _numOfIterator + fixedLearningRate;
+                trainer.LearningRadius = (double)_learningRadius * (_numOfIterator - count) / _numOfIterator;
 
                 // run training epoch
                 double error = trainer.RunEpoch(_input);
-                Console.WriteLine("Error: " + error);
-                // update map
-                //UpdateMap(network);
+                Console.WriteLine("Error: " + error + "; [" + count + "/ " + _numOfIterator + "]");
 
                 // increase current iteration
-                i++;
-
+                count++;
 
                 // stop ?
-                if (i >= _numOfIterator || error<=_errorThresold)
+                if (count >= _numOfIterator || error<=_errorThresold)
                     break;
             }
 
