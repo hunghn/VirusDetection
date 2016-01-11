@@ -65,12 +65,21 @@ namespace VirusDetection
         FileClassifierManager _fileClassifierManager;
         VirusScannerManager _virusScannerManager;
 
+        // For scan vr stop button
+        Boolean _doneScan;
+
 
         public FormMain()
         {
             InitializeComponent();
             initDemo();
             _lkPatch();
+            _initialize();
+        }
+
+        private void _initialize()
+        {
+            _doneScan = false;
         }
 
         
@@ -311,12 +320,30 @@ namespace VirusDetection
 
         private void btnScanVirus_Click(object sender, EventArgs e)
         {
+            
             _virusScannerManager = new VirusScannerManager(
                 _fileClassifierManager.DistanceNetwork,
                 _fileClassifierManager.ActivationNetwork,
                 txtbCFFormatRange.Text
                 );
 
+            worker = new Thread(_scanVirus);
+            worker.Start();
+        }
+
+        private void _scanVirus()
+        {
+            if (InvokeRequired)
+            {
+                MethodInvoker method = new MethodInvoker(_scanVirus);
+                Invoke(method);
+                return;
+            }
+            __scanVirus();
+        }
+
+        private void __scanVirus()
+        {
             String testFileFolder = txtbVSTestFileFolder.Text;
             String[] testFile = Directory.GetFiles(testFileFolder, "*.*", SearchOption.AllDirectories);
 
@@ -369,7 +396,6 @@ namespace VirusDetection
             Console.WriteLine("Benign: " + numOfBenign);
             view = new DataView(virusList);
             dgvVirus.DataSource = view;
-
         }
 
         private void btnFileClassifierFile_Click(object sender, EventArgs e)
@@ -1058,6 +1084,12 @@ namespace VirusDetection
         private void btnFCStop_Click(object sender, EventArgs e)
         {
             _fileClassifierManager.stopTrainActiveNetwork();
+        }
+
+        private void btnVSStop_Click(object sender, EventArgs e)
+        {
+            worker.Abort();
+            isWorking = false;
         }
 
 

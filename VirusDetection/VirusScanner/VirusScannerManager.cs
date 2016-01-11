@@ -37,7 +37,7 @@ namespace VirusDetection.VirusScanner
             Console.WriteLine(fileName_ + ", " + result);
 
             double thresold = 0.5; // Thresold = 0.5 with BipolarSigmoidFunction and virus mark as 1, benign mark as -1
-            return (result > thresold);
+            return (result >= thresold);
         }
     }
 }

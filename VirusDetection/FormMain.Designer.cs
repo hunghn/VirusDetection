@@ -156,6 +156,7 @@
             this.txtbFCNumVirus = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnFCStop = new System.Windows.Forms.Button();
+            this.btnVSStop = new System.Windows.Forms.Button();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbOutput.SuspendLayout();
@@ -1297,6 +1298,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.Control;
+            this.panel7.Controls.Add(this.btnVSStop);
             this.panel7.Controls.Add(this.label30);
             this.panel7.Controls.Add(this.label17);
             this.panel7.Controls.Add(this.txtbVSTestFileFolder);
@@ -1365,9 +1367,9 @@
             // 
             // btnFCScanVirus
             // 
-            this.btnFCScanVirus.Location = new System.Drawing.Point(51, 69);
+            this.btnFCScanVirus.Location = new System.Drawing.Point(25, 69);
             this.btnFCScanVirus.Name = "btnFCScanVirus";
-            this.btnFCScanVirus.Size = new System.Drawing.Size(96, 26);
+            this.btnFCScanVirus.Size = new System.Drawing.Size(67, 26);
             this.btnFCScanVirus.TabIndex = 0;
             this.btnFCScanVirus.Text = "Scan Virus";
             this.btnFCScanVirus.UseVisualStyleBackColor = true;
@@ -1394,6 +1396,16 @@
             this.btnFCStop.Text = "Stop";
             this.btnFCStop.UseVisualStyleBackColor = true;
             this.btnFCStop.Click += new System.EventHandler(this.btnFCStop_Click);
+            // 
+            // btnVSStop
+            // 
+            this.btnVSStop.Location = new System.Drawing.Point(112, 69);
+            this.btnVSStop.Name = "btnVSStop";
+            this.btnVSStop.Size = new System.Drawing.Size(67, 26);
+            this.btnVSStop.TabIndex = 35;
+            this.btnVSStop.Text = "Stop";
+            this.btnVSStop.UseVisualStyleBackColor = true;
+            this.btnVSStop.Click += new System.EventHandler(this.btnVSStop_Click);
             // 
             // FormMain
             // 
@@ -1561,6 +1573,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnFCPreprocesser;
         private System.Windows.Forms.Button btnFCStop;
+        private System.Windows.Forms.Button btnVSStop;
     }
 }
 
