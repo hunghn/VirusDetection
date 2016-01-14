@@ -161,14 +161,14 @@ namespace VirusDetection.FileClassifier
 
             // Train ANN
             double error = 0;
-            bool done = false;
             int count = 0;
-            while(!done)
+            while(!_done)
             {
                 error = teacher.RunEpoch(_input, _output);
                 Console.WriteLine("Error: " + error + "; [" + count + "/ " + _numOfIterator + "]");
                 count++;
-                done = (count >= _numOfIterator || error <= _errorThresold);
+                if (count >= _numOfIterator || error <= _errorThresold)
+                    break;
             };
         }
 

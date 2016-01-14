@@ -439,7 +439,6 @@ namespace VirusDetection
             Utils.Utils.loadDetector(ref _virusFragments, virusSavePath, ref _benignFragments, benignSavePath);
             ShowingData();
             MessageBox.Show("Successful!");
-            btnLoadDetector.Enabled = false;
         }
 
         private void btnTestFileFolder_Click(object sender, EventArgs e)

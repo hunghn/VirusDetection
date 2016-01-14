@@ -120,6 +120,7 @@
             this.tabpgFileClassifier = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnFCStop = new System.Windows.Forms.Button();
             this.btnFCPreprocesser = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.btnFCLoad = new System.Windows.Forms.Button();
@@ -146,6 +147,7 @@
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.dgvVirus = new System.Windows.Forms.DataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btnVSStop = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtbVSTestFileFolder = new System.Windows.Forms.TextBox();
@@ -155,8 +157,6 @@
             this.btnFCScanVirus = new System.Windows.Forms.Button();
             this.txtbFCNumVirus = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnFCStop = new System.Windows.Forms.Button();
-            this.btnVSStop = new System.Windows.Forms.Button();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbOutput.SuspendLayout();
@@ -1070,6 +1070,16 @@
             this.panel3.Size = new System.Drawing.Size(213, 535);
             this.panel3.TabIndex = 47;
             // 
+            // btnFCStop
+            // 
+            this.btnFCStop.Location = new System.Drawing.Point(123, 377);
+            this.btnFCStop.Name = "btnFCStop";
+            this.btnFCStop.Size = new System.Drawing.Size(78, 27);
+            this.btnFCStop.TabIndex = 48;
+            this.btnFCStop.Text = "Stop";
+            this.btnFCStop.UseVisualStyleBackColor = true;
+            this.btnFCStop.Click += new System.EventHandler(this.btnFCStop_Click);
+            // 
             // btnFCPreprocesser
             // 
             this.btnFCPreprocesser.Location = new System.Drawing.Point(33, 133);
@@ -1313,6 +1323,16 @@
             this.panel7.Size = new System.Drawing.Size(200, 535);
             this.panel7.TabIndex = 35;
             // 
+            // btnVSStop
+            // 
+            this.btnVSStop.Location = new System.Drawing.Point(112, 69);
+            this.btnVSStop.Name = "btnVSStop";
+            this.btnVSStop.Size = new System.Drawing.Size(67, 26);
+            this.btnVSStop.TabIndex = 35;
+            this.btnVSStop.Text = "Stop";
+            this.btnVSStop.UseVisualStyleBackColor = true;
+            this.btnVSStop.Click += new System.EventHandler(this.btnVSStop_Click);
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
@@ -1386,26 +1406,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // btnFCStop
-            // 
-            this.btnFCStop.Location = new System.Drawing.Point(123, 377);
-            this.btnFCStop.Name = "btnFCStop";
-            this.btnFCStop.Size = new System.Drawing.Size(78, 27);
-            this.btnFCStop.TabIndex = 48;
-            this.btnFCStop.Text = "Stop";
-            this.btnFCStop.UseVisualStyleBackColor = true;
-            this.btnFCStop.Click += new System.EventHandler(this.btnFCStop_Click);
-            // 
-            // btnVSStop
-            // 
-            this.btnVSStop.Location = new System.Drawing.Point(112, 69);
-            this.btnVSStop.Name = "btnVSStop";
-            this.btnVSStop.Size = new System.Drawing.Size(67, 26);
-            this.btnVSStop.TabIndex = 35;
-            this.btnVSStop.Text = "Stop";
-            this.btnVSStop.UseVisualStyleBackColor = true;
-            this.btnVSStop.Click += new System.EventHandler(this.btnVSStop_Click);
             // 
             // FormMain
             // 
