@@ -369,6 +369,7 @@ namespace VirusDetection
             virusList.Columns.Add(column);
             virusList.Rows.Clear();
 
+            Boolean done = false;
             foreach (String file in testFile)
             {
                 Boolean result = _virusScannerManager.scanFile(file);
@@ -388,6 +389,8 @@ namespace VirusDetection
                     virusList.Rows.Add(row);
                     numOfBenign++;
                 }
+                if (done)
+                    break;
             }
 
             txtbFCNumVirus.Text = numOfVirus.ToString();
