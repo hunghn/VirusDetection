@@ -29,6 +29,9 @@ namespace VirusDetection.Detector
         public int Stepsize { get { return stepsize; } }
         private ManualResetEvent Event;
 
+        // Stop support
+        Boolean _done;
+
         public DataGeneration(string _BenignDirectory, string _VirusDirectory, int d, int r, int _length, int _stepsize, bool Flag1, bool Flag2)
         {
             M = new Matching(d, r, Flag1, Flag2);
@@ -37,6 +40,13 @@ namespace VirusDetection.Detector
             benignDirectory = _BenignDirectory;
             virusDirectory = _VirusDirectory;
 
+            _initialize();
+
+        }
+
+        private void _initialize()
+        {
+            _done = false;
         }
         private void Readfile(string Path, bool flag)
         {
@@ -96,8 +106,10 @@ namespace VirusDetection.Detector
         //}
 
 
-        public void run()
+        public void startBuildDetector()
         {
+            _done = false;
+
             ReadDirectory(benignDirectory, true);
             ReadDirectory(virusDirectory, false);
 
@@ -107,6 +119,7 @@ namespace VirusDetection.Detector
 
             // Init virus count
             Utils.Utils.GLOBAL_PROGRESSBAR_COUNT = 0;
+            Utils.Utils.GLOBAL_VIRUS_COUNT = 0;
 
             NegativeSelection();
         }
@@ -137,6 +150,9 @@ namespace VirusDetection.Detector
         }
         private void ThreadCallBack(Object ob)
         {
+            if (_done)
+                return;
+
             lock(trainingDataOutput)
             {
                 int index = (int)ob;
@@ -202,5 +218,10 @@ namespace VirusDetection.Detector
         //            return false;
         //    return true;
         //}
+
+        internal void stopBuildDetector()
+        {
+            _done = true;
+        }
     }
 }

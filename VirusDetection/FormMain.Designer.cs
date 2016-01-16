@@ -48,7 +48,7 @@
             this.btnLoadDetector = new System.Windows.Forms.Button();
             this.btnSaveDetector = new System.Windows.Forms.Button();
             this.grbIO = new System.Windows.Forms.GroupBox();
-            this.btnStop = new System.Windows.Forms.Button();
+            this.btnStopScan = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.btnBuildDetector = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
@@ -283,7 +283,7 @@
             // 
             // grbIO
             // 
-            this.grbIO.Controls.Add(this.btnStop);
+            this.grbIO.Controls.Add(this.btnStopScan);
             this.grbIO.Controls.Add(this.label25);
             this.grbIO.Controls.Add(this.btnBuildDetector);
             this.grbIO.Controls.Add(this.label23);
@@ -302,15 +302,15 @@
             this.grbIO.TabStop = false;
             this.grbIO.Text = "I/O";
             // 
-            // btnStop
+            // btnStopScan
             // 
-            this.btnStop.Location = new System.Drawing.Point(18, 132);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(171, 24);
-            this.btnStop.TabIndex = 1;
-            this.btnStop.Text = "Stop scan";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            this.btnStopScan.Location = new System.Drawing.Point(18, 132);
+            this.btnStopScan.Name = "btnStopScan";
+            this.btnStopScan.Size = new System.Drawing.Size(171, 24);
+            this.btnStopScan.TabIndex = 1;
+            this.btnStopScan.Text = "Stop Scan";
+            this.btnStopScan.UseVisualStyleBackColor = true;
+            this.btnStopScan.Click += new System.EventHandler(this.btnStopScan_Click);
             // 
             // label25
             // 
@@ -1463,7 +1463,7 @@
         private System.Windows.Forms.Button btnBegin;
         private System.Windows.Forms.TextBox txtbVirusFolder;
         private System.Windows.Forms.Button btnVirusDetect;
-        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnStopScan;
         private System.Windows.Forms.Button btnBuildDetector;
         private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.TabPage tabpgDetector;

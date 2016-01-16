@@ -154,9 +154,10 @@ namespace VirusDetection
             }
         }
 
-        private void btnStop_Click(object sender, EventArgs e)
+        private void btnStopScan_Click(object sender, EventArgs e)
         {
             worker.Abort();
+            datageneration.stopBuildDetector();
             isWorking = false;
         }
 
@@ -440,6 +441,7 @@ namespace VirusDetection
             String virusSavePath = txtbDetectorFile.Text + "VR.txt";
             String benignSavePath = txtbDetectorFile.Text + "BN.txt";
             Utils.Utils.loadDetector(ref _virusFragments, virusSavePath, ref _benignFragments, benignSavePath);
+
             ShowingData();
             MessageBox.Show("Successful!");
         }
@@ -486,9 +488,9 @@ namespace VirusDetection
             timer1.Start();
         }
 
-        private void Run()
+        private void RunDetector()
         {
-            datageneration.run();
+            datageneration.startBuildDetector();
             
             this._virusFragments = datageneration.trainingDataOutput;
             this._benignFragments = datageneration.FileFragmentInput;
@@ -595,7 +597,7 @@ namespace VirusDetection
             ShowDataGenerationProcess(20, "Starting Negative Selection process...");
             StartWork(false);
             isWorking = true;
-            worker = new Thread(Run);
+            worker = new Thread(RunDetector);
             worker.Start();
         }
 
@@ -757,6 +759,16 @@ namespace VirusDetection
 
             // Set a DataGrid control's DataSource to the DataView.
             dtNegativeSelection.DataSource = view;
+
+
+            // Show value to status
+            String status = string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", _virusFragments.Count, _benignFragments.Count);
+
+            this.txtStatusBar.BeginInvoke((MethodInvoker)delegate() 
+            {
+                txtStatusBar.Text = status;
+                this.txtStatusBar.Refresh(); 
+            });
           
         }
         private void GetgroupShowing()
