@@ -42,15 +42,9 @@ namespace VirusDetection.FileClassifier
             get { return _activationNetwork; }
             set { _activationNetwork = value; }
         }
-       
 
-        public FileClassifierManager(int numOfHiddenNeuron_, int numOfOutputNeuron_,  int numOfIterator_, double errorThresold_, String virusFolder_, String benignFolder_, LKDistanceNetwork network_, String formatRange_)
+        public FileClassifierManager( String virusFolder_, String benignFolder_, LKDistanceNetwork network_, String formatRange_)
         {
-            // TODO: Complete member initialization
-            _numOfHiddenNeuron = numOfHiddenNeuron_;
-            _numOfOutputNeuron = numOfOutputNeuron_;
-            _numOfIterator = numOfIterator_;
-            _errorThresold = errorThresold_;
 
             _virusFolder = virusFolder_;
             _benignFolder = benignFolder_;
@@ -147,10 +141,14 @@ namespace VirusDetection.FileClassifier
             Test_PrintInput(_graphMap);
         }
 
-        public void trainActiveNetwork()
+        public void trainActiveNetwork(int numOfHiddenNeuron_, int numOfOutputNeuron_,  int numOfIterator_, double errorThresold_)
         {
-            // Init training set for ANN
-            //this.buildTrainingSet();
+            // Init for ANN
+             _numOfHiddenNeuron = numOfHiddenNeuron_;
+            _numOfOutputNeuron = numOfOutputNeuron_;
+            _numOfIterator = numOfIterator_;
+            _errorThresold = errorThresold_;
+
 
             // Set random range
             Neuron.RandRange = new Range(0.0f, 1.0f);

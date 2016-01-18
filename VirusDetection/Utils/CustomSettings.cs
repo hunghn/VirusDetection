@@ -20,6 +20,7 @@ namespace VirusDetection.Utils
         public static String FILE_CLASSIFIER_BENIGN_FOLDER = _FILE_CLASSIFIER_FOLDER + @"Benign\";
 
         public static String DETECTOR_FILE = _DATA_FOLDER + @"Detector.txt";
+        public static String BENIGN_FILE = _DATA_FOLDER + @"Benign.txt";
         public static String MIX_DETECTOR_FILE = _DATA_FOLDER + @"MixDetector.txt";
         public static String CLUSTERING_FILE = _DATA_FOLDER + @"Clustering.txt";
         public static String FILE_CLASSIFIER_FILE = _DATA_FOLDER + @"FileClassifier.txt";
