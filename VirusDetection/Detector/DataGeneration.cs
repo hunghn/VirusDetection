@@ -11,9 +11,9 @@ namespace VirusDetection.Detector
     class DataGeneration
     {
         List<string> filenames = new List<string>();
-        public TrainingData FileFragmentInput = new TrainingData();
+        public TrainingData BenignFragmentInput = new TrainingData();
         public TrainingData VirusFragmentInput = new TrainingData();
-        public TrainingData trainingDataOutput = new TrainingData();
+        public TrainingData VirusFragmentOutput = new TrainingData();
         public int[] state;
         private int filesRemains = 0;
         private Matching M;
@@ -60,7 +60,7 @@ namespace VirusDetection.Detector
                 if (flag)
                 {
                     if (binaryArray != null)
-                        FileFragmentInput.Add(binaryArray);
+                        BenignFragmentInput.Add(binaryArray);
                 }
                 else
                 {
@@ -151,9 +151,11 @@ namespace VirusDetection.Detector
         private void ThreadCallBack(Object ob)
         {
             if (_done)
+            {
                 return;
+            }
 
-            lock(trainingDataOutput)
+            lock(VirusFragmentOutput)
             {
                 int index = (int)ob;
                 byte[] binaryArray = VirusFragmentInput[index];
@@ -162,7 +164,7 @@ namespace VirusDetection.Detector
                     state[index] = 0;
                     try
                     {
-                        trainingDataOutput.Add(binaryArray);
+                        VirusFragmentOutput.Add(binaryArray);
                         Utils.Utils.GLOBAL_VIRUS_COUNT++;
                         Utils.Utils.GUI_SUPPORT.updateVirusFragment();
                     }
@@ -176,7 +178,7 @@ namespace VirusDetection.Detector
                     state[index] = 1;
                 }
             }
-            
+
 
             if (Interlocked.Decrement(ref filesRemains) == 0)
             {
@@ -190,9 +192,9 @@ namespace VirusDetection.Detector
         private bool IsMatchSelf(byte[] _byte)
         {
 
-            for (int j = 0; j < FileFragmentInput.Count; j++)
+            for (int j = 0; j < BenignFragmentInput.Count; j++)
             {
-                if (M.Match(_byte, FileFragmentInput[j]))
+                if (M.Match(_byte, BenignFragmentInput[j]))
                     return true;
             }
             return false;
@@ -222,6 +224,8 @@ namespace VirusDetection.Detector
         internal void stopBuildDetector()
         {
             _done = true;
+
+            Event.Set();
         }
     }
 }

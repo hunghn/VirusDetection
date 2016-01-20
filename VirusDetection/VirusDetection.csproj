@@ -93,6 +93,7 @@
     <Compile Include="Utils\CustomSettings.cs" />
     <Compile Include="Utils\GuiSupport.cs" />
     <Compile Include="Utils\Utils.cs" />
+    <Compile Include="VirusScanner\FileScanInfo.cs" />
     <Compile Include="VirusScanner\VirusScannerManager.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

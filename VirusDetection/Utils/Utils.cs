@@ -24,6 +24,14 @@ namespace VirusDetection.Utils
         public static int VIRUS_MARK = 1; // define virus as 1 and
         public static int BENIGN_MARK = -1;// benign as -1
 
+        // Global stopwatch
+        public static System.Diagnostics.Stopwatch GLOBAL_STOPWATCH;
+
+        //Utils.Utils.GLOBAL_STOPWATCH = System.Diagnostics.Stopwatch.StartNew();
+        //// Your code U want stopwatch
+        //Utils.Utils.GLOBAL_STOPWATCH.Stop();
+        //var elapsedMs = Utils.Utils.GLOBAL_STOPWATCH.ElapsedMilliseconds;
+
         #region Detector Utils
 
         public static byte[] ConvertBytesIntoBinary(byte[] _bytes)

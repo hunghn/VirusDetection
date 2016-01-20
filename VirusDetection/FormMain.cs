@@ -19,33 +19,36 @@ using VirusDetection.VirusScanner;
 
 namespace VirusDetection
 {
-    enum PROGRESSSTATE
-    {
-        DATAGENERATION,
-        LEARNING,
-        AFFINITYGENERATION,
-        DETECTING
-    };
+
 
     enum EScanVirusType
     {
         StringCompare,
         AIS
-    };
+    }
 
     enum EDetectorType
     {
         BuildDetector,
         AdditionNegative
-    };
+    }
+
+    enum EProcessType
+    {
+        None,
+        Detector,
+        Clustering,
+        FileClassifier,
+        VirusScaner
+    }
 
     public partial class FormMain : Form
     {
         // Declare variable
-        private bool isWorking;
+        private bool _isWorking;
         private DateTime startTime;
         private ManualResetEvent stopEvent;
-        private Thread worker;
+        private Thread _worker;
 
         private string VirusDirectory;
         private string BenignDirectory;
@@ -83,6 +86,12 @@ namespace VirusDetection
         // For scan vr stop button
         Boolean _doneScan;
 
+        // Scan vr support
+        List<FileScanInfo> _lFileScanInfo;
+
+        // Thread
+        EProcessType _currentProcessType;
+
 
         public FormMain()
         {
@@ -94,7 +103,7 @@ namespace VirusDetection
 
         private void _initialize()
         {
-            isWorking = false;
+            _isWorking = false;
             stopEvent = null;
             Length = 0;
             stepsize = 0;
@@ -113,6 +122,10 @@ namespace VirusDetection
             dataSet = new DataSet();
 
             _doneScan = false;
+
+            _lFileScanInfo = new List<FileScanInfo>();
+
+            _currentProcessType = EProcessType.None;
         }
 
 
@@ -186,19 +199,23 @@ namespace VirusDetection
                 return;
             }
 
-            if (isWorking)
+            if (_isWorking)
                 return;
 
-            // Reset value
-            _resetFormStatus();
+            // Do job
+            _currentProcessType = EProcessType.Detector;
 
-            DataGenerationStart();
-        }
-
-        private void _resetFormStatus()
-        {
-            progressBar.Value = 0;
-            txtbVirusFragmentsCount.Text = "0";
+            GetInputDirectory();
+            NegativeSelectionData.Rows.Clear();
+            groupshowingDataTable.Rows.Clear();
+            ShowDataGenerationProcess(10, "Being update parameters...");
+            GetDataGenerationParameter();
+            datageneration = new DataGeneration(BenignDirectory, VirusDirectory, d, r, Length, stepsize, UseHamming, UseR);
+            ShowDataGenerationProcess(20, "Starting Negative Selection process...");
+            _turnToWorkingStatus(true);
+            _isWorking = true;
+            _worker = new Thread(_detectorThread);
+            _worker.Start();
         }
 
         private bool _checkForStartDetector()
@@ -218,21 +235,14 @@ namespace VirusDetection
         {
             try
             {
-                _stopDetector();
+                datageneration.stopBuildDetector();
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void _stopDetector()
-        {
-            worker.Abort();
-            datageneration.stopBuildDetector();
-            isWorking = false;
-        }
-
 
         private void btnDSaveDetector_Click(object sender, EventArgs e)
         {
@@ -371,12 +381,12 @@ namespace VirusDetection
 
         private void _startClustering()
         {
-            isWorking = true;
-            worker = new Thread(clusteringThread);
-            worker.Start();
+            _turnToWorkingStatus(true);
+            _worker = new Thread(_clusteringThread);
+            _worker.Start();
         }
 
-        private void clusteringThread()
+        private void _clusteringThread()
         {
             int inputCount = int.Parse(txtbCNumInputNeuron.Text);
             int maxInputRange = (inputCount == 4 ? 255 : 1);
@@ -405,9 +415,9 @@ namespace VirusDetection
 
             _clusteringManager.Test_PrintlnNeuron();
 
-            isWorking = false;
+            _isWorking = false;
             MessageBox.Show("Successful!");
-            
+
         }
 
         private void btnCStop_Click(object sender, EventArgs e)
@@ -416,8 +426,6 @@ namespace VirusDetection
             try
             {
                 _clusteringManager.stopTrainDistanceNetwork();
-                
-                isWorking = false;
             }
             catch (Exception ex)
             {
@@ -589,7 +597,6 @@ namespace VirusDetection
             try
             {
                 _fileClassifierManager.stopTrainActiveNetwork();
-                isWorking = false;
             }
             catch (Exception ex)
             {
@@ -613,9 +620,9 @@ namespace VirusDetection
 
         private void _startFileClassifier()
         {
-            isWorking = true;
-            worker = new Thread(_fileClassifierThread);
-            worker.Start();
+            _turnToWorkingStatus(true);
+            _worker = new Thread(_fileClassifierThread);
+            _worker.Start();
         }
 
         private void _fileClassifierThread()
@@ -631,7 +638,7 @@ namespace VirusDetection
                 numOfIterator,
                 errorThresold);
 
-            isWorking = false;
+            _isWorking = false;
             MessageBox.Show("Successful!");
         }
 
@@ -711,7 +718,7 @@ namespace VirusDetection
         {
             try
             {
-                _startScanVirus();
+                _startVirusScanner();
             }
             catch (Exception ex)
             {
@@ -720,7 +727,7 @@ namespace VirusDetection
 
         }
 
-        private void _startScanVirus()
+        private void _startVirusScanner()
         {
             _virusScannerManager = new VirusScannerManager(
                 _fileClassifierManager.DistanceNetwork,
@@ -728,80 +735,23 @@ namespace VirusDetection
                 txtbCFFormatRange.Text
                 );
 
-            isWorking = true;
-            worker = new Thread(_scanVirusThread);
-            worker.Start();
+            _turnToWorkingStatus(true);
+            _worker = new Thread(_virusScannerThread);
+            _worker.Start();
         }
 
-        private void _scanVirusThread()
+        private void _virusScannerThread()
         {
-            if (InvokeRequired)
-            {
-                MethodInvoker method = new MethodInvoker(_scanVirusThread);
-                Invoke(method);
-                return;
-            }
-            __scanVirus();
-            isWorking = false;
-        }
 
-        private void __scanVirus()
-        {
             String testFileFolder = txtbVSTestFileFolder.Text;
             String[] testFile = Directory.GetFiles(testFileFolder, "*.*", SearchOption.AllDirectories);
 
-            int numOfVirus = 0;
-            int numOfBenign = 0;
-
-            DataColumn column;
-            DataRow row;
-            DataView view;
-            DataTable virusList = new DataTable();
-            virusList.Columns.Clear();
-
-            // Create new DataColumn, set DataType, ColumnName and add to DataTable.    
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
-            column.ColumnName = "File";
-            virusList.Columns.Add(column);
-
-            // Create second column.
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Status";
-            virusList.Columns.Add(column);
-            virusList.Rows.Clear();
-
-            Boolean done = false;
             foreach (String file in testFile)
             {
                 Boolean result = _virusScannerManager.scanFile(file);
-                if (result)
-                {
-                    row = virusList.NewRow();
-                    row["File"] = file.ToString();
-                    row["Status"] = "Virus";
-                    virusList.Rows.Add(row);
-                    numOfVirus++;
-                }
-                else
-                {
-                    row = virusList.NewRow();
-                    row["File"] = file.ToString();
-                    row["Status"] = "Benign";
-                    virusList.Rows.Add(row);
-                    numOfBenign++;
-                }
-                if (done)
-                    break;
+                FileScanInfo scanInfo = new FileScanInfo(file, result);
+                _lFileScanInfo.Add(scanInfo);
             }
-
-            txtbFCNumVirus.Text = numOfVirus.ToString();
-            txtbFCNumBenign.Text = numOfBenign.ToString();
-            Console.WriteLine("Virus: " + numOfVirus);
-            Console.WriteLine("Benign: " + numOfBenign);
-            view = new DataView(virusList);
-            dgvVirus.DataSource = view;
         }
 
 
@@ -814,7 +764,6 @@ namespace VirusDetection
             {
                 txtbVSTestFileFolder.Text = folderSelectDialog.FileName;
             }
-
         }
 
 
@@ -822,7 +771,7 @@ namespace VirusDetection
         {
             try
             {
-                _stopScanVirus();
+                _worker.Abort();
             }
             catch (Exception ex)
             {
@@ -831,30 +780,93 @@ namespace VirusDetection
 
         }
 
-        private void _stopScanVirus()
-        {
-            worker.Abort();
-            isWorking = false;
-        }
-
 
         #endregion
 
-
-
-
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
-            if (!worker.IsAlive)
+            // Return if thead working
+            if (_worker.IsAlive)
+                return;
+
+
+            _turnToWorkingStatus(false);
+
+            switch (_currentProcessType)
             {
-                StopWork();
-                isWorking = false;
-
-                this._virusFragments = datageneration.trainingDataOutput;
-                this._benignFragments = datageneration.FileFragmentInput;
-
-                PrepareShowingDataGeneration();
+                case EProcessType.Detector:
+                    _detectorThread_Stopped();
+                    break;
+                case EProcessType.Clustering:
+                    break;
+                case EProcessType.FileClassifier:
+                    break;
+                case EProcessType.VirusScaner:
+                    _virusScannerThread_Stopped();
+                    break;
+                default:
+                    break;
             }
+            
+        }
+
+        private void _virusScannerThread_Stopped()
+        {
+            int virusCount = 0;
+            int benignCount = 0;
+            DataColumn column;
+            DataRow row;
+            DataView view;
+            DataTable resultList = new DataTable();
+            resultList.Columns.Clear();
+
+            // Create new DataColumn, set DataType, ColumnName and add to DataTable.    
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "File";
+            resultList.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Status";
+            resultList.Columns.Add(column);
+            resultList.Rows.Clear();
+
+            foreach (FileScanInfo fileScanInfo in _lFileScanInfo)
+            {
+                if (fileScanInfo.Result)
+                {
+                    row = resultList.NewRow();
+                    row["File"] = fileScanInfo.FileName;
+                    row["Status"] = "Virus";
+                    resultList.Rows.Add(row);
+
+                    virusCount++;
+                }
+                else
+                {
+                    row = resultList.NewRow();
+                    row["File"] = fileScanInfo.FileName;
+                    row["Status"] = "Benign";
+                    resultList.Rows.Add(row);
+
+                    benignCount++;
+                }
+            }
+
+            txtbFCNumVirus.Text = virusCount.ToString();
+            txtbFCNumBenign.Text = benignCount.ToString();
+
+            view = new DataView(resultList);
+            dgvVirus.DataSource = view;
+        }
+
+        private void _detectorThread_Stopped()
+        {
+            this._virusFragments = datageneration.VirusFragmentOutput;
+            this._benignFragments = datageneration.BenignFragmentInput;
+            PrepareShowingDataGeneration();
         }
 
 
@@ -917,56 +929,59 @@ namespace VirusDetection
         #region Utils Method
 
         #region Detecter Method
-        private void StartWork(bool stopable)
+        private void _turnToWorkingStatus(bool working_)
         {
-            // set busy cursor
-            this.Cursor = Cursors.WaitCursor;
-            //
-            //btnStop.Enabled = stopable;
-            progressBar.Value = 0;
-
-            if (stopable)
+            if (working_)
             {
-                // create events
+                // Set value
+                startTime = DateTime.Now;
+                txtTimeBox.Text = "";
+                txtStatusBar.Text = "";
+                txtbVirusFragmentsCount.Text = "0";
+                progressBar.Value = 0;
+
+                // Set busy cursor
+                this.Cursor = Cursors.WaitCursor;
+
+                // Create events
                 stopEvent = new ManualResetEvent(false);
+
+                
+                // Start timer
+                _timer.Start();
+
+                // ???
+                this.Capture = true;
+
+                // Set state
+                _isWorking = true;
             }
             else
             {
-                this.Capture = true;
+                this.Cursor = Cursors.Default;
+
+                // Stop timer
+                _timer.Stop();
+
+                // Release event
+                stopEvent.Close();
+                stopEvent = null;
+
+                // ???
+                this.Capture = false;
+
+                // Set state
+                _isWorking = false;
             }
-            startTime = DateTime.Now;
-            txtTimeBox.Text = "";
-            txtStatusBar.Text = "";
-            // start timer
-            timer1.Start();
         }
 
-        private void RunDetector()
+        private void _detectorThread()
         {
             datageneration.startBuildDetector();
 
             ShowDataGenerationProcess(90, "Data generation process has ended");
         }
 
-        private void StopWork()
-        {
-            // Lvl1progressPanel.Visible = false;
-            // set default cursor
-            this.Cursor = Cursors.Default;
-
-            // stop timer
-            timer1.Stop();
-            // release event
-            if (stopEvent != null)
-            {
-                stopEvent.Close();
-                stopEvent = null;
-            }
-            else
-            {
-                this.Capture = false;
-            }
-        }
 
         private List<byte[][]> Group(TrainingData TD, double _SelectionRate, int _numberOfCluster)
         {
@@ -1022,21 +1037,6 @@ namespace VirusDetection
             }
             return tempnew;
 
-        }
-
-        private void DataGenerationStart()
-        {
-            GetInputDirectory();
-            NegativeSelectionData.Rows.Clear();
-            groupshowingDataTable.Rows.Clear();
-            ShowDataGenerationProcess(10, "Being update parameters...");
-            GetDataGenerationParameter();
-            datageneration = new DataGeneration(BenignDirectory, VirusDirectory, d, r, Length, stepsize, UseHamming, UseR);
-            ShowDataGenerationProcess(20, "Starting Negative Selection process...");
-            StartWork(false);
-            isWorking = true;
-            worker = new Thread(RunDetector);
-            worker.Start();
         }
 
         private void GetInputDirectory()
@@ -1252,13 +1252,13 @@ namespace VirusDetection
             ShowDataGenerationProcess(100, "Finished!");
 
             // Test
-            if (this._virusFragments == null)
-                this._virusFragments = new TrainingData();
-            if (this._benignFragments == null)
-                this._benignFragments = new TrainingData();
+            //if (this._virusFragments == null)
+            //    this._virusFragments = new TrainingData();
+            //if (this._benignFragments == null)
+            //    this._benignFragments = new TrainingData();
 
 
-            ShowDataGenerationProcess(100, string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", _virusFragments.Count, _benignFragments.Count));
+            ShowDataGenerationProcess(100, string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", Utils.Utils.GLOBAL_VIRUS_COUNT, _benignFragments.Count));
         }
 
 

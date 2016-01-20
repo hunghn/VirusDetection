@@ -163,7 +163,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.btnFCScanVirus = new System.Windows.Forms.Button();
             this.txtbFCNumVirus = new System.Windows.Forms.TextBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this._timer = new System.Windows.Forms.Timer(this.components);
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbOutput.SuspendLayout();
@@ -1492,9 +1492,9 @@
             this.txtbFCNumVirus.Size = new System.Drawing.Size(99, 20);
             this.txtbFCNumVirus.TabIndex = 30;
             // 
-            // timer1
+            // _timer
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this._timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // FormMain
             // 
@@ -1577,7 +1577,7 @@
         private System.Windows.Forms.TextBox txtbDHamming;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cbxDHamming;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer _timer;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox grbPreprocess;
         private System.Windows.Forms.Button btnCLoad;
