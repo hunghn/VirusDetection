@@ -40,7 +40,6 @@
             this.panelFooter = new System.Windows.Forms.Panel();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtbVirusFragmentsCount = new System.Windows.Forms.TextBox();
             this.txtStatusBar = new System.Windows.Forms.TextBox();
             this.txtTimeBox = new System.Windows.Forms.TextBox();
             this.grbOutput = new System.Windows.Forms.GroupBox();
@@ -210,7 +209,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtbVirusFragmentsCount);
             this.panel1.Controls.Add(this.txtStatusBar);
             this.panel1.Controls.Add(this.txtTimeBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -219,15 +217,6 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.panel1.Size = new System.Drawing.Size(942, 31);
             this.panel1.TabIndex = 1;
-            // 
-            // txtbVirusFragmentsCount
-            // 
-            this.txtbVirusFragmentsCount.Dock = System.Windows.Forms.DockStyle.Right;
-            this.txtbVirusFragmentsCount.Location = new System.Drawing.Point(846, 5);
-            this.txtbVirusFragmentsCount.Name = "txtbVirusFragmentsCount";
-            this.txtbVirusFragmentsCount.ReadOnly = true;
-            this.txtbVirusFragmentsCount.Size = new System.Drawing.Size(96, 20);
-            this.txtbVirusFragmentsCount.TabIndex = 2;
             // 
             // txtStatusBar
             // 
@@ -1594,7 +1583,6 @@
         private System.Windows.Forms.Button btnFCFileClassifierFile;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtbCFFormatRange;
-        private System.Windows.Forms.TextBox txtbVirusFragmentsCount;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtbCErrorThresold;
         private System.Windows.Forms.Label label13;

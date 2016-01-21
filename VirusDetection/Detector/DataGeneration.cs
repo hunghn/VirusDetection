@@ -120,36 +120,29 @@ namespace VirusDetection.Detector
             // Init virus count
             Utils.Utils.GLOBAL_PROGRESSBAR_COUNT = 0;
             Utils.Utils.GLOBAL_VIRUS_COUNT = 0;
+            Utils.Utils.GLOBAL_BENIGN_COUNT = this.BenignFragmentInput.Count;
 
             NegativeSelection();
         }
 
 
-        //private void NegativeSelection()
-        //{
-        //    filesRemains = VirusFragmentInput.Count;
-        //    state = new int[VirusFragmentInput.Count];
-        //    Event = new ManualResetEvent(false);
-        //    for (int i = 0; i < VirusFragmentInput.Count; i++)
-        //    {
-        //        ThreadPool.QueueUserWorkItem(ThreadCallBack, i);
-        //    }
-        //    Event.WaitOne();
-        //}
-
         private void NegativeSelection()
         {
+
             filesRemains = VirusFragmentInput.Count;
             state = new int[VirusFragmentInput.Count];
             Event = new ManualResetEvent(false);
-            for (int i = 0; i < VirusFragmentInput.Count; i++)
+            for (int i = 0; i < VirusFragmentInput.Count ; i++)
             {
                 ThreadPool.QueueUserWorkItem(ThreadCallBack, i);
+                Console.WriteLine("Negative at: " + i);
             }
             Event.WaitOne();
         }
         private void ThreadCallBack(Object ob)
         {
+
+
             if (_done)
             {
                 return;
@@ -178,7 +171,6 @@ namespace VirusDetection.Detector
                     state[index] = 1;
                 }
             }
-
 
             if (Interlocked.Decrement(ref filesRemains) == 0)
             {
@@ -224,7 +216,6 @@ namespace VirusDetection.Detector
         internal void stopBuildDetector()
         {
             _done = true;
-
             Event.Set();
         }
     }

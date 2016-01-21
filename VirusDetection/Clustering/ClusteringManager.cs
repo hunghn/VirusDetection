@@ -87,6 +87,9 @@ namespace VirusDetection.Clustering
 
         public void trainDistanceNetwork()
         {
+            // Init progressbar here
+            Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = _numOfIterator;
+            Utils.Utils.GUI_SUPPORT.initProgressBar();
             
             // Set random range
             Neuron.RandRange = new Range(0, _maxInputRange);
@@ -113,6 +116,9 @@ namespace VirusDetection.Clustering
 
                 // increase current iteration
                 count++;
+
+                // Update progressbar
+                Utils.Utils.GUI_SUPPORT.updateProgressBar();
 
                 // stop ?
                 if (count >= _numOfIterator || error<=_errorThresold)

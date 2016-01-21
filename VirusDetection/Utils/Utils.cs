@@ -17,6 +17,7 @@ namespace VirusDetection.Utils
 
         // VR Count Status support
         public static int GLOBAL_VIRUS_COUNT = 0;
+        public static int GLOBAL_BENIGN_COUNT = 0;
 
         // Support Object
         public static GuiSupport GUI_SUPPORT;

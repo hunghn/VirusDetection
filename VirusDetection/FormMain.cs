@@ -47,17 +47,16 @@ namespace VirusDetection
         // Declare variable
         private bool _isWorking;
         private DateTime startTime;
-        private ManualResetEvent stopEvent;
         private Thread _worker;
 
         private string VirusDirectory;
         private string BenignDirectory;
 
         // Data generation
-        private int Length;
-        private int stepsize;
-        private bool UseHamming;
-        private bool UseR;
+        private int _length;
+        private int _stepsize;
+        private bool _useHamming;
+        private bool _useR;
         private int d;
         private int r;
         private DataGeneration datageneration;
@@ -104,11 +103,10 @@ namespace VirusDetection
         private void _initialize()
         {
             _isWorking = false;
-            stopEvent = null;
-            Length = 0;
-            stepsize = 0;
-            UseHamming = false;
-            UseR = false;
+            _length = 0;
+            _stepsize = 0;
+            _useHamming = false;
+            _useR = false;
             d = 0;
             r = 0;
 
@@ -210,7 +208,7 @@ namespace VirusDetection
             groupshowingDataTable.Rows.Clear();
             ShowDataGenerationProcess(10, "Being update parameters...");
             GetDataGenerationParameter();
-            datageneration = new DataGeneration(BenignDirectory, VirusDirectory, d, r, Length, stepsize, UseHamming, UseR);
+            datageneration = new DataGeneration(BenignDirectory, VirusDirectory, d, r, _length, _stepsize, _useHamming, _useR);
             ShowDataGenerationProcess(20, "Starting Negative Selection process...");
             _turnToWorkingStatus(true);
             _isWorking = true;
@@ -236,7 +234,7 @@ namespace VirusDetection
             try
             {
                 datageneration.stopBuildDetector();
-                
+
             }
             catch (Exception ex)
             {
@@ -388,36 +386,41 @@ namespace VirusDetection
 
         private void _clusteringThread()
         {
-            int inputCount = int.Parse(txtbCNumInputNeuron.Text);
-            int maxInputRange = (inputCount == 4 ? 255 : 1);
-            int numNeuronX = int.Parse(txtbCNumNeuronX.Text);
-            int numNeuronY = int.Parse(txtbCNumNeuronY.Text);
-            double learningRate = double.Parse(txtbCLearningRate.Text);
-            double learningRadius = double.Parse(txtbCLearningRadius.Text);
-            int numOfIterator = int.Parse(txtbCNumIterator.Text);
-            double errorThresold = double.Parse(txtbCErrorThresold.Text);
+            try
+            {
+                int inputCount = int.Parse(txtbCNumInputNeuron.Text);
+                int maxInputRange = (inputCount == 4 ? 255 : 1);
+                int numNeuronX = int.Parse(txtbCNumNeuronX.Text);
+                int numNeuronY = int.Parse(txtbCNumNeuronY.Text);
+                double learningRate = double.Parse(txtbCLearningRate.Text);
+                double learningRadius = double.Parse(txtbCLearningRadius.Text);
+                int numOfIterator = int.Parse(txtbCNumIterator.Text);
+                double errorThresold = double.Parse(txtbCErrorThresold.Text);
 
-            _clusteringManager = new ClusteringManager(
-                inputCount,
-                numNeuronX,
-                numNeuronY,
-                learningRate,
-                learningRadius,
-                numOfIterator,
-                errorThresold,
-                _detectorData,
-                maxInputRange
-                );
+                _clusteringManager = new ClusteringManager(
+                    inputCount,
+                    numNeuronX,
+                    numNeuronY,
+                    learningRate,
+                    learningRadius,
+                    numOfIterator,
+                    errorThresold,
+                    _detectorData,
+                    maxInputRange
+                    );
 
-            _clusteringManager.trainDistanceNetwork();
+                _clusteringManager.trainDistanceNetwork();
 
-            LoadDangerLevel();
+                LoadDangerLevel();
 
-            _clusteringManager.Test_PrintlnNeuron();
+                _clusteringManager.Test_PrintlnNeuron();
 
-            _isWorking = false;
-            MessageBox.Show("Successful!");
-
+                MessageBox.Show("Successful!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnCStop_Click(object sender, EventArgs e)
@@ -627,19 +630,26 @@ namespace VirusDetection
 
         private void _fileClassifierThread()
         {
-            int numOfHiddenNeuron = int.Parse(txtbFCNumHiddenNeuron.Text);
-            int numOfOutputNeuron = int.Parse(txtbCFNumOutputNeuron.Text);
-            int numOfIterator = int.Parse(txtbCFNumIterator.Text);
-            double errorThresold = double.Parse(txtbCFErrorThresold.Text);
+            try
+            {
+                int numOfHiddenNeuron = int.Parse(txtbFCNumHiddenNeuron.Text);
+                int numOfOutputNeuron = int.Parse(txtbCFNumOutputNeuron.Text);
+                int numOfIterator = int.Parse(txtbCFNumIterator.Text);
+                double errorThresold = double.Parse(txtbCFErrorThresold.Text);
 
 
-            _fileClassifierManager.trainActiveNetwork(numOfHiddenNeuron,
-                numOfOutputNeuron,
-                numOfIterator,
-                errorThresold);
+                _fileClassifierManager.trainActiveNetwork(numOfHiddenNeuron,
+                    numOfOutputNeuron,
+                    numOfIterator,
+                    errorThresold);
 
-            _isWorking = false;
-            MessageBox.Show("Successful!");
+                MessageBox.Show("Successful!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btnFCSave_Click(object sender, EventArgs e)
@@ -729,29 +739,90 @@ namespace VirusDetection
 
         private void _startVirusScanner()
         {
-            _virusScannerManager = new VirusScannerManager(
-                _fileClassifierManager.DistanceNetwork,
-                _fileClassifierManager.ActivationNetwork,
-                txtbCFFormatRange.Text
-                );
+            // Do job
+            _currentProcessType = EProcessType.VirusScaner;
 
             _turnToWorkingStatus(true);
-            _worker = new Thread(_virusScannerThread);
+
+            if (rbtnAIS.Checked)
+                _worker = new Thread(_virusScannerThread);
+            else
+                _worker = new Thread(_simpleVirusScannerThread);
+
             _worker.Start();
+        }
+
+        private void _simpleVirusScannerThread()
+        {
+            try
+            {
+                GetDataGenerationParameter();
+
+                SimpleVirusScannerManager simpleVirusScannerManger = new SimpleVirusScannerManager(_virusFragments, d, r, _length, _stepsize, _useHamming, _useR);
+
+                String testFileFolder = txtbVSTestFileFolder.Text;
+                String[] testFile = Directory.GetFiles(testFileFolder, "*.*", SearchOption.AllDirectories);
+
+                // Init progressbar here
+                Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = testFile.Length;
+                Utils.Utils.GUI_SUPPORT.initProgressBar();
+
+                _lFileScanInfo.Clear();
+                foreach (String file in testFile)
+                {
+                    Boolean result = simpleVirusScannerManger.scanFile(file);
+                    FileScanInfo scanInfo = new FileScanInfo(file, result);
+                    _lFileScanInfo.Add(scanInfo);
+
+                    // Update progressbar
+                    Utils.Utils.GUI_SUPPORT.updateProgressBar();
+                }
+
+                MessageBox.Show("Successful!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void _virusScannerThread()
         {
 
-            String testFileFolder = txtbVSTestFileFolder.Text;
-            String[] testFile = Directory.GetFiles(testFileFolder, "*.*", SearchOption.AllDirectories);
-
-            foreach (String file in testFile)
+            try
             {
-                Boolean result = _virusScannerManager.scanFile(file);
-                FileScanInfo scanInfo = new FileScanInfo(file, result);
-                _lFileScanInfo.Add(scanInfo);
+                _virusScannerManager = new VirusScannerManager(
+                _fileClassifierManager.DistanceNetwork,
+                _fileClassifierManager.ActivationNetwork,
+                txtbCFFormatRange.Text
+                );
+
+
+                String testFileFolder = txtbVSTestFileFolder.Text;
+                String[] testFile = Directory.GetFiles(testFileFolder, "*.*", SearchOption.AllDirectories);
+
+                // Init progressbar here
+                Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = testFile.Length;
+                Utils.Utils.GUI_SUPPORT.initProgressBar();
+
+                _lFileScanInfo.Clear();
+                foreach (String file in testFile)
+                {
+                    Boolean result = _virusScannerManager.scanFile(file);
+                    FileScanInfo scanInfo = new FileScanInfo(file, result);
+                    _lFileScanInfo.Add(scanInfo);
+
+                    // Update progressbar
+                    Utils.Utils.GUI_SUPPORT.updateProgressBar();
+                }
+
+                MessageBox.Show("Successful!");
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
 
@@ -785,12 +856,11 @@ namespace VirusDetection
 
         private void timer_Tick(object sender, EventArgs e)
         {
+
             // Return if thead working
-            if (_worker.IsAlive)
+            if (_worker == null || _worker.IsAlive)
                 return;
 
-
-            _turnToWorkingStatus(false);
 
             switch (_currentProcessType)
             {
@@ -807,7 +877,9 @@ namespace VirusDetection
                 default:
                     break;
             }
-            
+
+            _turnToWorkingStatus(false);
+
         }
 
         private void _virusScannerThread_Stopped()
@@ -937,16 +1009,12 @@ namespace VirusDetection
                 startTime = DateTime.Now;
                 txtTimeBox.Text = "";
                 txtStatusBar.Text = "";
-                txtbVirusFragmentsCount.Text = "0";
                 progressBar.Value = 0;
 
                 // Set busy cursor
                 this.Cursor = Cursors.WaitCursor;
 
-                // Create events
-                stopEvent = new ManualResetEvent(false);
 
-                
                 // Start timer
                 _timer.Start();
 
@@ -958,28 +1026,38 @@ namespace VirusDetection
             }
             else
             {
+                progressBar.Value = progressBar.Maximum;
+
+
                 this.Cursor = Cursors.Default;
 
                 // Stop timer
                 _timer.Stop();
-
-                // Release event
-                stopEvent.Close();
-                stopEvent = null;
 
                 // ???
                 this.Capture = false;
 
                 // Set state
                 _isWorking = false;
+
+                // Set type to none
+                _currentProcessType = EProcessType.None;
             }
         }
 
         private void _detectorThread()
         {
-            datageneration.startBuildDetector();
+            try
+            {
+                datageneration.startBuildDetector();
+                MessageBox.Show("Successful!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            ShowDataGenerationProcess(90, "Data generation process has ended");
+
         }
 
 
@@ -1048,8 +1126,6 @@ namespace VirusDetection
 
         private void ShowDataGenerationProcess(int step, string discripts)
         {
-            //this.progressBar2.BeginInvoke((MethodInvoker)delegate() { this.progressBar2.Value = step; this.progressBar2.Refresh(); });
-            this.txtStatusBar.BeginInvoke((MethodInvoker)delegate() { txtStatusBar.Text = discripts; ; this.txtStatusBar.Refresh(); });
             TimeSpan elapsed = DateTime.Now.Subtract(startTime);
             txtTimeBox.BeginInvoke((MethodInvoker)delegate()
             {
@@ -1066,34 +1142,34 @@ namespace VirusDetection
         {
             try
             {
-                Length = Math.Max(2, Math.Min(8, int.Parse(txtDLength.Text)));
+                _length = Math.Max(2, Math.Min(8, int.Parse(txtDLength.Text)));
             }
-            catch { Length = 4; }
+            catch { _length = 4; }
             try
             {
-                stepsize = Math.Max(2, Math.Min(8, int.Parse(txtDStepSize.Text)));
-                if (stepsize != Length / 2)
-                    stepsize = Length / 2;
+                _stepsize = Math.Max(2, Math.Min(8, int.Parse(txtDStepSize.Text)));
+                if (_stepsize != _length / 2)
+                    _stepsize = _length / 2;
             }
-            catch { stepsize = stepsize / 2; }
+            catch { _stepsize = _stepsize / 2; }
 
-            UseHamming = cbxDHamming.Checked;
-            UseR = cbxDRContiguos.Checked;
-            if (UseHamming)
+            _useHamming = cbxDHamming.Checked;
+            _useR = cbxDRContiguos.Checked;
+            if (_useHamming)
             {
                 try
                 {
-                    d = Math.Max(0, Math.Min(Length * 8, int.Parse(txtbDHamming.Text)));
+                    d = Math.Max(0, Math.Min(_length * 8, int.Parse(txtbDHamming.Text)));
                 }
-                catch { d = Length / 2; }
+                catch { d = _length / 2; }
             }
-            if (UseR)
+            if (_useR)
             {
                 try
                 {
-                    r = Math.Max(0, Math.Min(Length * 8, int.Parse(txtbDContiguos.Text)));
+                    r = Math.Max(0, Math.Min(_length * 8, int.Parse(txtbDContiguos.Text)));
                 }
-                catch { r = Length / 2; }
+                catch { r = _length / 2; }
             }
         }
 
@@ -1252,10 +1328,10 @@ namespace VirusDetection
             ShowDataGenerationProcess(100, "Finished!");
 
             // Test
-            //if (this._virusFragments == null)
-            //    this._virusFragments = new TrainingData();
-            //if (this._benignFragments == null)
-            //    this._benignFragments = new TrainingData();
+            if (this._virusFragments == null)
+                this._virusFragments = new TrainingData();
+            if (this._benignFragments == null)
+                this._benignFragments = new TrainingData();
 
 
             ShowDataGenerationProcess(100, string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", Utils.Utils.GLOBAL_VIRUS_COUNT, _benignFragments.Count));
@@ -1386,8 +1462,18 @@ namespace VirusDetection
                 Invoke(method);
                 return;
             }
-            txtbVirusFragmentsCount.Text = Utils.Utils.GLOBAL_VIRUS_COUNT.ToString();
+
+            // Show value to status
+            String status = string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", Utils.Utils.GLOBAL_VIRUS_COUNT, Utils.Utils.GLOBAL_BENIGN_COUNT);
+
+            this.txtStatusBar.BeginInvoke((MethodInvoker)delegate()
+            {
+                txtStatusBar.Text = status;
+                this.txtStatusBar.Refresh();
+            });
         }
+
+
         #endregion
 
         private void rbtnDDetectorType_CheckedChanged(object sender, EventArgs e)
