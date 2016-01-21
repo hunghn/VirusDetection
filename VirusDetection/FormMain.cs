@@ -1475,7 +1475,7 @@ namespace VirusDetection
                 Invoke(method);
                 return;
             }
-            if (progressBar.Value <= progressBar.Maximum)
+            if (progressBar.Value < progressBar.Maximum)
                 progressBar.Value++;
         }
 

@@ -173,29 +173,27 @@ namespace VirusDetection.Detector
                 return;
             }
 
-            lock(VirusFragmentOutput)
+            int index = (int)ob;
+            byte[] binaryArray = VirusFragmentInput[index];
+            if (binaryArray != null && !IsMatchSelf(binaryArray))
             {
-                int index = (int)ob;
-                byte[] binaryArray = VirusFragmentInput[index];
-                if (binaryArray != null && !IsMatchSelf(binaryArray))
-                {
-                    state[index] = 0;
-                    try
-                    {
-                        VirusFragmentOutput.Add(binaryArray);
-                        Utils.Utils.GLOBAL_VIRUS_COUNT++;
-                        Utils.Utils.GUI_SUPPORT.updateVirusFragment();
-                    }
-                    catch
-                    {
-                    }
+                state[index] = 0;
 
-                }
-                else
+                lock (VirusFragmentOutput)
                 {
-                    state[index] = 1;
+                    VirusFragmentOutput.Add(binaryArray);
                 }
+
+                Utils.Utils.GLOBAL_VIRUS_COUNT++;
+                Utils.Utils.GUI_SUPPORT.updateVirusFragment();
+
             }
+            else
+            {
+                state[index] = 1;
+            }
+
+            
 
             if (Interlocked.Decrement(ref filesRemains) == 0)
             {
