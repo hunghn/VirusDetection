@@ -1475,7 +1475,8 @@ namespace VirusDetection
                 Invoke(method);
                 return;
             }
-            progressBar.Value++;
+            if (progressBar.Value <= progressBar.Maximum)
+                progressBar.Value++;
         }
 
         internal void initProgressBarCallBack()
