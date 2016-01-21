@@ -192,6 +192,14 @@ namespace VirusDetection
             NegativeSelectionData.Rows.Clear();
             groupshowingDataTable.Rows.Clear();
 
+            // Show value to status
+            String status = string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", Utils.Utils.GLOBAL_VIRUS_COUNT, Utils.Utils.GLOBAL_BENIGN_COUNT);
+            this.txtStatusBar.BeginInvoke((MethodInvoker)delegate()
+            {
+                txtStatusBar.Text = status;
+                this.txtStatusBar.Refresh();
+            });
+
             _currentProcessType = EProcessType.Detector;
 
             _turnToWorkingStatus(true);
@@ -1020,7 +1028,8 @@ namespace VirusDetection
             this._virusFragments = datageneration.VirusFragmentOutput;
             if(rbtnDBuildDetector.Checked)
                 this._benignFragments = datageneration.BenignFragmentInput;
-            PrepareShowingDataGeneration();
+            
+            showDetectorResult();
         }
 
         public void LoadStyleChart()
@@ -1182,29 +1191,9 @@ namespace VirusDetection
 
         }
 
-        private void ShowDataGenerationProcess(int step)
-        {
-            TimeSpan elapsed = DateTime.Now.Subtract(startTime);
-            txtTimeBox.BeginInvoke((MethodInvoker)delegate()
-            {
-                txtTimeBox.Text = "Elapsed time : " + string.Format("{0}:{1}:{2}",
-                    elapsed.Hours.ToString("D2"),
-                    elapsed.Minutes.ToString("D2"),
-                    elapsed.Seconds.ToString("D2")); this.txtTimeBox.Refresh();
-            });
-
-            txtTimeBox.Invalidate();
-        }
 
 
-
-        private void ShowingDataGenerationResults()
-        {
-            GetgroupingData(datageneration.VirusFragmentInput, datageneration.state);
-            GetgroupShowing();
-        }
-
-        private void GetgroupingData(TrainingData TD, int[] state)
+        private void ShowDetectorDataTable(TrainingData TD, int[] state)
         {
             // Declare DataColumn and DataRow variables.
             DataColumn column;
@@ -1296,47 +1285,6 @@ namespace VirusDetection
             });
 
         }
-        private void GetgroupShowing()
-        {
-            // Declare DataColumn and DataRow variables.
-            DataColumn column;
-            DataRow row;
-            DataView view;
-            groupshowingDataTable.Columns.Clear();
-
-            // Create new DataColumn, set DataType, ColumnName and add to DataTable.    
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
-            column.ColumnName = "Cluster Label";
-            groupshowingDataTable.Columns.Add(column);
-
-            // Create second column.
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Representive Data";
-            groupshowingDataTable.Columns.Add(column);
-
-            // Create third column.
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.Double");
-            column.ColumnName = "Rate";
-            groupshowingDataTable.Columns.Add(column);
-
-            groupshowingDataTable.Rows.Clear();
-            for (int i = 0; i < groups.Count; i++)
-            {
-                row = groupshowingDataTable.NewRow();
-                row["Cluster Label"] = groups[i].label;
-                row["Representive Data"] = ConvertByteArrayToString(groups[i].val[0]);
-                row["Rate"] = groups[i].rate;
-                groupshowingDataTable.Rows.Add(row);
-            }
-            view = new DataView(groupshowingDataTable);
-
-            // Set a DataGrid control's DataSource to the DataView.
-            //  dtGroupView.DataSource = view;
-        }
-
 
         private string ConvertByteArrayToString(byte[] bytes)
         {
@@ -1345,29 +1293,9 @@ namespace VirusDetection
                 s += bytes[i].ToString();
             return s;
         }
-        private void PrepareShowingDataGeneration()
+        private void showDetectorResult()
         {
-            ShowDataGenerationProcess(95);
-            ShowingDataGenerationResults();
-            ShowDataGenerationProcess(100);
-
-            // Test
-            if (this._virusFragments == null)
-                this._virusFragments = new TrainingData();
-            if (this._benignFragments == null)
-                this._benignFragments = new TrainingData();
-
-
-            ShowDataGenerationProcess(100);
-
-            // Show value to status
-            String status = string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", Utils.Utils.GLOBAL_VIRUS_COUNT, Utils.Utils.GLOBAL_BENIGN_COUNT);
-
-            this.txtStatusBar.BeginInvoke((MethodInvoker)delegate()
-            {
-                txtStatusBar.Text = status;
-                this.txtStatusBar.Refresh();
-            });
+            ShowDetectorDataTable(datageneration.VirusFragmentInput, datageneration.state);
         }
 
 
