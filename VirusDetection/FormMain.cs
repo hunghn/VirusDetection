@@ -638,7 +638,7 @@ namespace VirusDetection
                 formatRange
                 );
             _fileClassifierManager.buildTrainingSet();
-            showStringCompareAnalysis();
+            LoadStyleChart();
         }
 
         private void btnFCStop_Click(object sender, EventArgs e)

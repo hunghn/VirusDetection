@@ -61,6 +61,10 @@ namespace VirusDetection.StringCompare
             int benignLen = benignFile.Length;
             int totalLen = virusLen + benignLen;
 
+            // Init progressbar here
+            Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = totalLen;
+            Utils.Utils.GUI_SUPPORT.initProgressBar();
+
 
             // Init for draw graph
             _graphMap = new double[totalLen][];
@@ -92,6 +96,8 @@ namespace VirusDetection.StringCompare
 
                     virusCount++;
                     totalCount++;
+
+                    Utils.Utils.GUI_SUPPORT.updateProgressBar();
                 }
 
                 // 2. lay so lan lap random cua sach nt
@@ -110,6 +116,8 @@ namespace VirusDetection.StringCompare
 
                     benignCount++;
                     totalCount++;
+
+                    Utils.Utils.GUI_SUPPORT.updateProgressBar();
                 }
 
                 if (totalCount >= totalLen)
