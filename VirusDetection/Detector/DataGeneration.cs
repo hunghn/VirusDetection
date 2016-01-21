@@ -19,20 +19,42 @@ namespace VirusDetection.Detector
         private Matching M;
         private string virusDirectory = "";
         private string benignDirectory = "";
-        public string VirusDirectory { get { return virusDirectory; } set { virusDirectory = value; } }
-        public string BenignDirectory { get { return benignDirectory; } set { benignDirectory = value; } }
+        public string VirusDirectory 
+        { 
+            get { return virusDirectory; } 
+            set { virusDirectory = value; } 
+        }
+        public string BenignDirectory 
+        { 
+            get { return benignDirectory; } 
+            set { benignDirectory = value; } 
+        }
         private string outputFile = "";
-        public string OutputFile { get { return outputFile; } set { outputFile = value; } }
+        public string OutputFile
+        { 
+            get { return outputFile; } 
+            set { outputFile = value; } 
+        }
         private int length;
         private int stepsize;// 1 byte= 8 bit       
-        public int Length { get { return length; } set { length = value; stepsize = value / 2; } }
-        public int Stepsize { get { return stepsize; } }
+        public int Length 
+        { 
+            get { return length; }
+            set 
+            { 
+                length = value; 
+            } 
+        }
+        public int Stepsize 
+        { 
+            get { return stepsize; } 
+        }
         private ManualResetEvent Event;
 
         // Stop support
         Boolean _done;
 
-        public DataGeneration(string _BenignDirectory, string _VirusDirectory, int d, int r, int _length, int _stepsize, bool Flag1, bool Flag2)
+        public DataGeneration(string _VirusDirectory, string _BenignDirectory, int d, int r, int _length, int _stepsize, bool Flag1, bool Flag2)
         {
             M = new Matching(d, r, Flag1, Flag2);
             length = _length;
@@ -57,6 +79,8 @@ namespace VirusDetection.Detector
             {
                 Array.Copy(bytes, i, temp, 0, length);
                 binaryArray = Utils.Utils.ConvertBytesIntoBinary(temp);
+                String strBinary = String.Join("", binaryArray);
+
                 if (flag)
                 {
                     if (binaryArray != null)
@@ -128,20 +152,21 @@ namespace VirusDetection.Detector
 
         private void NegativeSelection()
         {
-
-            filesRemains = VirusFragmentInput.Count;
+            if ((filesRemains = VirusFragmentInput.Count) == 0)
+            {
+                return;
+            }
+                
             state = new int[VirusFragmentInput.Count];
             Event = new ManualResetEvent(false);
             for (int i = 0; i < VirusFragmentInput.Count ; i++)
             {
                 ThreadPool.QueueUserWorkItem(ThreadCallBack, i);
-                Console.WriteLine("Negative at: " + i);
             }
             Event.WaitOne();
         }
         private void ThreadCallBack(Object ob)
         {
-
 
             if (_done)
             {
@@ -191,32 +216,31 @@ namespace VirusDetection.Detector
             }
             return false;
         }
-        //private void RemoveEquals(TrainingData TD)
-        //{
-        //    for (int i = 0; i < TD.Count - 1; i++)
-        //        for (int j = i + 1; j < TD.Count; j++)
-        //        {
-        //            if (Equals(TD[i], TD[j]))
-        //            {
-        //                TD.RemoveAt(j);
-        //                j--;
-        //            }
-        //        }
-        //}
-        //private bool Equals(byte[] a, byte[] b)
-        //{
-        //    if (a.Length != b.Length)
-        //        return false;
-        //    for (int i = 0; i < a.Length; i++)
-        //        if (a[i] != b[i])
-        //            return false;
-        //    return true;
-        //}
+
 
         internal void stopBuildDetector()
         {
             _done = true;
             Event.Set();
+        }
+
+        internal void startAdditionNegative(TrainingData virusFragments_)
+        {
+            _done = false;
+
+            VirusFragmentInput = virusFragments_;
+            ReadDirectory(benignDirectory, true);
+
+            // Init progressbar before work
+            Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = VirusFragmentInput.Count;
+            Utils.Utils.GUI_SUPPORT.initProgressBar();
+
+            // Init virus count
+            Utils.Utils.GLOBAL_PROGRESSBAR_COUNT = 0;
+            Utils.Utils.GLOBAL_VIRUS_COUNT = 0;
+            Utils.Utils.GLOBAL_BENIGN_COUNT = this.BenignFragmentInput.Count;
+
+            NegativeSelection();
         }
     }
 }

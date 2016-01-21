@@ -37,6 +37,10 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelFooter = new System.Windows.Forms.Panel();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -72,9 +76,9 @@
             this.dtNegativeSelection = new System.Windows.Forms.DataGridView();
             this.panelTabRight = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtbDContiguos = new System.Windows.Forms.TextBox();
+            this.txtbDContinuous = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cbxDRContiguos = new System.Windows.Forms.CheckBox();
+            this.cbxDRContinuous = new System.Windows.Forms.CheckBox();
             this.txtbDHamming = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbxDHamming = new System.Windows.Forms.CheckBox();
@@ -118,11 +122,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtbCVirusSize = new System.Windows.Forms.TextBox();
             this.btnCSaveMixDetector = new System.Windows.Forms.Button();
-            this.cbCUseRate = new System.Windows.Forms.CheckBox();
+            this.cbxCUseRate = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtbCBenignVirusRate = new System.Windows.Forms.TextBox();
             this.tabpgFileClassifier = new System.Windows.Forms.TabPage();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartFC = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnFCStop = new System.Windows.Forms.Button();
             this.btnFCPreprocesser = new System.Windows.Forms.Button();
@@ -148,17 +152,39 @@
             this.btnFCVirusFolder = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.txtbFCNumHiddenNeuron = new System.Windows.Forms.TextBox();
+            this.tabpgStringCompare = new System.Windows.Forms.TabPage();
+            this.chartSC = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtbSCRContinuousDistance = new System.Windows.Forms.TextBox();
+            this.cbxSCRContinuousDistance = new System.Windows.Forms.CheckBox();
+            this.txtbSCHammingDistance = new System.Windows.Forms.TextBox();
+            this.cbxSCHammingDistance = new System.Windows.Forms.CheckBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.txtbSCBenignFolder = new System.Windows.Forms.TextBox();
+            this.btnSCBenignFolder = new System.Windows.Forms.Button();
+            this.txtbSCVirusFolder = new System.Windows.Forms.TextBox();
+            this.btnSCVirusFolder = new System.Windows.Forms.Button();
+            this.btnSCStop = new System.Windows.Forms.Button();
+            this.btnSCStart = new System.Windows.Forms.Button();
+            this.txtbSCStepSize = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtbSCLength = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
             this.tabPgVirusScanner = new System.Windows.Forms.TabPage();
             this.dgvVirus = new System.Windows.Forms.DataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtbVSStringCompareThresold = new System.Windows.Forms.TextBox();
             this.rbtnAIS = new System.Windows.Forms.RadioButton();
             this.rbtnStringCompare = new System.Windows.Forms.RadioButton();
             this.btnVSStop = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtbVSTestFileFolder = new System.Windows.Forms.TextBox();
+            this.txtbVSTestFolder = new System.Windows.Forms.TextBox();
             this.txtbFCNumBenign = new System.Windows.Forms.TextBox();
-            this.btnFCTestFileFolder = new System.Windows.Forms.Button();
+            this.btnFCTestFolder = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.btnFCScanVirus = new System.Windows.Forms.Button();
             this.txtbFCNumVirus = new System.Windows.Forms.TextBox();
@@ -180,8 +206,12 @@
             this.panel5.SuspendLayout();
             this.grbPreprocess.SuspendLayout();
             this.tabpgFileClassifier.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFC)).BeginInit();
             this.panel3.SuspendLayout();
+            this.tabpgStringCompare.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartSC)).BeginInit();
+            this.panel6.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tabPgVirusScanner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVirus)).BeginInit();
             this.panel7.SuspendLayout();
@@ -494,6 +524,7 @@
             this.tabMain.Controls.Add(this.tabpgDetector);
             this.tabMain.Controls.Add(this.tabpgClustering);
             this.tabMain.Controls.Add(this.tabpgFileClassifier);
+            this.tabMain.Controls.Add(this.tabpgStringCompare);
             this.tabMain.Controls.Add(this.tabPgVirusScanner);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(5, 5);
@@ -538,9 +569,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtbDContiguos);
+            this.groupBox1.Controls.Add(this.txtbDContinuous);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.cbxDRContiguos);
+            this.groupBox1.Controls.Add(this.cbxDRContinuous);
             this.groupBox1.Controls.Add(this.txtbDHamming);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.cbxDHamming);
@@ -556,13 +587,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parameter";
             // 
-            // txtbDContiguos
+            // txtbDContinuous
             // 
-            this.txtbDContiguos.Location = new System.Drawing.Point(72, 164);
-            this.txtbDContiguos.Name = "txtbDContiguos";
-            this.txtbDContiguos.Size = new System.Drawing.Size(167, 20);
-            this.txtbDContiguos.TabIndex = 14;
-            this.txtbDContiguos.Text = "12";
+            this.txtbDContinuous.Location = new System.Drawing.Point(72, 164);
+            this.txtbDContinuous.Name = "txtbDContinuous";
+            this.txtbDContinuous.Size = new System.Drawing.Size(167, 20);
+            this.txtbDContinuous.TabIndex = 14;
+            this.txtbDContinuous.Text = "12";
             // 
             // label6
             // 
@@ -573,17 +604,17 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "r";
             // 
-            // cbxDRContiguos
+            // cbxDRContinuous
             // 
-            this.cbxDRContiguos.AutoSize = true;
-            this.cbxDRContiguos.Checked = true;
-            this.cbxDRContiguos.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxDRContiguos.Location = new System.Drawing.Point(10, 139);
-            this.cbxDRContiguos.Name = "cbxDRContiguos";
-            this.cbxDRContiguos.Size = new System.Drawing.Size(129, 17);
-            this.cbxDRContiguos.TabIndex = 12;
-            this.cbxDRContiguos.Text = "R Contiguos Distance";
-            this.cbxDRContiguos.UseVisualStyleBackColor = true;
+            this.cbxDRContinuous.AutoSize = true;
+            this.cbxDRContinuous.Checked = true;
+            this.cbxDRContinuous.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxDRContinuous.Location = new System.Drawing.Point(10, 139);
+            this.cbxDRContinuous.Name = "cbxDRContinuous";
+            this.cbxDRContinuous.Size = new System.Drawing.Size(135, 17);
+            this.cbxDRContinuous.TabIndex = 12;
+            this.cbxDRContinuous.Text = "R Continuous Distance";
+            this.cbxDRContinuous.UseVisualStyleBackColor = true;
             // 
             // txtbDHamming
             // 
@@ -942,7 +973,7 @@
             this.grbPreprocess.Controls.Add(this.label9);
             this.grbPreprocess.Controls.Add(this.txtbCVirusSize);
             this.grbPreprocess.Controls.Add(this.btnCSaveMixDetector);
-            this.grbPreprocess.Controls.Add(this.cbCUseRate);
+            this.grbPreprocess.Controls.Add(this.cbxCUseRate);
             this.grbPreprocess.Controls.Add(this.label8);
             this.grbPreprocess.Controls.Add(this.txtbCBenignVirusRate);
             this.grbPreprocess.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1026,18 +1057,18 @@
             this.btnCSaveMixDetector.UseVisualStyleBackColor = true;
             this.btnCSaveMixDetector.Click += new System.EventHandler(this.btnCSaveMixDetector_Click);
             // 
-            // cbCUseRate
+            // cbxCUseRate
             // 
-            this.cbCUseRate.AutoSize = true;
-            this.cbCUseRate.Checked = true;
-            this.cbCUseRate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbCUseRate.Location = new System.Drawing.Point(3, 18);
-            this.cbCUseRate.Name = "cbCUseRate";
-            this.cbCUseRate.Size = new System.Drawing.Size(71, 17);
-            this.cbCUseRate.TabIndex = 25;
-            this.cbCUseRate.Text = "Use Rate";
-            this.cbCUseRate.UseVisualStyleBackColor = true;
-            this.cbCUseRate.CheckedChanged += new System.EventHandler(this.cbxCUseRate_CheckedChanged);
+            this.cbxCUseRate.AutoSize = true;
+            this.cbxCUseRate.Checked = true;
+            this.cbxCUseRate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxCUseRate.Location = new System.Drawing.Point(3, 18);
+            this.cbxCUseRate.Name = "cbxCUseRate";
+            this.cbxCUseRate.Size = new System.Drawing.Size(71, 17);
+            this.cbxCUseRate.TabIndex = 25;
+            this.cbxCUseRate.Text = "Use Rate";
+            this.cbxCUseRate.UseVisualStyleBackColor = true;
+            this.cbxCUseRate.CheckedChanged += new System.EventHandler(this.cbxCUseRate_CheckedChanged);
             // 
             // label8
             // 
@@ -1058,7 +1089,7 @@
             // 
             // tabpgFileClassifier
             // 
-            this.tabpgFileClassifier.Controls.Add(this.chart1);
+            this.tabpgFileClassifier.Controls.Add(this.chartFC);
             this.tabpgFileClassifier.Controls.Add(this.panel3);
             this.tabpgFileClassifier.Location = new System.Drawing.Point(4, 22);
             this.tabpgFileClassifier.Name = "tabpgFileClassifier";
@@ -1068,15 +1099,15 @@
             this.tabpgFileClassifier.Text = "File Classifier";
             this.tabpgFileClassifier.UseVisualStyleBackColor = true;
             // 
-            // chart1
+            // chartFC
             // 
             chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartFC.ChartAreas.Add(chartArea2);
+            this.chartFC.Dock = System.Windows.Forms.DockStyle.Fill;
             legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(216, 3);
-            this.chart1.Name = "chart1";
+            this.chartFC.Legends.Add(legend2);
+            this.chartFC.Location = new System.Drawing.Point(216, 3);
+            this.chartFC.Name = "chartFC";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series3.Legend = "Legend1";
@@ -1085,11 +1116,11 @@
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series4.Legend = "Legend1";
             series4.Name = "Virus";
-            this.chart1.Series.Add(series3);
-            this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(725, 585);
-            this.chart1.TabIndex = 48;
-            this.chart1.Text = "chart1";
+            this.chartFC.Series.Add(series3);
+            this.chartFC.Series.Add(series4);
+            this.chartFC.Size = new System.Drawing.Size(725, 585);
+            this.chartFC.TabIndex = 48;
+            this.chartFC.Text = "chart1";
             // 
             // panel3
             // 
@@ -1337,6 +1368,224 @@
             this.txtbFCNumHiddenNeuron.TabIndex = 30;
             this.txtbFCNumHiddenNeuron.Text = "5";
             // 
+            // tabpgStringCompare
+            // 
+            this.tabpgStringCompare.Controls.Add(this.chartSC);
+            this.tabpgStringCompare.Controls.Add(this.panel6);
+            this.tabpgStringCompare.Location = new System.Drawing.Point(4, 22);
+            this.tabpgStringCompare.Name = "tabpgStringCompare";
+            this.tabpgStringCompare.Size = new System.Drawing.Size(944, 591);
+            this.tabpgStringCompare.TabIndex = 4;
+            this.tabpgStringCompare.Text = "String Compare";
+            this.tabpgStringCompare.UseVisualStyleBackColor = true;
+            // 
+            // chartSC
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chartSC.ChartAreas.Add(chartArea3);
+            this.chartSC.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend3.Name = "Legend1";
+            this.chartSC.Legends.Add(legend3);
+            this.chartSC.Location = new System.Drawing.Point(261, 0);
+            this.chartSC.Name = "chartSC";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series5.Legend = "Legend1";
+            series5.Name = "Benign";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series6.Legend = "Legend1";
+            series6.Name = "Virus";
+            this.chartSC.Series.Add(series5);
+            this.chartSC.Series.Add(series6);
+            this.chartSC.Size = new System.Drawing.Size(683, 591);
+            this.chartSC.TabIndex = 49;
+            this.chartSC.Text = "chart2";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.Control;
+            this.panel6.Controls.Add(this.groupBox4);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(261, 591);
+            this.panel6.TabIndex = 50;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.txtbSCRContinuousDistance);
+            this.groupBox4.Controls.Add(this.cbxSCRContinuousDistance);
+            this.groupBox4.Controls.Add(this.txtbSCHammingDistance);
+            this.groupBox4.Controls.Add(this.cbxSCHammingDistance);
+            this.groupBox4.Controls.Add(this.label40);
+            this.groupBox4.Controls.Add(this.label41);
+            this.groupBox4.Controls.Add(this.txtbSCBenignFolder);
+            this.groupBox4.Controls.Add(this.btnSCBenignFolder);
+            this.groupBox4.Controls.Add(this.txtbSCVirusFolder);
+            this.groupBox4.Controls.Add(this.btnSCVirusFolder);
+            this.groupBox4.Controls.Add(this.btnSCStop);
+            this.groupBox4.Controls.Add(this.btnSCStart);
+            this.groupBox4.Controls.Add(this.txtbSCStepSize);
+            this.groupBox4.Controls.Add(this.label37);
+            this.groupBox4.Controls.Add(this.txtbSCLength);
+            this.groupBox4.Controls.Add(this.label38);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(261, 591);
+            this.groupBox4.TabIndex = 0;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Parameter";
+            // 
+            // txtbSCRContinuousDistance
+            // 
+            this.txtbSCRContinuousDistance.Location = new System.Drawing.Point(159, 210);
+            this.txtbSCRContinuousDistance.Name = "txtbSCRContinuousDistance";
+            this.txtbSCRContinuousDistance.Size = new System.Drawing.Size(78, 20);
+            this.txtbSCRContinuousDistance.TabIndex = 45;
+            this.txtbSCRContinuousDistance.Text = "12";
+            // 
+            // cbxSCRContinuousDistance
+            // 
+            this.cbxSCRContinuousDistance.AutoSize = true;
+            this.cbxSCRContinuousDistance.Checked = true;
+            this.cbxSCRContinuousDistance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxSCRContinuousDistance.Location = new System.Drawing.Point(18, 210);
+            this.cbxSCRContinuousDistance.Name = "cbxSCRContinuousDistance";
+            this.cbxSCRContinuousDistance.Size = new System.Drawing.Size(135, 17);
+            this.cbxSCRContinuousDistance.TabIndex = 44;
+            this.cbxSCRContinuousDistance.Text = "R Continuous Distance";
+            this.cbxSCRContinuousDistance.UseVisualStyleBackColor = true;
+            // 
+            // txtbSCHammingDistance
+            // 
+            this.txtbSCHammingDistance.Location = new System.Drawing.Point(159, 175);
+            this.txtbSCHammingDistance.Name = "txtbSCHammingDistance";
+            this.txtbSCHammingDistance.Size = new System.Drawing.Size(78, 20);
+            this.txtbSCHammingDistance.TabIndex = 43;
+            this.txtbSCHammingDistance.Text = "10";
+            // 
+            // cbxSCHammingDistance
+            // 
+            this.cbxSCHammingDistance.AutoSize = true;
+            this.cbxSCHammingDistance.Checked = true;
+            this.cbxSCHammingDistance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxSCHammingDistance.Location = new System.Drawing.Point(18, 177);
+            this.cbxSCHammingDistance.Name = "cbxSCHammingDistance";
+            this.cbxSCHammingDistance.Size = new System.Drawing.Size(115, 17);
+            this.cbxSCHammingDistance.TabIndex = 42;
+            this.cbxSCHammingDistance.Text = "Hamming Distance";
+            this.cbxSCHammingDistance.UseVisualStyleBackColor = true;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(5, 58);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(72, 13);
+            this.label40.TabIndex = 28;
+            this.label40.Text = "Benign Folder";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(15, 31);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(62, 13);
+            this.label41.TabIndex = 27;
+            this.label41.Text = "Virus Folder";
+            // 
+            // txtbSCBenignFolder
+            // 
+            this.txtbSCBenignFolder.Location = new System.Drawing.Point(83, 54);
+            this.txtbSCBenignFolder.Name = "txtbSCBenignFolder";
+            this.txtbSCBenignFolder.Size = new System.Drawing.Size(127, 20);
+            this.txtbSCBenignFolder.TabIndex = 26;
+            // 
+            // btnSCBenignFolder
+            // 
+            this.btnSCBenignFolder.Location = new System.Drawing.Point(210, 54);
+            this.btnSCBenignFolder.Name = "btnSCBenignFolder";
+            this.btnSCBenignFolder.Size = new System.Drawing.Size(31, 20);
+            this.btnSCBenignFolder.TabIndex = 25;
+            this.btnSCBenignFolder.Text = "...";
+            this.btnSCBenignFolder.UseVisualStyleBackColor = true;
+            this.btnSCBenignFolder.Click += new System.EventHandler(this.btnSCBenignFolder_Click);
+            // 
+            // txtbSCVirusFolder
+            // 
+            this.txtbSCVirusFolder.Location = new System.Drawing.Point(83, 28);
+            this.txtbSCVirusFolder.Name = "txtbSCVirusFolder";
+            this.txtbSCVirusFolder.Size = new System.Drawing.Size(127, 20);
+            this.txtbSCVirusFolder.TabIndex = 24;
+            // 
+            // btnSCVirusFolder
+            // 
+            this.btnSCVirusFolder.Location = new System.Drawing.Point(210, 28);
+            this.btnSCVirusFolder.Name = "btnSCVirusFolder";
+            this.btnSCVirusFolder.Size = new System.Drawing.Size(31, 20);
+            this.btnSCVirusFolder.TabIndex = 23;
+            this.btnSCVirusFolder.Text = "...";
+            this.btnSCVirusFolder.UseVisualStyleBackColor = true;
+            this.btnSCVirusFolder.Click += new System.EventHandler(this.btnSCVirusFolder_Click);
+            // 
+            // btnSCStop
+            // 
+            this.btnSCStop.Location = new System.Drawing.Point(140, 300);
+            this.btnSCStop.Name = "btnSCStop";
+            this.btnSCStop.Size = new System.Drawing.Size(86, 24);
+            this.btnSCStop.TabIndex = 16;
+            this.btnSCStop.Text = "Stop";
+            this.btnSCStop.UseVisualStyleBackColor = true;
+            this.btnSCStop.Click += new System.EventHandler(this.btnSCStop_Click);
+            // 
+            // btnSCStart
+            // 
+            this.btnSCStart.Location = new System.Drawing.Point(10, 300);
+            this.btnSCStart.Name = "btnSCStart";
+            this.btnSCStart.Size = new System.Drawing.Size(91, 23);
+            this.btnSCStart.TabIndex = 15;
+            this.btnSCStart.Text = "Start";
+            this.btnSCStart.UseVisualStyleBackColor = true;
+            this.btnSCStart.Click += new System.EventHandler(this.btnSCStart_Click);
+            // 
+            // txtbSCStepSize
+            // 
+            this.txtbSCStepSize.Location = new System.Drawing.Point(72, 131);
+            this.txtbSCStepSize.Name = "txtbSCStepSize";
+            this.txtbSCStepSize.ReadOnly = true;
+            this.txtbSCStepSize.Size = new System.Drawing.Size(167, 20);
+            this.txtbSCStepSize.TabIndex = 3;
+            this.txtbSCStepSize.Text = "2";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(7, 134);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(52, 13);
+            this.label37.TabIndex = 2;
+            this.label37.Text = "Step Size";
+            // 
+            // txtbSCLength
+            // 
+            this.txtbSCLength.Location = new System.Drawing.Point(72, 105);
+            this.txtbSCLength.Name = "txtbSCLength";
+            this.txtbSCLength.ReadOnly = true;
+            this.txtbSCLength.Size = new System.Drawing.Size(167, 20);
+            this.txtbSCLength.TabIndex = 1;
+            this.txtbSCLength.Text = "4";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(7, 108);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(40, 13);
+            this.label38.TabIndex = 0;
+            this.label38.Text = "Length";
+            // 
             // tabPgVirusScanner
             // 
             this.tabPgVirusScanner.Controls.Add(this.dgvVirus);
@@ -1354,56 +1603,78 @@
             this.dgvVirus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVirus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVirus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvVirus.Location = new System.Drawing.Point(227, 3);
+            this.dgvVirus.Location = new System.Drawing.Point(280, 3);
             this.dgvVirus.Name = "dgvVirus";
-            this.dgvVirus.Size = new System.Drawing.Size(714, 585);
+            this.dgvVirus.Size = new System.Drawing.Size(661, 585);
             this.dgvVirus.TabIndex = 36;
             // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.Control;
+            this.panel7.Controls.Add(this.label33);
+            this.panel7.Controls.Add(this.txtbVSStringCompareThresold);
             this.panel7.Controls.Add(this.rbtnAIS);
             this.panel7.Controls.Add(this.rbtnStringCompare);
             this.panel7.Controls.Add(this.btnVSStop);
             this.panel7.Controls.Add(this.label30);
             this.panel7.Controls.Add(this.label17);
-            this.panel7.Controls.Add(this.txtbVSTestFileFolder);
+            this.panel7.Controls.Add(this.txtbVSTestFolder);
             this.panel7.Controls.Add(this.txtbFCNumBenign);
-            this.panel7.Controls.Add(this.btnFCTestFileFolder);
+            this.panel7.Controls.Add(this.btnFCTestFolder);
             this.panel7.Controls.Add(this.label16);
             this.panel7.Controls.Add(this.btnFCScanVirus);
             this.panel7.Controls.Add(this.txtbFCNumVirus);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel7.Location = new System.Drawing.Point(3, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(224, 585);
+            this.panel7.Size = new System.Drawing.Size(277, 585);
             this.panel7.TabIndex = 35;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(10, 75);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(123, 13);
+            this.label33.TabIndex = 43;
+            this.label33.Text = "String Compare Thresold";
+            // 
+            // txtbVSStringCompareThresold
+            // 
+            this.txtbVSStringCompareThresold.Enabled = false;
+            this.txtbVSStringCompareThresold.Location = new System.Drawing.Point(148, 72);
+            this.txtbVSStringCompareThresold.Name = "txtbVSStringCompareThresold";
+            this.txtbVSStringCompareThresold.Size = new System.Drawing.Size(78, 20);
+            this.txtbVSStringCompareThresold.TabIndex = 42;
+            this.txtbVSStringCompareThresold.Text = "0.2";
             // 
             // rbtnAIS
             // 
             this.rbtnAIS.AutoSize = true;
             this.rbtnAIS.Checked = true;
-            this.rbtnAIS.Location = new System.Drawing.Point(126, 78);
+            this.rbtnAIS.Location = new System.Drawing.Point(148, 213);
             this.rbtnAIS.Name = "rbtnAIS";
             this.rbtnAIS.Size = new System.Drawing.Size(42, 17);
             this.rbtnAIS.TabIndex = 37;
             this.rbtnAIS.TabStop = true;
             this.rbtnAIS.Text = "AIS";
             this.rbtnAIS.UseVisualStyleBackColor = true;
+            this.rbtnAIS.CheckedChanged += new System.EventHandler(this.rbtnVSVirusScannerType_CheckedChanged);
             // 
             // rbtnStringCompare
             // 
             this.rbtnStringCompare.AutoSize = true;
-            this.rbtnStringCompare.Location = new System.Drawing.Point(5, 78);
+            this.rbtnStringCompare.Location = new System.Drawing.Point(27, 213);
             this.rbtnStringCompare.Name = "rbtnStringCompare";
             this.rbtnStringCompare.Size = new System.Drawing.Size(97, 17);
             this.rbtnStringCompare.TabIndex = 36;
             this.rbtnStringCompare.Text = "String Compare";
             this.rbtnStringCompare.UseVisualStyleBackColor = true;
+            this.rbtnStringCompare.CheckedChanged += new System.EventHandler(this.rbtnVSVirusScannerType_CheckedChanged);
             // 
             // btnVSStop
             // 
-            this.btnVSStop.Location = new System.Drawing.Point(114, 114);
+            this.btnVSStop.Location = new System.Drawing.Point(114, 267);
             this.btnVSStop.Name = "btnVSStop";
             this.btnVSStop.Size = new System.Drawing.Size(67, 26);
             this.btnVSStop.TabIndex = 35;
@@ -1414,50 +1685,50 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(15, 19);
+            this.label30.Location = new System.Drawing.Point(10, 28);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(79, 13);
+            this.label30.Size = new System.Drawing.Size(60, 13);
             this.label30.TabIndex = 34;
-            this.label30.Text = "Test File Folder";
+            this.label30.Text = "Test Folder";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(15, 190);
+            this.label17.Location = new System.Drawing.Point(10, 376);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 13);
             this.label17.TabIndex = 33;
             this.label17.Text = "Num Benign";
             // 
-            // txtbVSTestFileFolder
+            // txtbVSTestFolder
             // 
-            this.txtbVSTestFileFolder.Location = new System.Drawing.Point(18, 43);
-            this.txtbVSTestFileFolder.Name = "txtbVSTestFileFolder";
-            this.txtbVSTestFileFolder.Size = new System.Drawing.Size(140, 20);
-            this.txtbVSTestFileFolder.TabIndex = 7;
+            this.txtbVSTestFolder.Location = new System.Drawing.Point(82, 25);
+            this.txtbVSTestFolder.Name = "txtbVSTestFolder";
+            this.txtbVSTestFolder.Size = new System.Drawing.Size(140, 20);
+            this.txtbVSTestFolder.TabIndex = 7;
             // 
             // txtbFCNumBenign
             // 
-            this.txtbFCNumBenign.Location = new System.Drawing.Point(93, 187);
+            this.txtbFCNumBenign.Location = new System.Drawing.Point(88, 373);
             this.txtbFCNumBenign.Name = "txtbFCNumBenign";
             this.txtbFCNumBenign.ReadOnly = true;
             this.txtbFCNumBenign.Size = new System.Drawing.Size(99, 20);
             this.txtbFCNumBenign.TabIndex = 32;
             // 
-            // btnFCTestFileFolder
+            // btnFCTestFolder
             // 
-            this.btnFCTestFileFolder.Location = new System.Drawing.Point(164, 43);
-            this.btnFCTestFileFolder.Name = "btnFCTestFileFolder";
-            this.btnFCTestFileFolder.Size = new System.Drawing.Size(28, 22);
-            this.btnFCTestFileFolder.TabIndex = 6;
-            this.btnFCTestFileFolder.Text = "...";
-            this.btnFCTestFileFolder.UseVisualStyleBackColor = true;
-            this.btnFCTestFileFolder.Click += new System.EventHandler(this.btnTestFileFolder_Click);
+            this.btnFCTestFolder.Location = new System.Drawing.Point(227, 24);
+            this.btnFCTestFolder.Name = "btnFCTestFolder";
+            this.btnFCTestFolder.Size = new System.Drawing.Size(28, 22);
+            this.btnFCTestFolder.TabIndex = 6;
+            this.btnFCTestFolder.Text = "...";
+            this.btnFCTestFolder.UseVisualStyleBackColor = true;
+            this.btnFCTestFolder.Click += new System.EventHandler(this.btnTestFolder_Click);
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(15, 164);
+            this.label16.Location = new System.Drawing.Point(10, 350);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(55, 13);
             this.label16.TabIndex = 31;
@@ -1465,7 +1736,7 @@
             // 
             // btnFCScanVirus
             // 
-            this.btnFCScanVirus.Location = new System.Drawing.Point(27, 114);
+            this.btnFCScanVirus.Location = new System.Drawing.Point(27, 267);
             this.btnFCScanVirus.Name = "btnFCScanVirus";
             this.btnFCScanVirus.Size = new System.Drawing.Size(67, 26);
             this.btnFCScanVirus.TabIndex = 0;
@@ -1475,7 +1746,7 @@
             // 
             // txtbFCNumVirus
             // 
-            this.txtbFCNumVirus.Location = new System.Drawing.Point(93, 161);
+            this.txtbFCNumVirus.Location = new System.Drawing.Point(88, 347);
             this.txtbFCNumVirus.Name = "txtbFCNumVirus";
             this.txtbFCNumVirus.ReadOnly = true;
             this.txtbFCNumVirus.Size = new System.Drawing.Size(99, 20);
@@ -1520,9 +1791,14 @@
             this.grbPreprocess.ResumeLayout(false);
             this.grbPreprocess.PerformLayout();
             this.tabpgFileClassifier.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFC)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.tabpgStringCompare.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartSC)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tabPgVirusScanner.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVirus)).EndInit();
             this.panel7.ResumeLayout(false);
@@ -1560,9 +1836,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDLength;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtbDContiguos;
+        private System.Windows.Forms.TextBox txtbDContinuous;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox cbxDRContiguos;
+        private System.Windows.Forms.CheckBox cbxDRContinuous;
         private System.Windows.Forms.TextBox txtbDHamming;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cbxDHamming;
@@ -1601,8 +1877,8 @@
         private System.Windows.Forms.TextBox txtbFCNumBenign;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtbFCNumVirus;
-        private System.Windows.Forms.TextBox txtbVSTestFileFolder;
-        private System.Windows.Forms.Button btnFCTestFileFolder;
+        private System.Windows.Forms.TextBox txtbVSTestFolder;
+        private System.Windows.Forms.Button btnFCTestFolder;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtbCFNumOutputNeuron;
         private System.Windows.Forms.Label label19;
@@ -1616,7 +1892,7 @@
         private System.Windows.Forms.TextBox txtbCBenignSize;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtbCVirusSize;
-        private System.Windows.Forms.CheckBox cbCUseRate;
+        private System.Windows.Forms.CheckBox cbxCUseRate;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtbCBenignVirusRate;
         private System.Windows.Forms.Label label24;
@@ -1635,7 +1911,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartFC;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1659,6 +1935,28 @@
         private System.Windows.Forms.TextBox txtbDBenignFile;
         private System.Windows.Forms.Button btnDBenignFile;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TabPage tabpgStringCompare;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartSC;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TextBox txtbSCBenignFolder;
+        private System.Windows.Forms.Button btnSCBenignFolder;
+        private System.Windows.Forms.TextBox txtbSCVirusFolder;
+        private System.Windows.Forms.Button btnSCVirusFolder;
+        private System.Windows.Forms.Button btnSCStop;
+        private System.Windows.Forms.Button btnSCStart;
+        private System.Windows.Forms.TextBox txtbSCStepSize;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox txtbSCLength;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox txtbVSStringCompareThresold;
+        private System.Windows.Forms.TextBox txtbSCRContinuousDistance;
+        private System.Windows.Forms.CheckBox cbxSCRContinuousDistance;
+        private System.Windows.Forms.TextBox txtbSCHammingDistance;
+        private System.Windows.Forms.CheckBox cbxSCHammingDistance;
     }
 }
 

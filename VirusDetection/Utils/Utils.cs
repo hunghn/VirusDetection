@@ -11,6 +11,10 @@ namespace VirusDetection.Utils
 {
     class Utils
     {
+        // VR Count Status support
+        public static int GLOBAL_LENGTH = 4; //byte
+        public static int GLOBAL_STEP_SIZE = 2;
+
         // ProgressBar support
         public static int GLOBAL_PROGRESSBAR_COUNT = 0;
         public static int GLOBAL_PROGRESSBAR_COUNT_MAX = 0;

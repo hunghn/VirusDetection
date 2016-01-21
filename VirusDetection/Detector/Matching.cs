@@ -25,7 +25,11 @@ namespace VirusDetection.Detector
         }
         public bool Match(byte[] s1, byte[] s2)
         {
-            int m = MaxHammingDistance.HammingMaxDistance(s1, s2);
+            // Debug
+            String strBinary1 = String.Join("", s1);
+            String strBinary2 = String.Join("", s2);
+
+            int m = MaxHammingDistance.HammingDistance(s1, s2);
             int n = RContiguous.ShiftRContiguous(s1, s2);
             if (H && RC || !H && !RC)
             {

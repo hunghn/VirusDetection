@@ -90,11 +90,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clustering\LKSOMLearning.cs" />
+    <Compile Include="StringCompare\StringCompareManager.cs" />
     <Compile Include="Utils\CustomSettings.cs" />
     <Compile Include="Utils\GuiSupport.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="VirusScanner\FileScanInfo.cs" />
-    <Compile Include="VirusScanner\SimpleVirusScannerData.cs" />
+    <Compile Include="StringCompare\StringCompareData.cs" />
     <Compile Include="VirusScanner\SimpleVirusScannerManager.cs" />
     <Compile Include="VirusScanner\VirusScannerManager.cs" />
     <EmbeddedResource Include="FormMain.resx">
