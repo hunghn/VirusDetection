@@ -56,7 +56,9 @@ namespace VirusDetection.StringCompare
                 if(result)
                     _detectCount++;
             }
-            Console.WriteLine(_detectCount + ": " + fileName_);
+
+            // Debug
+            //Console.WriteLine(_detectCount + ": " + fileName_);
         }
 
         private bool _compute(byte[] binaryArray)

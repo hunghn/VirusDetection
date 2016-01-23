@@ -805,24 +805,11 @@ namespace VirusDetection
             {
                 double thresold = double.Parse(txtbVSStringCompareThresold.Text);
                 SimpleVirusScannerManager simpleVirusScannerManger = new SimpleVirusScannerManager(_stringCompareManager, thresold);
-
                 String testFileFolder = txtbVSTestFolder.Text;
-                String[] testFile = Directory.GetFiles(testFileFolder, "*.*", SearchOption.AllDirectories);
-
-                // Init progressbar here
-                Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = testFile.Length;
-                Utils.Utils.GUI_SUPPORT.initProgressBar();
 
                 _lFileScanInfo.Clear();
-                foreach (String file in testFile)
-                {
-                    Boolean result = simpleVirusScannerManger.scanFile(file);
-                    FileScanInfo scanInfo = new FileScanInfo(file, result);
-                    _lFileScanInfo.Add(scanInfo);
-
-                    // Update progressbar
-                    Utils.Utils.GUI_SUPPORT.updateProgressBar();
-                }
+                FileScanInfo[] result = simpleVirusScannerManger.scanVirus(testFileFolder);
+                _lFileScanInfo.AddRange(result);
 
                 MessageBox.Show("Successful!");
             }
@@ -958,16 +945,19 @@ namespace VirusDetection
             chartSC.Series["Virus With File Rate"].ChartType = SeriesChartType.Point;
             chartSC.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
             chartSC.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 0;
-            for (int i = 0; i < _stringCompareManager._graphMap.Length; i++)
+            int len = _stringCompareManager._graphMap.Length;
+            for (int i = 0; i < len; i++)
             {
-                if (_stringCompareManager._graphMap[i][2] == Utils.Utils.BENIGN_MARK)
-                    chartSC.Series["Benign"].Points.AddXY(i, _stringCompareManager._graphMap[i][0]);
-                else if (_stringCompareManager._graphMap[i][2] == Utils.Utils.VIRUS_MARK)
+                if (_stringCompareManager._graphMap[i]!= null)
                 {
-                    chartSC.Series["Virus With Detector Rate"].Points.AddXY(i, _stringCompareManager._graphMap[i][0]);
-                    chartSC.Series["Virus With File Rate"].Points.AddXY(i, _stringCompareManager._graphMap[i][1]);
+                    if (_stringCompareManager._graphMap[i][2] == Utils.Utils.BENIGN_MARK)
+                        chartSC.Series["Benign"].Points.AddXY(i, _stringCompareManager._graphMap[i][0]);
+                    else if (_stringCompareManager._graphMap[i][2] == Utils.Utils.VIRUS_MARK)
+                    {
+                        chartSC.Series["Virus With Detector Rate"].Points.AddXY(i, _stringCompareManager._graphMap[i][0]);
+                        chartSC.Series["Virus With File Rate"].Points.AddXY(i, _stringCompareManager._graphMap[i][1]);
+                    }
                 }
-                    
             }
         }
 
