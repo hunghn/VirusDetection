@@ -15,19 +15,9 @@ namespace VirusDetection
         [STAThread]
         static void Main()
         {
-            //_test();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
-        }
-
-        private static void _test()
-        {
-            //Test_ByteArrayToHex();
-            String fileData = @"C:\data.txt";
-            String folder = @"C:\Users\Administrator\Desktop\notsureVirus";
-            Utils.Utils.CopyFile(fileData, 1, -1, 0.4, folder);
-            int debug = 1;
         }
 
         private static void _testByteToBit()

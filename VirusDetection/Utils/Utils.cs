@@ -412,10 +412,10 @@ namespace VirusDetection.Utils
             double total = 0;
             for (int i = 0; i < len; i++)
             {
-                total += input_[i] * 2*i;
+                total += input_[i] *i;
             }
             double count = len * (len - 1) / 2;
-            double result = total / (count*2);
+            double result = total / count;
             result = Math.Round(result, 4);
             return result;
         }
@@ -461,32 +461,7 @@ namespace VirusDetection.Utils
         #endregion
 
 
-        // Copy data
-        public static void CopyFile(String fileName_, int thresoldIndex_, double thresoldMin_,double thresoldMax_, String copyToFolder_)
-        {
-            // Check folder exist first
-            if (!Directory.Exists(copyToFolder_))
-            {
-                Directory.CreateDirectory(copyToFolder_);
-            }
-
-            List<String> selectedFile = new List<string>();
-            var lines = File.ReadAllLines(fileName_);
-            var len = lines.Length;
-            foreach (var line in lines)
-            {
-                String[] raw = line.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                double fileThresoldValue = double.Parse(raw[thresoldIndex_]);
-                if(fileThresoldValue>=thresoldMin_&&fileThresoldValue<=thresoldMax_)
-                {
-                    String sourceFile = raw[0];
-                    String desFolder = copyToFolder_;
-                    _copyFileToFolder(sourceFile, desFolder);
-                }
-                
-            }
-        }
-
+       
         private static void _copyFileToFolder(string sourceFile, string desFolder)
         {
             // Check file exist
