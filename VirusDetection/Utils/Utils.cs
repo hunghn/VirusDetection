@@ -412,10 +412,10 @@ namespace VirusDetection.Utils
             double total = 0;
             for (int i = 0; i < len; i++)
             {
-                total += input_[i] * i;
+                total += input_[i] * 2*i;
             }
             double count = len * (len - 1) / 2;
-            double result = total / count;
+            double result = total / (count*2);
             result = Math.Round(result, 4);
             return result;
         }
@@ -492,8 +492,11 @@ namespace VirusDetection.Utils
             // Check file exist
             if (!File.Exists(sourceFile))
                 return;
-            
-            string destFile = System.IO.Path.Combine(desFolder, sourceFile);
+
+            String fileName = Path.GetFileName(sourceFile);
+
+
+            string destFile = desFolder +"\\"+ fileName;
             
             // To copy a file to another location and 
             // overwrite the destination file if it already exists.

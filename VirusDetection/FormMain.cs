@@ -22,11 +22,6 @@ namespace VirusDetection
 {
 
 
-    enum EVirusScannerType
-    {
-        StringCompare,
-        AIS
-    }
 
     enum EDetectorType
     {
@@ -40,7 +35,6 @@ namespace VirusDetection
         Detector,
         Clustering,
         FileClassifier,
-        StringCompare,
         VirusScaner
     }
 
@@ -193,7 +187,7 @@ namespace VirusDetection
             groupshowingDataTable.Rows.Clear();
 
             // Show value to status
-            String status = string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", Utils.Utils.GLOBAL_VIRUS_COUNT, Utils.Utils.GLOBAL_BENIGN_COUNT);
+            String status = string.Format("Number of virus fragments: {0}      Number of benign fragments : {1}", 0, Utils.Utils.GLOBAL_BENIGN_COUNT);
             this.txtStatusBar.BeginInvoke((MethodInvoker)delegate()
             {
                 txtStatusBar.Text = status;
@@ -685,6 +679,11 @@ namespace VirusDetection
                 double errorThresold = double.Parse(txtbCFErrorThresold.Text);
 
 
+                //_fileClassifierManager.trainActiveNetwork(numOfHiddenNeuron,
+                //    numOfOutputNeuron,
+                //    numOfIterator,
+                //    errorThresold);
+
                 _fileClassifierManager.trainActiveNetwork(numOfHiddenNeuron,
                     numOfOutputNeuron,
                     numOfIterator,
@@ -791,33 +790,12 @@ namespace VirusDetection
 
             _turnToWorkingStatus(true);
 
-            if (rbtnAIS.Checked)
-                _worker = new Thread(_virusScannerThread);
-            else
-                _worker = new Thread(_simpleVirusScannerThread);
+            _worker = new Thread(_virusScannerThread);
 
             _worker.Start();
         }
 
-        private void _simpleVirusScannerThread()
-        {
-            try
-            {
-                double thresold = double.Parse(txtbVSStringCompareThresold.Text);
-                SimpleVirusScannerManager simpleVirusScannerManger = new SimpleVirusScannerManager(_stringCompareManager, thresold);
-                String testFileFolder = txtbVSTestFolder.Text;
-
-                _lFileScanInfo.Clear();
-                FileScanInfo[] result = simpleVirusScannerManger.scanVirus(testFileFolder);
-                _lFileScanInfo.AddRange(result);
-
-                MessageBox.Show("Successful!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
 
         private void _virusScannerThread()
         {
@@ -842,6 +820,7 @@ namespace VirusDetection
                 foreach (String file in testFile)
                 {
                     Boolean result = _virusScannerManager.scanFile(file);
+                    //Boolean result = _virusScannerManager.scanFile1(file);
                     FileScanInfo scanInfo = new FileScanInfo(file, result);
                     _lFileScanInfo.Add(scanInfo);
 
@@ -906,9 +885,6 @@ namespace VirusDetection
                         break;
                     case EProcessType.FileClassifier:
                         break;
-                    case EProcessType.StringCompare:
-                        _stringCompareThread_Stopped();
-                        break;
 
                     case EProcessType.VirusScaner:
                         _virusScannerThread_Stopped();
@@ -929,37 +905,7 @@ namespace VirusDetection
 
         }
 
-        private void _stringCompareThread_Stopped()
-        {
-            showStringCompareAnalysis();
-        }
-        public void showStringCompareAnalysis()
-        {
-            chartSC.Series.Clear();
-
-            chartSC.Series.Add("Benign");
-            chartSC.Series["Benign"].ChartType = SeriesChartType.Point;
-            chartSC.Series.Add("Virus With Detector Rate");
-            chartSC.Series["Virus With Detector Rate"].ChartType = SeriesChartType.Point;
-            chartSC.Series.Add("Virus With File Rate");
-            chartSC.Series["Virus With File Rate"].ChartType = SeriesChartType.Point;
-            chartSC.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
-            chartSC.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 0;
-            int len = _stringCompareManager._graphMap.Length;
-            for (int i = 0; i < len; i++)
-            {
-                if (_stringCompareManager._graphMap[i]!= null)
-                {
-                    if (_stringCompareManager._graphMap[i][2] == Utils.Utils.BENIGN_MARK)
-                        chartSC.Series["Benign"].Points.AddXY(i, _stringCompareManager._graphMap[i][0]);
-                    else if (_stringCompareManager._graphMap[i][2] == Utils.Utils.VIRUS_MARK)
-                    {
-                        chartSC.Series["Virus With Detector Rate"].Points.AddXY(i, _stringCompareManager._graphMap[i][0]);
-                        chartSC.Series["Virus With File Rate"].Points.AddXY(i, _stringCompareManager._graphMap[i][1]);
-                    }
-                }
-            }
-        }
+        
 
         private void _virusScannerThread_Stopped()
         {
@@ -1064,9 +1010,9 @@ namespace VirusDetection
             //dangerLevel.ChartAreas[0].Position.Y = 100;
             ////dangerLevel.ChartAreas[0].Position.Height = 60;
             //dangerLevel.ChartAreas[0].AxisX.Maximum = 500;
-            //dangerLevel.ChartAreas[0].AxisX.Minimum = 0;
+            dangerLevel.ChartAreas[0].AxisX.Minimum = 0;
             //dangerLevel.ChartAreas[0].AxisY.Maximum = 500;
-            //dangerLevel.ChartAreas[0].AxisY.Minimum = 0;
+            dangerLevel.ChartAreas[0].AxisY.Minimum = 0;
             double[][] cluster = _clusteringManager.DangerLevel();
             for (int i = 0; i < cluster.Length; i++)
             {
@@ -1214,7 +1160,9 @@ namespace VirusDetection
                     row["Status"] = "Passed";
                 }
                 else
-                { row["Status"] = "Failed"; }
+                { 
+                    row["Status"] = "Failed"; 
+                }
                 NegativeSelectionData.Rows.Add(row);
 
             }
@@ -1253,6 +1201,7 @@ namespace VirusDetection
             }
             for (int i = 0; i < _benignFragments.Count; i++)
             {
+                break;
                 row = NegativeSelectionData.NewRow();
                 row["Virus Data Fragments"] = ConvertByteArrayToString(_benignFragments[i]);
                 row["Status"] = "Fail";
@@ -1285,7 +1234,8 @@ namespace VirusDetection
         }
         private void showDetectorResult()
         {
-            ShowDetectorDataTable(datageneration.VirusFragmentInput, datageneration.state);
+            //ShowDetectorDataTable(datageneration.VirusFragmentInput, datageneration.state);
+            ShowDetectorDataTable(datageneration.VirusFragmentOutput, datageneration.state);
         }
 
 
@@ -1357,9 +1307,6 @@ namespace VirusDetection
 
             txtbFCVirusFolder.Text = CustomSettings.FILE_CLASSIFIER_VIRUS_FOLDER;
             txtbFCBenignFolder.Text = CustomSettings.FILE_CLASSIFIER_BENIGN_FOLDER;
-
-            txtbSCVirusFolder.Text = CustomSettings.FILE_CLASSIFIER_VIRUS_FOLDER;
-            txtbSCBenignFolder.Text = CustomSettings.FILE_CLASSIFIER_BENIGN_FOLDER;
 
             txtbDDetectorFile.Text = CustomSettings.DETECTOR_FILE;
             txtbDBenignFile.Text = CustomSettings.BENIGN_FILE;
@@ -1476,84 +1423,11 @@ namespace VirusDetection
             }
         }
 
-        private void rbtnVSVirusScannerType_CheckedChanged(object sender, EventArgs e)
-        {
-            EVirusScannerType virusScannerType = EVirusScannerType.AIS;
-            if (rbtnAIS.Checked)
-            {
-                virusScannerType = EVirusScannerType.AIS;
-            }
-            else
-            {
-                virusScannerType = EVirusScannerType.StringCompare;
-            }
 
-            _updateVirusScannerType(virusScannerType);
-        }
+ 
 
-        private void _updateVirusScannerType(EVirusScannerType virusScannerType_)
-        {
-            switch (virusScannerType_)
-            {
-                case EVirusScannerType.AIS:
-                    txtbVSStringCompareThresold.Enabled = false;
-                    break;
-                case EVirusScannerType.StringCompare:
-                    txtbVSStringCompareThresold.Enabled = true;
-                    break;
-                default:
-                    break;
-            }
-        }
 
-        private void btnSCStart_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _startStringCompare();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void _startStringCompare()
-        {
-            _currentProcessType = EProcessType.StringCompare;
-            _turnToWorkingStatus(true);
-            _worker = new Thread(_stringCompareThread);
-            _worker.Start();
-        }
-
-        private void _stringCompareThread()
-        {
-            try
-            {
-                if (_virusFragments == null)
-                    throw new System.ArgumentException("Parameter cannot be null", "original");
-
-                int length = Utils.Utils.GLOBAL_LENGTH;
-                int stepSize = Utils.Utils.GLOBAL_STEP_SIZE;
-                int hammingDistance = int.Parse(txtbSCHammingDistance.Text);
-                int rcontiuousDistance = int.Parse(txtbSCRContinuousDistance.Text);
-                bool useHamming = cbxSCHammingDistance.Checked;
-                bool useRContinuous = cbxSCRContinuousDistance.Checked;
-
-                String virusFolder = txtbSCVirusFolder.Text;
-                String benignFolder = txtbSCBenignFolder.Text;
-
-                _stringCompareManager = new StringCompareManager(_virusFragments,hammingDistance,rcontiuousDistance,length, stepSize, useHamming,useRContinuous, virusFolder, benignFolder);
-
-                _stringCompareManager.stringCompareAnalysis();
-
-                MessageBox.Show("Successful!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+       
 
         private void btnSCStop_Click(object sender, EventArgs e)
         {
@@ -1568,26 +1442,6 @@ namespace VirusDetection
             
         }
 
-        private void btnSCVirusFolder_Click(object sender, EventArgs e)
-        {
-            FolderSelectDialog folderSelectDialog = new FolderSelectDialog();
-            folderSelectDialog.Title = "Select Folder";
-            bool result = folderSelectDialog.ShowDialog();
-            if (result)
-            {
-                txtbSCVirusFolder.Text = folderSelectDialog.FileName;
-            }
-        }
 
-        private void btnSCBenignFolder_Click(object sender, EventArgs e)
-        {
-            FolderSelectDialog folderSelectDialog = new FolderSelectDialog();
-            folderSelectDialog.Title = "Select Folder";
-            bool result = folderSelectDialog.ShowDialog();
-            if (result)
-            {
-                txtbSCBenignFolder.Text = folderSelectDialog.FileName;
-            }
-        }
     }
 }

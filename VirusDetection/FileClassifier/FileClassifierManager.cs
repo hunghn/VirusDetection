@@ -178,10 +178,20 @@ namespace VirusDetection.FileClassifier
             };
         }
 
-        public void trainActiveNetwork1()
+        public void trainActiveNetwork1(int numOfHiddenNeuron_, int numOfOutputNeuron_, int numOfIterator_, double errorThresold_)
         {
+            // Init for ANN
+            _numOfHiddenNeuron = numOfHiddenNeuron_;
+            _numOfOutputNeuron = numOfOutputNeuron_;
+            _numOfIterator = numOfIterator_;
+            _errorThresold = errorThresold_;
+
             // Setting for trainActivenetwork1
             int numOfInputNeuron = 1;
+
+            // Init progressbar here
+            Utils.Utils.GLOBAL_PROGRESSBAR_COUNT_MAX = _numOfIterator;
+            Utils.Utils.GUI_SUPPORT.initProgressBar();
 
             // Set random range
             Neuron.RandRange = new Range(0.0f, 1.0f);
@@ -198,6 +208,10 @@ namespace VirusDetection.FileClassifier
                 error = teacher.RunEpoch(_graphMap, _output);
                 Console.WriteLine("Error: " + error + "; [" + count + "/ " + _numOfIterator + "]");
                 count++;
+
+                // Update progressbar
+                Utils.Utils.GUI_SUPPORT.updateProgressBar();
+
                 if (count >= _numOfIterator || error <= _errorThresold)
                     break;
             };

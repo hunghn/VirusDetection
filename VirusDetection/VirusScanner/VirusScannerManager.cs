@@ -39,5 +39,20 @@ namespace VirusDetection.VirusScanner
             double thresold = 0.5; // Thresold = 0.5 with BipolarSigmoidFunction and virus mark as 1, benign mark as -1
             return (result >= thresold);
         }
+
+        public Boolean scanFile1(String fileName_)
+        {
+            FileClassifierData data = new FileClassifierData(_distanceNetwork, fileName_, _formatRange);
+            double[] formatData = new double[1]{Utils.Utils.calcDangerousRate(data.getRateFormatData())};
+            double[] output = _activationNetwork.Compute(formatData);
+            double result = output[0];
+            result = Math.Round(result, 4);
+
+            // Test
+            Console.WriteLine(fileName_ + ", " + result);
+
+            double thresold = 0.5; // Thresold = 0.5 with BipolarSigmoidFunction and virus mark as 1, benign mark as -1
+            return (result >= thresold);
+        }
     }
 }
