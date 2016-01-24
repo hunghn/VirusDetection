@@ -461,21 +461,5 @@ namespace VirusDetection.Utils
         #endregion
 
 
-       
-        private static void _copyFileToFolder(string sourceFile, string desFolder)
-        {
-            // Check file exist
-            if (!File.Exists(sourceFile))
-                return;
-
-            String fileName = Path.GetFileName(sourceFile);
-
-
-            string destFile = desFolder +"\\"+ fileName;
-            
-            // To copy a file to another location and 
-            // overwrite the destination file if it already exists.
-            System.IO.File.Copy(sourceFile, destFile, true);
-        }
     }
 }
